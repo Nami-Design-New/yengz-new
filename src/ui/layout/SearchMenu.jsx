@@ -31,10 +31,9 @@ export default function SearchMenu() {
   return (
     <>
       <li className="link" onClick={handleToggleSearchInput}>
-        <i
-          className="fa-regular fa-magnifying-glass"
-          style={{ cursor: "pointer" }}
-        ></i>
+        <div className="btn">
+          <i className="fa-regular fa-magnifying-glass"></i>
+        </div>
       </li>
 
       {isSearchOpen && (

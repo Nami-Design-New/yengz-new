@@ -4,11 +4,11 @@ import Footer from "../ui/layout/Footer";
 import useAuth from "../hooks/auth/useAuth";
 
 export default function RootLayout() {
-  const { isAuthed } = useAuth();
+  const { loading } = useAuth();
 
   return (
     <>
-      {isAuthed ? (
+      {!loading ? (
         <>
           <Header />
           <main>
