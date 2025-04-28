@@ -32,7 +32,10 @@
         "freelancers": "ابحث عن مستقلين",
         "bids": "عروضى",
         "projectOwnerName": "اسم صاحب المشروع",
-        "addProject": "أضف مشروع"
+        "addProject": "أضف مشروع",
+        "continueSearchIn": "اكمل بحث في",
+        "projectsLink": "المشاريع",
+        "servicesLink": "الخدمات"
     },
     "home": {
         "searchFor": "ابحث عن...",
@@ -139,11 +142,16 @@
         "doYouWantChangePassword": "هل تريد تغيير كلمة المرور؟",
         "areYouSureYouWantToDeleteYourAccount": "هل أنت متأكد من أنك تريد حذف حسابك",
         "jobTitle": "المسمى الوظيفي",
-        "enterPassword": "ادخل كلمة المرور"
+        "enterPassword": "ادخل كلمة المرور",
+        "country": "الدولة",
+        "skills": "المهارات"
     },
     "validation": {
         "email": "البريد الإلكتروني غير صالح",
         "passwordLength": "يجب أن يتكون كلمة المرور من 6 أحرف على الأقل",
-        "required": "هذا الحقل مطلوب"
-    }
+        "required": "هذا الحقل مطلوب",
+        "atLeastOneSkill": "يجب اختيار مهارة واحدة على الاقل",
+        "atLeastOneCategory": "يجب اختيار قسم واحد على الاقل"
+    },
+    "choose": "اختر"
 }

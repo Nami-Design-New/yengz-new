@@ -1,14 +1,11 @@
 import { Modal } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
-import SubmitButton from "./../forms/SubmitButton";
+import SubmitButton from "../forms/SubmitButton";
+import useDeleteAccount from "../../hooks/auth/useDeleteAccount";
 
-function DeleteAcountModal({
-  setShowModal,
-  showModal,
-  eventFunction,
-  loading,
-}) {
+function DeleteAcountModal({ setShowModal, showModal }) {
   const { t } = useTranslation();
+  const { deleteAccount, loading } = useDeleteAccount();
 
   return (
     <Modal show={showModal} onHide={() => setShowModal(false)} centered>
@@ -26,7 +23,7 @@ function DeleteAcountModal({
           <SubmitButton
             name={t("auth.confirm")}
             loading={loading}
-            onClick={eventFunction}
+            onClick={deleteAccount}
             className={"delete-btn"}
           />
         </div>

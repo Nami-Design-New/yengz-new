@@ -1,7 +1,7 @@
 import { Link } from "react-router";
 import { Dropdown } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
-import useCategorieListWithSub from "./../../hooks/categories/useCategorieListWithSub";
+import useCategorieListWithSub from "../../hooks/categories/useCategorieListWithSub";
 
 export default function CategoriesDropDown() {
   const { data: categoriesWithSubCategories } = useCategorieListWithSub();

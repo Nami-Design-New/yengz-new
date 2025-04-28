@@ -14,7 +14,7 @@ const SearchPath = ({
   return (
     <Modal show={showModal} onHide={() => setShowModal(false)} centered>
       <Modal.Header className="pb-0" closeButton>
-        <h6>{t("continueSearchIn")}</h6>
+        <h6>{t("navbar.continueSearchIn")}</h6>
       </Modal.Header>
       <Modal.Body>
         <div className="d-flex gap-2">
@@ -26,7 +26,7 @@ const SearchPath = ({
               searchValue ? `search=${searchValue}` : ""
             }`}
           >
-            {t("servicesLink")}
+            {t("navbar.servicesLink")}
           </Link>
 
           <Link
@@ -37,7 +37,7 @@ const SearchPath = ({
               searchValue ? `search=${searchValue}` : ""
             }`}
           >
-            {t("projectsLink")}
+            {t("navbar.projectsLink")}
           </Link>
         </div>
       </Modal.Body>

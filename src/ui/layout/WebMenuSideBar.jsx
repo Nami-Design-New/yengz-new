@@ -5,7 +5,7 @@ import { Accordion } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import useAuth from "../../hooks/auth/useAuth";
 import SearchPath from "../modals/SearchPath";
-import useGetAbout from "./../../hooks/About/useGetAbout";
+import useGetAbout from "../../hooks/About/useGetAbout";
 import useGetCommunitiesList from "../../hooks/community/useGetCommunitiesList";
 
 function WebMenuSideBar({ isOpen, setIsOpen }) {

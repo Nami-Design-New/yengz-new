@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import { Fragment } from "react";
 import { Dropdown } from "react-bootstrap";
 import NotificationItem from "./NotificationItem";
-import useGetNotifications from "./../../hooks/app/useGetNotifications";
+import useGetNotifications from "../../hooks/app/useGetNotifications";
 
 export default function NotificationMenu(user) {
   const { t } = useTranslation();
