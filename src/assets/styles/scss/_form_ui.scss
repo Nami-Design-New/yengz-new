@@ -1,0 +1,417 @@
+.form_ui {
+  margin-top: 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+
+  .resend-code {
+    width: 100%;
+    display: flex;
+    padding: 10px 0 0;
+    justify-content: space-between;
+    .resend_link {
+      color: var(--main-color);
+      cursor: pointer;
+      &.disabled {
+        pointer-events: none;
+      }
+    }
+    .timer span {
+      color: var(--text-color);
+    }
+  }
+
+  .back_btn {
+    height: 56px;
+    border-radius: 12px;
+    border: 1px solid var(--black-color);
+    width: 120px;
+    color: var(--black-color);
+    cursor: pointer;
+    background: none;
+    transition: 0.3s ease-in-out;
+    &:hover {
+      background: var(--main-color);
+      color: #fff;
+      border: 1px solid var(--main-color);
+    }
+  }
+
+  .input-field {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    position: relative;
+    gap: 8px;
+    label {
+      color: var(--black-color);
+      svg,
+      i {
+        stroke: var(--main-color);
+        width: 16px;
+        height: 16px;
+      }
+    }
+    input,
+    textarea,
+    select {
+      color: var(--black-color);
+      direction: rtl;
+      height: 52px;
+      width: 100%;
+      border: none;
+      outline: none;
+      padding: 8px 12px;
+      border-radius: 12px;
+      background: var(--input-bg);
+      border: 1px solid var(--LightGray);
+      font-size: 14px;
+      box-shadow: none !important;
+    }
+    textarea {
+      height: 140px;
+    }
+    .input-span {
+      position: absolute;
+      color: var(--main-color);
+      left: 12px;
+      top: 46px;
+    }
+  }
+
+  .forgetpass {
+    align-self: flex-end;
+    color: var(--main-color);
+  }
+
+  .noAccount {
+    color: var(--text-color);
+    width: 100%;
+    span {
+      color: var(--main-color);
+    }
+  }
+
+  p {
+    color: var(--text-color);
+    a {
+      color: var(--main-color);
+      text-decoration: underline;
+    }
+  }
+
+  button {
+    width: 100%;
+    height: 52px;
+    gap: 6px;
+    border-radius: 12px;
+    @include centerFlex();
+    @include clearInput();
+    color: #fff;
+    background: var(--main-color);
+    &.disabled {
+      opacity: 0.7;
+      pointer-events: none;
+    }
+  }
+
+  .question {
+    padding: 0 0 30px;
+    width: 100%;
+    @include space-between();
+    .quest {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--black-color);
+    }
+    .vendorInput {
+      appearance: none;
+      position: relative;
+      cursor: pointer;
+      &::after {
+        display: block;
+        width: 48px;
+        height: 24px;
+        border-radius: 16px;
+        content: "";
+        background-color: var(--text-color);
+        transition: var(--main-transation);
+      }
+      &::before {
+        transition: var(--main-transation);
+        display: block;
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        position: absolute;
+        top: 4px;
+        right: 4px;
+        content: "";
+        background-color: var(--white-color);
+      }
+      &:checked {
+        &::after {
+          background-color: var(--main-color);
+        }
+        &::before {
+          right: initial;
+          left: 4px;
+        }
+      }
+    }
+  }
+
+  .image-change-wrapper {
+    border-radius: 16px;
+    border: 1px solid var(--LightGray);
+    @include centerFlex();
+    flex-direction: column;
+    padding: 16px;
+    .img-wrap {
+      width: 130px;
+      height: 130px;
+      border-radius: 50%;
+      border: 1px solid var(--input-hint);
+      overflow: hidden;
+      @include centerFlex();
+      img {
+        width: 100%;
+        height: 100%;
+        aspect-ratio: 1/1;
+        object-fit: contain;
+        object-position: center;
+        width: 100%;
+        object-fit: cover;
+      }
+    }
+    .upload {
+      input {
+        display: none;
+      }
+      .plus {
+        width: 26px;
+        height: 26px;
+        border-radius: 50%;
+        background-color: var(--main-color);
+        @include centerFlex();
+        cursor: pointer;
+        i {
+          font-size: 14px;
+          color: #fff;
+        }
+      }
+    }
+  }
+
+  .auth_social_btn {
+    @include clearInput();
+    @include centerFlex();
+    cursor: pointer;
+    width: 100%;
+    height: 52px;
+    color: var(--white-color);
+    border-radius: 0;
+    gap: 16px;
+    img {
+      height: 24px;
+    }
+    &.google {
+      background: #cd5542;
+    }
+    &.apple {
+      background: #1f4ea7;
+    }
+  }
+
+  .line {
+    width: 100%;
+    height: 1px;
+    background: var(--gray-background);
+    position: relative;
+    margin-top: 24px;
+    span {
+      @include centerAbsolute();
+      background: var(--white-color);
+      padding: 0 16px;
+      color: var(--black-color);
+      white-space: nowrap;
+      @media (max-width: 576px) {
+        font-size: 14px;
+      }
+    }
+  }
+
+  .pass-group {
+    display: flex;
+    span {
+      @include centerFlex();
+      width: 60px;
+      height: 52px;
+      border: 1px solid var(--LightGray);
+      background: var(--input-bg);
+      border-right: 0;
+      border-radius: 12px 0 0 12px !important;
+      color: var(--text-color);
+      cursor: pointer;
+    }
+    input {
+      border-left: 0 !important;
+      border-radius: 0 12px 12px 0 !important;
+    }
+  }
+
+  .phone-group {
+    .PhoneInput {
+      display: flex;
+      gap: 12px;
+      flex-direction: row-reverse;
+      .PhoneInputCountryIcon {
+        position: relative;
+      }
+      .PhoneInputCountryIconImg {
+        width: 20px;
+        position: absolute;
+        top: -33px;
+        left: 10px;
+      }
+      select {
+        padding: 12px 6px 12px 30px;
+        direction: ltr !important;
+      }
+    }
+    .phone-code {
+      height: 54px;
+      border-radius: 4px;
+    }
+  }
+
+  .image_field {
+    width: 100%;
+    gap: 8px;
+    display: flex;
+    flex-direction: column;
+    label {
+      color: var(--black-color);
+      i {
+        color: var(--main-color);
+      }
+    }
+    .imagewrap {
+      border-radius: 12px;
+      padding: 12px;
+      border: 1px solid var(--LightGray);
+      height: 160px;
+      @include centerFlex();
+      input {
+        display: none;
+      }
+      .img {
+        width: 100%;
+        height: 100%;
+        @include centerFlex();
+        img {
+          height: 100%;
+          object-fit: scale-down;
+        }
+      }
+    }
+  }
+
+  .advice {
+    width: 100%;
+    margin: 40px 0;
+    border-radius: 4px;
+    background-color: var(--id-confirm);
+    position: relative;
+    padding-top: 22px;
+    padding-bottom: 32px;
+    h6 {
+      text-align: center;
+      font-weight: 600;
+      margin: 32px 0 12px;
+      font-size: 16px;
+      color: var(--black-color);
+    }
+    .icon {
+      position: absolute;
+      top: -30px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: var(--id-confirm);
+      border: 2px solid var(--white-color);
+      @include centerFlex();
+      img {
+        max-height: 40px;
+      }
+    }
+    ul {
+      display: flex;
+      flex-direction: column;
+      margin: 0 auto;
+      width: fit-content;
+      li {
+        color: var(--black-color);
+        gap: 6px;
+        display: flex;
+        align-items: center;
+        i {
+          width: 40px;
+          color: #7dc0f7;
+          font-size: 24px;
+        }
+      }
+    }
+  }
+
+  .verify_image_field {
+    padding: 22px;
+    width: 100%;
+    height: 230px;
+    border: 1px solid var(--gray-background);
+    @include centerFlex();
+    border-radius: 16px;
+    cursor: pointer;
+    input {
+      display: none;
+    }
+  }
+
+  .add-more-devlop {
+    height: 56px;
+    border-radius: 12px;
+    border: 1px dashed var(--main-color);
+    color: var(--main-color);
+    @include centerFlex();
+    cursor: pointer;
+  }
+
+  .add-more-model {
+    width: 100%;
+    margin-bottom: 24px;
+    padding: 16px;
+    border-radius: 12px;
+    background: var(--input-bg);
+    .delete-model {
+      width: 100%;
+      display: flex;
+      justify-content: flex-end;
+      margin-bottom: 12px;
+      i {
+        font-size: 24px;
+        color: var(--main-color);
+        cursor: pointer;
+      }
+    }
+    .input-field {
+      gap: 0;
+      input {
+        background: var(--white-color);
+      }
+    }
+  }
+}

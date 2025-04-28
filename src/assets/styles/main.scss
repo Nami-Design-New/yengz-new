@@ -1,0 +1,29 @@
+@import "./scss/config";
+@import "./scss/layout";
+@import "./scss/form_ui";
+
+body {
+  direction: rtl;
+  overflow-x: hidden;
+  position: relative;
+  background: var(--white-color);
+  font-family: "Rubik", sans-serif;
+
+  main {
+    @import "./scss/auth";
+  }
+
+  &.en {
+    font-family: "Poppins", sans-serif;
+    direction: ltr;
+
+    header .navbar {
+      .loged-in-minor-menu .link .btns a:first-child i {
+        transform: scale(-1) !important;
+      }
+      .nav-search {
+        padding: 8px 8px 8px 16px !important;
+      }
+    }
+  }
+}
