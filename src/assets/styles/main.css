@@ -200,7 +200,7 @@ input[type=checkbox]:checked::after {
 }
 .modal-header .btn-close {
   box-shadow: none !important;
-  background-image: url("../images/close.svg");
+  background-image: url("/icons/close.svg");
   margin-left: 0;
   margin-right: auto;
 }
@@ -288,6 +288,22 @@ input[type=checkbox]:checked::after {
 hr {
   padding: 0;
   margin: 0.5rem 0;
+}
+
+.delete-btn {
+  background: none;
+  background: red;
+  color: var(--white-color);
+  border: none;
+  border-radius: 16px;
+  font-size: 16px;
+  gap: 4px;
+  height: 48px;
+  width: 100%;
+}
+
+.modal-content {
+  border-radius: 24px;
 }
 
 header {
@@ -1400,6 +1416,248 @@ footer .mb-60 {
 }
 .categories_list a:hover {
   color: var(--main-color) !important;
+}
+
+.confirm-delete p {
+  color: var(--black-color);
+  font-size: 16px;
+  margin-bottom: 12px;
+}
+.confirm-delete p span {
+  color: red;
+  font-weight: 600;
+}
+.confirm-delete .cancel-btn {
+  border: 1px solid var(--black-color);
+  color: var(--black-color);
+  width: 100%;
+  outline: none;
+  background: none;
+  padding: 8px;
+  border-radius: 8px;
+}
+.confirm-delete .delete-btn {
+  width: 100%;
+  padding: 8px;
+  background: red;
+  color: var(--white-color);
+  border-radius: 8px;
+  border: 0;
+  outline: none;
+}
+.confirm-delete.other .delete-btn {
+  background: var(--main-color);
+}
+
+.pay_modal {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+.pay_modal .tab-content {
+  position: relative;
+}
+.pay_modal .tab-content .conditions-wrapper {
+  position: relative;
+  width: 100%;
+  padding: 20px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.pay_modal .tab-content .conditions-wrapper::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background-color: var(--LightGray);
+}
+.pay_modal .tab-content .conditions-wrapper::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background-color: var(--LightGray);
+}
+.pay_modal .tab-content .conditions-wrapper .checkbox-group {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.pay_modal .tab-content .conditions-wrapper .checkbox-group input::after {
+  width: 16px;
+  height: 16px;
+}
+.pay_modal .tab-content .conditions-wrapper .checkbox-group label {
+  font-size: 16px;
+}
+.pay_modal .tab-content .conditions-wrapper .condition-note {
+  position: relative;
+  font-size: 14px;
+  margin: 0;
+  color: var(--text-color);
+  line-height: 1.6;
+}
+.pay_modal .form {
+  align-items: flex-start !important;
+}
+.pay_modal .nav {
+  background-color: var(--gray-background);
+  padding: 0 !important;
+  border-radius: 12px !important;
+}
+.pay_modal .nav .nav-item {
+  border-radius: 12px !important;
+}
+.pay_modal .nav .nav-item a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 16px;
+  color: var(--dark-color);
+  transition: var(--transition);
+}
+.pay_modal .nav .nav-item a.active {
+  background-color: var(--main-color);
+  color: var(--white-color);
+}
+.pay_modal .nav .nav-item a i {
+  font-size: 16px;
+}
+.pay_modal .cancel-btn {
+  border: 1px solid var(--black-color);
+  color: var(--black-color);
+  width: 100%;
+  outline: none;
+  background: none;
+  padding: 8px;
+  border-radius: 16px;
+}
+.pay_modal .order-now {
+  width: 100%;
+  padding: 8px;
+  background: var(--main-color);
+  color: var(--white-color);
+  border-radius: 8px;
+  border: 0;
+  outline: none;
+}
+.pay_modal .current_ballance {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 8px;
+}
+.pay_modal .current_ballance div {
+  margin: 0 !important;
+}
+.pay_modal h3 {
+  color: var(--black-color);
+  font-weight: bold;
+  text-align: center;
+  font-size: 16px;
+}
+.pay_modal h3 span {
+  font-size: 24px;
+  color: var(--main-color);
+}
+.pay_modal h3 i {
+  color: var(--text-color);
+}
+@media (max-width: 576px) {
+  .pay_modal h3 {
+    font-size: 16px;
+  }
+}
+.pay_modal .bank-transfer-box {
+  width: 100%;
+}
+.pay_modal .bank-transfer-box input {
+  display: none;
+}
+.pay_modal .bank-transfer-box input:checked + label {
+  border-color: var(--main-color);
+}
+.pay_modal .bank-transfer-box label {
+  background-color: var(--gray-background);
+  border: 2px solid var(--gray-background);
+  width: 100%;
+  padding: 16px;
+  border-radius: 12px;
+  display: flex;
+  gap: 24px;
+  position: relative;
+  cursor: pointer;
+  transition: var(--transition);
+}
+.pay_modal .bank-transfer-box .image-wrapper {
+  width: 42px;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.pay_modal .bank-transfer-box .image-wrapper i {
+  font-size: 24px;
+}
+.pay_modal .bank-transfer-box .info-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  position: relative;
+}
+.pay_modal .bank-transfer-box .info-wrapper h5 {
+  margin: 0;
+}
+.pay_modal .bank-transfer-box .info-wrapper .info-boxes-wrapper {
+  display: flex;
+  position: relative;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0 24px;
+}
+.pay_modal .bank-transfer-box .info-wrapper .info-boxes-wrapper .info-box {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  position: relative;
+  font-size: 14px;
+  margin: 0;
+  color: var(--text-color);
+}
+.pay_modal .bank-transfer-box .info-wrapper .info-boxes-wrapper .info-box i {
+  font-size: 12px;
+  width: 16px;
+  height: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--text-color);
+}
+.pay_modal .btn {
+  border: 1px solid var(--main-color);
+  color: var(--main-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 16px;
+  transition: var(--main-transation);
+  border-radius: 12px;
+  gap: 4px;
+  background: none;
+}
+.pay_modal .btn i {
+  margin: 0 4px;
+}
+.pay_modal .btn:hover {
+  background: var(--main-color);
+  color: #fff;
 }
 
 .form_ui {
