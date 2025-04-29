@@ -5,7 +5,7 @@ import List from "./List";
 const BenefitsSection = () => {
   const { t } = useTranslation();
   return (
-    <section className="benfits-enterprise">
+    <section className="benfits-enterprise section-padding">
       <div className="container main-container">
         <div className="row">
           <div className="col-12 col-md-6 p-2">

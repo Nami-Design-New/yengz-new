@@ -26,7 +26,7 @@ const cardsData = [
 ];
 const StepsEnterprise = () => {
   return (
-    <section className="steps-enterprise">
+    <section className="steps-enterprise section-padding">
       <div className="container">
         <SectionTitle title={"enterprise.steps.title"} />
         <div className="row g-4">

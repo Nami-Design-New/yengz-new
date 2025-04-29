@@ -5,7 +5,7 @@ import { useTranslation } from "react-i18next";
 const AboutEnterprise = () => {
   const { t } = useTranslation();
   return (
-    <section className="about-enterprise" id="about-enterprise">
+    <section className="about-enterprise section-padding" id="about-enterprise">
       <div className="container">
         <div className="row">
           <div className="col-lg-8 mx-auto">

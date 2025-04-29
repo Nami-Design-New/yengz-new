@@ -181,6 +181,13 @@
         "title": "Manage Your Enterprise Projects",
         "desc": "Add projects within the enterprise and take advantage of project management features to collaborate with your team, monitor progress, and delegate tasks."
       }
+    },
+    "features": {
+      "title": "Manage your teams and projects from one place",
+      "desc": "All the features you need to complete your organization's projects in the best way"
+    },
+    "faq": {
+      "title": "FAQs"
     }
   }
 }
