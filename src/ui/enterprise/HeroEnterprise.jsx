@@ -2,7 +2,7 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router";
 
-const HeroSection = () => {
+const HeroEnterprise = () => {
   const { t } = useTranslation();
   const scrollToSection = () => {
     document
@@ -15,7 +15,7 @@ const HeroSection = () => {
         <div className="hero-position">
           <h1 className="title">{t("enterprise.hero.title")}</h1>
           <p className="desc">{t("enterprise.hero.desc")}</p>
-          <Link to={"/"} className="main-link create-link">
+          <Link to={"create"} className="main-link create-link">
             {t("enterprise.hero.link")}{" "}
           </Link>
         </div>
@@ -28,4 +28,4 @@ const HeroSection = () => {
   );
 };
 
-export default HeroSection;
+export default HeroEnterprise;
