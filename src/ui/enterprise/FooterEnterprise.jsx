@@ -9,7 +9,9 @@ const FooterEnterprise = () => {
       <div className="container">
         <div className="text-data">
           <h3>{t("enterprise.footer.title")}</h3>
-          <Link className="main-link ">{t("enterprise.hero.link")}</Link>
+          <Link to={"create"} className="main-link ">
+            {t("enterprise.hero.link")}
+          </Link>
         </div>
       </div>
     </section>

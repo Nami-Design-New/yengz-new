@@ -199,6 +199,25 @@
     },
     "footer": {
       "title": "Are you ready to create your enterprise?"
+    },
+    "createenterprise": {
+      "whatIs": {
+        "title": "What is Mostaql for Enterprises",
+        "content": "A solution tailored for companies and organizations to manage their freelance hiring process efficiently..."
+      },
+      "forWhom": {
+        "title": "Who is it for",
+        "content": "Whether you are a company owner or team lead..."
+      },
+      "benefits": {
+        "title": "How to benefit",
+        "list": [
+          "Create an enterprise from your account...",
+          "Monitor and manage posted projects easily...",
+          "Manage your enterprise finances with team balance control...",
+          "Collaborate with your team on project delegation..."
+        ]
+      }
     }
   }
 }
