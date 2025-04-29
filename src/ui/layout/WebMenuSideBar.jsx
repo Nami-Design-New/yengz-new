@@ -113,6 +113,9 @@ function WebMenuSideBar({ isOpen, setIsOpen }) {
                       >
                         {category.name}
                       </Link>
+                      <Link to={`/enterprise`} onClick={() => setIsOpen(false)}>
+                        {t("navbar.enterprise")}
+                      </Link>
                     </li>
                   ))}
                 </ul>

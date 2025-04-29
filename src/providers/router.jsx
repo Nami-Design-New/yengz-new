@@ -4,6 +4,7 @@ import ErrorPage from "../routes/ErrorPage";
 import Home from "../routes/Home";
 import Login from "../routes/Login";
 import Register from "../routes/Register";
+import { Enterprise } from "../routes/Enterprise";
 
 export const router = createBrowserRouter([
   {
@@ -24,6 +25,11 @@ export const router = createBrowserRouter([
       {
         path: "/register",
         element: <Register />,
+      },
+
+      {
+        path: "/enterprise",
+        element: <Enterprise />,
       },
     ],
   },
