@@ -222,7 +222,7 @@ input[type="checkbox"] {
   }
   .btn-close {
     box-shadow: none !important;
-    background-image: url("../images/close.svg");
+    background-image: url("/icons/close.svg");
     margin-left: 0;
     margin-right: auto;
   }
@@ -314,4 +314,146 @@ input[type="checkbox"] {
 hr {
   padding: 0;
   margin: 0.5rem 0;
+}
+
+.delete-btn {
+  background: none;
+  background: red;
+  color: var(--white-color);
+  border: none;
+  border-radius: 16px;
+  font-size: 16px;
+  gap: 4px;
+  height: 48px;
+  width: 100%;
+}
+
+.modal-content {
+  border-radius: 24px;
+}
+
+.form-check-input::after {
+  display: none !important;
+}
+
+.react-tel-input {
+  position: relative;
+  display: flex;
+  flex-direction: row-reverse;
+  border: 1px solid var(--LightGray);
+  background: var(--input-bg);
+  height: 54px;
+  border-radius: 12px;
+  direction: ltr;
+  .form-control {
+    width: 100%;
+    border: 0 !important;
+    height: 100%;
+    color: var(--black-color);
+    font-size: 14px;
+    background: var(--input-bg);
+    padding: 8px;
+    border-radius: 12px;
+    direction: ltr;
+    border: 0;
+  }
+
+  .flag-dropdown {
+    background: transparent;
+    border: none;
+    position: static;
+    border-radius: 12px 0 0 12px;
+    min-width: 52px;
+    &.open {
+      background: var(--input-bg);
+      border-radius: 12px;
+      .selected-flag {
+        border-radius: 12px;
+        background: var(--input-bg);
+      }
+    }
+  }
+
+  .selected-flag {
+    background: transparent;
+    padding: 0;
+    width: 100%;
+    border-radius: 12px;
+    @include centerFlex();
+    .arrow {
+      border-top-color: var(--black-color);
+      &.up {
+        border-bottom-color: var(--black-color);
+      }
+    }
+    &:hover,
+    &:focus {
+      background: var(--input-bg);
+    }
+  }
+
+  .country-list {
+    width: 100%;
+    left: 0;
+    background: var(--white-color);
+    border: 1px solid var(--LightGray);
+    border-radius: 12px;
+    box-shadow: 0px 2px 8px #0000001a;
+    margin-top: 4px;
+    scrollbar-width: none;
+    .search {
+      padding: 8px;
+      input {
+        margin: 0;
+        border: 1px solid var(--LightGray);
+        height: 42px;
+        width: 100%;
+        border-radius: 8px;
+        direction: ltr !important;
+      }
+      background: var(--white-color);
+      span {
+        display: none;
+      }
+    }
+    .country {
+      color: var(--black-color);
+      padding: 8px 10px;
+      &:hover {
+        background: var(--input-bg);
+      }
+      &.highlight {
+        background: var(--input-bg);
+      }
+    }
+    .dial-code {
+      color: var(--text-color);
+    }
+  }
+}
+
+.css-qbdosj-Input input {
+  height: 44px !important;
+}
+
+.css-13cymwt-control {
+  border-radius: 12px !important;
+}
+
+.css-t3ipsp-control {
+  box-shadow: none !important;
+  border-radius: 12px !important;
+  border-color: var(--gray-background) !important;
+}
+
+.css-1u9des2-indicatorSeparator {
+  display: none;
+}
+
+.css-13cymwt-control {
+  background: var(--input-bg) !important;
+}
+
+.css-19bb58m input {
+  height: 40px !important;
 }

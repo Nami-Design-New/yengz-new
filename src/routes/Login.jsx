@@ -7,10 +7,7 @@ import SubmitButton from "../ui/forms/SubmitButton";
 
 export default function Login() {
   const { t } = useTranslation();
-  const { register, handleSubmit, errors, isPending } = useLogin(t);
-
-  console.log(errors, "errors");
-  
+  const { register, handleSubmit, errors, isPending } = useLogin();
 
   return (
     <section className="login-section ">

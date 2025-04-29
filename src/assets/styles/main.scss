@@ -13,6 +13,7 @@ body {
 
   main {
     @import "./scss/auth";
+    @import "./scss/home";
   }
 
   &.en {

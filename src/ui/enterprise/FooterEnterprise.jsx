@@ -8,7 +8,7 @@ const FooterEnterprise = () => {
     <section className="footer-enterprise padding-section">
       <div className="container">
         <div className="text-data">
-          <h3>هل أنت جاهز لإنشاء مؤسستك؟</h3>
+          <h3>{t("enterprise.footer.title")}</h3>
           <Link className="main-link ">{t("enterprise.hero.link")}</Link>
         </div>
       </div>

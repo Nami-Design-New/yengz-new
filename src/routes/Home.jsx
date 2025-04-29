@@ -1,3 +1,11 @@
-export default function Home() {
-  return <div></div>;
-}
+import HeroSection from "../components/home/HeroSection";
+
+const Home = () => {
+  return (
+    <>
+      <HeroSection />
+    </>
+  );
+};
+
+export default Home;

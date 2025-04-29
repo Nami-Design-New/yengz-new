@@ -1,13 +1,17 @@
 import { useTranslation } from "react-i18next";
 import { Dropdown } from "react-bootstrap";
+import { useState } from "react";
 import { Link } from "react-router";
 import useAuth from "../../hooks/auth/useAuth";
 import useLogout from "../../hooks/auth/useLogout";
+import DeleteAcountModal from "../modals/DeleteAcountModal";
 
 export default function UserMenu({ user }) {
   const { t } = useTranslation();
   const { isAuthed } = useAuth();
   const { isPending, logout } = useLogout();
+
+  const [showModal, setShowModal] = useState(false);
 
   return (
     <>
@@ -78,7 +82,13 @@ export default function UserMenu({ user }) {
                   </li>
 
                   <li>
-                    <Link className="dropdown-item_Link">
+                    <Link
+                      className="dropdown-item_Link"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        setShowModal(true);
+                      }}
+                    >
                       <i className="fa-solid fa-trash"></i>
                       {t("navbar.deleteAccount")}
                     </Link>
@@ -99,6 +109,12 @@ export default function UserMenu({ user }) {
               </Dropdown.Menu>
             </Dropdown>
           </li>
+
+          <DeleteAcountModal
+            showModal={showModal}
+            setShowModal={setShowModal}
+            text={t("navbar.areYouSureYouWantToDeleteYourAccount")}
+          />
         </>
       )}
     </>

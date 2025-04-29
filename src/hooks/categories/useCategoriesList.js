@@ -1,15 +1,12 @@
 import { useQuery } from "@tanstack/react-query";
-import { useParams } from "react-router-dom";
 import axiosInstance from "../../utils/axiosInstance";
 
-function useGetAboutData() {
-  const { id } = useParams();
-
+function useCategoriesList() {
   const { isLoading, data, error } = useQuery({
-    queryKey: ["getAboutData", id],
+    queryKey: ["categoryList"],
     queryFn: async function () {
       try {
-        const req = await axiosInstance.post("/get_about_app_data", { id });
+        const req = await axiosInstance.get("/get_categories");
         return req.data.data;
       } catch (err) {
         throw new Error(err.message);
@@ -20,4 +17,4 @@ function useGetAboutData() {
   return { isLoading, data, error };
 }
 
-export default useGetAboutData;
+export default useCategoriesList;

@@ -3,13 +3,15 @@ import { useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router";
 import { useCookies } from "react-cookie";
+import { useTranslation } from "react-i18next";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useMutation } from "@tanstack/react-query";
 import { setUser } from "../../redux/slices/authedUser";
 import axiosInstance from "../../utils/axiosInstance";
 import * as yup from "yup";
 
-export default function useLogin(t) {
+export default function useLogin() {
+  const { t } = useTranslation();
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [, setCookie] = useCookies(["token", "id"]);
@@ -39,7 +41,7 @@ export default function useLogin(t) {
     },
   });
 
-  const { mutate: submitlogin, isPending } = useMutation({
+  const { mutate: submitLogin, isPending } = useMutation({
     mutationFn: async (data) => {
       const response = await axiosInstance.post("/user/login", data);
       return response.data;
@@ -75,7 +77,7 @@ export default function useLogin(t) {
   const onSubmit = async (data) => {
     const isFormValid = await trigger();
     if (isFormValid) {
-      submitlogin(data);
+      submitLogin(data);
     }
   };
 

@@ -33,7 +33,11 @@
     "freelancers": "Find Freelancers",
     "bids": "My Bids",
     "projectOwnerName": "Project Owner Name",
-    "addProject": "Add Project"
+    "addProject": "Add Project",
+    "continueSearchIn": "Continue search in",
+    "projectsLink": "Projects",
+    "servicesLink": "Services",
+    "country": "Country"
   },
   "home": {
     "searchFor": "Search for...",
@@ -140,13 +144,17 @@
     "doYouWantChangePassword": "Do you want to change the password?",
     "areYouSureYouWantToDeleteYourAccount": "Are you sure you want to delete your account?",
     "jobTitle": "Job Title",
-    "enterPassword": "Enter Password"
+    "enterPassword": "Enter Password",
+    "skills": "Skills"
   },
   "validation": {
     "email": "Invalid email address",
     "passwordLength": "Password must be at least 6 characters long",
-    "required": "This field is required"
+    "required": "This field is required",
+    "atLeastOneSkill": "At least one skill is required",
+    "atLeastOneCategory": "At least one category is required"
   },
+  "choose": "Choose",
   "enterprise": {
     "hero": {
       "title": "Hire freelancers and manage your company's projects from one place",
@@ -188,6 +196,9 @@
     },
     "faq": {
       "title": "FAQs"
+    },
+    "footer": {
+      "title": "Are you ready to create your enterprise?"
     }
   }
 }
