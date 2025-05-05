@@ -5,13 +5,13 @@ const StepCard = ({ card }) => {
   const { t } = useTranslation();
   return (
     <div className="step-card">
-      <div className="image-wrapper">
-        <img className="img-fluid" src={card.icon} />
-      </div>
       <div className="step-card-content">
+        <div className="image-wrapper">
+          <img className="img-fluid" src={card.icon} />
+        </div>
         <h3>{t(card.title)}</h3>
-        <p>{t(card.description)}</p>
       </div>
+      <p>{t(card.description)}</p>
       <div className="number">{card.number}</div>
     </div>
   );

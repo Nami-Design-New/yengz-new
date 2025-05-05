@@ -56,9 +56,7 @@
 // About Section
 .about-enterprise {
   background-color: var(--white-color);
-  text-align: center;
   p {
-    text-align: right;
     font-size: 16px;
     line-height: 32px;
     margin-bottom: 10px;
@@ -129,12 +127,19 @@
         .accordion-button {
           background-color: transparent;
           border-radius: 0;
-          font-size: 24px;
+          font-size: 18px;
           color: var(--main-color);
           outline: none;
           box-shadow: none;
           &::after {
             margin-right: auto;
+            margin-left: 0;
+          }
+        }
+        &.en {
+          button::after {
+            margin-left: auto !important;
+            margin-right: 0;
           }
         }
       }
@@ -177,37 +182,9 @@
 // !---------------------------------  Create Page -------------------------------------!
 
 .create-enterprise {
+  padding: 20px 0 60px;
   background-color: var(--sec-bgColor);
-  .create-enterprise-form {
-    .create-enterprise-form-wrapper {
-      padding: 1rem;
-      background-color: var(--white-color);
-      .hint {
-        font-size: 10px;
-        color: var(--input-hint);
-      }
-      .desc-field {
-        width: 100%;
-        border: 1px solid #dee2e6;
-        height: 140px;
-        padding: 6px 12px;
-        border-radius: 0.375rem;
-        &:focus-visible {
-          outline: none !important;
-        }
-      }
-    }
-    .create-button {
-      margin-top: 20px;
-      padding: 12px 24px;
-      background-color: var(--main-color);
-      color: var(--white-color);
-      transition: background-color 200ms ease-in-out;
-      &:hover {
-        background-color: #6b3ed1;
-      }
-    }
-  }
+
   .enterprise-info {
     line-height: 1.8;
     color: var(--balck-color);
@@ -238,6 +215,433 @@
   }
 }
 
+// !---------------------------------  Enterprise details Page -------------------------------------!
+
+.enterprise-layout {
+  padding: 20px 0 60px;
+  background-color: var(--sec-bgColor);
+  .right-side {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    .profile-card {
+      padding: 20px;
+      border-radius: var(--card-border-radius);
+      @include centerFlex();
+      flex-direction: column;
+      gap: 12px;
+      font-size: 16px;
+      background-color: var(--white-color);
+      img {
+        height: 84px;
+        width: 84px;
+      }
+      .enterprise__edit--image {
+        flex-direction: column;
+        cursor: pointer;
+
+        input[type="file"] {
+          display: none;
+        }
+        .image__wrapper {
+          position: relative;
+          &:hover .overlay {
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.1);
+            opacity: 1;
+          }
+          .overlay {
+            position: absolute;
+            transition: var(--main-transation);
+            @include centerFlex();
+            opacity: 0;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+          }
+        }
+      }
+    }
+    .settings {
+      background-color: var(--white-color);
+      padding: 20px 0 0;
+      border-radius: var(--card-border-radius);
+      h3 {
+        font-size: 16px;
+        border-bottom: 1px solid var(--LightGray);
+        padding: 0 12px 12px;
+        margin: 0;
+      }
+      .orgs-links {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        margin-top: 12px;
+        .org-link {
+          border-bottom: 1px solid var(--LightGray);
+          padding: 0 12px 12px;
+          &:last-child {
+            border: none;
+          }
+          a {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px;
+            color: var(--text-color);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 400;
+
+            &:hover {
+              background-color: var(--LightGray);
+              color: var(--black-color);
+              transform: translateX(5px);
+            }
+
+            &.active {
+              background-color: var(--main-color-light);
+              color: var(--main-color);
+              i {
+                color: var(--main-color);
+              }
+            }
+
+            i {
+              font-size: 18px;
+              color: var(--text-color);
+              transition: color 0.3s ease;
+            }
+
+            span {
+              font-size: 16px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+// !---------------------- dashboard ---------------------------!
+.dashboard {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+
+  .projects {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+    background-color: var(--white-color);
+    padding: 20px;
+    border-radius: var(--card-border-radius);
+
+    .project-status {
+      flex: 2;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      .status__progress-label {
+        margin-bottom: 4px;
+        span {
+          font-size: 12px;
+          color: var(--text-color);
+        }
+      }
+
+      .status-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+
+        span {
+          width: 80px;
+          text-align: start;
+        }
+
+        .progress-bar {
+          flex-grow: 1;
+          height: 6px;
+          background: #eee;
+          border-radius: 3px;
+          overflow: hidden;
+
+          .filled {
+            height: 100%;
+            background: #007bff;
+            transition: width 0.3s ease-in-out;
+          }
+        }
+      }
+    }
+
+    .project-summary {
+      flex: 1;
+      background: #f3f3f3;
+      padding: 1rem;
+      border-radius: 8px;
+      text-align: center;
+
+      h3 {
+        margin-bottom: 0.5rem;
+      }
+
+      .count {
+        font-size: 2rem;
+        margin-bottom: 1rem;
+      }
+    }
+  }
+
+  .members-messages {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    @media (max-width: 768px) {
+      grid-template-columns: 1fr;
+    }
+    .box {
+      flex: 1;
+      background: var(--white-color);
+      padding: 1.25rem;
+      border-radius: var(--card-border-radius);
+      text-align: center;
+
+      h4 {
+        font-size: 18px;
+        font-weight: 400;
+        margin: 0.5rem;
+        color: var(--text-color);
+      }
+
+      p {
+        font-size: 2.25rem;
+        margin: 0;
+        font-weight: bold;
+      }
+    }
+  }
+  .balance-expenses {
+    background: var(--white-color);
+    border-radius: var(--card-border-radius);
+    padding: 1.25rem 0;
+    .balance {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      .box {
+        flex: 1;
+        @include centerFlex();
+        flex-direction: column;
+        gap: 12px;
+        border-bottom: 1px solid var(--LightGray);
+        padding-bottom: 1rem;
+        @media (max-width: 576px) {
+          h4 {
+            font-size: 16px !important;
+          }
+          p {
+            font-size: 24px !important;
+          }
+        }
+        h4 {
+          margin: 0;
+          font-size: 18px;
+          color: var(--text-color);
+        }
+        p {
+          margin: 0;
+          font-size: 36px;
+        }
+      }
+    }
+    .expenses {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 0 0;
+      .monthly {
+        flex: 1;
+        @include centerFlex();
+        gap: 8px;
+        @media (max-width: 576px) {
+          width: 100%;
+          justify-content: space-between;
+        }
+      }
+      @media (max-width: 576px) {
+        flex-direction: column;
+        align-items: start;
+      }
+    }
+  }
+}
+// !_______________________ Teams  _____________________________!
+.enterprise-team {
+  background-color: var(--white-color);
+  border-radius: var(--card-border-radius);
+  padding: 20px;
+  .enterprise-team__card {
+    padding: 20px 0;
+    border-bottom: 1px solid var(--LightGray);
+    &:last-child {
+      border-bottom: none;
+    }
+    .enterprise-team__header {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      margin-bottom: 1rem;
+      .enterprise-team__title {
+        font-size: 1rem;
+        font-weight: 500;
+        color: var(--main-color);
+        margin-bottom: 10px;
+      }
+      .enterprise-team__info {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 12px;
+        .enterprise-team__info-item {
+          display: flex;
+          align-items: center;
+          gap: 5px;
+        }
+      }
+    }
+    .enterprise-team__role-description {
+      font-size: 16px;
+      color: var(--text-color);
+    }
+    .button__group {
+      display: flex;
+      background-color: var(--main-color);
+      border: none;
+    }
+    .dropdown {
+      height: auto;
+      .dropdown-toggle-split {
+        background-color: transparent;
+        border-radius: 0;
+        border-right: 1px solid var(--white-color);
+        height: 100%;
+        &::before {
+          content: "\f0d7";
+          font-family: "Font Awesome 6 Pro";
+          font-weight: 900;
+          display: inline-block;
+        }
+      }
+      .dropdown-menu {
+        .dropdown-item {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          font-size: 14px;
+          &:hover {
+            color: var(--main-color);
+          }
+        }
+      }
+    }
+    .enterprise-team__user-list {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      .enterprise-team__image {
+        width: 36px;
+        height: 36px;
+        @include centerFlex();
+        border-radius: 50%;
+        object-fit: cover;
+      }
+    }
+  }
+}
+// !_______________________ Funding  _____________________________!
+.funding {
+  background-color: var(--white-color);
+  border-radius: var(--card-border-radius);
+  padding: 20px 0;
+  .funding__title {
+    font-size: 1rem;
+    color: var(--main-color);
+    padding: 0 20px 20px;
+    border-bottom: 1px solid var(--LightGray);
+  }
+  .funders__list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 12px;
+  }
+}
+.funder {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 16px;
+  padding: 0 20px;
+  &.modal-active {
+    background: var(--LightGray);
+    padding: 10px;
+    border-radius: var(--card-border-radius);
+  }
+  .funder__image {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    position: relative;
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 10px;
+      height: 10px;
+      background-color: green;
+      border: 2px solid var(--white-color);
+      border-radius: 50%;
+    }
+  }
+  .funder__info {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    gap: 4px;
+    .funders__info--name {
+      margin: 0;
+      font-size: 16px;
+      color: var(--black-color);
+    }
+    .funders__info--job {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 12px;
+      color: var(--text-color);
+      span {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+      }
+    }
+  }
+}
+
+.change__funder__modal--body {
+  .hint {
+    font-size: 15px;
+    color: var(--text-color);
+  }
+}
 // utilis
 
 .main-btn {
@@ -245,6 +649,7 @@
   border: none;
   background-color: none;
 }
+
 .main-link {
   text-decoration: none;
   color: white;
@@ -306,23 +711,27 @@
   background-color: var(--white-color);
   position: relative;
   display: flex;
+  flex-direction: column;
   gap: 1rem;
   height: 100%;
 
-  img {
-    width: 60px;
-  }
   .step-card-content {
+    display: flex;
+    align-items: center;
+    gap: 12px;
     h3 {
       font-size: 24px;
-      margin-bottom: 1rem;
+      margin: 0;
     }
-    p {
-      font-size: 1rem;
-      font-weight: 400;
-      margin-bottom: 1rem;
-      color: var(--text-color);
+    img {
+      width: 60px;
     }
+  }
+  p {
+    font-size: 1rem;
+    font-weight: 400;
+    margin-bottom: 1rem;
+    color: var(--text-color);
   }
   .number {
     position: absolute;
@@ -345,7 +754,7 @@
 //page header
 
 .page-header {
-  padding: 1.5rem;
+  padding-top: 1.5rem;
   border-radius: 8px;
 
   .breadcrumb {
@@ -359,5 +768,85 @@
     font-weight: 500;
     margin-top: 1rem;
     color: var(--balck-color);
+    text-transform: capitalize;
+  }
+}
+
+.add-button {
+  background-color: var(--main-color);
+  color: var(--white-color);
+  padding: 6px 16px;
+  border: none;
+  border-radius: 4px;
+  font-size: 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: var(--main-hover-color);
+  }
+
+  .icon {
+    display: flex;
+    align-items: center;
+  }
+
+  .text {
+    white-space: nowrap;
+    line-height: 1;
+  }
+}
+
+// Create & Edit enterprise form
+.create-enterprise-form {
+  .create-enterprise-form-wrapper {
+    padding: 1rem;
+    background-color: var(--white-color);
+    border-radius: var(--card-border-radius);
+    .hint {
+      font-size: 10px;
+      color: var(--input-hint);
+    }
+    .desc-field {
+      width: 100%;
+      border: 1px solid #dee2e6;
+      height: 140px;
+      padding: 6px 12px;
+      border-radius: 0.375rem;
+      &:focus-visible {
+        outline: none !important;
+      }
+    }
+  }
+  .buttons__wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 1.25rem;
+
+    .create-button,
+    .delete__button--enterprise {
+      padding: 12px 24px;
+      transition: background-color 200ms ease-in-out;
+      border-radius: var(--card-border-radius);
+      color: var(--white-color);
+    }
+  }
+  .create-button {
+    background-color: var(--main-color);
+
+    &:hover {
+      background-color: var(--main-hover-color);
+    }
+  }
+  .delete__button--enterprise {
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background-color: #c62828;
   }
 }

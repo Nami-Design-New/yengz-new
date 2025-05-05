@@ -5,12 +5,12 @@ import EnterpriseInfo from "../../ui/enterprise/createEnterprise/EnterpriseInfo"
 
 const CreateEnterprise = () => {
   return (
-    <section className="create-enterprise p-90">
+    <section className="create-enterprise ">
       <div className="container">
         <PageHeader showHome={true} removeLast />
         <div className="row">
           <div className="col-12 col-lg-8 p-2">
-            <CreateEnterpriseForm />
+            <CreateEnterpriseForm type="create" />
           </div>
           <div className="col-12 col-lg-4 p-2">
             <EnterpriseInfo />

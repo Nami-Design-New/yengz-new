@@ -162,6 +162,45 @@
       "link": "Create a Company",
       "more": "Learn More"
     },
+    "profile": {
+      "description": "Company providing programming services"
+    },
+    "settings": {
+      "title": "Settings",
+      "editEnterprise": "Edit Enterprise",
+      "teams": "Teams",
+      "funding": "Funding Source"
+    },
+    "orgs": {
+      "addMember": "Add Member",
+      "addTeam": "Add Team",
+      "memberAdded": "Member added successfully!"
+    },
+    "details": {
+      "dashboard": "Dashboard",
+      "projects": "Projects",
+      "totalProjects": "Total Projects"
+    },
+    "stats": {
+      "members": "Members",
+      "messages": "Messages",
+      "freelancers": "Freelancers",
+      "monthlyExpenses": "Monthly Expenses",
+      "totalBalance": "Total Balance",
+      "availableBalance": "Available Balance",
+      "monthlySpending": "Monthly Spending",
+      "pendingBalance": "Pending Balance"
+    },
+    "status": {
+      "draft": "Draft",
+      "open": "Open",
+      "inReview": "In Review",
+      "inProgress": "In Progress",
+      "completed": "Completed",
+      "closed": "Closed",
+      "rejected": "Rejected",
+      "archived": "Archived"
+    },
     "benefits": {
       "title": "How Hiring Freelancers Benefits Your Company and Team",
       "item1": "Lower costs and faster turnaround compared to traditional hiring",
@@ -172,7 +211,7 @@
     },
     "about": {
       "title": "What Is Yinjaz for Enterprises?",
-      "desc1": "A customized solution for companies and organizations to meet their specialized skill needs by creating an enterprise account on Mostaql, adding team members to participate in hiring freelancers and managing projects. Team members can collaborate by assigning projects among themselves and sharing feedback.",
+      "desc1": "A customized solution for companies and organizations to meet their specialized skill needs by creating an enterprise account on Ynjez, adding team members to participate in hiring freelancers and managing projects. Team members can collaborate by assigning projects among themselves and sharing feedback.",
       "desc2": "As an enterprise owner, you can control hiring permissions for your teams and oversee project execution from a single platform. You can also monitor the organization's unified balance to track spending and manage financial transactions effectively."
     },
     "steps": {
@@ -192,17 +231,56 @@
     },
     "features": {
       "title": "Manage your teams and projects from one place",
-      "desc": "All the features you need to complete your organization's projects in the best way"
+      "desc": "All the features you need to complete your organization's projects in the best way",
+      "projects": {
+        "title": "Projects Management",
+        "desc": "Track projects posted by you or members in your organization and collaborate with them to manage and supervise their execution until delivery.",
+        "link": "Learn more about project management"
+      },
+      "members": {
+        "title": "Team Management",
+        "desc": "Add team members to your organization and assign them different roles and permissions to help manage projects efficiently.",
+        "link": "Learn more about team management"
+      },
+      "finances": {
+        "title": "Financial Management",
+        "desc": "Monitor your organization's spending, track project budgets, and manage payments to freelancers all in one place.",
+        "link": "Learn more about financial management"
+      },
+      "collaboration": {
+        "title": "Team Collaboration",
+        "desc": "Enable seamless communication between team members and freelancers with built-in messaging and file sharing tools.",
+        "link": "Learn more about collaboration tools"
+      },
+      "reports": {
+        "title": "Reports and Analytics",
+        "desc": "Get detailed insights about your projects, team performance, and spending with comprehensive reports and analytics.",
+        "link": "Learn more about reports"
+      }
     },
     "faq": {
-      "title": "FAQs"
+      "title": "FAQs",
+      "questions": {
+        "q1": "What is Ynjez for Enterprises?",
+        "q2": "How do I create an enterprise account?",
+        "q3": "Can I add team members to my enterprise?",
+        "q4": "How does billing work for enterprises?",
+        "q5": "Is there a limit to the number of projects I can manage?"
+      },
+      "answers": {
+        "a1": "Ynjez for Enterprises is a customized solution for companies and organizations to meet their specialized skill needs by creating an enterprise account, adding team members, and collaborating on hiring freelancers and managing projects from one place.",
+        "a2": "You can create an enterprise account for free using your existing Ynjez account. Simply navigate to the enterprise section, add your company information, and follow the setup instructions.",
+        "a3": "Yes, you can invite your company's team members to join your enterprise. You can create different teams, assign appropriate permissions, and collaborate on projects together.",
+        "a4": "Enterprises have a unified balance that can be monitored to track spending across all projects. You can manage financial transactions, set budgets, and control who has permission to hire freelancers.",
+        "a5": "No, there is no limit to the number of projects you can manage within your enterprise account. You can create and manage as many projects as needed for your organization."
+      }
     },
     "footer": {
       "title": "Are you ready to create your enterprise?"
     },
     "createenterprise": {
       "whatIs": {
-        "title": "What is Mostaql for Enterprises",
+        "title": "What is Ynjez for Enterprises",
         "content": "A solution tailored for companies and organizations to manage their freelance hiring process efficiently..."
       },
       "forWhom": {
@@ -217,6 +295,22 @@
           "Manage your enterprise finances with team balance control...",
           "Collaborate with your team on project delegation..."
         ]
+      },
+      "orgs": {
+        "addMember": "Add Member"
+      },
+      "form": {
+        "name": "Name",
+        "field": "Field",
+        "link": "Link",
+        "linkHint": "Must be unique and composed of only English letters, numbers, and underscores (_) between them.",
+        "description": "Description",
+        "employeeCount": "Number of Employees",
+        "website": "Website",
+        "submit": "Create Enterprise",
+        "cancel": "Cancel",
+        "edit": "Edit Enterprise",
+        "delete": "Delete"
       }
     }
   }
