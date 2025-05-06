@@ -1,26 +1,33 @@
+import { Form } from "react-bootstrap";
+import { useFormContext } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router";
-import { Form } from "react-bootstrap";
-import InputField from "../../ui/forms/InputField";
-import PasswordField from "../../ui/forms/PasswordField";
-import useRegister from "../../hooks/auth/useRegister";
-import SubmitButton from "../../ui/forms/SubmitButton";
-import ImageUpload from "../../ui/forms/ImageUpload";
-import SelectField from "../../ui/forms/SelectField";
-import PhoneField from "../../ui/forms/PhoneField";
-import MultiSelect from "../../ui/forms/MultiSelect";
-import useGetSkills from "./../../hooks/app/useGetSkills";
 import useCountriesList from "../../hooks/app/useCountriesList";
+import ImageUpload from "../../ui/forms/ImageUpload";
+import InputField from "../../ui/forms/InputField";
+import MultiSelect from "../../ui/forms/MultiSelect";
+import PasswordField from "../../ui/forms/PasswordField";
+import PhoneField from "../../ui/forms/PhoneField";
+import SelectField from "../../ui/forms/SelectField";
+import SubmitButton from "../../ui/forms/SubmitButton";
+import useGetSkills from "./../../hooks/app/useGetSkills";
 import useCategoriesList from "./../../hooks/categories/useCategoriesList";
 
-const RegisterForm = ({ setShowOtp }) => {
+const RegisterForm = () => {
   const { t } = useTranslation();
 
   const { data: countries } = useCountriesList();
   const { data: categories } = useCategoriesList();
   const { data: skills } = useGetSkills();
-  const { register, errors, setValue, watch, handleSubmit, isPending } =
-    useRegister(setShowOtp);
+
+  const {
+    register,
+    formState: { errors },
+    setValue,
+    watch,
+    handleSubmit,
+    isPending,
+  } = useFormContext();
 
   const handleSelectSkills = (selectedItems) => {
     const selectedValues = selectedItems
@@ -35,8 +42,6 @@ const RegisterForm = ({ setShowOtp }) => {
       : [];
     setValue("categories", selectedValues);
   };
-
-  console.log(errors);
 
   return (
     <form className="form_ui" onSubmit={handleSubmit}>

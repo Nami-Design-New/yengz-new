@@ -1,22 +1,29 @@
-import { toast } from "sonner";
-import { useDispatch } from "react-redux";
-import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router";
-import { useCookies } from "react-cookie";
-import { useTranslation } from "react-i18next";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useMutation } from "@tanstack/react-query";
-import { setUser } from "../../redux/slices/authedUser";
-import axiosInstance from "../../utils/axiosInstance";
+import { useCookies } from "react-cookie";
+import { useForm } from "react-hook-form";
+import { useTranslation } from "react-i18next";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router";
+import { toast } from "sonner";
 import * as yup from "yup";
+import { setUser } from "../../redux/slices/authedUser";
+import { loginUser, setAuthToken } from "../../services/apiAuth";
 
-export default function useLogin() {
-  const { t } = useTranslation();
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const [, setCookie] = useCookies(["token", "id"]);
+// Helper function to set authentication cookies with secure options
+export const setAuthCookies = (setCookie, userData) => {
+  const cookieOptions = {
+    path: "/",
+    secure: true,
+    sameSite: "Strict",
+  };
+  setCookie("token", userData.token, cookieOptions);
+  setCookie("id", userData.id, cookieOptions);
+};
 
-  const schema = yup.object().shape({
+// Form validation schema using Yup
+export const loginValidationSchema = (t) =>
+  yup.object().shape({
     email: yup
       .string()
       .email(t("validation.email"))
@@ -27,43 +34,22 @@ export default function useLogin() {
       .min(6, t("validation.passwordLength")),
   });
 
-  const {
-    register,
-    handleSubmit,
-    trigger,
-    formState: { errors },
-  } = useForm({
-    resolver: yupResolver(schema),
-    mode: "onChange",
-    defaultValues: {
-      email: "",
-      password: "",
-    },
-  });
+// Handle successful login response
+const handleLoginSuccess = (data, dispatch, navigate, setCookie, t) => {
+  toast.success(t("auth.loginSuccess"));
+  dispatch(setUser(data.data));
+  setAuthCookies(setCookie, data.data);
+  setAuthToken(data.data.token);
+  navigate("/");
+};
 
-  const { mutate: submitLogin, isPending } = useMutation({
-    mutationFn: async (data) => {
-      const response = await axiosInstance.post("/user/login", data);
-      return response.data;
-    },
+// React Query mutation hook for login
+const useLoginMutation = (t, dispatch, navigate, setCookie) => {
+  return useMutation({
+    mutationFn: loginUser,
     onSuccess: (data) => {
       if (data.code === 200) {
-        toast.success(t("auth.loginSuccess"));
-        dispatch(setUser(data.data));
-        navigate("/");
-        setCookie("token", data.data.token, {
-          path: "/",
-          secure: true,
-          sameSite: "Strict",
-        });
-        setCookie("id", data.data.id, {
-          path: "/",
-          secure: true,
-          sameSite: "Strict",
-        });
-        axiosInstance.defaults.headers.common[
-          "Authorization"
-        ] = `${data.data.token}`;
+        handleLoginSuccess(data, dispatch, navigate, setCookie, t);
       } else {
         toast.error(t("auth.emailOrPasswordWrong"));
       }
@@ -73,7 +59,36 @@ export default function useLogin() {
       throw new Error(error.message);
     },
   });
+};
 
+// Main login hook that combines form handling and API calls
+export default function useLogin() {
+  const { t } = useTranslation();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const [, setCookie] = useCookies(["token", "id"]);
+
+  // Initialize form with validation and default values
+  const methods = useForm({
+    resolver: yupResolver(loginValidationSchema(t)),
+    mode: "onChange",
+    defaultValues: {
+      email: "",
+      password: "",
+    },
+  });
+
+  const { trigger } = methods;
+
+  // Setup login mutation with necessary dependencies
+  const { mutate: submitLogin, isPending } = useLoginMutation(
+    t,
+    dispatch,
+    navigate,
+    setCookie
+  );
+
+  // Handle form submission after validation
   const onSubmit = async (data) => {
     const isFormValid = await trigger();
     if (isFormValid) {
@@ -81,10 +96,10 @@ export default function useLogin() {
     }
   };
 
+  // Return form methods and submission handler
   return {
-    register,
-    handleSubmit: handleSubmit(onSubmit),
+    ...methods,
+    handleSubmit: methods.handleSubmit(onSubmit),
     isPending,
-    errors,
   };
 }

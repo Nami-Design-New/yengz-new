@@ -1,16 +1,20 @@
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router";
-import InputField from "../ui/forms/InputField";
 import useLogin from "../hooks/auth/useLogin";
+import InputField from "../ui/forms/InputField";
 import PasswordField from "../ui/forms/PasswordField";
 import SubmitButton from "../ui/forms/SubmitButton";
 
 export default function Login() {
   const { t } = useTranslation();
-  const { register, handleSubmit, errors, isPending } = useLogin();
-
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    isPending,
+  } = useLogin();
   return (
-    <section className="login-section ">
+    <section className="login-section  ">
       <div className="container">
         <h1 className="text-center">{t("auth.loginPageTitle")}</h1>
         <p className="text-center mt-3 title">{t("auth.loginPageSubTitle")}</p>

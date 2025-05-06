@@ -4,12 +4,11 @@ import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { toast } from "sonner";
 import * as yup from "yup";
-import axiosInstance from "../../utils/axiosInstance";
+import { registerUser } from "../../services/apiAuth";
 
-export default function useRegister(setShowOtp) {
-  const { t } = useTranslation();
-
-  const schema = yup.object().shape({
+// Get validation schema
+const registerValidationSchema = (t) =>
+  yup.object().shape({
     name: yup.string().required(t("validation.required")),
     email: yup
       .string()
@@ -27,39 +26,24 @@ export default function useRegister(setShowOtp) {
       .required(),
   });
 
-  const {
-    register,
-    handleSubmit,
-    trigger,
-    setValue,
-    watch,
-    formState: { errors },
-  } = useForm({
-    resolver: yupResolver(schema),
-    mode: "onChange",
-    defaultValues: {
-      image: "",
-      name: "",
-      email: "",
-      phone: "",
-      password: "",
-      is_freelance: false,
-      job_title: "",
-      country_id: "",
-      skills: [],
-      categories: [],
-    },
-  });
+// Separate concerns: Form initial values
+const getDefaultValues = () => ({
+  image: "",
+  name: "",
+  email: "",
+  phone: "",
+  password: "",
+  is_freelance: false,
+  job_title: "",
+  country_id: "",
+  skills: [],
+  categories: [],
+});
 
-  const { mutate: submitRegister, isPending } = useMutation({
-    mutationFn: async (data) => {
-      const response = await axiosInstance.post("/user/can_register", data, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      });
-      return response.data;
-    },
+// Separate concerns: Mutation logic
+const useRegisterMutation = (setShowOtp, setValue) => {
+  return useMutation({
+    mutationFn: registerUser,
     onSuccess: (data) => {
       if (data.code === 200) {
         setShowOtp(true);
@@ -70,23 +54,41 @@ export default function useRegister(setShowOtp) {
     },
     onError: (error) => {
       console.error("Register error:", error);
-      throw new Error(error.message);
+      toast.error(error.message);
     },
   });
+};
 
-  const onSubmit = async (data) => {
-    const isFormValid = await trigger();
+// Main hook
+export default function useRegister(setShowOtp) {
+  const { t } = useTranslation();
+
+  // Form methods
+  const methods = useForm({
+    resolver: yupResolver(registerValidationSchema(t)),
+    mode: "onChange",
+    defaultValues: getDefaultValues(),
+  });
+
+  const { setValue, trigger } = methods;
+
+  // Registration mutation
+  const { mutate: submitRegister, isPending } = useRegisterMutation(
+    setShowOtp,
+    setValue
+  );
+
+  // Form submission handler
+  const onSubmit = (data) => {
+    const isFormValid = trigger();
     if (isFormValid) {
       submitRegister(data);
     }
   };
 
   return {
-    register,
-    watch,
-    setValue,
-    handleSubmit: handleSubmit(onSubmit),
-    errors,
+    ...methods,
+    handleSubmit: methods.handleSubmit(onSubmit),
     isPending,
   };
 }
