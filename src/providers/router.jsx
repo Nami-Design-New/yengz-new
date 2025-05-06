@@ -9,6 +9,8 @@ import Teams from "../routes/enterprise/Teams";
 import EditEnterprise from "../routes/enterprise/EditEnterprise";
 import FundSource from "../routes/enterprise/FundSource";
 import Enterprise from "../routes/enterprise/Enterprise";
+import EnterpriseLayout from "../layout/EnterpriseLayout";
+import EnterpriseDetails from "../routes/enterprise/EnterpriseDetails";
 
 export const router = createBrowserRouter([
   {
@@ -41,9 +43,14 @@ export const router = createBrowserRouter([
       },
       {
         path: "/orgs/:link/",
+        element: <EnterpriseLayout />,
         children: [
           {
             index: true,
+            element: <EnterpriseDetails />,
+          },
+          {
+            path: "teams",
             element: <Teams />,
           },
           {
@@ -51,7 +58,7 @@ export const router = createBrowserRouter([
             element: <EditEnterprise />,
           },
           {
-            index: "funding",
+            path: "funding",
             element: <FundSource />,
           },
         ],

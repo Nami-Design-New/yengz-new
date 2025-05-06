@@ -1,41 +1,41 @@
 import React from "react";
 import SectionTitle from "./SectionTitle";
 import { Accordion } from "react-bootstrap";
+import { useTranslation } from "react-i18next";
+import { useSelector } from "react-redux";
 
 const faqData = [
   {
     id: 1,
-    question: "ما هو ينجز للمؤسسات؟",
-    answer:
-      "حل مخصص للشركات والمؤسسات لتغطية احتياجاتها من المهارات وتمكين فريقها من توظيف مستقلين محترفين عبر نظام متكامل يسهل عملية تنظيم وتوظيف المستقلين وإدارة المشاريع.",
+    questionKey: "enterprise.faq.questions.q1",
+    answerKey: "enterprise.faq.answers.a1",
   },
   {
     id: 2,
-    question: "ما الفرق بين مستقل ومستقل للمؤسسات؟",
-    answer:
-      "كصاحب مشروع يتيح لك مستقل إنجاز أعمالك الشخصية والتوظيف وإدارة المشاريع بنفسك، بينما كصاحب مؤسسة ستتمكن من إضافة فريقك للمشاركة في توظيف المستقلين وإدارة المشاريع وفق صلاحيات محددة. كما يمكنك نشر مشروع بالمؤسسة وتوظيف مستقلين بنفس آلية التوظيف في مستقل إضافة إلى الاستفادة من مزايا إدارة المشاريع في المؤسسة.",
+    questionKey: "enterprise.faq.questions.q2",
+    answerKey: "enterprise.faq.answers.a2",
   },
   {
     id: 3,
-    question: "من يمكنه إنشاء مؤسسة؟",
-    answer:
-      "أصحاب الشركات ومدراء الفرق والمشاريع ممن يرغبون في زيادة إنتاجية وجودة أعمالهم عبر تمكين فريق عملهم من الوصول والعمل مع أفضل الخبرات المستقلة في العالم العربي.",
+    questionKey: "enterprise.faq.questions.q3",
+    answerKey: "enterprise.faq.answers.a3",
   },
   {
     id: 4,
-    question: "هل هناك رسوم لإنشاء مؤسسة؟",
-    answer:
-      "لا يوجد رسوم لإنشاء مؤسسة، يمكن للشركات إنشاء مؤسسة مجاناً من الصفحة الرئيسية للحساب في مستقل.",
+    questionKey: "enterprise.faq.questions.q4",
+    answerKey: "enterprise.faq.answers.a4",
   },
   {
     id: 5,
-    question: "كيف استخدم مستقل للمؤسسات؟",
-    answer:
-      "بإنشاء مؤسسة يمكنك دعوة أعضاء شركتك وتحديد الصلاحيات ليتمكنوا من نشر المشاريع وتوظيف المستقلين، أعددنا قسم خاص بالمؤسسات في مركز المساعدة يحتوي مقالات مصورة وفيديوهات قصيرة توضح كيفية الاستخدام خطوة بخطوة، كما يمكنك التواصل معنا بأي استفسار لديك عبر نموذج التواصل بالأسفل وسنسعد بإفادتك.",
+    questionKey: "enterprise.faq.questions.q5",
+    answerKey: "enterprise.faq.answers.a5",
   },
 ];
 
 const Faq = () => {
+  const { t } = useTranslation();
+  const lang = useSelector((state) => state.language.lang);
+
   return (
     <section className="faq-enterprsie section-padding">
       <div className="container">
@@ -43,8 +43,10 @@ const Faq = () => {
         <Accordion defaultActiveKey="0" alwaysOpen>
           {faqData.map((item) => (
             <Accordion.Item eventKey={item.id.toString()} key={item.id}>
-              <Accordion.Header>{item.question}</Accordion.Header>
-              <Accordion.Body>{item.answer}</Accordion.Body>
+              <Accordion.Header className={lang === "en" ? "en" : ""}>
+                {t(item.questionKey)}
+              </Accordion.Header>
+              <Accordion.Body>{t(item.answerKey)}</Accordion.Body>
             </Accordion.Item>
           ))}
         </Accordion>
