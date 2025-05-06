@@ -20,6 +20,7 @@ const queryClient = new QueryClient({
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import "./assets/styles/main.css";
 import "./assets/styles/all.min.css";
+import { GoogleOAuthProvider } from "@react-oauth/google";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
@@ -28,7 +29,9 @@ root.render(
     <QueryClientProvider client={queryClient}>
       <ReactQueryDevtools initialIsOpen={false} />
       <Provider store={store}>
-        <App />
+        <GoogleOAuthProvider clientId={import.meta.env.VITE_GOOGLE_CLIENT_ID}>
+          <App />
+        </GoogleOAuthProvider>
       </Provider>
     </QueryClientProvider>
   </CookiesProvider>

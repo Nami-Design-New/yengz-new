@@ -145,7 +145,8 @@
     "areYouSureYouWantToDeleteYourAccount": "Are you sure you want to delete your account?",
     "jobTitle": "Job Title",
     "enterPassword": "Enter Password",
-    "skills": "Skills"
+    "skills": "Skills",
+    "sendingCode": "Sending Code..."
   },
   "validation": {
     "email": "Invalid email address",

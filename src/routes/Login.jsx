@@ -1,5 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router";
+import useGoogleAuth from "../hooks/auth/useGoogleAuth ";
 import useLogin from "../hooks/auth/useLogin";
 import InputField from "../ui/forms/InputField";
 import PasswordField from "../ui/forms/PasswordField";
@@ -13,6 +14,10 @@ export default function Login() {
     formState: { errors },
     isPending,
   } = useLogin();
+
+  // Use the custom Google login hook
+  const { handleGoogleLogin } = useGoogleAuth();
+  
   return (
     <section className="login-section  ">
       <div className="container">
@@ -55,17 +60,18 @@ export default function Login() {
                 <span>{t("auth.orLoginWith")}</span>
               </div>
 
-              {/* <div className="d-flex gap-2 flex-lg-row mt-3 flex-column w-100">
+              <div className="d-flex gap-2 flex-lg-row mt-3 flex-column w-100">
                 <button
                   type="button"
                   className="auth_social_btn google"
                   onClick={() => handleGoogleLogin()}
                 >
-                  <img src={Google} alt="google" /> {t("auth.googleAccount")}
+                  <img src="/icons/Google.svg" alt="google" />{" "}
+                  {t("auth.googleAccount")}
                 </button>
 
-                <AppleSigninButton t={t} handleAppleAuth={handleAppleAuth} />
-              </div> */}
+                {/* <AppleSigninButton t={t} handleAppleAuth={handleAppleAuth} /> */}
+              </div>
 
               <Link to="/register" className="noAccount">
                 {t("auth.don'tHaveAccount")}{" "}

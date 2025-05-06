@@ -1,11 +1,12 @@
 import { useMutation } from "@tanstack/react-query";
-import { useNavigate } from "react-router";
-import { useDispatch } from "react-redux";
 import { useCookies } from "react-cookie";
+import { useTranslation } from "react-i18next";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router";
 import { toast } from "sonner";
 import { setUser } from "../../redux/slices/authedUser";
 import { confirmOtp, loginUser } from "../../services/apiAuth";
-import { useTranslation } from "react-i18next";
+import { setAuthCookies } from "./useLogin";
 
 // Custom hook to handle OTP confirmation and subsequent login
 const useConfirmOtp = () => {
@@ -20,16 +21,8 @@ const useConfirmOtp = () => {
     dispatch(setUser(loginData.data));
 
     // Set authentication cookies with secure options
-    setCookie("token", loginData.data.token, {
-      path: "/",
-      secure: true,
-      sameSite: "Strict",
-    });
-    setCookie("id", loginData.data.id, {
-      path: "/",
-      secure: true,
-      sameSite: "Strict",
-    });
+    setAuthCookies(setCookie, loginData.data.token);
+    setAuthCookies(setCookie, loginData.data.id);
 
     // Redirect to home page after successful login
     navigate("/");

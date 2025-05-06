@@ -31,3 +31,17 @@ export const confirmOtp = async (data) => {
   });
   return response.data;
 };
+
+// Check email AOI logic
+
+export const checkEmail = async (data) => {
+  const response = await axiosInstance.post("/user/check_email", data);
+  return response.data;
+};
+
+// UPdate Password API Logic
+
+export const updatePassword = async (data) => {
+  const response = await axiosInstance.post("/user/update_password", data);
+  return response.data;
+};
