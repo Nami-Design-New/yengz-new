@@ -459,3 +459,33 @@ hr {
 .css-19bb58m input {
   height: 40px !important;
 }
+
+.otp-container {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  direction: ltr !important;
+  @media (max-width: 576px) {
+    gap: 8px;
+  }
+  .otp-input {
+    border-radius: 12px;
+    flex: 1;
+    width: inherit;
+    height: 80px !important;
+    text-align: center;
+    border: 1px solid var(--main-color);
+    background: var(--main10-color);
+    font-size: 28px;
+    font-weight: 600;
+    color: var(--main-color) !important;
+    outline: none;
+    &::-webkit-inner-spin-button {
+      display: none;
+    }
+    @media (max-width: 576px) {
+      height: 60px !important;
+    }
+  }
+}

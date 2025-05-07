@@ -11,6 +11,7 @@ import FundSource from "../routes/enterprise/FundSource";
 import Enterprise from "../routes/enterprise/Enterprise";
 import EnterpriseLayout from "../layout/EnterpriseLayout";
 import EnterpriseDetails from "../routes/enterprise/EnterpriseDetails";
+import ForgetPassword from "../routes/ForgetPassword";
 
 export const router = createBrowserRouter([
   {
@@ -31,6 +32,10 @@ export const router = createBrowserRouter([
       {
         path: "/register",
         element: <Register />,
+      },
+      {
+        path: "/forget-password",
+        element: <ForgetPassword />,
       },
 
       {

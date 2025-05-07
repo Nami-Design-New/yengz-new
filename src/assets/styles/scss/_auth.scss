@@ -1,5 +1,9 @@
 .login-section {
   padding: 48px 0;
+  .otp {
+    @include centerFlex();
+    margin-bottom: 1rem;
+  }
   h1 {
     font-size: 24px;
     color: var(--black-color);
