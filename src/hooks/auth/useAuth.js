@@ -2,7 +2,7 @@ import { useEffect, useState, useMemo } from "react";
 import { useCookies } from "react-cookie";
 import { useDispatch } from "react-redux";
 import { jwtDecode } from "jwt-decode";
-import { setUser } from "../../redux/slices/authedUser";
+import { logoutAction, setUser } from "../../redux/slices/authedUser";
 import axiosInstance from "../../utils/axiosInstance";
 import useGetAuthedUser from "../user/useGetAuthedUser";
 
@@ -45,7 +45,7 @@ export default function useAuth() {
 
   useEffect(() => {
     if (isExpired || Number(decodedToken?.sub) !== Number(id)) {
-      dispatch(setUser({}));
+      dispatch(logoutAction());
       removeCookie("token");
       removeCookie("id");
       setLoading(false);

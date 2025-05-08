@@ -5,7 +5,7 @@ import useDeleteAccount from "../../hooks/auth/useDeleteAccount";
 
 function DeleteAcountModal({ setShowModal, showModal }) {
   const { t } = useTranslation();
-  const { deleteAccount, loading } = useDeleteAccount();
+  const { deleteAccount, isPending } = useDeleteAccount();
 
   return (
     <Modal show={showModal} onHide={() => setShowModal(false)} centered>
@@ -17,12 +17,12 @@ function DeleteAcountModal({ setShowModal, showModal }) {
 
         <div className="d-flex justify-content-end gap-3 mt-4">
           <button onClick={() => setShowModal(false)} className="cancel-btn">
-            {t("cancel")}
+            {t("auth.cancel")}
           </button>
 
           <SubmitButton
             name={t("auth.confirm")}
-            loading={loading}
+            loading={isPending}
             onClick={deleteAccount}
             className={"delete-btn"}
           />

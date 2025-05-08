@@ -97,6 +97,12 @@ a {
   text-decoration: none;
 }
 
+button {
+  background-color: none;
+  outline: none;
+  border: none;
+}
+
 input[type="tel"] {
   direction: ltr !important;
 }
