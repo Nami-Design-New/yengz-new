@@ -9,8 +9,7 @@ import DeleteAcountModal from "../modals/DeleteAcountModal";
 export default function UserMenu({ user }) {
   const { t } = useTranslation();
   const { isAuthed } = useAuth();
-  const { isPending, logout } = useLogout();
-
+  const { logout, isPending } = useLogout();
   const [showModal, setShowModal] = useState(false);
 
   return (
@@ -96,14 +95,14 @@ export default function UserMenu({ user }) {
 
                   <hr />
                   <li>
-                    <Link
+                    <button
                       className="dropdown-item_Link"
                       disabled={isPending}
-                      onClick={logout}
+                      onClick={() => logout()}
                     >
                       <i className="fa-solid fa-right-from-bracket"></i>
                       {t("navbar.logout")}
-                    </Link>
+                    </button>
                   </li>
                 </ul>
               </Dropdown.Menu>
@@ -113,7 +112,6 @@ export default function UserMenu({ user }) {
           <DeleteAcountModal
             showModal={showModal}
             setShowModal={setShowModal}
-            text={t("navbar.areYouSureYouWantToDeleteYourAccount")}
           />
         </>
       )}

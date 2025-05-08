@@ -1,20 +1,13 @@
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
-import axiosInstance from "../../utils/axiosInstance";
+import { getAboutData } from "../../services/apiAbout";
 
 function useGetAboutData() {
   const { id } = useParams();
 
   const { isLoading, data, error } = useQuery({
     queryKey: ["getAboutData", id],
-    queryFn: async function () {
-      try {
-        const req = await axiosInstance.post("/get_about_app_data", { id });
-        return req.data.data;
-      } catch (err) {
-        throw new Error(err.message);
-      }
-    },
+    queryFn: () => getAboutData(id),
   });
 
   return { isLoading, data, error };

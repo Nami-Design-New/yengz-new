@@ -45,3 +45,32 @@ export const updatePassword = async (data) => {
   const response = await axiosInstance.post("/user/update_password", data);
   return response.data;
 };
+
+// Logout API Logic
+
+/**
+ * Service function to handle user logout API call
+ * @param {string} token - The user's authentication token
+ * @returns {Promise} - The API response
+ */
+export const logoutUser = async (token) => {
+  try {
+    const response = await axiosInstance.post("/user/logout", { token });
+    return response;
+  } catch (error) {
+    console.error("Logout error:", error);
+    throw new Error(error.message);
+  }
+};
+
+// Delete Account  API Logic
+/**
+ * @returns
+ */
+export const deleteAccount = async () => {
+  const response = await axiosInstance.post("/user/delete_account");
+  if (response.data.code !== 200) {
+    throw new Error("delete account failed");
+  }
+  return response.data;
+};

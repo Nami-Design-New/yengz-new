@@ -1,28 +1,37 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { Link } from "react-router";
 import { useSelector } from "react-redux";
-import LanguageMenu from "./LanguageMenu";
+import { Link } from "react-router";
+import useAuth from "../../hooks/auth/useAuth";
 import CategoriesDropDown from "./CategoriesDropDown";
+import LanguageMenu from "./LanguageMenu";
+import NotificationMenu from "./NotificationMenu";
 import SearchMenu from "./SearchMenu";
+import SmallMediaMenu from "./SmallMediaMenu";
 import UserMenu from "./UserMenu";
 import WebMenuSideBar from "./WebMenuSideBar";
-import useAuth from "../../hooks/auth/useAuth";
-import NotificationMenu from "./NotificationMenu";
 
 export default function Header() {
+  const [isSmallMediaMenuOpen, setIsSmallMediaMenuOpen] = useState(false);
+
   const { t } = useTranslation();
   const { isAuthed } = useAuth();
   const { user } = useSelector((state) => state.authedUser);
-
   const [isWebMenuOpen, setIsWebMenuOpen] = useState(false);
 
   return (
     <header>
       <nav className="navbar">
-        <div className="toogler">
+        <button
+          className={`toogler ${isSmallMediaMenuOpen ? "close" : ""}`}
+          onClick={() => setIsSmallMediaMenuOpen(() => !isSmallMediaMenuOpen)}
+        >
           <i className="fa-regular fa-bars-staggered"></i>
-        </div>
+        </button>
+        <SmallMediaMenu
+          isSmallMediaMenuOpen={isSmallMediaMenuOpen}
+          setIsSmallMediaMenuOpen={setIsSmallMediaMenuOpen}
+        />
 
         <div className="right-wrapper">
           <button
@@ -138,6 +147,7 @@ export default function Header() {
           </ul>
         </div>
       </nav>
+     
     </header>
   );
 }

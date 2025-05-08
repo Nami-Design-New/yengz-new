@@ -5,17 +5,17 @@ export const authedUser = createSlice({
   initialState: {
     user: null,
   },
-  
+
   reducers: {
     setUser: (state, action) => {
       state.user = action.payload;
     },
 
-    logout: (state) => {
-      state.user = {};
+    logoutAction: (state) => {
+      state.user = null;
     },
   },
 });
 
-export const { setUser, logout } = authedUser.actions;
+export const { setUser, logoutAction } = authedUser.actions;
 export default authedUser.reducer;
