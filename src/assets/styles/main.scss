@@ -9,11 +9,12 @@ body {
   overflow-x: hidden;
   position: relative;
   background: var(--white-color);
-  font-family: "Rubik", sans-serif;
+  font-family: "Din", sans-serif;
 
   main {
     @import "./scss/auth";
     @import "./scss/home";
+    @import "./scss/cards";
   }
 
   &.en {

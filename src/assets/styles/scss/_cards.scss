@@ -1,0 +1,274 @@
+// Category card styles
+.category-card {
+  width: 100%;
+  .inner-card {
+    border-radius: 16px;
+    overflow: hidden !important;
+    position: relative;
+    .category-img {
+      position: relative;
+      width: 100%;
+      border-radius: 16px;
+      overflow: hidden;
+      img {
+        display: block;
+        transform: scale(1.1);
+        transition: all 0.4s ease;
+        width: 100%;
+        aspect-ratio: 3 / 2;
+        object-fit: cover;
+      }
+    }
+    .category-content {
+      bottom: 0;
+      left: 0;
+      position: absolute;
+      right: 0;
+      top: 0;
+      transition: all 0.4s ease;
+      border-radius: 16px;
+      .top-area {
+        padding: 0 30px;
+        position: absolute;
+        top: 35px;
+        .title {
+          color: #fff;
+          font-size: 14px;
+        }
+        .text {
+          color: #fff;
+          font-size: 16px;
+        }
+      }
+    }
+    &:hover {
+      .category-content {
+        background-color: rgba(34, 34, 34, 0.6);
+      }
+      .category-img img {
+        transform: scale(1.15) rotate(-1deg);
+      }
+    }
+  }
+}
+
+// Services card styles
+.service-card {
+  border-radius: 12px;
+  background-color: var(--input-bg);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  &:hover {
+    .img img {
+      transform: scale(1.1) rotate(-1deg);
+    }
+  }
+  .img {
+    width: 100%;
+    overflow: hidden;
+    display: block;
+    position: relative;
+    img {
+      width: 100%;
+      aspect-ratio: 3 / 2;
+      transition: var(--main-transation);
+      object-fit: cover;
+    }
+    .services_status {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      background: var(--white-color);
+      color: var(--main-color);
+      padding: 2px 8px;
+      border-radius: 8px;
+    }
+  }
+  .content {
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex: 1;
+    h6 {
+      font-size: 14px;
+      line-height: 28px;
+      color: var(--black-color);
+      @media (max-width: 576px) {
+        font-size: 12px;
+        line-height: 22px;
+      }
+    }
+    p {
+      font-size: 14px;
+      margin-bottom: auto;
+      color: var(--text-color);
+      a {
+        color: var(--text-color);
+      }
+      @media (max-width: 576px) {
+        font-size: 10px;
+      }
+    }
+    .sell-count {
+      font-size: 18px;
+      color: var(--black-color);
+      font-weight: 600;
+      @media (max-width: 576px) {
+        font-size: 14px;
+      }
+    }
+    .start-from {
+      color: var(--black-color);
+      b {
+        color: var(--main-color);
+      }
+    }
+  }
+  .editService {
+    position: absolute;
+    width: calc(100% - 24px);
+    left: 12px;
+    bottom: 12px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+    a {
+      @include clearInput();
+      width: 32px;
+      height: 32px;
+      @include centerFlex();
+      border-radius: 50%;
+      background: var(--input-hint);
+      color: var(--white-color);
+      font-size: 14px;
+      &:nth-child(2) {
+        background: red;
+      }
+    }
+  }
+}
+
+// Projects card styles
+.project__card {
+  background-color: var(--gray-background);
+  padding: 12px;
+  display: block;
+  border-radius: 12px;
+  position: relative;
+  height: 100%;
+  cursor: pointer;
+  p {
+    color: var(--text-color);
+  }
+  .requstPost,
+  .lastInteraction {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    @media (max-width: 768px) {
+      flex-direction: column-reverse;
+      align-items: start;
+    }
+    a {
+      color: var(--black-color);
+      &:has(img) {
+        overflow: hidden;
+        border-radius: 50%;
+        min-width: 64px !important;
+        width: 64px !important;
+        height: 64px !important;
+        display: flex;
+        position: relative;
+      }
+    }
+    img {
+      width: 100%;
+      object-fit: cover;
+    }
+    .postContent {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .postUser {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      row-gap: 2px;
+      flex-wrap: wrap;
+      .time,
+      .name {
+        color: var(--black-color);
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        font-size: 12px;
+        white-space: nowrap;
+        i {
+          font-size: 12px;
+          width: 16px;
+          height: 16px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+      }
+    }
+    .postTitle {
+      font-weight: bold;
+    }
+  }
+  .lastInteraction {
+    @media (max-width: 768px) {
+      img {
+        width: 32px !important;
+      }
+      .lastUser {
+        flex-direction: row;
+        gap: 12px;
+        align-items: center;
+      }
+    }
+  }
+  .requstPost {
+    justify-content: space-between;
+    width: 100%;
+    .status_action {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      @media (max-width: 768px) {
+        width: 100%;
+        justify-content: flex-end;
+      }
+      .status {
+        background: var(--white-color);
+        color: var(--main-color);
+        padding: 0 16px;
+        @include centerFlex();
+        border-radius: 8px;
+        height: 36px;
+      }
+      button,
+      a {
+        @include clearInput();
+        @include centerFlex();
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        background: var(--white-color);
+        svg {
+          height: 16px;
+          stroke: red;
+        }
+      }
+      a {
+        svg {
+          stroke: var(--main-color);
+        }
+      }
+    }
+  }
+}

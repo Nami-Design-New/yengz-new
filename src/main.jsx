@@ -18,6 +18,7 @@ const queryClient = new QueryClient({
 });
 
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+import "swiper/swiper-bundle.css";
 import "./assets/styles/main.css";
 import "./assets/styles/all.min.css";
 import { GoogleOAuthProvider } from "@react-oauth/google";
