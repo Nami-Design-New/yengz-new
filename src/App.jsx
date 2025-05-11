@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { Toaster } from "sonner";
-import { router } from "./providers/router";
+import router from "./providers/router";
 import { RouterProvider } from "react-router";
 import { useSelector } from "react-redux";
 import i18n from "./utils/i18n";
