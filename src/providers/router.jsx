@@ -85,14 +85,10 @@ const router = createBrowserRouter([
       { index: true, element: <Home /> },
 
       // Auth
-      {
-        path: "auth",
-        children: [
-          { path: "login", element: <Login /> },
-          { path: "register", element: <Register /> },
-          { path: "forget-password", element: <ForgetPassword /> },
-        ],
-      },
+
+      { path: "login", element: <Login /> },
+      { path: "register", element: <Register /> },
+      { path: "forget-password", element: <ForgetPassword /> },
 
       // Categories
       {

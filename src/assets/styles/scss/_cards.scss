@@ -272,3 +272,111 @@
     }
   }
 }
+
+// Blog Cards
+
+.blog-card {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background: var(--white-color);
+  box-shadow: rgba(99, 99, 99, 0.1) 0px 2px 8px 0px;
+  border-radius: 12px;
+  overflow: hidden;
+  img {
+    height: 250px;
+    object-fit: cover;
+    width: 100%;
+  }
+  .data {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .date {
+    color: var(--main-color);
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    transition: var(--transition);
+    margin-top: auto;
+    i {
+      font-size: 16px;
+      transition: var(--transition);
+    }
+  }
+  .title {
+    color: var(--black-color);
+    transition: var(--transition);
+    font-weight: bold;
+  }
+  .description {
+    font-size: 12px;
+    line-height: 24px;
+    color: var(--text-color);
+  }
+}
+
+// freelancer Card
+
+.freelancerCard {
+  background: var(--input-bg);
+  border-radius: 12px;
+  padding: 16px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  .info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    .img {
+      width: 62px;
+      height: 62px;
+      position: relative;
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 50%;
+      }
+      .status {
+        display: block;
+        position: absolute;
+        bottom: -8px;
+        left: 4px;
+        width: 28px;
+        border-radius: 50%;
+        height: 28px;
+        @include centerFlex();
+        background-color: var(--white-color);
+        svg {
+          color: #26ba35;
+          width: 20px;
+          height: 20px;
+        }
+      }
+    }
+    .content {
+      display: flex;
+      flex-direction: column;
+      h6 {
+        color: var(--main-color);
+        font-weight: 600;
+        font-size: 18px;
+      }
+      ul {
+        li {
+          font-size: 14px;
+          color: var(--input-hint);
+        }
+      }
+    }
+  }
+  p {
+    font-size: 14px;
+    color: var(--text-color);
+  }
+}

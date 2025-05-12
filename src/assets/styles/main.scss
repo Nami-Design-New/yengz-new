@@ -12,9 +12,15 @@ body {
   font-family: "Din", sans-serif;
 
   main {
+    min-height: calc(100dvh - 80px);
+
     @import "./scss/auth";
     @import "./scss/home";
     @import "./scss/cards";
+    @import "./scss/about";
+    @import "./scss/blogs";
+    @import "./scss/communities";
+    @import "./scss/freelancers";
   }
 
   &.en {

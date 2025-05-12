@@ -5,8 +5,8 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router";
 import useGetAbout from "../../hooks/About/useGetAbout";
 import useLogout from "../../hooks/auth/useLogout";
-import useGetCommunitiesList from "../../hooks/community/useGetCommunitiesList";
 import DeleteAcountModal from "../modals/DeleteAcountModal";
+import useGetCommunitiesList from "../../hooks/community/useGetCommunitiesList";
 
 function SmallMediaMenu({ isSmallMediaMenuOpen, setIsSmallMediaMenuOpen }) {
   const [showModal, setShowModal] = useState(false);

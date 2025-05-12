@@ -116,3 +116,17 @@ export const formatTimeDifference = (
 
   return t("since") + " " + formatted || t("now");
 };
+
+export function formattedDate(date) {
+  let formattedDate = new Date(date);
+  formattedDate = new Intl.DateTimeFormat("en-US", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  }).format(formattedDate);
+
+  return formattedDate;
+}
+
+export const truncateText = (text, limit = 280) =>
+  text?.length > limit ? text.substring(0, limit) + "..." : text;

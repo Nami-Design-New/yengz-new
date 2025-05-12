@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router";
 import { useTranslation } from "react-i18next";
 import StarsList from "../StarList";
-import useTruncateString from "../../hooks/heper/useTruncateString";
+import useTruncateString from "../../hooks/helper/useTruncateString";
 
 const ServiceCard = ({ service, canEdit, handleDelete, type, showPending }) => {
   const { t } = useTranslation();
