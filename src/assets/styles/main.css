@@ -794,6 +794,38 @@ hr {
   font-weight: 600;
 }
 
+.small-filter-header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  display: none;
+  padding: 20px;
+}
+.small-filter-header button {
+  border: none;
+  background: none;
+  outline: none;
+  background: var(--input-bg);
+  padding: 8px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.small-filter-header button h6 {
+  color: var(--black-color);
+}
+.small-filter-header button i {
+  font-size: 20px;
+  color: var(--black-color);
+}
+@media (max-width: 991px) {
+  .small-filter-header {
+    display: flex;
+  }
+}
+
 header {
   position: sticky;
   height: 80px;

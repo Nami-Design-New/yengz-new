@@ -32,6 +32,7 @@ const BestFreeLancers = () => {
             <FilterToggleButton
               isFilterOpen={isFilterOpen}
               setIsFilterOpen={setIsFilterOpen}
+              title={t("routes.freelancers")}
             />
           </div>
           <div className="row">

@@ -826,3 +826,30 @@ hr {
     }
   }
 }
+
+// Filter header
+.small-filter-header {
+  width: 100%;
+  @include space-between();
+  display: none;
+  padding: 20px;
+  button {
+    @include clearInput();
+    background: var(--input-bg);
+    padding: 8px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    h6 {
+      color: var(--black-color);
+    }
+    i {
+      font-size: 20px;
+      color: var(--black-color);
+    }
+  }
+  @media (max-width: 991px) {
+    display: flex;
+  }
+}

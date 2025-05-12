@@ -9,18 +9,19 @@ import { useTranslation } from "react-i18next";
  * @param {Function} props.setIsFilterOpen - Function to toggle filter sidebar visibility
  * @returns {JSX.Element} - Rendered component
  */
-const FilterToggleButton = ({ isFilterOpen, setIsFilterOpen }) => {
+const FilterToggleButton = ({ isFilterOpen, setIsFilterOpen, title }) => {
   const { t } = useTranslation();
 
   return (
-    <button
-      className="filter-toggle-btn"
-      onClick={() => setIsFilterOpen(!isFilterOpen)}
-      aria-label={t("search.toggleFilters")}
-    >
-      <i className="fa-light fa-filter"></i>
-      <span>{t("search.filters")}</span>
-    </button>
+    <div className="small-filter-header" aria-label={t("search.toggleFilters")}>
+      <h6>{title}</h6>
+      <button
+        className="openfilter"
+        onClick={() => setIsFilterOpen(!isFilterOpen)}
+      >
+        <i className="fa-light fa-sliders"></i>
+      </button>
+    </div>
   );
 };
 
