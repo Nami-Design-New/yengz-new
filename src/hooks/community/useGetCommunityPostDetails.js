@@ -1,19 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
-import axiosInstance from "../../utils/axiosInstance";
+import { getCommunityPostDetails } from "../../services/apiCommunities";
 
 function useGetCommunityPostDetails(id) {
   const { isLoading, data, error } = useQuery({
     queryKey: ["communityPostDetails", id],
-    queryFn: async function (id) {
-      try {
-        const req = await axiosInstance.post("/get_community_post_details", {
-          id: id,
-        });
-        return req.data.data;
-      } catch (error) {
-        throw new Error(error.message);
-      }
-    },
+    queryFn: () => getCommunityPostDetails(id),
   });
   return { isLoading, data, error };
 }

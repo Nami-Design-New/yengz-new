@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import RegisterForm from "../components/auth/RegisterForm";
 import useRegister from "../hooks/auth/useRegister";
-import ConfirmOtp from "../components/auth/ConfirmOtp";
 import { FormProvider } from "react-hook-form";
+import RegisterForm from "../ui/auth/RegisterForm";
+import ConfirmOtp from "../ui/auth/ConfirmOtp";
 
 export default function Register() {
   const { t } = useTranslation();

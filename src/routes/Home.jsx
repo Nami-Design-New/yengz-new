@@ -1,4 +1,4 @@
-import HeroSection from "../components/home/HeroSection";
+import HeroSection from "../ui/home/HeroSection";
 import AboutApp from "../ui/home/AboutApp";
 import CategoriesSection from "../ui/home/CategoriesSection";
 import DownloadApp from "../ui/home/DownLoadApp";

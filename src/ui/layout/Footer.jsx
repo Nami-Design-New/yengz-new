@@ -1,10 +1,10 @@
 import { useTranslation } from "react-i18next";
 import useGetAbout from "../../hooks/About/useGetAbout";
 import useGetPaymentMethods from "../../hooks/paymentMethods/useGetPaymentMethods";
-import useGetCommunitiesList from "../../hooks/community/useGetCommunitiesList";
 import usePopularCategories from "../../hooks/categories/usePopularCategories";
 import { Link } from "react-router";
 import { Accordion } from "react-bootstrap";
+import useGetCommunitiesList from "../../hooks/community/useGetCommunitiesList";
 
 export default function Footer() {
   const { data: payments } = useGetPaymentMethods();

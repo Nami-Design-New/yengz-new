@@ -1,0 +1,229 @@
+.communityDetails {
+    padding: 50px 0;
+    &.communitySubjectDetails {
+      .content-body {
+        flex-wrap: wrap !important;
+        flex-direction: row !important;
+      }
+    }
+    .container {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      position: relative;
+      .communityHeader {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        position: relative;
+      }
+      .btn {
+        border: 1px solid var(--main-color);
+        color: var(--main-color);
+        @include centerFlex();
+        padding: 8px 16px;
+        transition: var(--main-transation);
+        border-radius: 12px;
+        gap: 4px;
+        background: none;
+        i {
+          margin: 0 4px;
+        }
+        &:hover {
+          background: var(--main-color);
+          color: #fff;
+        }
+      }
+      .content-body {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        overflow: hidden;
+        gap: 16px;
+        .image-wrapper {
+          position: relative;
+          display: flex;
+          width: 64px;
+          height: 64px;
+          border-radius: 50%;
+          overflow: hidden;
+          border: 1px solid var(--LightGray);
+          &.mini {
+            width: 36px;
+            height: 36px;
+          }
+          img {
+            object-fit: cover;
+            width: 100%;
+          }
+        }
+        .info-wrapper {
+          flex: 1 0;
+          display: flex;
+          flex-direction: column;
+          gap: 8px;
+          position: relative;
+          .info-boxes-wrapper {
+            display: flex;
+            position: relative;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 0 24px;
+            .info-box {
+              display: flex;
+              align-items: center;
+              gap: 4px;
+              position: relative;
+              font-size: 12px;
+              margin: 0;
+              color: var(--text-color);
+              i {
+                font-size: 12px;
+                width: 16px;
+                height: 16px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                color: var(--text-color);
+              }
+            }
+          }
+        }
+        .subjectItem {
+          width: 100%;
+          padding: 16px;
+          position: relative;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 16px;
+          background-color: var(--gray-background);
+          border-radius: 16px;
+          color: var(--black-color);
+          .subjectContent {
+            flex: 2 0;
+            display: flex;
+            gap: 8px;
+            position: relative;
+            align-items: center;
+          }
+          .userContent {
+            flex: 1 0;
+            display: flex;
+            gap: 8px;
+            position: relative;
+            align-items: center;
+            .image-wrapper {
+              width: 50px;
+              height: 50px;
+            }
+          }
+        }
+        .right-wrapper {
+          flex: 2 0;
+          min-width: 300px;
+          display: flex;
+          flex-direction: column;
+          gap: 24px;
+          position: relative;
+        }
+        .left-wrapper {
+          flex: 1 0;
+          min-width: 300px;
+          display: flex;
+          flex-direction: column;
+          gap: 24px;
+          position: relative;
+        }
+        .subject-box {
+          padding: 16px 0;
+          width: 100%;
+          border-radius: 16px;
+          background-color: var(--gray-background);
+          position: relative;
+          overflow: hidden;
+          display: flex;
+          flex-direction: column;
+          gap: 16px;
+          .box-header {
+            display: flex;
+            position: relative;
+            align-items: center;
+            padding: 0 16px 16px;
+            border-bottom: 1px solid var(--LightGray);
+          }
+          .userBox {
+            display: flex;
+            align-items: center;
+            position: relative;
+            gap: 16px;
+            width: 100%;
+          }
+          .comment-wrapper {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            p {
+              font-size: 14px;
+            }
+          }
+          * {
+            margin: 0;
+          }
+          .box-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            position: relative;
+            padding: 0 16px;
+            color: var(--dark-color);
+            &.comment-item {
+              padding: 0 32px;
+              &::after {
+                width: calc(100% - 64px) !important;
+              }
+            }
+            &:not(:last-of-type) {
+              padding-bottom: 16px;
+              &::after {
+                content: "";
+                width: 100%;
+                height: 1px;
+                background-color: var(--LightGray);
+                position: absolute;
+                bottom: 0;
+                right: 50%;
+                transform: translateX(50%);
+              }
+            }
+            &.no-border {
+              padding-bottom: 0 !important;
+              &::after {
+                content: none !important;
+              }
+            }
+            &.column {
+              flex-direction: column;
+              align-items: unset !important;
+            }
+            p {
+              flex: 1 0;
+              display: flex;
+              align-items: center;
+            }
+            span {
+              flex: 1 0;
+              display: flex;
+              font-size: 14px;
+              align-items: center;
+            }
+          }
+        }
+      }
+    }
+  }

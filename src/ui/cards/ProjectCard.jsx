@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router";
-import useTruncateString from "../../hooks/heper/useTruncateString";
+import useTruncateString from "../../hooks/helper/useTruncateString";
 import useDeleteProject from "../../hooks/projects/useDeleteProject";
 import ConfirmationModal from "../modals/ConfirmationModal";
 import { formatTimeDifference, getTimeDifference } from "../../utils/helpers";
