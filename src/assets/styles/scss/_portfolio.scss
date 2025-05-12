@@ -1,0 +1,89 @@
+//portFolio
+.portfolios {
+  padding: 60px 0;
+}
+
+// Work Modal
+.work__view--modal {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  .swiper {
+    width: 100%;
+    .work-modal-img-box {
+      display: flex;
+      img {
+        aspect-ratio: 16 / 9;
+        width: 100%;
+        object-fit: cover;
+        object-position: top;
+      }
+    }
+  }
+  .work-modal-content {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 0 16px;
+    .modal-info-items {
+      display: flex;
+      gap: 12px;
+    }
+    .modal-info-item {
+      width: 100%;
+      margin: 4px 0;
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+      position: relative;
+      border-radius: 12px;
+      padding: 12px;
+      &:not(.description) {
+        box-shadow: 0 0 2px 1px #efefef;
+      }
+      a {
+        color: var(--main-color);
+        flex: 1 0 0;
+        white-space: nowrap;
+      }
+      span {
+        white-space: nowrap;
+      }
+    }
+    h5 {
+      text-wrap: balance;
+      font-size: 14px;
+      color: var(--text-color);
+      margin-bottom: 16px;
+    }
+    h3 {
+      font-size: 32px;
+      font-weight: 600;
+      text-transform: capitalize;
+    }
+  }
+}
+.like-btn {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-direction: row !important;
+  transition: var(--main-transation);
+  i {
+    transition: var(--main-transation);
+    color: var(--input-hint) !important;
+  }
+  &.can-like {
+    &:hover {
+      i {
+        transform: scale(1.1);
+      }
+    }
+  }
+  &.liked {
+    i {
+      color: red !important;
+    }
+  }
+}

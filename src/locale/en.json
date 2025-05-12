@@ -332,6 +332,11 @@
     "days": "Day",
     "noFreelancers": "Sorry, there are no freelancers in this category."
   },
+  "notFoundPlaceholder": {
+    "noWorksFoundWithThisDetails": "No works found with these details",
+    "noServicesFoundWithThisDetails": "No services found with these details",
+    "noProjectsFoundWithThisDetails": "No projects found with these details"
+  },
   "whyYenjz": {
     "title1": "Endless Opportunities",
     "desc1": "Whatever your skills or experience, you will find opportunities that suit you on Ynjez. Discover projects that match your abilities and start working on what you love.",
@@ -378,6 +383,8 @@
     "about": "Welcome to the largest Arabic marketplace for buying and selling microservices. We are here to help you achieve your goals easily and securely. You can rely on our platform to complete your tasks and projects at prices that suit you."
   },
   "choose": "Choose",
+  "likeIt": "Like it",
+  "notLikeIt": "Unlike",
   "enterprise": {
     "hero": {
       "title": "Hire freelancers and manage your company's projects from one place",

@@ -332,6 +332,11 @@
     "days": "يوم",
     "noFreelancers": "عذراً، لا يوجد مستقلين في هذه الفئة."
   },
+  "notFoundPlaceholder": {
+    "noWorksFoundWithThisDetails": "لا توجد اعمال بهذه التفاصيل",
+    "noServicesFoundWithThisDetails": "لا توجد خدمات بهذه التفاصيل",
+    "noProjectsFoundWithThisDetails": "لا توجد مشاريع بهذه التفاصيل"
+  },
   "whyYenjz": {
     "title1": "فرص لا حصر لها",
     "desc1": "مهما كانت مهاراتك أو خبراتك، ستجد فرصًا تناسبك على ينجز. اكتشف المشاريع التي تناسب قدراتك وابدأ في العمل على ما تحب.",
@@ -379,6 +384,8 @@
   },
 
   "choose": "اختر",
+  "likeIt": "اعجبني",
+  "notLikeIt": "إلغاء الإعجاب",
   "enterprise": {
     "hero": {
       "title": "وظف المستقلين وأدر مشاريع مؤسستك من مكان واحد",

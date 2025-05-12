@@ -120,6 +120,10 @@ hr {
   margin: 0.5rem 0;
 }
 
+.like-btn {
+  @include clearInput();
+}
+
 .row {
   margin: 0;
 }

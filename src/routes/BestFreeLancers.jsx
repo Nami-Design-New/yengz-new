@@ -1,12 +1,10 @@
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import useGetBestFreelancers from "../hooks/freeLancers/useGetBestFreelancers";
-import useCategorieListWithSub from "../hooks/categories/useCategorieListWithSub";
-import SectionHeader from "../ui/SectionHeader";
-import DataLoader from "../ui/DataLoader";
-import FilterToggleButton from "../ui/freelancers/FilterToggleButton";
 import FilterSidebar from "../ui/freelancers/FilterSidebar";
+import FilterToggleButton from "../ui/freelancers/FilterToggleButton";
 import FreelancersList from "../ui/freelancers/FreelancersList";
+import SectionHeader from "../ui/SectionHeader";
 
 /**
  * BestFreeLancers - Main component for displaying the best freelancers page
@@ -16,12 +14,8 @@ const BestFreeLancers = () => {
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const { t } = useTranslation();
 
-  // Data fetching hooks - only fetch what's needed in this component
-  const { isLoading: isCategoriesLoading } = useCategorieListWithSub();
   const { data: freelancers, isLoading: isFreelancersLoading } =
     useGetBestFreelancers();
-
-  // We'll let the FreelancersList component handle its own loading state
 
   return (
     <>
