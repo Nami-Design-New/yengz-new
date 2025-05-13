@@ -26,7 +26,7 @@ function CheckBoxContainer({
               data-bs-toggle="collapse"
               data-bs-target={`#accordion-${item.id}`}
               aria-expanded="true"
-              aria-controls={`#accordion-${item.id}`}
+              aria-controls={`accordion-${item.id}`}
             >
               <span className="horizontal"></span>
               <span className="vertical"></span>
@@ -47,9 +47,9 @@ function CheckBoxContainer({
       {item?.sub_categories && sub_categoriesValue && (
         <div
           id={`accordion-${item.id}`}
-          className="accordion-collapse collapse"
+          className="accordion-collapse collapse "
           aria-labelledby="headingOne"
-          data-bs-parent="#accordionExample"
+          data-bs-parent=""
         >
           <div className="accordion-body">
             {item.sub_categories.map((sub_category) => (

@@ -1,0 +1,309 @@
+.requestDetails {
+  padding: 40px 0;
+  .postDetails {
+    position: relative;
+    padding: 24px;
+    border-radius: 11px;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--light-bg);
+    p {
+      margin: 0;
+    }
+    h5 {
+      color: var(--main-color);
+      font-size: 18px;
+      font-weight: bold;
+    }
+    h6 {
+      margin-top: 24px;
+      font-size: 16px;
+    }
+    a {
+      font-size: 14px;
+      color: var(--black-color);
+      word-break: break-word;
+      i {
+        color: var(--main-color);
+      }
+    }
+  }
+  .aboutProjectCard {
+    width: 100%;
+    border-radius: 16px;
+    background: var(--input-bg);
+    padding: 16px;
+    margin-bottom: 24px;
+    height: auto;
+    .label {
+      padding: 8px;
+      width: 160px;
+      border-radius: 16px;
+      background: var(--white-color);
+      @include centerFlex();
+      color: var(--text-color);
+      gap: 4px;
+    }
+    .card-ul {
+      margin: 24px 0 0;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      li {
+        color: var(--black-color);
+        margin: 0;
+        font-weight: 500;
+        p {
+          margin: 0;
+        }
+        .status {
+          padding: 0 16px;
+          color: var(--white-color);
+          border-radius: 40px;
+          background: #26ba35;
+        }
+        h6 {
+          color: var(--main-color);
+          font-weight: 600;
+        }
+      }
+      h6 {
+        font-size: 16px;
+        color: var(--black-color);
+      }
+    }
+  }
+  .allComments {
+    position: relative;
+    padding: 24px;
+    border-radius: 11px;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--light-bg);
+    h5 {
+      color: var(--main-color);
+      font-size: 18px;
+      font-weight: bold;
+    }
+    .comment {
+      padding: 12px;
+      border-radius: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      background-color: var(--white-color);
+      .about_offer {
+        padding: 24px 12px;
+        background: var(--input-bg);
+        border-radius: 8px;
+        display: flex;
+        gap: 12px;
+        .block {
+          flex: 1;
+          @include centerFlex();
+          gap: 12px;
+          p {
+            margin: 0;
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--main-color);
+          }
+          h6 {
+            margin: 0;
+          }
+        }
+      }
+    }
+    .butn {
+      width: 36px;
+      height: 36px;
+      border: none;
+      outline: none;
+      @include centerFlex();
+      background: var(--input-bg);
+      border-radius: 50%;
+      color: var(--black-color);
+      i {
+        font-size: 16px !important;
+      }
+    }
+    .setting {
+      .dropdown-toggle {
+        height: 36px;
+        width: 36px;
+        border-radius: 100px;
+        background-color: var(--input-bg);
+        padding: 4px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        svg {
+          height: 20px;
+        }
+        img {
+          width: 16px;
+          height: 16px;
+          object-fit: contain;
+        }
+        &::after {
+          display: none;
+        }
+      }
+      .dropdown-menu {
+        inset: unset !important;
+        transform: unset !important;
+        right: -60px !important;
+        top: 46px !important;
+        box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+        border: none;
+        border-radius: 16px;
+        overflow: hidden;
+        width: 120px;
+        li {
+          padding: 0 12px;
+          button {
+            padding: 4px 0;
+            background: none !important;
+            text-align: start;
+            svg {
+              height: 16px;
+            }
+          }
+        }
+      }
+    }
+    .userCommented {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      @media (max-width: 768px) {
+        align-items: start;
+      }
+      .userImg {
+        width: 64px;
+        aspect-ratio: 1/1;
+        border-radius: 50%;
+        object-fit: cover;
+      }
+      .lastUser {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        a {
+          color: var(--black-color);
+          transition: all 0.3s ease-in-out;
+          &:hover {
+            color: var(--main-color);
+          }
+        }
+        .name {
+          font-weight: 600;
+          font-size: 14px;
+        }
+        .time {
+          display: flex;
+          align-items: center;
+          gap: 4px;
+          font-size: 12px;
+          margin: 0;
+          i {
+            font-size: 12px;
+            width: 16px;
+            height: 16px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+          }
+        }
+      }
+    }
+    .setting {
+      display: flex;
+      height: fit-content;
+      gap: 12px;
+      button {
+        padding: 6px 16px;
+        border-radius: 8px;
+        @include clearInput();
+        text-wrap: nowrap;
+        &.edit_btn {
+          background-color: #26ba35;
+          color: var(--white-color);
+        }
+        &.refuse_btn {
+          background-color: #0d0d0d;
+          color: var(--white-color);
+        }
+        svg {
+          height: 20px;
+        }
+      }
+    }
+    .text {
+      font-size: 14px;
+    }
+  }
+  .addComment {
+    position: relative;
+    padding: 24px;
+    border-radius: 11px;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--light-bg);
+    h5 {
+      color: var(--main-color);
+      font-size: 18px;
+      font-weight: bold;
+    }
+    .form {
+      margin-top: 16px;
+      input {
+        height: 48px;
+        padding: 0 12px;
+      }
+      input,
+      textarea {
+        background: var(--white-color);
+      }
+      button {
+        width: fit-content;
+        padding: 0 42px;
+        height: 48px;
+      }
+    }
+  }
+  .lastPosts {
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    background-color: #f0f0f0;
+    gap: 12px;
+    border-radius: 16px;
+    margin: 20px 0;
+    .title * {
+      font-weight: bold;
+    }
+    .posts {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      padding: 12px 0;
+      .post {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 4px;
+        img {
+          height: 40px;
+          aspect-ratio: 1/1;
+          object-fit: cover;
+          border-radius: 100px;
+        }
+        a {
+          color: var(--black-color);
+          font-size: 13px;
+        }
+      }
+    }
+  }
+}

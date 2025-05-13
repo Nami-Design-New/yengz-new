@@ -245,11 +245,13 @@ input[type="checkbox"] {
   color: var(--main-color);
 }
 
-.form-switch .form-check-input {
-  box-shadow: none !important;
-  &:checked {
-    background-color: var(--main-color) !important;
-    border-color: var(--main-color) !important;
+.form-switch {
+  .form-check-input {
+    box-shadow: none !important;
+    &:checked {
+      background-color: var(--main-color) !important;
+      border-color: var(--main-color) !important;
+    }
   }
 }
 
@@ -517,7 +519,6 @@ hr {
   }
 
   .text-wrap {
-    height: 100%;
     display: flex;
     justify-content: flex-start;
     flex-direction: row;
@@ -535,21 +536,20 @@ hr {
       font-size: 16px;
       font-weight: 400;
     }
+  }
+  h1 {
+    color: var(--main-color);
+    font-size: 24px;
+    font-weight: bold;
 
-    h1 {
-      color: var(--main-color);
-      font-size: 24px;
-      font-weight: bold;
-
-      @media (max-width: 768px) {
-        font-size: 18px;
-      }
+    @media (max-width: 768px) {
+      font-size: 18px;
     }
+  }
 
-    p {
-      font-size: 14px;
-      color: var(--black-color);
-    }
+  p {
+    font-size: 14px;
+    color: var(--black-color);
   }
 
   .img {

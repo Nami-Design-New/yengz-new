@@ -124,17 +124,6 @@ export async function getRates(id) {
   }
 }
 
-export async function getComments(id) {
-  try {
-    const req = await axiosInstance.post("/get_comments", {
-      id,
-    });
-    return req.data;
-  } catch (error) {
-    throw new Error(error.message);
-  }
-}
-
 export async function createRate(data) {
   try {
     const req = await axiosInstance.post("/user/create_rate", {

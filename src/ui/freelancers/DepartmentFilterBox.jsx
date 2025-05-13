@@ -6,9 +6,14 @@ function DepartmentFilterBox({
   categoriesValue,
   sub_categoriesValue,
   onChange,
+  categoriesWithSubCategories: propCategoriesWithSubCategories,
 }) {
   const { t } = useTranslation();
-  const { data: categoriesWithSubCategories } = useCategorieListWithSub();
+  const { data: hookCategoriesWithSubCategories } = useCategorieListWithSub();
+
+  // Use categories from props if provided, otherwise use from hook
+  const categoriesWithSubCategories =
+    propCategoriesWithSubCategories || hookCategoriesWithSubCategories;
   return (
     <div className="departments w-100">
       {categoriesWithSubCategories &&

@@ -14,11 +14,15 @@ body {
   @import "./scss/auth";
   @import "./scss/home";
   @import "./scss/cards";
+  @import "./scss/modals";
   @import "./scss/about";
   @import "./scss/blogs";
   @import "./scss/communities";
   @import "./scss/freelancers";
   @import "./scss/portfolio";
+  @import "./scss/categories";
+  @import "./scss/services";
+  @import "./scss/projects";
   main {
     min-height: calc(100dvh - 80px);
   }

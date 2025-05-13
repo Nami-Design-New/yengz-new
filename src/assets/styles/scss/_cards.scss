@@ -441,3 +441,69 @@
     }
   }
 }
+
+// rate card
+.rate-card {
+  background-color: var(--input-bg);
+  padding: 16px;
+  margin-bottom: 24px;
+  border-radius: 12px;
+  .rate-owner {
+    display: flex;
+    flex-direction: column;
+    .rate-head {
+      justify-content: space-between;
+      align-items: center;
+      display: flex;
+      gap: 16px;
+      .img {
+        width: 60px;
+        height: 60px;
+        overflow: hidden;
+        border-radius: 50%;
+        img {
+          width: 100%;
+          object-fit: cover;
+          aspect-ratio: 1/1;
+        }
+      }
+      .name-time {
+        @include centerFlex();
+        flex-direction: column;
+        h5 {
+          font-size: 20px;
+          color: var(--black-color);
+          font-weight: bold;
+          margin-bottom: 4px;
+        }
+        span {
+          font-size: 14px;
+          color: var(--text-color);
+          font-weight: 500;
+        }
+      }
+    }
+    .rate-text {
+      font-size: 16px;
+      color: var(--black-color);
+      font-weight: 500;
+      @media (max-width: 576px) {
+        font-size: 14px;
+      }
+    }
+  }
+  .rating-cards {
+    .r-card {
+      padding: 16px 12px;
+      border-radius: 16px;
+      @include centerFlex();
+      flex-direction: column;
+      gap: 12px;
+      background: var(--white-color);
+      h6 {
+        color: var(--black-color);
+        font-size: 14px;
+      }
+    }
+  }
+}
