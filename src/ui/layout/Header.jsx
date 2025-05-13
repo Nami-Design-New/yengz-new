@@ -49,13 +49,13 @@ export default function Header() {
 
           <ul className="nav-links">
             <li className="nav-link">
-              <Link to="/add-service">
+              <Link to="service/add">
                 <i className="far fa-plus"></i> {t("navbar.addService")}
               </Link>
             </li>
 
             <li className="nav-link">
-              <Link to="/add-project">
+              <Link to="/project/add">
                 <i className="far fa-plus"></i> {t("navbar.addProject")}
               </Link>
             </li>
@@ -147,7 +147,6 @@ export default function Header() {
           </ul>
         </div>
       </nav>
-     
     </header>
   );
 }
