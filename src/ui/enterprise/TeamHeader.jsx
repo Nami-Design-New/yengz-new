@@ -32,7 +32,7 @@ const TeamHeader = ({ title, projects, budget, canDelete = true }) => {
 
           <Dropdown.Menu>
             <Dropdown.Item>
-              <i className="fa-regular fa-edit"></i>{" "}
+              <i className="fa-solid fa-pen-to-square"></i>{" "}
               {t("enterprise.teams.editTeam", "تعديل الفريق")}
             </Dropdown.Item>
             {canDelete && (

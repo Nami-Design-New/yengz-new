@@ -1,17 +1,16 @@
-import { useTranslation } from "react-i18next";
-import useSearchWorks from "../../hooks/portfolio/useSearchWorks";
-import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import axiosInstance from "../../utils/axiosInstance";
 import { Modal } from "react-bootstrap";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay } from "swiper/modules";
+import { useTranslation } from "react-i18next";
+import { useSelector } from "react-redux";
 import { Link } from "react-router";
-import { calculateDate, truncateText } from "../../utils/helpers";
+import { toast } from "sonner";
+import { Autoplay } from "swiper/modules";
+import { Swiper, SwiperSlide } from "swiper/react";
 import { useAddLike } from "../../hooks/favorites/useAddLike";
 import { useIncreaseViewCount } from "../../hooks/favorites/useIncreaseViewCount";
 import { useRemoveLike } from "../../hooks/favorites/useRemoveLike";
-import { toast } from "sonner";
+import useSearchWorks from "../../hooks/portfolio/useSearchWorks";
+import { calculateDate, truncateText } from "../../utils/helpers";
 
 function WorkViewModal({ showModal, setShowModal, targetWork }) {
   const { t } = useTranslation();
@@ -32,7 +31,7 @@ function WorkViewModal({ showModal, setShowModal, targetWork }) {
         },
       });
     }
-  }, [targetWork?.viewed, increaseViewCount, targetWork?.id]);
+  }, [targetWork?.viewed, increaseViewCount, targetWork?.id, refetch]);
 
   const handleAddLike = () => {
     addLike(targetWork?.id, {

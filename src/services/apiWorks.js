@@ -37,12 +37,11 @@ export async function updateWork(data, queryClient) {
   }
 }
 
-export async function deleteWork(id, queryClient) {
+export async function deleteWork(id) {
   try {
     await axiosInstance.post("/user/delete_works", {
       id,
     });
-    queryClient.invalidateQueries(["userWorks"]);
   } catch (error) {
     throw new Error(error.message);
   }

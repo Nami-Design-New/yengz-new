@@ -307,3 +307,136 @@
     }
   }
 }
+.addRequest {
+  padding: 40px 0;
+  form {
+    padding: 24px;
+    width: 100%;
+    border-radius: 16px;
+    background-color: var(--input-bg);
+    border: var(--gray-background) 1px solid;
+    button {
+      width: fit-content;
+      padding: 0 42px;
+    }
+    @media screen and (max-width: 576px) {
+      padding: 12px 6px;
+    }
+  }
+  .input-field {
+    a {
+      color: var(--main-color);
+    }
+    input,
+    textarea,
+    select {
+      background: var(--white-color);
+      border: var(--gray-background) 1px solid;
+    }
+    .input-span {
+      top: 52px !important;
+    }
+  }
+  .upload_attachments {
+    padding: 12px;
+    width: 100%;
+    border-radius: 12px;
+    background: var(--white-color);
+    border: var(--gray-background) 1px solid;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    .icon {
+      background: var(--input-bg);
+      border-radius: 8px;
+      @include centerFlex();
+      padding: 12px;
+    }
+    .content {
+      h6 {
+        margin: 0;
+        font-size: 20px;
+      }
+    }
+    input {
+      display: none;
+    }
+  }
+  .attachments {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    .attachment {
+      border-radius: 12px;
+      background: var(--white-color);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 12px;
+      .icon {
+        width: 42px;
+        @include centerFlex();
+        img {
+          aspect-ratio: 1 / 1;
+          max-width: 42px;
+          object-fit: contain;
+        }
+      }
+      .delete {
+        padding: 0;
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        background: none;
+        cursor: pointer;
+        @include centerFlex();
+        svg {
+          stroke: red;
+          height: 16px;
+        }
+      }
+      .content {
+        h6 {
+          margin: 0;
+          font-size: 14px;
+          color: var(--black-color);
+          a {
+            color: var(--black-color);
+          }
+        }
+        p {
+          margin: 0;
+          font-size: 12px;
+        }
+      }
+    }
+  }
+}
+.upload_attachments {
+  padding: 12px;
+  width: 100%;
+  border-radius: 12px;
+  background: var(--white-color);
+  border: var(--gray-background) 1px solid;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  .icon {
+    background: var(--input-bg);
+    border-radius: 8px;
+    @include centerFlex();
+    padding: 12px;
+  }
+  .content {
+    h6 {
+      margin: 0;
+      font-size: 20px;
+    }
+  }
+  input {
+    display: none;
+  }
+}

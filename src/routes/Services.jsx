@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import DataLoader from "../ui/DataLoader";
 import useSearchServicesList from "../hooks/services/useSearchServicesList";
+import DataLoader from "../ui/DataLoader";
 import ServiceFilterSidebar from "../ui/services/ServiceFilterSidebar";
 import ServiceList from "../ui/services/ServiceList";
-import useCategorieListWithSub from "../hooks/categories/useCategorieListWithSub";
+import SortFilterBox from "../ui/services/SortFilterBox";
 
 /**
  * Services component - displays services with filtering capabilities
@@ -15,7 +15,6 @@ const Services = () => {
   const [isFilterOpen, setIsFilterOpen] = useState(false);
 
   // Data fetching hooks
-  const { isLoading: categoriesIsLoading } = useCategorieListWithSub();
   const {
     data: searchServicesList,
     fetchNextPage,
@@ -39,11 +38,6 @@ const Services = () => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, [isFetchingNextPage, hasNextPage, fetchNextPage]);
-
-  // Show loader while initial data is loading
-  if ((categoriesIsLoading || isFetching) && searchServicesList?.length < 10) {
-    return <DataLoader />;
-  }
 
   return (
     <section className="search-section">
@@ -72,10 +66,14 @@ const Services = () => {
             <div className="row">
               <SortFilterBox type="services" />
 
-              <ServiceList
-                searchServicesList={searchServicesList}
-                isFetching={isFetching}
-              />
+              {isFetching && searchServicesList?.length === 0 ? (
+                <DataLoader />
+              ) : (
+                <ServiceList
+                  searchServicesList={searchServicesList}
+                  isFetching={isFetching}
+                />
+              )}
             </div>
           </section>
         </div>

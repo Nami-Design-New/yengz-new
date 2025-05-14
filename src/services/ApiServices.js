@@ -101,12 +101,12 @@ export async function updateService(data, queryClient) {
   }
 }
 
-export async function deleteService(id, queryClient) {
+export async function deleteService(id) {
   try {
     const req = await axiosInstance.post("/user/delete_service", {
       id,
     });
-    queryClient.invalidateQueries("userServices");
+
     return req.data;
   } catch (error) {
     throw new Error(error.message);

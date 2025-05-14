@@ -37,12 +37,11 @@ export async function updateCertificate(data, queryClient) {
   }
 }
 
-export async function deleteCertificate(id, queryClient) {
+export async function deleteCertificate(id) {
   try {
     await axiosInstance.post("/user/delete_certificate", {
       id,
     });
-    queryClient.invalidateQueries(["userCertificates"]);
   } catch (error) {
     throw new Error(error.message);
   }

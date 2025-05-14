@@ -103,7 +103,7 @@ function OfferCard({ request, isMyProject, project }) {
                     className="refuse_btn"
                     onClick={() => setShowEditModal(true)}
                   >
-                    <i className="fa-regular fa-edit"></i>{" "}
+                    <i className="fa-solid fa-pen-to-square"></i>{" "}
                     {t("projects.editOffer")}
                   </button>
                 ) : (

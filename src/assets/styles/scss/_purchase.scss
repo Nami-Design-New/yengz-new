@@ -1,0 +1,408 @@
+.cart-section {
+  padding: 60px 0;
+  .cart-header {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 16px;
+    .add-to-collection-btn {
+      cursor: pointer;
+      outline: none;
+      padding: 8px 16px;
+      border: none;
+      font-size: 14px;
+      color: var(--white-color);
+      border-radius: 12px;
+      background: var(--main-color);
+      transition: var(--main-transation);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 140px;
+      max-width: 140px;
+      font-size: 16px;
+      white-space: nowrap;
+      gap: 8px;
+    }
+  }
+  .cartTotalPrice {
+    @include space-between();
+    margin-bottom: 32px;
+    p {
+      margin: 0;
+      font-size: 18px;
+    }
+    h6 {
+      color: var(--main-color);
+      font-weight: bold;
+      font-size: 22px;
+      i {
+        margin: 0 4px;
+        color: var(--text-color);
+      }
+    }
+  }
+  .service {
+    padding-bottom: 16px;
+    margin-bottom: 16px;
+    background: #f4f4f4;
+    padding: 16px 8px;
+    border-radius: 16px;
+    &:last-child {
+      border-bottom: 0 !important;
+    }
+  }
+  .service-head {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    @media (max-width: 576px) {
+      gap: 18px;
+    }
+    &.mini {
+      .request-owner-img {
+        width: 56px;
+        height: 56px;
+      }
+      .owner {
+        span {
+          font-size: 16px !important;
+        }
+      }
+      .title {
+        h5 {
+          font-size: 14px !important;
+        }
+      }
+    }
+    .request-owner-img {
+      min-width: 56px;
+      height: 56px;
+      max-width: 56px;
+      border-radius: 50%;
+      overflow: hidden;
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+    .img {
+      max-width: 150px;
+      min-width: 150px;
+      aspect-ratio: 3 / 2;
+      border-radius: 4px;
+      overflow: hidden;
+      @media (max-width: 576px) {
+        max-width: 106px;
+      }
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+      }
+    }
+    .title {
+      h5 {
+        font-size: 16px;
+        font-weight: 600;
+        line-height: 24px;
+        margin-bottom: 10px;
+        color: var(--black-color);
+        @media (max-width: 576px) {
+          font-size: 14px;
+        }
+      }
+      .owner {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        span {
+          color: var(--black-color);
+          font-weight: 500;
+        }
+        .owner-avatar {
+          width: 50px;
+          height: 50px;
+          border-radius: 50%;
+          overflow: hidden;
+          img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+          }
+          @media (max-width: 576px) {
+            width: 40px;
+            height: 40px;
+          }
+        }
+      }
+      &.requester-title {
+        h5 {
+          font-weight: 400;
+        }
+        .owner span {
+          margin-bottom: 8px;
+          font-weight: 600;
+          font-size: 18px;
+        }
+      }
+    }
+  }
+  .progress-card {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    &.order-d {
+      margin-bottom: 48px;
+    }
+    .progress-details {
+      @include space-between();
+      gap: 16px;
+      .details {
+        height: 60px;
+        font-size: 14px;
+        min-width: 100px;
+        max-width: 100px;
+        border-radius: 16px;
+        @include centerFlex();
+        color: var(--main-color);
+        background: var(--check-color);
+      }
+      .chat {
+        height: 60px;
+        font-size: 20px;
+        min-width: 60px;
+        max-width: 60px;
+        border-radius: 50%;
+        @include centerFlex();
+        color: var(--main-color);
+        background: var(--check-color);
+      }
+      .pro-container {
+        height: 60px;
+        padding: 8px 12px;
+        width: 100%;
+        background: var(--input-bg);
+        border: 1px solid var(--gray-background);
+        border-radius: 16px;
+        .progress {
+          background: var(--white-color) !important;
+        }
+        .new {
+          background-color: #5bc0de;
+        }
+        .in_progress {
+          background-color: #f0ad4e;
+        }
+        .ready {
+          background-color: #5bc0de;
+        }
+        .received {
+          background-color: #5cb85c;
+        }
+        .complete {
+          background-color: #0275d8;
+        }
+        .canceled {
+          background-color: #d9534f;
+        }
+        .status {
+          font-size: 16px;
+          margin-bottom: 4px;
+          color: var(--text-color);
+        }
+      }
+    }
+    .time-price {
+      @include space-between();
+      span {
+        display: flex;
+        gap: 4px;
+        align-items: center;
+        color: var(--black-color);
+        i {
+          color: var(--text-color);
+        }
+      }
+      h5 {
+        font-size: 24px;
+        font-weight: bold;
+        color: var(--black-color);
+        i {
+          font-size: 18px;
+          color: var(--main-color);
+        }
+      }
+    }
+  }
+  .order-buttons {
+    display: flex;
+    gap: 24px;
+    margin-top: 20px;
+    button {
+      @include clearInput();
+      width: 100%;
+      height: 45px;
+      border-radius: 14px;
+    }
+    .deliver {
+      background: #26ba35;
+      color: #fff;
+    }
+    .cancle-order {
+      background: var(--black-color);
+      color: var(--white-color);
+    }
+    .report-order {
+      border: 1px solid var(--main-color);
+      color: var(--main-color);
+      transition: var(--main-transation);
+      &:hover {
+        background: var(--main-color);
+        color: #fff;
+      }
+    }
+  }
+  .order-now {
+    height: 50px;
+    width: 100%;
+    font-size: 16px;
+    border: none;
+    background: none;
+    outline: none;
+    background: var(--black-color);
+    color: #fff;
+    border-radius: 16px;
+    @include centerFlex();
+    gap: 4px;
+    &.delete {
+      background: red;
+    }
+  }
+  .filter {
+    position: sticky;
+    top: 100px;
+    background: var(--input-bg);
+    padding: 16px;
+    border-radius: 12px;
+    .colse {
+      display: none;
+    }
+    @media (max-width: 768px) {
+      display: none;
+      .colse {
+        margin-bottom: 32px;
+        display: block !important;
+        cursor: pointer;
+        i {
+          font-size: 24px;
+          color: var(--black-color);
+        }
+      }
+      &.side-menu {
+        display: block;
+        position: fixed;
+        top: 80px;
+        overflow-y: scroll;
+        width: 100%;
+        background: var(--white-color);
+        left: -100%;
+        transition: var(--main-transation);
+        height: calc(100dvh - 80px);
+        padding: 32px 24px;
+      }
+      &.active {
+        left: 0;
+      }
+    }
+    h6 {
+      color: var(--black-color);
+      margin-bottom: 32px;
+    }
+    .order-status {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      li {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+    }
+  }
+  .empty_cart {
+    @include centerFlex();
+    flex-direction: column;
+    img {
+      height: 300px;
+    }
+    h3 {
+      font-size: 24px;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    a {
+      color: var(--white-color);
+      background: var(--main-color);
+      border-radius: 100px;
+      padding: 6px 16px;
+    }
+  }
+}
+
+.filter {
+  position: sticky;
+  top: 100px;
+  background: var(--input-bg);
+  padding: 16px;
+  border-radius: 12px;
+  .colse {
+    display: none;
+  }
+  @media (max-width: 768px) {
+    display: none;
+    .colse {
+      margin-bottom: 32px;
+      display: block !important;
+      cursor: pointer;
+      i {
+        font-size: 24px;
+        color: var(--black-color);
+      }
+    }
+    &.side-menu {
+      display: block ;
+      position: fixed;
+      top: 80px;
+      overflow-y: scroll;
+      width: 100%;
+      background: var(--white-color);
+      left: -100%;
+      transition: var(--main-transation);
+      height: calc(100dvh - 80px);
+      padding: 32px 24px;
+    }
+    &.active {
+      left: 0;
+    }
+  }
+  h6 {
+    color: var(--black-color);
+    margin-bottom: 32px;
+  }
+  .order-status {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    li {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+  }
+}

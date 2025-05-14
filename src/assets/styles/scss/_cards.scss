@@ -507,3 +507,13 @@
     }
   }
 }
+
+// woek card
+.workCard {
+  border-radius: 12px;
+  cursor: pointer;
+  box-shadow: 0 0 2px 1px #ececec;
+  h4 {
+    text-align: center;
+  }
+}

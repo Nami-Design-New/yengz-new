@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
-import { Link, useNavigate } from "react-router";
+import { Link } from "react-router";
 import useTruncateString from "../../hooks/helper/useTruncateString";
 import useDeleteProject from "../../hooks/projects/useDeleteProject";
-import ConfirmationModal from "../modals/ConfirmationModal";
 import { formatTimeDifference, getTimeDifference } from "../../utils/helpers";
+import ConfirmationModal from "../modals/ConfirmationModal";
 
 function ProjectCard({ project }) {
   const { t } = useTranslation();
@@ -22,15 +22,8 @@ function ProjectCard({ project }) {
   );
   const truncatedText = useTruncateString(project?.description, 200);
   const { deleteProject, isPending } = useDeleteProject();
-  const navigate = useNavigate();
   return (
-    <div
-      className="project__card"
-      onClick={(e) => {
-        e.stopPropagation();
-        navigate(`/projects/${project?.id}`);
-      }}
-    >
+    <Link to={`/projects/${project?.id}`} className="project__card">
       <div className="row">
         <div className="col-12 p-0">
           <div className="requstPost">
@@ -80,8 +73,8 @@ function ProjectCard({ project }) {
                 {(project?.status_name === "جديد" ||
                   project?.status_name === "new") && (
                   <>
-                    <Link to={`/edit-project/${project?.id}`}>
-                      <i className="fa-regular fa-edit"></i>
+                    <Link to={`/project/edit/${project?.id}`}>
+                      <i className="fa-solid fa-pen-to-square"></i>
                     </Link>
                     <button
                       onClick={(e) => {
@@ -108,7 +101,7 @@ function ProjectCard({ project }) {
         eventFun={deleteProject}
         loading={isPending}
       />
-    </div>
+    </Link>
   );
 }
 

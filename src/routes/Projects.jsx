@@ -1,19 +1,16 @@
 import React, { useEffect, useState } from "react";
-import useSearchServicesList from "../hooks/services/useSearchServicesList";
 import { useTranslation } from "react-i18next";
-import ServiceFilterSidebar from "../ui/services/ServiceFilterSidebar";
-import ProjectList from "../ui/projectes/ProjectList";
-import useCategorieListWithSub from "../hooks/categories/useCategorieListWithSub";
-import DataLoader from "../ui/DataLoader";
-import SortFilterBox from "../ui/services/SortFilterBox";
 import useProjectsList from "../hooks/projects/useProjectsList";
+import DataLoader from "../ui/DataLoader";
+import ProjectList from "../ui/projectes/ProjectList";
+import ServiceFilterSidebar from "../ui/services/ServiceFilterSidebar";
+import SortFilterBox from "../ui/services/SortFilterBox";
 
 const Projects = () => {
   const { t } = useTranslation();
   const [isFilterOpen, setIsFilterOpen] = useState(false);
 
   // Data fetching hooks
-  const { isLoading: categoriesIsLoading } = useCategorieListWithSub();
   const {
     data: searchProjectsList,
     fetchNextPage,
@@ -37,11 +34,6 @@ const Projects = () => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, [isFetchingNextPage, hasNextPage, fetchNextPage]);
-
-  // Show loader while initial data is loading
-  if ((categoriesIsLoading || isFetching) && searchProjectsList?.length < 10) {
-    return <DataLoader />;
-  }
 
   return (
     <section className="search-section">
@@ -69,10 +61,15 @@ const Projects = () => {
             <div className="container">
               <div className="row">
                 <SortFilterBox type="projects" />
-                <ProjectList
-                  searchProjectsList={searchProjectsList}
-                  isFetching={isFetching}
-                />
+
+                {isFetching && searchProjectsList?.length === 0 ? (
+                  <DataLoader />
+                ) : (
+                  <ProjectList
+                    searchProjectsList={searchProjectsList}
+                    isFetching={isFetching}
+                  />
+                )}
               </div>
             </div>
           </div>
