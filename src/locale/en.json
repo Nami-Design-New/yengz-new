@@ -136,6 +136,7 @@
   "validation": {
     "required": "This field is required",
     "email": "Please enter a valid email address",
+    "url": "Please enter a valid URl",
     "passwordLength": "Password must be at least 6 characters",
     "atLeastOneSkill": "Please select at least one skill",
     "atLeastOneCategory": "Please select at least one category",
@@ -573,7 +574,27 @@
     "deleteService": "Delete",
     "profileEditedSuccessfully": "Profile edited successfully",
     "skills": "Skills",
-    "country": "Country"
+    "country": "Country",
+    "editWork": "Edit Work",
+    "editCertificate": "Edit certificate"
+  },
+  "recievedOrders": {
+    "title": "Received Orders",
+    "noOrders": "No orders at the moment",
+    "emptyOrders": "No orders with this status, please try something else...",
+    "emptyPurchases": "No purchases so far",
+    "emptyPurchasesWithThisState": "No purchases with this status, please try something else...",
+    "cancelOrder": "Cancel Order",
+    "reportProblem": "Report a Problem",
+    "orderNumber": "Order Number",
+    "orderValue": "Order Value",
+    "orderDate": "Order Date",
+    "expectedDeliveryDate": "Expected Delivery Date",
+    "acceptOrder": "Accept Order",
+    "readyForDelivery": "Ready for Delivery",
+    "receive": "Receive",
+    "RateService": "Rate Service",
+    "refuseReason": "Reason for Refusal"
   },
   "status": {
     "orderStatus": "Order Status",
@@ -584,6 +605,15 @@
     "received": "Delivered",
     "completed": "Completed",
     "canceled": "Canceled"
+  },
+  "comments": {
+    "comments": "Comments",
+    "addComment": "Add Comment",
+    "createSuccess": "Comment created successfully",
+    "commentPlaceholder": "Write your comment here",
+    "readAndAccept": "Read and accept",
+    "conditionsAndTerms": "Terms and Conditions",
+    "publish": "Publish"
   },
   "choose": "Choose",
   "likeIt": "Like it",

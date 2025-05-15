@@ -137,6 +137,11 @@ hr {
   }
 }
 
+.scroll_menu {
+  overflow-y: scroll;
+  height: 252px;
+}
+
 .stars {
   display: flex;
   gap: 4px;

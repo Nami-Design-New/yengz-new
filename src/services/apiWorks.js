@@ -11,27 +11,25 @@ export async function getWorks(userId) {
   }
 }
 
-export async function addWork(data, queryClient) {
+export async function addWork(data) {
   try {
     await axiosInstance.post("/user/create_works", data, {
       headers: {
         "Content-Type": "multipart/form-data",
       },
     });
-    queryClient.invalidateQueries(["userWorks"]);
   } catch (error) {
     throw new Error(error.message);
   }
 }
 
-export async function updateWork(data, queryClient) {
+export async function updateWork(data) {
   try {
     await axiosInstance.post("/user/update_works", data, {
       headers: {
         "Content-Type": "multipart/form-data",
       },
     });
-    queryClient.invalidateQueries(["userWorks"]);
   } catch (error) {
     throw new Error(error.message);
   }

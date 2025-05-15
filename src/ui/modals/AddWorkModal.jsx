@@ -1,14 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Modal } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
-import { useQueryClient } from "@tanstack/react-query";
 import useGetSkills from "../../hooks/app/useGetSkills";
-import { addWork, updateWork } from "../../services/apiWorks";
-import { toast } from "sonner";
 import InputField from "../forms/InputField";
 import MultiSelect from "../forms/MultiSelect";
 import TextField from "../forms/TextField";
 import SubmitButton from "../forms/SubmitButton";
+import { useWorkForm } from "../../hooks/works/useWorkForm";
 
 const AddWorkModal = ({
   showModal,
@@ -18,122 +16,35 @@ const AddWorkModal = ({
 }) => {
   const { t } = useTranslation();
   const { data: skills } = useGetSkills();
-  const queryClient = useQueryClient();
-  const [loading, setLoading] = useState(false);
-  const [selectedOptions, setSelectedOptions] = useState([]);
-  const [formData, setFormData] = useState({
-    title: "",
-    link: "",
-    description: "",
-    start_date: "",
-    end_date: "",
-    images: [],
-    delete_images: [],
-  });
 
-  useEffect(() => {
-    if (targetWork) {
-      setFormData({
-        id: targetWork.id,
-        title: targetWork.title,
-        link: targetWork.link,
-        description: targetWork.description,
-        start_date: targetWork.start_date,
-        end_date: targetWork.end_date,
-        images: targetWork.images || [],
-        delete_images: [],
-      });
+  // Use the custom hook for form handling
+  const {
+    register,
+    handleSubmit,
+    onSubmit,
+    errors,
+    isLoading,
+    selectedOptions,
+    handleSelect,
+    handleFileChange,
+    handleDeleteImage,
+    formValues,
+    reset,
+  } = useWorkForm(targetWork, setTargetWork, setShowModal);
 
-      const options = targetWork?.skills?.map((item) => {
-        const skill = skills?.find((s) => s?.id === item?.id);
-        return { value: skill?.id, label: skill?.name };
-      });
-
-      setSelectedOptions(options);
-    }
-  }, [targetWork, skills]);
-
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-
-  const handleSelect = (selectedItems) => {
-    setSelectedOptions(selectedItems);
-    const selectedValues = selectedItems
-      ? selectedItems?.map((option) => option.value)
-      : [];
-    setFormData({
-      ...formData,
-      skills: selectedValues,
-    });
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setLoading(true);
-    const dataToSendForUpdate = {
-      ...formData,
-      images: formData.images.filter((image) =>
-        image?.type?.startsWith("image/")
-      ),
-    };
-    try {
-      if (targetWork?.id) {
-        await updateWork(dataToSendForUpdate, queryClient);
-        toast.success(t("profile.workUpdatedSuccessfully"));
-      } else {
-        await addWork(formData, queryClient);
-        toast.success(t("profile.workAddedSuccessfully"));
-      }
-      setShowModal(false);
-      setFormData({
-        title: "",
-        link: "",
-        description: "",
-        start_date: "",
-        end_date: "",
-        images: [],
-        delete_images: [],
-      });
-      setTargetWork(null);
-    } catch (error) {
-      console.error("Add work error:", error);
-      throw new Error(error.message);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const handleImagesChange = (e) => {
-    e.preventDefault();
-    const newImages = Array.from(e.target.files);
-    setFormData((prevState) => ({
-      ...prevState,
-      images: [...prevState.images, ...newImages],
-    }));
-  };
-
-  const handleRemoveImage = (index, image) => {
-    if (image.id) {
-      setFormData((prevState) => ({
-        ...prevState,
-        images: prevState.images.filter((_, i) => i !== index),
-        delete_images: [...prevState.delete_images, image.id],
-      }));
-    } else {
-      setFormData((prevState) => ({
-        ...prevState,
-        images: prevState.images.filter((_, i) => i !== index),
-      }));
-    }
-  };
-
+  // Prepare skills options for the multi-select
+  const skillOptions =
+    skills?.map((skill) => ({
+      value: skill.id,
+      label: skill.name,
+    })) || [];
   return (
     <Modal
       show={showModal}
       onHide={() => {
         setShowModal(false);
-        setFormData({
+        setTargetWork(null);
+        reset({
           title: "",
           link: "",
           description: "",
@@ -142,138 +53,139 @@ const AddWorkModal = ({
           images: [],
           delete_images: [],
         });
-        setTargetWork(null);
       }}
       centered
       size="lg"
     >
       <Modal.Header className="pb-0" closeButton>
-        <Modal.Title>{t("profile.addWork")}</Modal.Title>
+        <Modal.Title>
+          {targetWork?.id ? t("profile.editWork") : t("profile.addWork")}
+        </Modal.Title>
       </Modal.Header>
       <Modal.Body className="add-work">
-        <div className="login-section">
-          <form className="form_ui container m-0 w-100" onSubmit={handleSubmit}>
-            <div className="row">
-              {/* images */}
-              <div className="col-12 p-2">
-                <label htmlFor="certificate-image" className="mb-2">
-                  {t("profile.images")}
-                </label>
-                <div className="images_grid_upload">
-                  <div className="file_upload">
-                    <label htmlFor="file_upload">
-                      <input
-                        type="file"
-                        id="file_upload"
-                        accept="image/*"
-                        name="images"
-                        multiple
-                        onChange={handleImagesChange}
-                      />
-                      <img src={"/images/gallery.svg"} alt="upload" />
-                      <div className="file_upload_dimensions">
-                        9 <span>X</span> 16
-                      </div>
-                    </label>
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          className=" form_ui container m-0 w-100"
+        >
+          {" "}
+          <div className="row">
+            <div className="col-12 p-2">
+              <label htmlFor="certificate-image" className="mb-2">
+                {t("profile.images")}
+              </label>
+              <div className="images_grid_upload">
+                <div className="file_upload">
+                  <label htmlFor="file_upload">
+                    <input
+                      type="file"
+                      id="file_upload"
+                      accept="image/*"
+                      name="images"
+                      multiple
+                      onChange={handleFileChange}
+                    />
+                    <img src="/images/gallery.svg" alt="upload" />
+                    <div className="file_upload_dimensions">
+                      9 <span>X</span> 16
+                    </div>
+                  </label>
+                </div>
+                {errors.images && (
+                  <div className="invalid-feedback d-block">
+                    {errors.images?.message}
                   </div>
-                  {formData?.images && (
-                    <>
-                      {formData?.images?.map((image, index) => (
+                )}
+                {formValues.images && formValues.images.length > 0 && (
+                  <>
+                    {formValues.images.map((image, index) => {
+                      console.log(image);
+
+                      return (
                         <div className="uploaded_file" key={index}>
                           <img
                             src={
-                              image?.type?.startsWith("image/")
-                                ? URL.createObjectURL(image)
-                                : image?.image
+                              image.image
+                                ? image.image
+                                : URL.createObjectURL(image)
                             }
                             alt="file"
                           />
                           <button
-                            onClick={(e) => {
-                              e.preventDefault();
-                              handleRemoveImage(index, image);
-                            }}
+                            type="button"
+                            onClick={() => handleDeleteImage(index, image.id)}
                           >
                             <i className="fa-light fa-xmark"></i>
                           </button>
                         </div>
-                      ))}
-                    </>
-                  )}
-                </div>
-              </div>
-              {/* title */}
-              <div className="col-lg-6 col-12 p-2">
-                <InputField
-                  label={t("profile.projectTitle")}
-                  type="text"
-                  name="title"
-                  onChange={handleChange}
-                  value={formData.title}
-                />
-              </div>
-              {/* link */}
-              <div className="col-lg-6 col-12 p-2">
-                <InputField
-                  label={t("profile.projectLink")}
-                  type="url"
-                  name="link"
-                  onChange={handleChange}
-                  value={formData.link}
-                />
-              </div>
-              {/* date */}
-              <div className="col-lg-6 col-12 p-2">
-                <InputField
-                  label={t("profile.from")}
-                  type="date"
-                  name="start_date"
-                  onChange={handleChange}
-                  value={formData.start_date}
-                />
-              </div>
-              <div className="col-lg-6 col-12 p-2">
-                <InputField
-                  label={t("profile.to")}
-                  type="date"
-                  name="end_date"
-                  onChange={handleChange}
-                  value={formData.end_date}
-                />
-              </div>
-              <div className="col-12 p-2">
-                <MultiSelect
-                  label={t("search.skills")}
-                  id="skills"
-                  name="skills"
-                  selectedOptions={selectedOptions}
-                  handleChange={handleSelect}
-                  options={skills?.map((skill) => ({
-                    label: skill?.name,
-                    value: skill?.id,
-                  }))}
-                />
-              </div>
-              {/* description */}
-              <div className="col-12 p-2">
-                <TextField
-                  label={t("profile.projectDescription")}
-                  name="description"
-                  onChange={handleChange}
-                  value={formData.description}
-                />
-              </div>
-              <div className="col-12 p-2">
-                <SubmitButton
-                  name={
-                    targetWork?.id ? t("profile.edit") : t("profile.addProject")
-                  }
-                  loading={loading}
-                />
+                      );
+                    })}
+                  </>
+                )}
               </div>
             </div>
-          </form>
-        </div>
+
+            <div className="col-md-6 p-2">
+              <InputField
+                label={t("profile.projectTitle")}
+                name="title"
+                {...register("title")}
+                error={errors.title?.message}
+              />
+            </div>
+            <div className="col-md-6 p-2">
+              <InputField
+                label={t("profile.projectLink")}
+                name="link"
+                {...register("link")}
+                error={errors.link?.message}
+              />
+            </div>
+            <div className="col-md-6 p-2">
+              <InputField
+                label={t("profile.from")}
+                name="start_date"
+                type="date"
+                {...register("start_date")}
+                error={errors.start_date?.message}
+              />
+            </div>
+            <div className="col-md-6 p-2">
+              <InputField
+                label={t("profile.to")}
+                name="end_date"
+                type="date"
+                {...register("end_date")}
+                error={errors.end_date?.message}
+              />
+            </div>
+            <div className="col-12 p-2">
+              <MultiSelect
+                label={t("search.skills")}
+                options={skillOptions}
+                selectedOptions={selectedOptions}
+                onChange={handleSelect}
+                error={errors.skills?.message}
+              />
+            </div>
+            <div className="col-12">
+              <TextField
+                label={t("profile.projectDescription")}
+                name="description"
+                {...register("description")}
+                error={errors.description?.message}
+              />
+            </div>
+
+            <div className="col-12 p-2">
+              <SubmitButton
+                name={
+                  targetWork?.id ? t("profile.edit") : t("profile.addProject")
+                }
+                loading={isLoading}
+              />
+            </div>
+          </div>
+        </form>
       </Modal.Body>
     </Modal>
   );

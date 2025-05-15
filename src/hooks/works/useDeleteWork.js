@@ -6,7 +6,7 @@ import { deleteWork as apiDeleteWork } from "../../services/apiWorks";
 export const useDeleteWork = () => {
   const { t } = useTranslation();
   const queryClient = useQueryClient();
-  const { mtate: deleteWork, isPending } = useMutation({
+  const { mutate: deleteWork, isPending } = useMutation({
     mutationFn: (id) => apiDeleteWork(id),
     onSuccess: () => {
       toast.success(t("profile.workDeletedSuccessfully"));

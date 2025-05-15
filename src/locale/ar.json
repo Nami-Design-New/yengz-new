@@ -135,6 +135,7 @@
   "validation": {
     "required": "هذا الحقل مطلوب",
     "email": "يرجى إدخال عنوان بريد إلكتروني صحيح",
+    "url": "يرجى إدخال رابط صحيح",
     "passwordLength": "يجب أن تكون كلمة المرور 6 أحرف على الأقل",
     "atLeastOneSkill": "يرجى اختيار مهارة واحدة على الأقل",
     "atLeastOneCategory": "يرجى اختيار فئة واحدة على الأقل",
@@ -572,7 +573,9 @@
     "deleteService": "حذف",
     "profileEditedSuccessfully": "تم تعديل الملف الشخصي بنجاح",
     "skills": "المهارات",
-    "country": "الدولة"
+    "country": "الدولة",
+    "editWork": "تعديل العمل",
+    "editCertificate": "تعديل الشهاده"
   },
   "status": {
     "orderStatus": "حالة الطلب",
@@ -583,6 +586,33 @@
     "received": "تم تسليمه",
     "completed": "مكتمل",
     "canceled": "ملغي"
+  },
+  "recievedOrders": {
+    "title": "الطلبات المستلمة",
+    "noOrders": "لا يوجد طلبات حاليا",
+    "emptyOrders": "لا يوجد طلبات بهذه الحالة، يرجى المحاولة بشيء اخر...",
+    "emptyPurchases": "لا يوجد مشتريات حتى الان",
+    "emptyPurchasesWithThisState": "لا يوجد مشتريات بهذه الحالة، يرجى المحاولة بشيء اخر...",
+    "cancleOrder": "الغاء الطلب",
+    "reportProblem": "ابلاغ عن مشكلة",
+    "orderNumber": "رقم الطلب",
+    "orderValue": "قيمة الطلب",
+    "orderDate": "تاريخ الطلب",
+    "expectedDeliveryDate": "تاريخ التسليم المتوقع",
+    "acceptOrder": "قبول الطلب",
+    "readyForDelevier": "جاهز للتسليم",
+    "recieve": "إستلام",
+    "RateService": "تقييم الخدمة",
+    "refuseReason": "سبب الرفض"
+  },
+  "comments": {
+    "comments": "تعليقات",
+    "addComment": "اضافة تعليق",
+    "createSuccess": "تم انشاء التعليق بنجاح",
+    "commentPlaceholder": "اكتب تعليقك هنا",
+    "readAndAccept": "اقرأ وأوافق على",
+    "conditionsAndTerms": "الشروط والاحكام",
+    "publish": "نشر"
   },
   "choose": "اختر",
   "likeIt": "اعجبني",

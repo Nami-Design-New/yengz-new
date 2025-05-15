@@ -44,10 +44,25 @@ export async function updateOrder(id, status, queryClient) {
       id: id,
       status: status,
     });
-    queryClient.invalidateQueries("order");
-    queryClient.invalidateQueries("serviceOrdersList");
-    queryClient.invalidateQueries("purchasesList");
   } catch (error) {
     throw new Error(error.message);
+  }
+}
+
+export async function getProjectsOrders({ page, status }) {
+  const requestBody = {};
+  if (page) requestBody.page = page;
+  if (status) requestBody.status = status;
+  try {
+    const req = await axiosInstance.post(
+      "/user/get_project_orders",
+      requestBody
+    );
+    return {
+      data: req.data.data,
+      total: req.data.total,
+    };
+  } catch (err) {
+    throw new Error(err.message);
   }
 }

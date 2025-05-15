@@ -130,3 +130,12 @@ export function formattedDate(date) {
 
 export const truncateText = (text, limit = 280) =>
   text?.length > limit ? text.substring(0, limit) + "..." : text;
+
+export const calculateExpectedEndDate = (createdAt, days) => {
+  const createdDate = new Date(createdAt);
+  createdDate.setDate(createdDate.getDate() + days);
+  const dd = String(createdDate.getDate()).padStart(2, "0");
+  const mm = String(createdDate.getMonth() + 1).padStart(2, "0");
+  const yyyy = createdDate.getFullYear();
+  return `${dd} / ${mm} / ${yyyy}`;
+};

@@ -1,9 +1,15 @@
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
 
-const ImageUpload = ({ setValue }) => {
+const ImageUpload = ({ setValue, image }) => {
   const { t } = useTranslation();
   const imgView = useRef(null);
+
+  useEffect(() => {
+    if (image) {
+      imgView.current.src = image;
+    }
+  }, [image]);
 
   const handleUpload = (e) => {
     imgView.current.src = URL.createObjectURL(e.target.files[0]);

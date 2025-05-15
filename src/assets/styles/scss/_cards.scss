@@ -91,6 +91,7 @@
     flex-direction: column;
     gap: 8px;
     flex: 1;
+    position: relative;
     h6 {
       font-size: 14px;
       line-height: 28px;
@@ -259,14 +260,14 @@
         height: 36px;
         border-radius: 50%;
         background: var(--white-color);
-        svg {
+        i {
           height: 16px;
-          stroke: red;
+          color: red;
         }
       }
       a {
-        svg {
-          stroke: var(--main-color);
+        i {
+          color: var(--main-color);
         }
       }
     }
@@ -515,5 +516,61 @@
   box-shadow: 0 0 2px 1px #ececec;
   h4 {
     text-align: center;
+  }
+}
+
+// bids Card
+.bid-card {
+  padding: 18px;
+  border-radius: 12px;
+  background-color: var(--input-bg);
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  > p {
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  h4 {
+    color: var(--main-color);
+    font-size: 24px;
+  }
+  ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    li {
+      color: var(--text-color);
+      display: flex;
+      align-items: center;
+      font-size: 12px;
+      span {
+        line-height: 14px;
+      }
+      svg {
+        height: 16px;
+      }
+    }
+  }
+  .bid-status {
+    background: var(--main-color);
+    padding: 4px 12px;
+    border-radius: 8px;
+    color: var(--white-color);
+  }
+  .bid-status {
+    background: var(--main-color);
+    padding: 4px 12px;
+    border-radius: 8px;
+    color: var(--white-color);
+  }
+  p {
+    margin-bottom: 0;
+    line-height: 24px;
+    color: var(--text-color);
+    font-size: 14px;
   }
 }

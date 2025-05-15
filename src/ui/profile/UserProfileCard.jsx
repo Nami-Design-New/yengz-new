@@ -56,7 +56,7 @@ const UserProfileCard = ({ user, isMyAccount }) => {
               {user?.skills?.map(
                 (skill) =>
                   skill?.name && (
-                    <div className="cash-info">
+                    <div key={skill.id} className="cash-info">
                       <h6>{skill.name}</h6>
                     </div>
                   )

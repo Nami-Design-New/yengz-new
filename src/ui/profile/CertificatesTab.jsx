@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
-import useDeleteCertificate from "../../hooks/certificate/useDeleteCertificate";
 import useGetCertificates from "../../hooks/certificate/useGetCertificates";
+import useDeleteCertificate from "../../hooks/certificate/useDeleteCertificate";
 import CertificateCard from "../cards/CertificateCard";
 import ConfirmationModal from "../modals/ConfirmationModal";
 import AddCertificateModal from "../modals/AddCertificateModal";
@@ -13,21 +13,25 @@ const CertificatesTab = ({ user, isMyAccount }) => {
   const [viewImgTarget, setViewImgTarget] = useState(null);
   const [targetId, setTargetId] = useState(null);
   const [targetCertificate, setTargetCertificate] = useState(null);
-  const [showCertificateViewModal, setShowCertificateViewModal] =
-    useState(false);
+  const [showCertificateViewModal, setShowCertificateViewModal] = useState(false);
+  
   const { t } = useTranslation();
   const { data: certificates } = useGetCertificates(user?.id);
   const { deleteCertificate, isPending } = useDeleteCertificate();
+
+  // Handler for showing delete confirmation modal
   const onDeleteModalShow = (id) => {
     setShowConfirmation(true);
     setTargetId(id);
   };
 
+  // Handler for showing edit certificate modal
   const onEditModalShow = (certificate) => {
     setShowAddCertificateModal(true);
     setTargetCertificate(certificate);
   };
 
+  // Handler for deleting certificate
   const handleDelete = () => {
     deleteCertificate(targetId, {
       onSettled: () => {
@@ -36,6 +40,7 @@ const CertificatesTab = ({ user, isMyAccount }) => {
     });
   };
 
+  // Handler for viewing certificate
   const viewCertificate = (targetCertificate) => {
     setShowCertificateViewModal(true);
     setViewImgTarget(targetCertificate);

@@ -44,7 +44,7 @@ const ServiceCard = ({ service, canEdit, handleDelete, type, showPending }) => {
         </h6>
         {canEdit && (
           <div className="editService">
-            <Link to={`/edit-service/${service?.id}`}>
+            <Link to={`/service/edit/${service?.id}`}>
               <i className="fa-regular fa-file-pen"></i>
             </Link>
             <Link onClick={() => handleDelete(service?.id)}>

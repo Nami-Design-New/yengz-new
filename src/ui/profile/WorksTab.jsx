@@ -13,7 +13,9 @@ const WorksTab = ({ works, isMyAccount }) => {
   const [showWorkViewModal, setShowWorkViewModal] = useState(false);
   const [targetId, setTargetId] = useState(null);
   const [targetWork, setTargetWork] = useState(null);
+  const [targetWorkViewModal, setTargetWorkViewModal] = useState(null);
   const { deleteWork, isPending } = useDeleteWork();
+
   const onDeleteModalShow = (id) => {
     setShowConfirmation(true);
     setTargetId(id);
@@ -26,7 +28,7 @@ const WorksTab = ({ works, isMyAccount }) => {
 
   const onViewModalShow = (work) => {
     setShowWorkViewModal(true);
-    setTargetWork(work);
+    setTargetWorkViewModal(work);
   };
 
   const handleDelete = () => {
@@ -91,8 +93,8 @@ const WorksTab = ({ works, isMyAccount }) => {
       <WorkViewModal
         showModal={showWorkViewModal}
         setShowModal={setShowWorkViewModal}
-        targetWork={targetWork}
-        setTargetWork={setTargetWork}
+        targetWork={targetWorkViewModal}
+        setTargetWork={setTargetWorkViewModal}
       />
     </>
   );

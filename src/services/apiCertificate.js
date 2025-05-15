@@ -11,27 +11,27 @@ export async function getCertificates(userId) {
   }
 }
 
-export async function addCertificate(data, queryClient) {
+export async function addCertificate(data) {
   try {
     await axiosInstance.post("/user/create_certificate", data, {
       headers: {
         "Content-Type": "multipart/form-data",
       },
     });
-    queryClient.invalidateQueries(["userCertificates"]);
+    
   } catch (error) {
     throw new Error(error.message);
   }
 }
 
-export async function updateCertificate(data, queryClient) {
+export async function updateCertificate(data) {
   try {
     await axiosInstance.post("/user/update_certificate", data, {
       headers: {
         "Content-Type": "multipart/form-data",
       },
     });
-    queryClient.invalidateQueries(["userCertificates"]);
+   
   } catch (error) {
     throw new Error(error.message);
   }

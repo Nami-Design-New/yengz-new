@@ -13,3 +13,22 @@ export default async function getProfile(id) {
     throw error;
   }
 }
+
+// Update profile API function
+export const updateProfile = async (formData) => {
+  try {
+    const response = await axiosInstance.post(
+      "/user/update_profile",
+      formData,
+      {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      }
+    );
+    return response.data;
+  } catch (error) {
+    console.error("Update profile error:", error);
+    throw new Error(error.message);
+  }
+};
