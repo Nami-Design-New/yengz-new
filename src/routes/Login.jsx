@@ -5,6 +5,8 @@ import useLogin from "../hooks/auth/useLogin";
 import InputField from "../ui/forms/InputField";
 import PasswordField from "../ui/forms/PasswordField";
 import SubmitButton from "../ui/forms/SubmitButton";
+import AppleSigninButton from "../ui/auth/AppleSigninButton";
+import { useAppleAuth } from "../hooks/auth/useAppleAuth";
 
 export default function Login() {
   const { t } = useTranslation();
@@ -17,7 +19,14 @@ export default function Login() {
 
   // Use the custom Google login hook
   const { handleGoogleLogin } = useGoogleAuth();
-  
+  // Use the custom Apple login hook
+  const { handleAppleAuth } = useAppleAuth();
+
+  // Apple button would call this on success:
+  const onAppleLoginSuccess = (response) => {
+    handleAppleAuth(response);
+  };
+
   return (
     <section className="login-section  ">
       <div className="container">
@@ -70,7 +79,10 @@ export default function Login() {
                   {t("auth.googleAccount")}
                 </button>
 
-                {/* <AppleSigninButton t={t} handleAppleAuth={handleAppleAuth} /> */}
+                <AppleSigninButton
+                  t={t}
+                  handleAppleAuth={onAppleLoginSuccess}
+                />
               </div>
 
               <Link to="/register" className="noAccount">

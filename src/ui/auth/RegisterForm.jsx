@@ -12,6 +12,9 @@ import SelectField from "../../ui/forms/SelectField";
 import SubmitButton from "../../ui/forms/SubmitButton";
 import useGetSkills from "./../../hooks/app/useGetSkills";
 import useCategoriesList from "./../../hooks/categories/useCategoriesList";
+import useGoogleAuth from "../../hooks/auth/useGoogleAuth ";
+import { useAppleAuth } from "../../hooks/auth/useAppleAuth";
+import AppleSigninButton from "./AppleSigninButton";
 
 const RegisterForm = () => {
   const { t } = useTranslation();
@@ -28,6 +31,15 @@ const RegisterForm = () => {
     handleSubmit,
     isPending,
   } = useFormContext();
+  // Use the custom Google login hook
+  const { handleGoogleLogin } = useGoogleAuth();
+  // Use the custom Apple login hook
+  const { handleAppleAuth } = useAppleAuth();
+
+  // Apple button would call this on success:
+  const onAppleLoginSuccess = (response) => {
+    handleAppleAuth(response);
+  };
 
   const handleSelectSkills = (selectedItems) => {
     const selectedValues = selectedItems
@@ -174,7 +186,17 @@ const RegisterForm = () => {
       <div className="line">
         <span>{t("auth.orRegisterWith")}</span>
       </div>
+      <div className="d-flex gap-2 flex-lg-row mt-3 flex-column w-100">
+        <button
+          type="button"
+          className="auth_social_btn google"
+          onClick={() => handleGoogleLogin()}
+        >
+          <img src="/icons/Google.svg" alt="google" /> {t("auth.googleAccount")}
+        </button>
 
+        <AppleSigninButton t={t} handleAppleAuth={onAppleLoginSuccess} />
+      </div>
       <Link to="/login" className="noAccount">
         {t("auth.alreadyHaveAccount")} <span>{t("auth.login")}</span>
       </Link>

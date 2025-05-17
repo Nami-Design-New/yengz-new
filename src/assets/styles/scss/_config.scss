@@ -231,7 +231,14 @@ input[type="checkbox"] {
     }
   }
 }
-
+@keyframes loading {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(120px);
+  }
+}
 .modal-header {
   border-bottom: 0;
   .modal-title {

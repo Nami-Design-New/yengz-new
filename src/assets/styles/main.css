@@ -212,6 +212,14 @@ input[type=checkbox]:checked::after {
   animation: loading 0.5s linear infinite alternate;
 }
 
+@keyframes loading {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(120px);
+  }
+}
 .modal-header {
   border-bottom: 0;
 }
