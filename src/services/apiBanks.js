@@ -9,24 +9,22 @@ export async function getBanks() {
   }
 }
 
-export async function createWithdraw(requestBody, queryClient) {
+export async function createWithdraw(requestBody) {
   try {
     await axiosInstance.post(
       "/user/create_withdraw_balance_request",
       requestBody
     );
-    queryClient.invalidateQueries(["profile"]);
   } catch (error) {
     throw new Error(error.message);
   }
 }
 
-export async function deleteBank(id, queryClient) {
+export async function deleteBank(id) {
   try {
     await axiosInstance.post("/user/delete_bank", {
       id,
     });
-    queryClient.invalidateQueries(["banksList"]);
   } catch (error) {
     throw new Error(error.message);
   }

@@ -139,3 +139,15 @@ export const calculateExpectedEndDate = (createdAt, days) => {
   const yyyy = createdDate.getFullYear();
   return `${dd} / ${mm} / ${yyyy}`;
 };
+
+export const formatMessageTime = (timestamp) => {
+  const date = new Date(timestamp);
+  let hours = date.getHours();
+  const minutes = date.getMinutes();
+  const ampm = hours >= 12 ? "PM" : "AM";
+  hours = hours % 12;
+  hours = hours ? hours : 12;
+  const minutesStr = minutes < 10 ? "0" + minutes : minutes;
+  const timeStr = `${hours}:${minutesStr} ${ampm}`;
+  return timeStr;
+};

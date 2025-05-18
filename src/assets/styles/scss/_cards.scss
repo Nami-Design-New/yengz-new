@@ -509,7 +509,7 @@
   }
 }
 
-// woek card
+// work card
 .workCard {
   border-radius: 12px;
   cursor: pointer;
@@ -572,5 +572,210 @@
     line-height: 24px;
     color: var(--text-color);
     font-size: 14px;
+  }
+}
+
+// Bank Account Card
+
+.bank-acc-card {
+  background-color: var(--gray-background);
+  border: 2px solid var(--gray-background);
+  width: 100%;
+  padding: 16px;
+  border-radius: 12px;
+  display: flex;
+  gap: 24px;
+  position: relative;
+  cursor: pointer;
+  transition: var(--transition);
+  .image-wrapper {
+    width: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    i {
+      font-size: 36px;
+    }
+  }
+  .info-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    position: relative;
+    flex: 1 0;
+    h5 {
+      margin: 0;
+    }
+    .info-boxes-wrapper {
+      display: flex;
+      position: relative;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0 24px;
+      .info-box {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        position: relative;
+        font-size: 14px;
+        margin: 0;
+        color: var(--text-color);
+        i {
+          font-size: 12px;
+          width: 16px;
+          height: 16px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          color: var(--text-color);
+        }
+      }
+    }
+  }
+  .icons {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    display: flex;
+    gap: 8px;
+    button {
+      @include clearInput();
+      background: var(--input-hint);
+      border-radius: 50%;
+      color: var(--white-color);
+      box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+      height: 36px;
+      width: 36px;
+      svg {
+        height: 16px;
+        width: 16px;
+      }
+      &:nth-child(2) {
+        background: red;
+      }
+    }
+  }
+}
+
+// Bank transfer Card
+.bank-transfer-box {
+  width: 100%;
+  input {
+    display: none;
+    &:checked + label {
+      border-color: var(--main-color);
+    }
+  }
+  label {
+    background-color: var(--gray-background);
+    border: 2px solid var(--gray-background);
+    width: 100%;
+    padding: 16px;
+    border-radius: 12px;
+    display: flex;
+    gap: 24px;
+    position: relative;
+    cursor: pointer;
+    transition: var(--transition);
+  }
+  .image-wrapper {
+    width: 42px;
+    height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    i {
+      font-size: 24px;
+    }
+  }
+  .info-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    position: relative;
+    h5 {
+      margin: 0;
+    }
+    .info-boxes-wrapper {
+      display: flex;
+      position: relative;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0 24px;
+      .info-box {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        position: relative;
+        font-size: 14px;
+        margin: 0;
+        color: var(--text-color);
+        i {
+          font-size: 12px;
+          width: 16px;
+          height: 16px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          color: var(--text-color);
+        }
+      }
+    }
+  }
+}
+
+// card collection
+.collectionCard {
+  padding: 16px 24px;
+  border-radius: 12px;
+  background: var(--input-bg);
+  @include space-between();
+  .info {
+    h6 {
+      font-size: 22px;
+      margin-bottom: 0;
+      a {
+        color: var(--black-color);
+      }
+    }
+    ul {
+      display: flex;
+      gap: 12px;
+      li {
+        font-size: 12px;
+        color: var(--input-hint);
+      }
+    }
+  }
+  .actions {
+    display: flex;
+    gap: 12px;
+    button {
+      @include clearInput();
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: 1px solid var(--input-hint);
+      color: var(--input-hint);
+      svg {
+        height: 16px;
+      }
+      &:nth-child(2) {
+        border-color: red;
+        svg {
+          stroke: red;
+        }
+      }
+      &.btn {
+        width: auto;
+        height: auto;
+        border: 0;
+        padding: 6px 12px;
+        background: var(--main-color);
+        font-size: 14px;
+        border-radius: 8px;
+        color: var(--white-color);
+      }
+    }
   }
 }

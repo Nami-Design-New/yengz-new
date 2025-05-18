@@ -39,12 +39,11 @@ export async function addToCollection(requestBody, querClient) {
   }
 }
 
-export async function removeCollection(requestBody, querClient) {
+export async function removeCollection(requestBody) {
   try {
     await axiosInstance.post("/user/delete_collection", {
       id: requestBody,
     });
-    querClient.invalidateQueries(["collectionsList"]);
   } catch (error) {
     throw new Error(error.message);
   }
@@ -59,12 +58,11 @@ export async function updateCollection(requestBody, querClient) {
   }
 }
 
-export async function addCollectionToCart(id, queryClient) {
+export async function addCollectionToCart(id) {
   try {
     const req = await axiosInstance.post("/user/add_collection_to_cart", {
       id: id,
     });
-    queryClient.invalidateQueries(["cartList"]);
     return req.data;
   } catch (error) {
     throw new Error(error.message);

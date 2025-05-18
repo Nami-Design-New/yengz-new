@@ -32,6 +32,7 @@ const ChargeModal = ({ showModal, setShowModal, cartTotalPrice }) => {
             name="chargeValue"
             placeholder={"00"}
             value={chargeValue}
+            required
             label={t("enterChargeValue")}
             onChange={(e) => setChargeValue(e.target.value)}
           />

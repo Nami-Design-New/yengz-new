@@ -1,0 +1,445 @@
+.openTaps {
+  width: 96%;
+  padding: 8px 12px;
+  border: none;
+  background: none;
+  outline: none;
+  margin: 0 auto;
+  background: var(--main-color);
+  color: #fff;
+  border-radius: 8px;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  @media (max-width: 768px) {
+    display: flex;
+  }
+  img {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+  }
+}
+.chat-section {
+  display: flex;
+  padding: 30px 0;
+  gap: 16px;
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
+  .side-menu {
+    padding: 12px;
+    background: #fafafa;
+    border-radius: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex: 1;
+    width: 100%;
+    height: 100%;
+    max-height: 624px;
+    overflow-y: scroll;
+    &::-webkit-scrollbar {
+      width: 0;
+    }
+    @media (max-width: 768px) {
+      display: block;
+      position: fixed;
+      z-index: 999;
+      border-radius: 0;
+      top: 80px;
+      overflow-y: scroll;
+      width: 100%;
+      background: #ffffff;
+      right: -100%;
+      transition: 0.2s ease-in-out;
+      height: calc(100vh - 80px);
+      padding: 24px 16px;
+      &.active {
+        right: 0;
+      }
+      .colse {
+        display: flex !important;
+      }
+    }
+    .colse {
+      display: none;
+      margin-bottom: 32px;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      img {
+        width: 20px;
+        height: 70px;
+        object-fit: contain;
+      }
+    }
+    .nav-link {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px;
+      width: 100%;
+      border-radius: 16px;
+      flex-wrap: wrap;
+      text-align: start;
+      border: 1px solid #ffffff;
+      background-color: #ffffff;
+      .userImg {
+        width: 64px;
+        min-width: 64px;
+        aspect-ratio: 1;
+        border-radius: 50%;
+        object-fit: cover;
+      }
+      .text-wrap {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        align-items: flex-start;
+        padding: 8px;
+        .name {
+          color: #1f1f1f;
+          font-weight: bold;
+          text-transform: capitalize;
+        }
+        .lastMessage {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          gap: 8px;
+          width: 100%;
+          margin-bottom: 0;
+          font-size: 14px;
+          line-height: 22px;
+          .read {
+            color: var(--black-color);
+            &.unread {
+              color: var(--main-color);
+            }
+          }
+          .unreadNumber {
+            background-color: var(--main-color);
+            color: #ffffff;
+            border-radius: 50%;
+            min-width: 20px;
+            height: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 12px;
+            font-weight: bold;
+            padding: 4px;
+          }
+          &.unread {
+            color: var(--main-color);
+          }
+          .icon {
+            svg {
+              height: 16px;
+            }
+          }
+        }
+        .time {
+          color: #777;
+          font-size: 12px;
+          line-height: 16px;
+        }
+      }
+      .adsItem {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        background-color: var(--main10-color);
+        justify-content: space-between;
+        padding: 8px;
+        border-radius: 100px;
+        margin-bottom: 4px;
+        padding-inline-start: 12px;
+        .adImg {
+          min-width: 32px;
+          width: 32px;
+          height: 32px;
+          border-radius: 100px;
+          object-fit: cover;
+        }
+        p {
+          margin: 0;
+        }
+      }
+      &.active {
+        background-color: var(--main1010-color) !important;
+        .adsItem {
+          background-color: var(--main10-color) !important;
+        }
+      }
+    }
+  }
+  .chat-container {
+    width: 100%;
+    height: 100%;
+    @media screen and (max-width: 768px) {
+      max-height: calc(80vh - 100px);
+      min-height: 570px;
+    }
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background: linear-gradient(#f3f3f3e8, #f3f3f3e8),
+      url(https://www.shutterstock.com/image-vector/social-media-sketch-vector-seamless-600nw-1660950727.jpg);
+    border-radius: 16px;
+    .chat-head {
+      border-radius: 14px 14px 0 0;
+      display: flex;
+      padding: 14px;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      background: #fafafa;
+      .user {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        img {
+          width: 40px;
+          height: 40px;
+          object-fit: cover;
+          border-radius: 50%;
+        }
+        .name {
+          margin: 0;
+          color: #1f1f1f;
+          font-weight: bold;
+        }
+      }
+      .setting {
+        .dropdown-toggle {
+          height: 36px;
+          width: 36px;
+          border-radius: 100px;
+          background-color: #fff;
+          padding: 4px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          svg {
+            height: 20px;
+          }
+          img {
+            width: 16px;
+            height: 16px;
+            object-fit: contain;
+          }
+          &::after {
+            display: none;
+          }
+        }
+        .dropdown-menu {
+          inset: unset !important;
+          transform: unset !important;
+          right: -60px !important;
+          top: calc(100% + 8px) !important;
+          box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+          border: none;
+          border-radius: 16px;
+          overflow: hidden;
+          width: 120px;
+          li {
+            padding: 0 12px;
+            button {
+              padding: 4px 0;
+              background: none !important;
+              text-align: start;
+              svg {
+                height: 16px;
+              }
+            }
+          }
+        }
+      }
+    }
+    .adItem {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px;
+      background: var(--main10-color);
+      p {
+        color: var(--main-color);
+        margin: 0;
+      }
+      img {
+        width: 40px;
+        height: 40px;
+        object-fit: cover;
+        border-radius: 8px;
+      }
+    }
+    .inner-container {
+      display: flex;
+      flex-direction: column;
+      padding: 20px 0;
+      overflow-y: scroll;
+      flex: 1;
+      max-height: 420px;
+      min-height: 420px;
+      &::-webkit-scrollbar {
+        display: none;
+      }
+      .message {
+        width: 100%;
+        display: flex;
+        padding: 0 16px;
+        margin-bottom: 6px;
+        .time {
+          color: #777;
+          font-size: 12px;
+        }
+        &.sent-message {
+          justify-content: flex-end;
+          .message-content {
+            background: #ffffff;
+            padding: 10px 16px;
+            border-radius: 12px;
+            border-bottom-left-radius: 0;
+            color: #1f1f1f;
+            position: relative;
+            p {
+              margin: 0;
+            }
+          }
+        }
+        &.received-message {
+          justify-content: flex-start;
+          .message-content {
+            background: var(--main-color) !important;
+            padding: 10px 16px;
+            border-radius: 12px;
+            border-bottom-right-radius: 0;
+            position: relative;
+            p {
+              color: #fff;
+              margin: 0;
+            }
+          }
+        }
+        span {
+          font-size: 12px;
+          color: var(--input-hint);
+          line-height: 22px;
+          display: block;
+          &.sen {
+            text-align: start;
+          }
+          &.rec {
+            text-align: end;
+          }
+        }
+        .doc_message {
+          display: flex;
+          align-items: center;
+          gap: 6px;
+          .icon svg {
+            fill: var(--input-hint);
+            height: 32px;
+          }
+          color: var(--black-color);
+        }
+      }
+      .image {
+        background: #3277531a;
+      }
+      .record {
+        background-color: var(--main-color);
+        padding: 1px 3px;
+      }
+      @media screen and (max-width: 576px) {
+        min-height: 360px;
+      }
+    }
+    .chat-send {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      padding: 12px;
+      form {
+        display: flex;
+        gap: 8px;
+        .file_place {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          width: 100%;
+        }
+        .input-field {
+          width: 100%;
+          border-radius: 16px;
+          background: #ffffff;
+          padding: 0 16px;
+          display: flex;
+          gap: 8px;
+          align-items: center;
+          height: 68px;
+          justify-content: space-between;
+          input {
+            height: 100%;
+            border: none;
+            background: none;
+            outline: none;
+            flex: 1;
+            color: #777;
+          }
+          .files-input {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            img {
+              width: 24px;
+              height: 24px;
+              object-fit: contain;
+            }
+            input {
+              display: none;
+            }
+          }
+          @media screen and (max-width: 576px) {
+            height: 50px;
+          }
+        }
+        button {
+          border: none;
+          background: none;
+          outline: none;
+          border-radius: 16px;
+          min-width: 70px;
+          height: 68px;
+          background: var(--main-color);
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          svg {
+            height: 24px;
+            stroke: #fff;
+          }
+          i {
+            color: #fff;
+          }
+          @media screen and (max-width: 576px) {
+            height: 50px;
+            min-width: 50px;
+          }
+        }
+      }
+    }
+  }
+}
+.lottie_player_holder {
+  padding: 40px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

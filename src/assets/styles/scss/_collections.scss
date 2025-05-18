@@ -1,0 +1,91 @@
+.myCollections {
+  padding: 60px 0;
+  .empty-section {
+    min-height: calc(100dvh - 350px);
+  }
+  .actions {
+    display: flex;
+    gap: 12px;
+    button {
+      @include clearInput();
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: 1px solid var(--input-hint);
+      color: var(--input-hint);
+      svg {
+        height: 16px;
+      }
+      &:nth-child(2) {
+        border-color: red;
+        svg {
+          stroke: red;
+        }
+      }
+      &.btn {
+        width: auto;
+        height: auto;
+        border: 0;
+        padding: 6px 12px;
+        background: var(--main-color);
+        font-size: 14px;
+        border-radius: 8px;
+        color: var(--white-color);
+      }
+    }
+  }
+  .collectionCard {
+    padding: 16px 24px;
+    border-radius: 12px;
+    background: var(--input-bg);
+    @include space-between();
+    .info {
+      h6 {
+        font-size: 22px;
+        margin-bottom: 0;
+        a {
+          color: var(--black-color);
+        }
+      }
+      ul {
+        display: flex;
+        gap: 12px;
+        li {
+          font-size: 12px;
+          color: var(--input-hint);
+        }
+      }
+    }
+    .actions {
+      display: flex;
+      gap: 12px;
+      button {
+        @include clearInput();
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        border: 1px solid var(--input-hint);
+        color: var(--input-hint);
+        svg {
+          height: 16px;
+        }
+        &:nth-child(2) {
+          border-color: red;
+          svg {
+            stroke: red;
+          }
+        }
+        &.btn {
+          width: auto;
+          height: auto;
+          border: 0;
+          padding: 6px 12px;
+          background: var(--main-color);
+          font-size: 14px;
+          border-radius: 8px;
+          color: var(--white-color);
+        }
+      }
+    }
+  }
+}

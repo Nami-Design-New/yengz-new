@@ -879,3 +879,31 @@
     }
   }
 }
+
+.more-develop {
+  padding: 16px 0 0;
+  h6 {
+    font-weight: 600;
+    font-size: 20px;
+    margin-bottom: 28px;
+    color: var(--black-color);
+  }
+  .input-field {
+    gap: 16px;
+    .label {
+      label {
+        font-size: 16px;
+        color: var(--black-color);
+        font-weight: 600;
+        @media (max-width: 576px) {
+          font-size: 14px;
+        }
+      }
+      p {
+        margin-top: 0 !important;
+        font-size: 14px;
+        color: var(--text-color);
+      }
+    }
+  }
+}

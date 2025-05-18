@@ -1,3 +1,4 @@
+// Order Modal
 .pay_modal {
   display: flex;
   flex-direction: column;
@@ -204,6 +205,8 @@
     }
   }
 }
+
+// Collection Modal
 .collection_modal {
   input {
     height: 48px !important;
@@ -212,6 +215,8 @@
     height: unset !important;
   }
 }
+
+// Add New Collection Button
 .add-new-collection-btn {
   cursor: pointer;
   outline: none;
@@ -229,3 +234,5 @@
   font-size: 14px;
   white-space: nowrap;
 }
+
+
