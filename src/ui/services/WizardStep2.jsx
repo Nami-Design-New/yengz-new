@@ -76,7 +76,7 @@ const WizardStep2 = ({ setStep, goToPreviousStep }) => {
       <div className="input-field">
         <label htmlFor="info-htmlFor-customer">
           <div className="d-flex justify-content-between align-items-center">
-            <span>{t("addService.serviceGallery")}</span>
+            <span>{t("addService.serviceGallery")} <b style={{ color: "red" }}>*</b></span> 
             <OverlayTrigger
               placement="bottom"
               overlay={renderTooltip({
@@ -141,6 +141,7 @@ const WizardStep2 = ({ setStep, goToPreviousStep }) => {
               placeHolder={"00"}
               error={errors.price?.message}
               {...field}
+              required
             />
           )}
         />
@@ -160,6 +161,7 @@ const WizardStep2 = ({ setStep, goToPreviousStep }) => {
           value={
             (formData.price * (100 - settings?.data?.service_percentage)) / 100
           }
+          required
         />
       </div>
       <Controller
@@ -175,6 +177,7 @@ const WizardStep2 = ({ setStep, goToPreviousStep }) => {
             error={errors.days?.message}
             toolTipContent={t("addService.daysHint")}
             {...field}
+            required
           />
         )}
       />

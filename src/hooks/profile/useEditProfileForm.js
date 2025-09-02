@@ -35,7 +35,7 @@ export default function useEditProfileForm() {
         about: user?.about || "",
         age: user?.age || "",
         country_id: user?.country_id || "",
-        is_freelance: user?.is_freelance || 0,
+        is_freelance: user?.is_freelance || "no",
         skills: user?.skills?.map((skill) => skill?.id) || [],
         categories: user?.categories?.map((category) => category?.id) || [],
       });

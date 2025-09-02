@@ -158,21 +158,31 @@ const RegisterForm = () => {
         }))}
       />
 
-      <div className="question">
-        <label htmlFor="isFreelancer" className="quest">
-          <img src="/icons/Vector.svg" alt="isSeller" />
-          {t("auth.areYouSeller")}
-        </label>
+     <div className="question">
+              <label className="quest">
+                <img src="/icons/Vector.svg" alt="role" />
+                {t("auth.chooseRole")}
+              </label>
 
-        <Form.Switch
-          id="isFreelancer"
-          name="isFreelancer"
-          checked={watch("is_freelance") === 1 ? true : false}
-          onChange={() =>
-            setValue("is_freelance", watch("is_freelance") === 1 ? 0 : 1)
-          }
-        />
-      </div>
+              <div className="role-segment">
+                {[
+                  { value: "no", label: t("auth.seller") },
+                  { value: "yes", label: t("auth.buyer") },
+                  { value: "all", label: t("auth.both") },
+                ].map((opt) => (
+                  <button
+                    key={opt.value}
+                    type="button"
+                    className={`segment-btn ${
+                      watch("is_freelance") === opt.value ? "active" : ""
+                    }`}
+                    onClick={() => setValue("is_freelance", opt.value)}
+                  >
+                    {opt.label}
+                  </button>
+                ))}
+              </div>
+            </div>
 
       <p>
         {t("auth.byContinoung")}{" "}

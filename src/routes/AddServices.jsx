@@ -3,6 +3,7 @@ import WizardStep1 from "../ui/services/WizardStep1";
 import WizardStep2 from "../ui/services/WizardStep2";
 import WizardStep3 from "../ui/services/WizardStep3";
 import useGetSkills from "../hooks/app/useGetSkills";
+import SectionHeader from "../ui/SectionHeader";
 import { useParams } from "react-router";
 import { useTranslation } from "react-i18next";
 import useServiceDetails from "../hooks/services/useGetSerciveDetails";
@@ -44,6 +45,8 @@ const AddServices = () => {
   }
 
   return (
+        <>
+     <SectionHeader />
     <section className="add-service">
       <div className="container">
         <div className="row justify-content-between">
@@ -99,6 +102,7 @@ const AddServices = () => {
         </div>
       </div>
     </section>
+    </>
   );
 };
 

@@ -175,3 +175,13 @@ export async function updateProject(id, status, queryClient) {
     throw new Error(error.message);
   }
 }
+
+export async function getProjectHelper() {
+  try {
+    const req = await axiosInstance.get("/get_project_helper",);
+    return req.data.data; 
+  } catch (error) {
+    throw new Error(error.message);
+  }
+}
+

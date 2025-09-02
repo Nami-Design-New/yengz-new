@@ -73,6 +73,7 @@ const WizardStep1 = ({
         type="text"
         error={errors.title?.message}
         toolTipContent={t("addService.titleHint")}
+        required
       />
       <div className="d-flex align-items-center gap-2 w-100">
         {/* category */}
@@ -94,6 +95,7 @@ const WizardStep1 = ({
             name: category.name,
             value: category.id,
           }))}
+          required
         />
         {/* sub_category */}
         <Controller
@@ -114,6 +116,7 @@ const WizardStep1 = ({
               }
             />
           )}
+          required
         />
       </div>
 
