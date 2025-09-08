@@ -701,6 +701,7 @@
     "orgs": {
       "addMember": "إضافة عضو",
       "addTeam": "إضافة فريق",
+      "addProject": " إضافة مشروع ",
       "memberAdded": "تمت إضافة العضو بنجاح!"
     },
     "details": {

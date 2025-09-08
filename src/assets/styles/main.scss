@@ -3,6 +3,11 @@
 @import "./scss/form_ui";
 @import "./scss/enterprise";
 
+@font-face {
+  font-family: "Din";
+  src: url("../webfonts/din-next-lt-w23-regular.ttf");
+}
+
 body {
   direction: rtl;
   overflow-x: hidden;

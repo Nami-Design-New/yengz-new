@@ -711,6 +711,7 @@
     "orgs": {
       "addMember": "Add Member",
       "addTeam": "Add Team",
+      "addProject": "Add Project",
       "memberAdded": "Member added successfully!"
     },
     "details": {

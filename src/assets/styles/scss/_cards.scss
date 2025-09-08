@@ -779,3 +779,49 @@
     }
   }
 }
+
+// enterprise card
+
+.enterprise--card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 24px;
+  border-radius: 12px;
+  background: var(--white-color);
+  img {
+    height: 84px;
+    aspect-ratio: 1/1;
+  }
+  .enterprise--card__info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 8px;
+    flex: 1;
+    h3 {
+      font-size: 1rem;
+      color: var(--main-color);
+    }
+    .info--stats {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      li {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        font-size: 0.8rem;
+        color: var(--text-color);
+        i {
+          font-size: 0.8rem;
+          color: var(--text-color);
+        }
+      }
+    }
+    p {
+      font-size: 1rem;
+      color: var(--black-color);
+    }
+  }
+}

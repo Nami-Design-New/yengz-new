@@ -5,6 +5,7 @@ import ProjectStatus from "../../ui/enterprise/stats/ProjectStatus";
 import ProjectSummary from "../../ui/enterprise/stats/ProjectSummary";
 import MetricsBox from "../../ui/enterprise/stats/MetricsBox";
 import FinancialInfo from "../../ui/enterprise/stats/FinancialInfo";
+import { useNavigate } from "react-router";
 
 // Define status list for project status components
 const statusList = ["draft", "open", "inReview", "inProgress"];
@@ -48,9 +49,11 @@ const EnterpriseDetails = () => {
     pending: "0.00",
   };
 
+  const navigate = useNavigate();
+
   // Handle add member click
-  const handleAddMemberClick = () => {
-    alert(t("enterprise.orgs.memberAdded", "Member added!"));
+  const handleAddProjectClick = () => {
+    navigate("/project/create");
   };
 
   return (
@@ -65,9 +68,9 @@ const EnterpriseDetails = () => {
         {/* Project summary component */}
         <ProjectSummary
           totalProjects={4}
-          buttonText={t("enterprise.orgs.addMember")}
+          buttonText={t("enterprise.orgs.addProject")}
           buttonIcon={<i className="fa-regular fa-plus"></i>}
-          onAddClick={handleAddMemberClick}
+          onAddClick={handleAddProjectClick}
           title="enterprise.details.projects"
         />
       </div>
