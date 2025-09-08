@@ -151,26 +151,32 @@ const EditProfile = () => {
               }))}
               error={errors.skills?.message}
             />
-            <div className="question p-0">
-              <label htmlFor="isFreelancer" className="quest">
-                <img src="/images/Vector.svg" alt="isSeller" />
-                {t("auth.areYouSeller")}
+            <div className="question">
+              <label className="quest">
+                <img src="/icons/Vector.svg" alt="role" />
+                {t("auth.chooseRole")}
               </label>
-              <Controller
-                name="is_freelance"
-                control={control}
-                render={({ field }) => (
-                  <Form.Switch
-                    id="isFreelancer"
-                    name="isFreelancer"
-                    checked={field.value === 1}
-                    onChange={() =>
-                      setValue("is_freelance", field.value === 1 ? 0 : 1)
-                    }
-                  />
-                )}
-              />
+
+              <div className="role-segment">
+                {[
+                  { value: "no", label: t("auth.seller") },
+                  { value: "yes", label: t("auth.buyer") },
+                  { value: "all", label: t("auth.both") },
+                ].map((opt) => (
+                  <button
+                    key={opt.value}
+                    type="button"
+                    className={`segment-btn ${
+                      watch("is_freelance") === opt.value ? "active" : ""
+                    }`}
+                    onClick={() => setValue("is_freelance", opt.value)}
+                  >
+                    {opt.label}
+                  </button>
+                ))}
+              </div>
             </div>
+
             <div className="question p-0 pt-2">
               <label htmlFor="wantChangePassword" className="quest">
                 <img src="/images/Vector.svg" alt="isSeller" />

@@ -1,0 +1,171 @@
+import React from "react";
+import { Link } from "react-router";
+import InputField from "../../ui/forms/InputField";
+import TextField from "../../ui/forms/TextField";
+import MultiSelect from "../../ui/forms/MultiSelect";
+import SubmitButton from "../../ui/forms/SubmitButton";
+import { Controller } from "react-hook-form";
+
+const ManualProjectForm = ({
+  t,
+  register,
+  errors,
+  control,
+  skills,
+  selectedOptions,
+  handleSkillsChange,
+  handleAttachments,
+  removeFile,
+  handleSubmit,
+  formData,
+  isLoading,
+  id
+}) => {
+  return (
+    <form className="form_ui" onSubmit={handleSubmit}>
+      <div className="row m-0">
+        <div className="col-12 p-2">
+          <InputField
+            label={t("projects.projectTitle")}
+            id="title"
+            name="title"
+            {...register("title")}
+            type="text"
+            error={errors.title?.message}
+            placeholder={t("writeHere")}
+            required
+          />
+        </div>
+
+        <div className="col-12 p-2">
+          <Controller
+            name="description"
+            control={control}
+            render={({ field }) => (
+              <TextField
+                label={t("projects.projectDescription")}
+                placeholder={t("writeHere")}
+                id="description"
+                {...field}
+                error={errors.description?.message}
+              />
+            )}
+          />
+        </div>
+
+        <div className="col-lg-6 col-12 p-2">
+          <InputField
+            label={t("projects.price")}
+            id="price"
+            name="price"
+            {...register("price")}
+            type="number"
+            span={"$"}
+            required
+          />
+        </div>
+
+        <div className="col-lg-6 col-12 p-2">
+          <InputField
+            label={t("projects.deliveryTime")}
+            placeholder={t("projects.days")}
+            id="days"
+            name="days"
+            type="number"
+            {...register("days")}
+            error={errors.days?.message}
+            span={t("projects.days")}
+            required
+          />
+        </div>
+
+        <div className="col-12 p-2">
+          <MultiSelect
+            label={t("search.skills")}
+            id="skills"
+            name="skills"
+            selectedOptions={selectedOptions}
+            handleChange={handleSkillsChange}
+            options={skills?.map((skill) => ({
+              label: skill?.name,
+              value: skill?.id,
+            }))}
+          />
+        </div>
+
+        <div className="col-12 p-2">
+          <label className="upload_attachments">
+            <div className="icon">
+              <img src="/images/img-upload.svg" alt="icon" />
+            </div>
+            <div className="content">
+              <h6>{t("projects.addattachments")}</h6>
+            </div>
+            <input
+              type="file"
+              name="project_files"
+              id="project_files"
+              multiple
+              onChange={handleAttachments}
+            />
+          </label>
+        </div>
+
+        {formData?.project_files?.length > 0 && (
+          <div className="col-12 p-2">
+            <div className="attachments">
+              {formData?.project_files?.map((file, index) => (
+                <div className="attachment" key={index}>
+                  <div className="d-flex align-items-center gap-3">
+                    <div className="icon">
+                      <img
+                        src={
+                          file?.type?.startsWith("image/")
+                            ? URL.createObjectURL(file)
+                            : "/images/doc.svg"
+                        }
+                        alt="icon"
+                      />
+                    </div>
+                    <div className="content">
+                      <h6>
+                        {file?.file ? (
+                          <Link target="_blank" to={file?.file}>
+                            {file?.file}
+                          </Link>
+                        ) : (
+                          file?.name
+                        )}
+                      </h6>
+                      <p>
+                        {file?.file_size
+                          ? file?.file_size?.toFixed(2)
+                          : (file.size / 1024).toFixed(2)}{" "}
+                        MB
+                      </p>
+                    </div>
+                  </div>
+                  <div
+                    className="delete"
+                    onClick={() => removeFile(index, file)}
+                  >
+                    <i className="fa-regular fa-trash"></i>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+      </div>
+
+      <div className="col-12 p-2 d-flex justify-content-end">
+        <SubmitButton
+          loading={isLoading}
+          name={id ? t("projects.update") : t("projects.publish")}
+        />
+      </div>
+    </form>
+  );
+};
+
+export default ManualProjectForm;

@@ -116,52 +116,63 @@
     }
   }
 
-  .question {
-    padding: 0 0 30px;
-    width: 100%;
-    @include space-between();
-    .quest {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      color: var(--black-color);
+.question {
+  width: 100%;
+  @include space-between();
+    @media (max-width: 768px) {
+      flex-direction: column;
     }
-    .vendorInput {
-      appearance: none;
-      position: relative;
+  .quest {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--black-color);
+   
+  }
+
+  .role-segment {
+    display: flex;
+    gap: 8px;
+ button{
+      height: 40px;
+    }
+    .segment-btn {
+      padding: 0px 25px;
+      border: 1px solid var(--text-color);
+      border-radius: 8px;
+      background-color: transparent;
+      color: var(--text-color);
       cursor: pointer;
-      &::after {
-        display: block;
-        width: 48px;
-        height: 24px;
-        border-radius: 16px;
-        content: "";
-        background-color: var(--text-color);
-        transition: var(--main-transation);
+      transition: var(--main-transation);
+
+      &.active {
+        background-color: var(--main-color);
+        color: var(--white-color);
+        border-color: var(--main-color);
       }
-      &::before {
-        transition: var(--main-transation);
-        display: block;
-        width: 16px;
-        height: 16px;
-        border-radius: 50%;
-        position: absolute;
-        top: 4px;
-        right: 4px;
-        content: "";
-        background-color: var(--white-color);
+
+      &:hover {
+        opacity: 0.8;
       }
-      &:checked {
-        &::after {
-          background-color: var(--main-color);
-        }
-        &::before {
-          right: initial;
-          left: 4px;
-        }
+    }
+
+    @media (max-width: 768px) {
+      width: 100%;
+
+      .segment-btn {
+        width: 100%;
+        text-align: center;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .segment-btn {
+        font-size: 14px;
+        padding: 6px 12px;
       }
     }
   }
+}
 
   .image-change-wrapper {
     border-radius: 16px;

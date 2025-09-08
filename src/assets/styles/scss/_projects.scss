@@ -309,6 +309,71 @@
 }
 .addRequest {
   padding: 40px 0;
+ .choose-form-type {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  align-items: stretch;
+
+  .form-option {
+    flex: 1;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+    cursor: pointer;
+    transition: 0.3s;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    &:hover {
+      border-color: var(--main-color);
+      background-color: #f9f9f9;
+    }
+
+    i {
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+
+    h6 {
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    p {
+      font-size: 14px;
+      color: #555;
+    }
+  }
+}
+
+.back-to-select {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px; 
+
+  &__icon {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: var(--main-color); 
+    color: var(--white-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: #e0e0e0; 
+      color: var(--main-color);
+    }
+  }
+}
+
   form {
     padding: 24px;
     width: 100%;

@@ -19,15 +19,16 @@ const ProjectDetails = () => {
     useGetProjectRequests(id, "global");
   const user = useSelector((state) => state.authedUser.user);
 
-  useEffect(() => {
-    if (
-      project?.accepted === 0 &&
-      project?.refuse_reason !== null &&
-      project?.user?.id !== user?.id
-    ) {
-      navigate("/projects");
-    }
-  }, [project, user]);
+useEffect(() => {
+  if (
+    project?.accepted === 0 &&
+    project?.refuse_reason !== null &&
+    project?.user?.id !== user?.id
+  ) {
+    navigate("/projects");
+  }
+}, [project, user, navigate]);
+
 
   if (isLoading || isLoadingRequests) {
     return <DataLoader />;

@@ -227,7 +227,11 @@
     "enterPassword": "Enter Password",
     "skills": "Skills",
     "sendingCode": "Sending Code...",
-    "cancel": "Cancel"
+    "cancel": "Cancel",
+     "chooseRole": "What your role?",
+    "seller": "Seller",
+    "buyer": "Buyer",
+    "both": "Both"
   },
 
   "projects": {
@@ -251,7 +255,7 @@
     "inProgressProjects": "Projects in Progress",
     "addOffer": "Add Your Offer Now",
     "offerDescription": "Offer Details",
-    "price": "Price",
+    "price": "Expected Price",
     "yourDuesAfterFees": "Dues After Fees",
     "send": "Send",
     "offerAddedSuccessfully": "Your offer was added successfully",
@@ -277,7 +281,13 @@
     "requestAccepted": "Request Accepted",
     "refused": "Rejected",
     "offer": "Offers",
-    "addFirst": "Add First Offer"
+    "addFirst": "Add First Offer",
+       "manualEntryTitle": "Manual Entry",
+    "manualEntryDesc": "Write the project title and description yourself and enter the rest of the details manually.",
+    "templateEntryTitle": "Choose from Template",
+    "templateEntryDesc": "Select a ready-made template to fill in the data faster and easier.",
+    "backToFormType":"Back to formtype"
+
   },
   "communities": {
     "worksHasBeenDone": "Examples of work you have completed",
@@ -584,7 +594,21 @@
     "skills": "Skills",
     "country": "Country",
     "editWork": "Edit Work",
-    "editCertificate": "Edit certificate"
+    "editCertificate": "Edit certificate",
+     "ratings": "Ratings",
+    "professionalism": "Professionalism",
+    "communication": "Communication",
+    "quality": "Quality",
+    "experience": "Experience",
+    "onTimeDelivery": "On-time Delivery",
+    "dealAgain": "Would Deal Again",
+    "averageRating": "Average Rating",
+    "noRatings": "No ratings yet",
+     "customerReviews": "Customer Reviews",
+      "reviewOnService": "Review on Service",
+  "reviewOnProject": "Review on Project",
+  "review": "General Review",
+    "noReviews":"no reviews yet"
   },
   "recievedOrders": {
     "title": "Received Orders",
@@ -692,6 +716,14 @@
   "servicePriceText": "Set a fair price for your service based on its value and the time required to complete it.",
   "serviceDays": "Delivery Time",
   "serviceDaysText": "Set the estimated delivery time for your service, considering the time it will take to complete it.",
+   "addProjectAdvice": "Launch Your Project Today",
+  "addProjectAdviceText": "With Yengez, you can start your project exactly the way you want. Simply provide the project details, budget, and expected duration to have it reviewed and published for free. Once published, freelancers will see your project, submit their proposals, and you can choose the most suitable offer to begin right away.",
+  "projectPlatformGuarantee": "Yengez Safeguards Your Rights",
+  "projectPlatformGuaranteeText": "Yengez acts as a trusted intermediary between you and the freelancer you hire. The payment is securely held and only released once the project is fully completed to your satisfaction.",
+  "projectTips": "Tips for a Successful Project",
+  "projectTipsText1": "Clearly outline all details and tasks that need to be completed.",
+  "projectTipsText2": "Fill in every field and provide examples or references to clarify your vision.",
+  "projectTipsText3": "Break large projects into smaller milestones to make progress easier to track and manage.",
   "enterprise": {
     "hero": {
       "title": "Hire freelancers and manage your company's projects from one place",
