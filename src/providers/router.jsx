@@ -1,4 +1,4 @@
-import { createBrowserRouter } from "react-router";
+import { createBrowserRouter, Outlet } from "react-router";
 import PrivateRoute from "./PrivateRoutes";
 // Layouts
 import RootLayout from "../layout/RootLayout";
@@ -75,6 +75,8 @@ import Teams from "../routes/enterprise/Teams";
 import EditEnterprise from "../routes/enterprise/EditEnterprise";
 import FundSource from "../routes/enterprise/FundSource";
 import EnterpriseDetails from "../routes/enterprise/EnterpriseDetails";
+import Orgs from "../routes/enterprise/Orgs";
+import CreateEnterpriseProject from "../ui/enterprise/projects/CreateEnterpriseProject";
 
 const router = createBrowserRouter([
   {
@@ -399,14 +401,25 @@ const router = createBrowserRouter([
         ],
       },
       {
-        path: "orgs/:link",
-        element: <EnterpriseLayout />,
+        path: "orgs",
         children: [
-          { index: true, element: <EnterpriseDetails /> },
-          { path: "teams", element: <Teams /> },
-          { path: "edit", element: <EditEnterprise /> },
-          { path: "funding", element: <FundSource /> },
+          { index: true, element: <Orgs /> },
+          {
+            path: ":link",
+            element: <EnterpriseLayout />,
+            children: [
+              { index: true, element: <EnterpriseDetails /> },
+              { path: "teams", element: <Teams /> },
+              { path: "edit", element: <EditEnterprise /> },
+              { path: "funding", element: <FundSource /> },
+            ],
+          },
         ],
+      },
+      {
+        path: "project",
+        element: <Outlet />,
+        children: [{ path: "create", element: <CreateEnterpriseProject /> }],
       },
     ],
   },

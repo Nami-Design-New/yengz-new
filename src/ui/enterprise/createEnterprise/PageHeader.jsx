@@ -9,7 +9,6 @@ const formatPath = (segment, t) => {
     create: t("enterprise.hero.link", "Create a Company"),
     dashboard: t("enterprise.details.dashboard", "Dashboard"),
     projects: t("enterprise.details.projects", "Projects"),
-    // Extend with more translations as needed
   };
 
   return routeMap[segment] || segment;
