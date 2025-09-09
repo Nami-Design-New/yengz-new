@@ -33,11 +33,11 @@
         top: 35px;
         .title {
           color: #fff;
-          font-size: 14px;
+          
         }
         .text {
           color: #fff;
-          font-size: 16px;
+          
         }
       }
     }
@@ -93,31 +93,31 @@
     flex: 1;
     position: relative;
     h6 {
-      font-size: 14px;
+      
       line-height: 28px;
       color: var(--black-color);
       @media (max-width: 576px) {
-        font-size: 12px;
+        // font-size: 12px;
         line-height: 22px;
       }
     }
     p {
-      font-size: 14px;
+      
       margin-bottom: auto;
       color: var(--text-color);
       a {
         color: var(--text-color);
       }
       @media (max-width: 576px) {
-        font-size: 10px;
+        // font-size: 10px;
       }
     }
     .sell-count {
-      font-size: 18px;
+      // font-size: 18px;
       color: var(--black-color);
       font-weight: 600;
       @media (max-width: 576px) {
-        font-size: 14px;
+        
       }
     }
     .start-from {
@@ -143,7 +143,7 @@
       border-radius: 50%;
       background: var(--input-hint);
       color: var(--white-color);
-      font-size: 14px;
+      
       &:nth-child(2) {
         background: red;
       }
@@ -205,10 +205,10 @@
         display: flex;
         align-items: center;
         gap: 4px;
-        font-size: 12px;
+        // font-size: 12px;
         white-space: nowrap;
         i {
-          font-size: 12px;
+          // font-size: 12px;
           width: 16px;
           height: 16px;
           display: flex;
@@ -304,7 +304,7 @@
     transition: var(--transition);
     margin-top: auto;
     i {
-      font-size: 16px;
+      
       transition: var(--transition);
     }
   }
@@ -314,7 +314,7 @@
     font-weight: bold;
   }
   .description {
-    font-size: 12px;
+    // font-size: 12px;
     line-height: 24px;
     color: var(--text-color);
   }
@@ -366,18 +366,18 @@
       h6 {
         color: var(--main-color);
         font-weight: 600;
-        font-size: 18px;
+        // font-size: 18px;
       }
       ul {
         li {
-          font-size: 14px;
+          
           color: var(--input-hint);
         }
       }
     }
   }
   p {
-    font-size: 14px;
+    
     color: var(--text-color);
   }
 }
@@ -472,24 +472,24 @@
         @include centerFlex();
         flex-direction: column;
         h5 {
-          font-size: 20px;
+          // font-size: 20px;
           color: var(--black-color);
           font-weight: bold;
           margin-bottom: 4px;
         }
         span {
-          font-size: 14px;
+          
           color: var(--text-color);
           font-weight: 500;
         }
       }
     }
     .rate-text {
-      font-size: 16px;
+      
       color: var(--black-color);
       font-weight: 500;
       @media (max-width: 576px) {
-        font-size: 14px;
+        
       }
     }
   }
@@ -503,7 +503,7 @@
       background: var(--white-color);
       h6 {
         color: var(--black-color);
-        font-size: 14px;
+        
       }
     }
   }
@@ -536,7 +536,7 @@
   }
   h4 {
     color: var(--main-color);
-    font-size: 24px;
+    // font-size: 24px;
   }
   ul {
     display: flex;
@@ -546,7 +546,7 @@
       color: var(--text-color);
       display: flex;
       align-items: center;
-      font-size: 12px;
+      // font-size: 12px;
       span {
         line-height: 14px;
       }
@@ -571,7 +571,7 @@
     margin-bottom: 0;
     line-height: 24px;
     color: var(--text-color);
-    font-size: 14px;
+    
   }
 }
 
@@ -594,7 +594,7 @@
     align-items: center;
     justify-content: center;
     i {
-      font-size: 36px;
+      // font-size: 36px;
     }
   }
   .info-wrapper {
@@ -617,11 +617,11 @@
         align-items: center;
         gap: 4px;
         position: relative;
-        font-size: 14px;
+        
         margin: 0;
         color: var(--text-color);
         i {
-          font-size: 12px;
+          // font-size: 12px;
           width: 16px;
           height: 16px;
           display: flex;
@@ -685,7 +685,7 @@
     align-items: center;
     justify-content: center;
     i {
-      font-size: 24px;
+      // font-size: 24px;
     }
   }
   .info-wrapper {
@@ -707,11 +707,11 @@
         align-items: center;
         gap: 4px;
         position: relative;
-        font-size: 14px;
+        
         margin: 0;
         color: var(--text-color);
         i {
-          font-size: 12px;
+          // font-size: 12px;
           width: 16px;
           height: 16px;
           display: flex;
@@ -732,7 +732,7 @@
   @include space-between();
   .info {
     h6 {
-      font-size: 22px;
+      // font-size: 22px;
       margin-bottom: 0;
       a {
         color: var(--black-color);
@@ -742,7 +742,7 @@
       display: flex;
       gap: 12px;
       li {
-        font-size: 12px;
+        // font-size: 12px;
         color: var(--input-hint);
       }
     }
@@ -772,7 +772,7 @@
         border: 0;
         padding: 6px 12px;
         background: var(--main-color);
-        font-size: 14px;
+        
         border-radius: 8px;
         color: var(--white-color);
       }

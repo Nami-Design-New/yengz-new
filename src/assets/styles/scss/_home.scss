@@ -44,10 +44,10 @@
     .info {
       h2 {
         text-align: center;
-        font-size: 28px;
+        // font-size: 28px;
         color: var(--white-color);
         @media screen and (max-width: 576px) {
-          font-size: 22px;
+          // font-size: 22px;
         }
       }
     }
@@ -68,7 +68,7 @@
         input {
           @include clearInput();
           width: 100%;
-          font-size: 14px;
+          
           color: #0d0d0d;
         }
         button {
@@ -79,7 +79,7 @@
           background-color: var(--main-color);
           @media (max-width: 576px) {
             padding: 6px 16px;
-            font-size: 14px;
+            
           }
         }
       }
@@ -138,7 +138,7 @@
       align-items: center;
       gap: 8px;
       color: #77548c;
-      font-size: 22px;
+      // font-size: 22px;
       margin-bottom: 12px;
       img {
         height: 28px;
@@ -239,11 +239,11 @@
     flex-direction: column;
     justify-content: center;
     h2 {
-      font-size: 48px;
+      // font-size: 48px;
       margin-bottom: 32px;
       color: var(--black-color);
       @media screen and (max-width: 576px) {
-        font-size: 38px;
+        // font-size: 38px;
       }
     }
     p {
@@ -270,7 +270,7 @@
 .how_it_works {
   padding: 60px 0 !important;
   .title {
-    font-size: 28px;
+    // font-size: 28px;
     text-align: center;
   }
   .desc {
@@ -291,7 +291,7 @@
       border-radius: 50%;
       @include centerFlex();
       color: var(--white-color);
-      font-size: 24px;
+      // font-size: 24px;
       background: linear-gradient(
         90.12deg,
         #896698 4.61%,
@@ -302,7 +302,7 @@
     h6 {
       margin: 0;
       color: #664180;
-      font-size: 24px;
+      // font-size: 24px;
     }
   }
 }
@@ -318,7 +318,7 @@
       position: absolute;
       top: 0;
       background-position: center;
-      background-image: url("../../../../public/images/yengz.png");
+      background-image: url("/images/yengz.png");
       left: 0;
       width: 100%;
       height: 100%;
@@ -333,7 +333,7 @@
 .how_it_works {
   padding: 60px 0 !important;
   .title {
-    font-size: 28px;
+    // font-size: 28px;
     text-align: center;
   }
   .desc {
@@ -354,7 +354,7 @@
       border-radius: 50%;
       @include centerFlex();
       color: var(--white-color);
-      font-size: 24px;
+      // font-size: 24px;
       background: linear-gradient(
         90.12deg,
         #896698 4.61%,
@@ -365,7 +365,7 @@
     h6 {
       margin: 0;
       color: #664180;
-      font-size: 24px;
+      // font-size: 24px;
     }
   }
 }
@@ -378,7 +378,7 @@
   }
   padding: 100px 16px 40px;
   .title {
-    font-size: 24px;
+    // font-size: 24px;
   }
   .desc {
     color: #664180;
@@ -397,7 +397,7 @@
   .title {
     text-align: center;
     margin-bottom: 10px;
-    font-size: 24px;
+    // font-size: 24px;
     color: var(--black-color);
   }
   .sub-title {

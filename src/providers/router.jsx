@@ -78,6 +78,10 @@ import EnterpriseDetails from "../routes/enterprise/EnterpriseDetails";
 import Orgs from "../routes/enterprise/Orgs";
 import CreateEnterpriseProject from "../ui/enterprise/projects/CreateEnterpriseProject";
 
+// Business Solutions
+import BusinessSolutions from "../routes/BusinessSolutions";
+import HelpCenter from "../routes/HelpCenter";
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -293,6 +297,18 @@ const router = createBrowserRouter([
             ),
           },
         ],
+      },
+
+      // Business Solutions
+      {
+        path: "bussiness-solutions",
+        children: [{ path: ":slug", element: <BusinessSolutions /> }],
+      },
+
+      // Business Solutions
+      {
+        path: "help-center",
+        children: [{ index: true, element: <HelpCenter /> }],
       },
 
       // Bids, Chat, Notifications

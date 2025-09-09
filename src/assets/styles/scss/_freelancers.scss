@@ -66,7 +66,7 @@
       }
       h6 {
         color: var(--black-color);
-        font-size: 16px;
+        
         margin-bottom: 8px;
         font-weight: 600;
       }
@@ -212,7 +212,7 @@
         display: block !important;
         cursor: pointer;
         i {
-          font-size: 24px;
+          // font-size: 24px;
           color: var(--black-color);
         }
       }
@@ -248,7 +248,7 @@
     outline: none;
     padding: 8px 16px;
     border: none;
-    font-size: 14px;
+    
     color: var(--white-color);
     border-radius: 12px;
     background: var(--main-color);

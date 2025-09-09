@@ -42,12 +42,12 @@
           }
         }
         label {
-          font-size: 16px;
+          
         }
       }
       .condition-note {
         position: relative;
-        font-size: 14px;
+        
         margin: 0;
         color: var(--text-color);
         line-height: 1.6;
@@ -68,7 +68,7 @@
         align-items: center;
         justify-content: center;
         gap: 8px;
-        font-size: 16px;
+        
         color: var(--dark-color);
         transition: var(--transition);
         &.active {
@@ -76,7 +76,7 @@
           color: var(--white-color);
         }
         i {
-          font-size: 16px;
+          
         }
       }
     }
@@ -110,16 +110,16 @@
     color: var(--black-color);
     font-weight: bold;
     text-align: center;
-    font-size: 16px;
+    
     span {
-      font-size: 24px;
+      // font-size: 24px;
       color: var(--main-color);
     }
     i {
       color: var(--text-color);
     }
     @media (max-width: 576px) {
-      font-size: 16px;
+      
     }
   }
   .bank-transfer-box {
@@ -149,7 +149,7 @@
       align-items: center;
       justify-content: center;
       i {
-        font-size: 24px;
+        // font-size: 24px;
       }
     }
     .info-wrapper {
@@ -171,11 +171,11 @@
           align-items: center;
           gap: 4px;
           position: relative;
-          font-size: 14px;
+          
           margin: 0;
           color: var(--text-color);
           i {
-            font-size: 12px;
+            // font-size: 12px;
             width: 16px;
             height: 16px;
             display: flex;
@@ -231,7 +231,7 @@
   justify-content: center;
   gap: 8px;
   min-width: 140px;
-  font-size: 14px;
+  
   white-space: nowrap;
 }
 

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router";
 import { Accordion } from "react-bootstrap";
@@ -7,6 +7,7 @@ import useAuth from "../../hooks/auth/useAuth";
 import SearchPath from "../modals/SearchPath";
 import useGetAbout from "../../hooks/About/useGetAbout";
 import useGetCommunitiesList from "../../hooks/community/useGetCommunitiesList";
+import useGetSolutions from "../../hooks/business/useGetSolutions";
 
 function WebMenuSideBar({ isOpen, setIsOpen }) {
   const { t } = useTranslation();
@@ -15,6 +16,7 @@ function WebMenuSideBar({ isOpen, setIsOpen }) {
 
   const { data: footerCategoriesList } = useGetAbout();
   const { data: communities } = useGetCommunitiesList();
+  const { data: solutions } = useGetSolutions();
 
   const [showModal, setShowModal] = useState(false);
   const [searchValue, setSearchValue] = useState("");
@@ -104,19 +106,34 @@ function WebMenuSideBar({ isOpen, setIsOpen }) {
                 <span>{t("navbar.ynjez")}</span>
               </Accordion.Header>
               <Accordion.Body>
-                <ul>
+                <ul className="mt-2">
                   {footerCategoriesList?.map((category) => (
-                    <li key={category.id}>
-                      <Link
-                        to={`/about/${category.id}`}
-                        onClick={() => setIsOpen(false)}
-                      >
-                        {category.name}
-                      </Link>
-                      <Link to={`/enterprise`} onClick={() => setIsOpen(false)}>
-                        {t("navbar.enterprise")}
-                      </Link>
-                    </li>
+                    <Fragment key={category.id}>
+                      <li>
+                        <Link
+                          to={`/about/${category.id}`}
+                          onClick={() => setIsOpen(false)}
+                        >
+                          {category.name}
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
+                          to={`/enterprise`}
+                          onClick={() => setIsOpen(false)}
+                        >
+                          {t("navbar.enterprise")}
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
+                          to="/help-center"
+                          onClick={() => setIsOpen(false)}
+                        >
+                          {t("navbar.help_center")}
+                        </Link>
+                      </li>
+                    </Fragment>
                   ))}
                 </ul>
               </Accordion.Body>
@@ -144,6 +161,29 @@ function WebMenuSideBar({ isOpen, setIsOpen }) {
                 </Accordion.Body>
               </Accordion.Item>
             )}
+
+            <Accordion.Item eventKey="2">
+              <Accordion.Header>
+                <i className="fa-regular fa-briefcase"></i>
+                <span>{t("navbar.work_solutions")}</span>
+              </Accordion.Header>
+              <Accordion.Body>
+                <ul className="mt-2">
+                  {solutions?.map((sol) => (
+                    <Fragment key={sol.id}>
+                      <li>
+                        <Link
+                          to={`/bussiness-solutions/${sol.slug}`}
+                          onClick={() => setIsOpen(false)}
+                        >
+                          {sol.name}
+                        </Link>
+                      </li>
+                    </Fragment>
+                  ))}
+                </ul>
+              </Accordion.Body>
+            </Accordion.Item>
           </Accordion>
 
           <li>

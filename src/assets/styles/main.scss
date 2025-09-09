@@ -13,7 +13,7 @@ body {
   overflow-x: hidden;
   position: relative;
   background: var(--white-color);
-  font-family: "Din", sans-serif;
+  font-family: "Noto Kufi Arabic", sans-serif;
 
   @import "./scss/auth";
   @import "./scss/home";
@@ -33,6 +33,7 @@ body {
   @import "./scss/chats";
   @import "./scss/balance";
   @import "./scss/collections";
+  @import "./scss/business";
 
   main {
     min-height: calc(100dvh - 80px);

@@ -28,7 +28,7 @@
         border: 0;
         padding: 6px 12px;
         background: var(--main-color);
-        font-size: 14px;
+        
         border-radius: 8px;
         color: var(--white-color);
       }
@@ -41,7 +41,7 @@
     @include space-between();
     .info {
       h6 {
-        font-size: 22px;
+        // font-size: 22px;
         margin-bottom: 0;
         a {
           color: var(--black-color);
@@ -51,7 +51,7 @@
         display: flex;
         gap: 12px;
         li {
-          font-size: 12px;
+          // font-size: 12px;
           color: var(--input-hint);
         }
       }
@@ -81,7 +81,7 @@
           border: 0;
           padding: 6px 12px;
           background: var(--main-color);
-          font-size: 14px;
+          
           border-radius: 8px;
           color: var(--white-color);
         }

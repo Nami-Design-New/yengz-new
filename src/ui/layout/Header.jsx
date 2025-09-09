@@ -127,7 +127,7 @@ export default function Header() {
 
             {!isAuthed && (
               <>
-                <li className="link hide-sm2">
+                <li className="link hide-sm2 me-2">
                   <div className="btns">
                     <Link to="/login">
                       <i className="fa-light fa-arrow-right-to-bracket"></i>{" "}

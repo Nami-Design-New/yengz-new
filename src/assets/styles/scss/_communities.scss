@@ -77,11 +77,11 @@
               align-items: center;
               gap: 4px;
               position: relative;
-              font-size: 12px;
+              // font-size: 12px;
               margin: 0;
               color: var(--text-color);
               i {
-                font-size: 12px;
+                // font-size: 12px;
                 width: 16px;
                 height: 16px;
                 display: flex;
@@ -168,7 +168,7 @@
             flex-direction: column;
             position: relative;
             p {
-              font-size: 14px;
+              
             }
           }
           * {
@@ -219,7 +219,7 @@
             span {
               flex: 1 0;
               display: flex;
-              font-size: 14px;
+              
               align-items: center;
             }
           }

@@ -90,7 +90,9 @@
     "servicesLink": "Services",
     "country": "Country",
     "logoutSuccess": "Logged out successfully",
-    "logoutError": "Error logging out"
+    "logoutError": "Error logging out",
+    "work_solutions": "Business Solutions",
+    "help_center": "Help Center"
   },
   "home": {
     "searchFor": "Search for...",

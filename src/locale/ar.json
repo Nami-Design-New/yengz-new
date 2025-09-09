@@ -89,7 +89,9 @@
     "projectsLink": "المشاريع",
     "servicesLink": "الخدمات",
     "logoutSuccess": "تم تسجيل الخروج بنجاح",
-    "logoutError": "خطأ في تسجيل الخروج"
+    "logoutError": "خطأ في تسجيل الخروج",
+    "work_solutions": "حلول الأعمال",
+    "help_center": "مركز المساعدة"
   },
   "home": {
     "searchFor": "ابحث عن...",

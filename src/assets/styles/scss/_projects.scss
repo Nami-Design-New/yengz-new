@@ -12,15 +12,15 @@
     }
     h5 {
       color: var(--main-color);
-      font-size: 18px;
+      // font-size: 18px;
       font-weight: bold;
     }
     h6 {
       margin-top: 24px;
-      font-size: 16px;
+      
     }
     a {
-      font-size: 14px;
+      
       color: var(--black-color);
       word-break: break-word;
       i {
@@ -68,7 +68,7 @@
         }
       }
       h6 {
-        font-size: 16px;
+        
         color: var(--black-color);
       }
     }
@@ -82,7 +82,7 @@
     background-color: var(--light-bg);
     h5 {
       color: var(--main-color);
-      font-size: 18px;
+      // font-size: 18px;
       font-weight: bold;
     }
     .comment {
@@ -104,7 +104,7 @@
           gap: 12px;
           p {
             margin: 0;
-            font-size: 24px;
+            // font-size: 24px;
             font-weight: bold;
             color: var(--main-color);
           }
@@ -124,7 +124,7 @@
       border-radius: 50%;
       color: var(--black-color);
       i {
-        font-size: 16px !important;
+        // font-size: 16px !important;
       }
     }
     .setting {
@@ -198,16 +198,16 @@
         }
         .name {
           font-weight: 600;
-          font-size: 14px;
+          
         }
         .time {
           display: flex;
           align-items: center;
           gap: 4px;
-          font-size: 12px;
+          // font-size: 12px;
           margin: 0;
           i {
-            font-size: 12px;
+            // font-size: 12px;
             width: 16px;
             height: 16px;
             display: flex;
@@ -240,7 +240,7 @@
       }
     }
     .text {
-      font-size: 14px;
+      
     }
   }
   .addComment {
@@ -252,7 +252,7 @@
     background-color: var(--light-bg);
     h5 {
       color: var(--main-color);
-      font-size: 18px;
+      // font-size: 18px;
       font-weight: bold;
     }
     .form {
@@ -301,7 +301,7 @@
         }
         a {
           color: var(--black-color);
-          font-size: 13px;
+          // font-size: 13px;
         }
       }
     }
@@ -333,7 +333,7 @@
     }
 
     i {
-      font-size: 24px;
+      // font-size: 24px;
       margin-bottom: 10px;
     }
 
@@ -343,7 +343,7 @@
     }
 
     p {
-      font-size: 14px;
+      
       color: #555;
     }
   }
@@ -421,7 +421,7 @@
     .content {
       h6 {
         margin: 0;
-        font-size: 20px;
+        // font-size: 20px;
       }
     }
     input {
@@ -465,7 +465,7 @@
       .content {
         h6 {
           margin: 0;
-          font-size: 14px;
+          
           color: var(--black-color);
           a {
             color: var(--black-color);
@@ -473,7 +473,7 @@
         }
         p {
           margin: 0;
-          font-size: 12px;
+          // font-size: 12px;
         }
       }
     }
@@ -498,7 +498,7 @@
   .content {
     h6 {
       margin: 0;
-      font-size: 20px;
+      // font-size: 20px;
     }
   }
   input {

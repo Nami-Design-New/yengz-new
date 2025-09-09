@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@100..900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap");
 
 @mixin centerFlex {
@@ -142,7 +143,7 @@ hr {
 .tooltip {
   --bs-tooltip-bg: #242424;
   .tooltip-inner {
-    font-size: 10px;
+    // font-size: 10px;
     padding: 8px 16px !important;
     line-height: 20px;
   }
@@ -183,7 +184,7 @@ input[type="checkbox"] {
     height: 18px;
     border: 1px solid var(--input-hint);
     border-radius: 4px;
-    font-size: 12px;
+    // font-size: 12px;
     @include centerFlex();
     color: var(--main-color);
   }
@@ -253,7 +254,7 @@ input[type="checkbox"] {
 .modal-header {
   border-bottom: 0;
   .modal-title {
-    font-size: 14px;
+    
   }
   .btn-close {
     box-shadow: none !important;
@@ -290,7 +291,7 @@ input[type="checkbox"] {
 
 .rc-slider-mark {
   span {
-    font-size: 14px;
+    
     transform: none !important;
     right: unset !important;
     left: 0;
@@ -318,14 +319,14 @@ input[type="checkbox"] {
   }
 
   .error-title {
-    font-size: 42px;
+    // font-size: 42px;
     color: var(--black-color);
     margin-bottom: 10px;
     text-align: center;
   }
 
   .error-description {
-    font-size: 14px;
+    
     color: var(--input-hint);
     margin-bottom: 24px;
   }
@@ -359,7 +360,7 @@ hr {
   color: var(--white-color);
   border: none;
   border-radius: 16px;
-  font-size: 16px;
+  
   gap: 4px;
   height: 48px;
   width: 100%;
@@ -387,7 +388,7 @@ hr {
     border: 0 !important;
     height: 100%;
     color: var(--black-color);
-    font-size: 14px;
+    
     background: var(--input-bg);
     padding: 8px;
     border-radius: 12px;
@@ -512,7 +513,7 @@ hr {
     text-align: center;
     border: 1px solid var(--main-color);
     background: var(--main10-color);
-    font-size: 28px;
+    // font-size: 28px;
     font-weight: 600;
     color: var(--main-color) !important;
     outline: none;
@@ -550,28 +551,28 @@ hr {
     margin-bottom: 12px;
 
     a {
-      font-size: 16px; // Prefer smaller font from final style
+       // Prefer smaller font from final style
       color: var(--main-color); // Final style (more subtle)
     }
 
     h6 {
       color: var(--input-hint);
-      font-size: 16px;
+      
       font-weight: 400;
     }
   }
   h1 {
     color: var(--main-color);
-    font-size: 24px;
+    // font-size: 24px;
     font-weight: bold;
 
     @media (max-width: 768px) {
-      font-size: 18px;
+      // font-size: 18px;
     }
   }
 
   p {
-    font-size: 14px;
+    
     color: var(--black-color);
   }
 
@@ -601,7 +602,7 @@ hr {
     margin: 0;
     text-align: center;
     text-wrap: balance;
-    font-size: 36px;
+    // font-size: 36px;
     font-weight: 800;
     color: #cecece;
   }
@@ -633,7 +634,7 @@ hr {
       cursor: pointer;
       i {
         color: var(--text-color);
-        font-size: 18px;
+        // font-size: 18px;
       }
       &.disabled {
         opacity: 50%;
@@ -658,7 +659,7 @@ hr {
       border-radius: 12px;
       width: 42px;
       height: 42px;
-      font-size: 15px;
+      // font-size: 15px;
       color: var(--dark-color);
       font-weight: 500;
       transition: 0.3s;
@@ -722,11 +723,68 @@ hr {
       color: var(--black-color);
     }
     i {
-      font-size: 20px;
+      // font-size: 20px;
       color: var(--black-color);
     }
   }
   @media (max-width: 991px) {
     display: flex;
+  }
+}
+
+$default-scale: .9;
+
+@mixin set-scale($scale) {
+  --scale: #{$scale};
+}
+:root {
+  --scale: 1;
+}
+
+.theme-small {
+  @include set-scale($default-scale);
+
+  font-size: calc(1rem * var(--scale));
+  line-height: 1.45;
+
+  p {
+    font-size: calc(1rem * var(--scale));
+  }
+
+  small {
+    font-size: calc(0.85rem * var(--scale));
+  }
+
+  h1 {
+    font-size: calc(2.25rem * var(--scale));
+    margin-bottom: 0.6rem;
+  }
+  h2 {
+    font-size: calc(1.5rem * var(--scale));
+    margin-bottom: 0.5rem;
+  }
+  h3 {
+    font-size: calc(1.125rem * var(--scale));
+    margin-bottom: 0.4rem;
+  }
+
+  .btn,
+  button,
+  input,
+  select,
+  textarea {
+    font-size: calc(0.95rem * var(--scale));
+    padding: calc(0.5rem * var(--scale)) calc(0.8rem * var(--scale));
+  }
+
+  .card {
+    font-size: calc(0.95rem * var(--scale));
+  }
+
+  @media (max-width: 480px) {
+    font-size: calc(0.95rem * var(--scale));
+    h1 {
+      font-size: calc(1.8rem * var(--scale));
+    }
   }
 }
