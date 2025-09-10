@@ -79,7 +79,15 @@ export default function UserMenu({ user }) {
                       {t("navbar.report")}
                     </Link>
                   </li>
-
+                  <li>
+                    <Link
+                      className="dropdown-item_Link"
+                      to="/tickets"
+                    >
+                      <i className="fa-solid fa-ticket-simple"></i>
+                      {t("navbar.ticket")}
+                    </Link>
+                  </li>
                   <li>
                     <Link
                       className="dropdown-item_Link"

@@ -48,7 +48,8 @@
     "balance": "Balance",
     "manage-accounts": "Manage Accounts",
     "services": "Services",
-    "project": "Add Project"
+    "project": "Add Project",
+    "ticket":"tickets"
   },
   "navbar": {
     "ynjez": "About Ynjez",
@@ -673,6 +674,29 @@
     "bankAddedSuccessfully": "Bank account added successfully",
     "bankUpdatedSuccessfully": "Bank account updated successfully",
     "bankDeletedSuccessfully": "Bank account deleted successfully"
+  },
+    "tickets":{
+"header":"Support Ticket",
+"addTicket":"Add Ticket",
+"ticketNumber":"ticket Number",
+  "problemName": "Problem Name",
+  "problemType": "Problem Type",
+  "problemImportance": "Problem Importance",
+  "problemIdOptional": "Ticket Number (Optional)",
+  "problemDescription": "Problem Description",
+  "writeHere": "Write here",
+  "select": "Select",
+  "exampleId": "Example: 12345",
+  "writeDescriptionHere": "Write the problem description here",
+  "high": "High",
+  "medium": "Medium",
+  "low": "Low",
+  "ticketAddedSuccessfully": "Ticket added successfully",
+  "somethingWentWrong": "Something went wrong, please try again later",
+   "titleRequired": "Title is required",
+  "ticketCategoryRequired": "Ticket category is required",
+  "importanceRequired": "Importance level is required",
+  "descriptionRequired": "Description is required"
   },
   "choose": "Choose",
   "likeIt": "Like it",

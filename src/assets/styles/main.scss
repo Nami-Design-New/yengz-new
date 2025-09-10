@@ -34,7 +34,8 @@ body {
   @import "./scss/balance";
   @import "./scss/collections";
   @import "./scss/business";
-
+  @import "./scss/tickets";
+  @import "./scss/helpcenter";
   main {
     min-height: calc(100dvh - 80px);
   }

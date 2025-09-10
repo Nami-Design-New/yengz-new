@@ -48,7 +48,8 @@
     "balance": "الرصيد",
     "manage-accounts": "ادارة الحسابات",
     "services": "الخدمات",
-    "project": "اضف مشروع"
+    "project": "اضف مشروع",
+    "tickets":"التذاكر"
   },
   "navbar": {
     "ynjez": "عن ينجز",
@@ -69,6 +70,7 @@
     "manageAccounts": "ادارة الحسابات البنكية",
     "support": "المساعدة",
     "report": "الابلاغ عن مشكلة",
+    "ticket":"التذاكر",
     "deleteAccount": "حذف الحساب",
     "logout": "تسجيل الخروج",
     "messages": "الرسائل",
@@ -671,6 +673,29 @@
     "bankAddedSuccessfully": "تمت اضافة الحساب بنجاح",
     "bankUpdatedSuccessfully": "تمت تعديل الحساب بنجاح",
     "bankDeletedSuccessfully": "تمت حذف الحساب بنجاح"
+  },
+"tickets":{
+"header":"تذكرة دعم",
+"addTicket": "إضافة تذكرة",
+"ticketNumber":"رقم التذكرة",
+  "problemName": "اسم المشكلة",
+  "problemType": "نوع المشكلة",
+  "problemImportance": "أهمية المشكلة",
+  "problemIdOptional": "الرقم التعريفي (اختياري)",
+  "problemDescription": "وصف المشكلة",
+  "writeHere": "اكتب هنا",
+  "select": "اختر",
+  "exampleId": "مثال: 12345",
+  "writeDescriptionHere": "اكتب وصف المشكلة هنا",
+  "high": "عالية",
+  "medium": "متوسطة",
+  "low": "منخفضة",
+"ticketAddedSuccessfully": "تمت إضافة التذكرة بنجاح",
+  "somethingWentWrong": "حدث خطأ ما، برجاء المحاولة لاحقاً",
+  "titleRequired": "العنوان مطلوب",
+  "ticketCategoryRequired": "فئة التذكرة مطلوبة",
+  "importanceRequired": "مستوى الأهمية مطلوب",
+  "descriptionRequired": "الوصف مطلوب"
   },
   "choose": "اختر",
   "likeIt": "اعجبني",
