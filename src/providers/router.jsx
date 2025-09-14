@@ -89,6 +89,8 @@ import FAQs from "../routes/helpCenter/FAQs";
 import KnowledgeBase from "../routes/helpCenter/KnowledgeBase";
 import FaqDetails from "../routes/helpCenter/FaqDetails";
 import HelpCategoryDetails from "../routes/helpCenter/KnowledgeDetails";
+import Seller from "../routes/helpCenter/Seller";
+import ExtraCategories from "../routes/helpCenter/ExtraCategories";
 
 const router = createBrowserRouter([
   {
@@ -461,12 +463,11 @@ const router = createBrowserRouter([
     element: <HelpCenterLayout />,
   children: [
     { index: true, element: <KnowledgeBase /> },
-    // { path: "sellers", element: <SellersGuide /> },
-    // { path: "buyers", element: <BuyersGuide /> },
-
     { path: "faqs", element: <FAQs /> },
     { path:"faqs/:slug", element: <FaqDetails/> },
     { path:":slug", element:<HelpCategoryDetails />},
+     { path: "sellers", element: <ExtraCategories /> },
+    { path: "sellers/:slug", element: <Seller /> },
 
   ],
 }

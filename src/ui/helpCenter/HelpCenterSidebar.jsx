@@ -23,12 +23,12 @@ export default function HelpCenterSidebar() {
                 <span>البدء لبائعي الخدمات</span>
               </NavLink>
             </li>
-            <li>
+            {/* <li>
               <NavLink to="/help-center/buyers">
                 <i className="fa-regular fa-cart-shopping"></i>
                 <span>البدء لمشتري الخدمات</span>
               </NavLink>
-            </li>
+            </li> */}
             <li>
               <NavLink to="/help-center/faqs">
                 <i className="fa-regular fa-circle-question"></i>
