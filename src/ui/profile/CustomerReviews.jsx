@@ -41,7 +41,7 @@ export default function CustomerReviews({ reviews = [], t }) {
                   {Array.from({ length: 5 }).map((_, i) => (
                     <i
                       key={i}
-                      className={`fa-star ${
+                      className={`fa-star me-1 ${
                         i < Math.round(rate[field.key] || 0)
                           ? "fa-solid text-warning"
                           : "fa-regular text-gray"

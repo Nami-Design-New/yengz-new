@@ -13,7 +13,7 @@ import DataLoader from "../DataLoader";
 import ProjectCard from "../cards/ProjectCard";
 import WorksTab from "./WorksTab";
 import CertificatesTab from "./CertificatesTab";
-import CustomerReviews from "./CustomerReviews"; 
+import CustomerReviews from "./CustomerReviews";
 
 const ProfileTabs = ({ user, isMyAccount }) => {
   const { t } = useTranslation();
@@ -206,73 +206,78 @@ const ProfileTabs = ({ user, isMyAccount }) => {
           </div>
         </Tab>
 
-{/* rates  */}
-<Tab
-  eventKey="ratings"
-  title={t("profile.ratings")}
-  className="tab_item"
->
-  <div className="tab-pane">
-    {user?.rates_value ? (
-      <>
-        <ul className="ratings-list mb-4">
-          {[
-            { key: "work", label: t("profile.professionalism") },
-            { key: "support", label: t("profile.communication") },
-            { key: "quality", label: t("profile.quality") },
-            { key: "experience", label: t("profile.experience") },
-            { key: "time", label: t("profile.onTimeDelivery") },
-            { key: "deal_again", label: t("profile.dealAgain") },
-          ].map((item) => (
-            <li
-              className="d-flex justify-content-between align-items-center"
-              key={item.key}
-            >
-              <span>{item.label}</span>
-              <span>
-                {user?.rates_value[item.key]?.toFixed(1)}{" "}
-                {Array.from({ length: 5 }).map((_, i) => (
-                  <i
-                    key={i}
-                    className={`fa-star ${
-                      i < Math.round(user?.rates_value[item.key] || 0)
-                        ? "fa-solid text-warning"
-                        : "fa-regular text-gray"
-                    }`}
-                  ></i>
-                ))}
-              </span>
-            </li>
-          ))}
+        {/* rates  */}
+        <Tab
+          eventKey="ratings"
+          title={t("profile.ratings")}
+          className="tab_item"
+        >
+          <div className="tab-pane">
+            {user?.rates_value ? (
+              <>
+                <ul className="ratings-list mb-4">
+                  {[
+                    { key: "work", label: t("profile.professionalism") },
+                    { key: "support", label: t("profile.communication") },
+                    { key: "quality", label: t("profile.quality") },
+                    { key: "experience", label: t("profile.experience") },
+                    { key: "time", label: t("profile.onTimeDelivery") },
+                    { key: "deal_again", label: t("profile.dealAgain") },
+                  ].map((item) => (
+                    <li
+                      className="d-flex justify-content-between align-items-center"
+                      key={item.key}
+                    >
+                      <span>{item.label}</span>
+                      <span>
+                        {Array.from({ length: 5 }).map((_, i) => (
+                          <i
+                            key={i}
+                            className={`fa-star me-1 ${
+                              i < Math.round(user?.rates_value[item.key] || 0)
+                                ? "fa-solid text-warning"
+                                : "fa-regular text-gray"
+                            }`}
+                          ></i>
+                        ))}
+                        <span className="mr-3">
+                          {" "}
+                          {user?.rates_value[item.key]?.toFixed(1)}{" "}
+                        </span>
+                      </span>
+                    </li>
+                  ))}
 
-          <li className="d-flex justify-content-between fw-bold border-top pt-2 mt-2 align-items-center">
-            <span>{t("profile.averageRating")}</span>
-            <span>
-              {user?.rates_value.avg?.toFixed(2)}{" "}
-              {Array.from({ length: 5 }).map((_, i) => (
-                <i
-                  key={i}
-                  className={`fa-star ${
-                    i < Math.round(user?.rates_value.avg || 0)
-                      ? "fa-solid text-warning"
-                      : "fa-regular text-muted"
-                  }`}
-                ></i>
-              ))}
-            </span>
-          </li>
-        </ul>
+                  <li className="d-flex justify-content-between fw-bold border-top pt-2 mt-2 align-items-center">
+                    <span>{t("profile.averageRating")}</span>
+                    <span>
+                      {Array.from({ length: 5 }).map((_, i) => (
+                        <i
+                          key={i}
+                          className={`fa-star me-1 ${
+                            i < Math.round(user?.rates_value.avg || 0)
+                              ? "fa-solid text-warning"
+                              : "fa-regular text-muted"
+                          }`}
+                        ></i>
+                      ))}
+                      <span className="mr-3">
+                        {" "}
+                        {user?.rates_value.avg?.toFixed(1)}{" "}
+                      </span>
+                    </span>
+                  </li>
+                </ul>
 
-        <CustomerReviews reviews={user.user_rates || []} t={t} />
-      </>
-    ) : (
-      <div className="noDataFound">
-        <h4>{t("profile.noRatings")}</h4>
-      </div>
-    )}
-  </div>
-</Tab>
-
+                <CustomerReviews reviews={user.user_rates || []} t={t} />
+              </>
+            ) : (
+              <div className="noDataFound">
+                <h4>{t("profile.noRatings")}</h4>
+              </div>
+            )}
+          </div>
+        </Tab>
 
         {/* my works */}
         <Tab

@@ -30,16 +30,16 @@ const TemplateProjectForm = ({
   const matchedHelper = useMemo(() => {
     if (!categoryId || !subCategoryId || !data) return null;
 
- for (let cat of data) {
-  if (Number(cat.id) === Number(categoryId)) {
-    const helper = cat.helpers?.find(
-      (helperItem) =>
-        Number(helperItem.category_id) === Number(categoryId) &&
-        Number(helperItem.sub_category_id) === Number(subCategoryId)
-    );
-    return helper || null;
-  }
-}
+    for (let cat of data) {
+      if (Number(cat.id) === Number(categoryId)) {
+        const helper = cat.helpers?.find(
+          (helperItem) =>
+            Number(helperItem.category_id) === Number(categoryId) &&
+            Number(helperItem.sub_category_id) === Number(subCategoryId)
+        );
+        return helper || null;
+      }
+    }
 
     return null;
   }, [categoryId, subCategoryId, data]);
@@ -100,9 +100,7 @@ const TemplateProjectForm = ({
                   value: subCategory.id,
                 }))}
                 disabledOption={
-                  categoryId
-                    ? t("select")
-                    : t("addService.selectCategoryFirst")
+                  categoryId ? t("select") : t("addService.selectCategoryFirst")
                 }
                 required
               />
@@ -110,7 +108,7 @@ const TemplateProjectForm = ({
           />
         </div>
 
-        {categoryId && subCategoryId && (
+        {/* {categoryId && subCategoryId && ( */}
           <>
             <div className="col-12 p-2">
               <Controller
@@ -160,19 +158,19 @@ const TemplateProjectForm = ({
                 name="skills"
                 selectedOptions={selectedOptions}
                 handleChange={handleSkillsChange}
-                options={(matchedHelper?.skills?.length
-                  ? matchedHelper.skills.map((skill) => ({
-                    label: skill?.name,
-                    value: skill?.id,
-                  }))
-                  : skills?.map((skill) => ({
-                    label: skill?.name,
-                    value: skill?.id,
-                  }))
-                )}
+                options={
+                  matchedHelper?.skills?.length
+                    ? matchedHelper.skills.map((skill) => ({
+                        label: skill?.name,
+                        value: skill?.id,
+                      }))
+                    : skills?.map((skill) => ({
+                        label: skill?.name,
+                        value: skill?.id,
+                      }))
+                }
               />
             </div>
-
 
             {matchedHelper?.inputs?.length > 0 &&
               matchedHelper.inputs.map((input) => (
@@ -207,11 +205,10 @@ const TemplateProjectForm = ({
                       {...register(`dynamic_${input.id}`)}
                     />
                   )}
-
                 </div>
               ))}
           </>
-        )}
+        {/* )} */}
       </div>
 
       <div className="col-12 p-2 d-flex justify-content-end">
