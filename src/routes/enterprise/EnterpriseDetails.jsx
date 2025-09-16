@@ -6,6 +6,8 @@ import ProjectSummary from "../../ui/enterprise/stats/ProjectSummary";
 import MetricsBox from "../../ui/enterprise/stats/MetricsBox";
 import FinancialInfo from "../../ui/enterprise/stats/FinancialInfo";
 import { useNavigate } from "react-router";
+import useGetCompanyDetails from "../../hooks/orgs/useGetCompanyDetails";
+import DataLoader from "../../ui/DataLoader";
 
 // Define status list for project status components
 const statusList = ["draft", "open", "inReview", "inProgress"];
@@ -55,7 +57,16 @@ const EnterpriseDetails = () => {
   const handleAddProjectClick = () => {
     navigate("/project/create");
   };
+  const { data: companyDetailsData, isLoading } = useGetCompanyDetails('ynjez');
+  console.log("companyDetailsData" , companyDetailsData);
 
+  if (isLoading) {
+    return <DataLoader />;
+  }
+
+  if (!isLoading && !companyDetailsData) {
+    return <ErrorPage />;
+  }
   return (
     <div className="dashboard">
       <div className="projects">
@@ -76,7 +87,7 @@ const EnterpriseDetails = () => {
       </div>
 
       {/* Metrics component for members, messages, etc. */}
-      <MetricsBox items={metricsData} />
+      <MetricsBox items={metricsData}  />
 
       {/* Financial information component */}
       <FinancialInfo balanceData={balanceData} expensesData={expensesData} />

@@ -413,7 +413,14 @@ const router = createBrowserRouter([
         path: "enterprise",
         children: [
           { index: true, element: <Enterprise /> },
-          { path: "create", element: <CreateEnterprise /> },
+          {
+            path: "create",
+            element: (
+              <PrivateRoute>
+                <CreateEnterprise />
+              </PrivateRoute>
+            ),
+          },
         ],
       },
       {

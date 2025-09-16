@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
 import useGetWalletOperations from "../hooks/wallet/useGetWalletOperations";
-import { useSearchParams } from "react-router";
+import { Link, useSearchParams } from "react-router";
 import { useState } from "react";
 import { TRANSACTIONS_STATUS } from "../utils/constants";
 import DataLoader from "./DataLoader";

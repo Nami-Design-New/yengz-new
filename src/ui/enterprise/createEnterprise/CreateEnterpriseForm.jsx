@@ -3,10 +3,25 @@ import InputField from "../../forms/InputField";
 import SelectField from "../../forms/SelectField";
 import { useNavigate } from "react-router";
 import { useTranslation } from "react-i18next";
+import useGetCompanyCategory from "../../../hooks/orgs/useGetCompanyCategory";
+import DataLoader from "../../DataLoader";
 
 const CreateEnterpriseForm = ({ type }) => {
   const navigate = useNavigate();
   const { t } = useTranslation();
+
+  const { data: companyData, isLoading } = useGetCompanyCategory();
+  // console.log(companyData);
+
+  if (isLoading) {
+    return <DataLoader />;
+  }
+
+  if (!isLoading && !companyData) {
+    return <ErrorPage />;
+  }
+  console.log(companyData);
+  
   return (
     <form className="create-enterprise-form">
       <div className="create-enterprise-form-wrapper">
@@ -15,7 +30,13 @@ const CreateEnterpriseForm = ({ type }) => {
             <InputField label={t("enterprise.createenterprise.form.name")} />
           </div>
           <div className="col-12 col-md-6 p-2">
-            <SelectField label={t("enterprise.createenterprise.form.field")} />
+            <SelectField
+              options={companyData?.map((comp) => ({
+              name: comp.name,
+              value: comp.id,
+            }))}
+              label={t("enterprise.createenterprise.form.field")}
+            />
           </div>
           <div className="col-12  p-2">
             <InputField label={t("enterprise.createenterprise.form.link")} />
@@ -30,7 +51,7 @@ const CreateEnterpriseForm = ({ type }) => {
             <textarea className="desc-field"></textarea>
           </div>
           <div className="col-12 col-md-6 p-2">
-            <SelectField
+            <InputField
               label={t("enterprise.createenterprise.form.employeeCount")}
             />
           </div>

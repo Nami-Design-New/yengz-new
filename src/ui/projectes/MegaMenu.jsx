@@ -23,7 +23,13 @@ const MegaMenu = ({
   const [open1, setOpen1] = useState(false);
   const [selectedHelper, setSelectedHelper] = useState(null);
   const { data } = useGetTemplateHelpers();
+  const [helperName, setHelperName] = useState(null);
   console.log(data);
+  
+  const handleClickHelperName = (help, helpName) => {
+    setSelectedHelper(help);
+    setHelperName(helpName);
+  };
 
   return (
     <div className="p-4 bg-light">
@@ -50,7 +56,7 @@ const MegaMenu = ({
                           key={help.id}
                           className="cursor-pointer text-primary"
                           style={{ cursor: "pointer" }}
-                          onClick={() => setSelectedHelper(help)} 
+                          onClick={() => handleClickHelperName(help, help.name)}
                         >
                           {help.name}
                         </p>
@@ -64,7 +70,6 @@ const MegaMenu = ({
         </div>
       )}
 
-      {/* لو في helper مختار اعرض TemplateProjectForm */}
       {selectedHelper && (
         <TemplateProjectForm
           t={t}
@@ -82,6 +87,7 @@ const MegaMenu = ({
           isLoading={isLoading}
           id={id}
           skills={skills}
+          helperName={helperName}
         />
       )}
     </div>

@@ -7,6 +7,8 @@ export default function SelectField({
   error,
   ...props
 }) {
+  console.log(props);
+  
   return (
     <div className="input-field">
       {props.label && (
