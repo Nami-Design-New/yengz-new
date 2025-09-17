@@ -740,7 +740,8 @@
       "title": "Settings",
       "editEnterprise": "Edit Enterprise",
       "teams": "Teams",
-      "funding": "Funding Source"
+      "funding": "Funding Source",
+      "leave": "Leave"
     },
     "orgs": {
       "addMember": "Add Member",

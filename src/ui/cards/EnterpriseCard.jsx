@@ -5,8 +5,7 @@ import DataLoader from "../DataLoader";
 
 const EnterpriseCard = () => {
   const { data: orgsData, isLoading } = useGetOrgsApp();
-  // console.log("orgsData", orgsData);
-
+  
   if (isLoading) {
     return <DataLoader />;
   }

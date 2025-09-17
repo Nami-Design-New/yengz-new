@@ -8901,3 +8901,9 @@ body.en header .navbar .nav-search {
 .text-black-hover-blue:hover {
   color: #410c9e; /* الأزرق الافتراضي في Bootstrap */
 }
+.main-color {
+  color: #410c9e;
+}
+.bg-main-color {
+  color: #410c9e;
+}
