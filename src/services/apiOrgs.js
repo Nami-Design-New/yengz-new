@@ -43,6 +43,21 @@ export async function getFirstTeamMembers(userName) {
   }
 }
 
+
+// get_company_team
+export async function getCompanyTeam(userName) {
+  try {
+    const req = await axiosInstance.post("/user/get_company_teams", { user_name: userName });
+    return req.data.data;
+  } catch (err) {
+    throw new Error(err.message);
+  }
+}
+
+
+
+
+
 export async function acceptSponsorInvitation(requestBody, querClinet) {
   try {
     const req = await axiosInstance.post(
@@ -76,6 +91,18 @@ export async function changeSponsor(requestBody ) {
       requestBody
     );
    
+    return req.data.data;
+  } catch (error) {
+    throw new Error(error.message);
+  }
+}
+export async function createCompany(requestBody , querClinet ) {
+  try {
+    const req = await axiosInstance.post(
+      "/user/create_company",
+      requestBody
+    );
+    querClinet.invalidateQueries(["create_company"]);   
     return req.data.data;
   } catch (error) {
     throw new Error(error.message);

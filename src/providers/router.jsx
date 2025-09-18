@@ -81,6 +81,8 @@ import CreateEnterpriseProject from "../ui/enterprise/projects/CreateEnterpriseP
 // Business Solutions
 import BusinessSolutions from "../routes/BusinessSolutions";
 import HelpCenter from "../routes/HelpCenter";
+import AddTeamPage from "../routes/enterprise/AddTeamPage";
+import TeamCard from "../ui/enterprise/TeamCard";
 
 const router = createBrowserRouter([
   {
@@ -432,7 +434,14 @@ const router = createBrowserRouter([
             element: <EnterpriseLayout />,
             children: [
               { index: true, element: <EnterpriseDetails /> },
-              { path: "teams", element: <Teams /> },
+              {
+                path: "teams",
+                element: <Teams />,
+                children: [
+                  { index:true, element: <TeamCard /> }, 
+                  { path: "create", element: <AddTeamPage /> }, 
+                ],
+              },
               { path: "edit", element: <EditEnterprise /> },
               { path: "funding", element: <FundSource /> },
             ],

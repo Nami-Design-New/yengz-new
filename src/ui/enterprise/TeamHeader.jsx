@@ -2,9 +2,18 @@ import React from "react";
 import { Dropdown } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
 import AddButton from "./AddButton ";
+import { useNavigate } from "react-router";
 
-const TeamHeader = ({ title, projects, budget, canDelete = true }) => {
+const TeamHeader = ({
+  title,
+  projects,
+  budget,
+  canDelete = true,
+  canAddMember = true,
+  companyDetailsData,
+}) => {
   const { t } = useTranslation();
+  const navigate = useNavigate();
 
   return (
     <div className="enterprise-team__header">
@@ -23,19 +32,27 @@ const TeamHeader = ({ title, projects, budget, canDelete = true }) => {
       </div>
 
       <div className="button__group">
-        <AddButton
-          text={t("enterprise.orgs.addMember")}
-          icon={<i className="fa-regular fa-plus"></i>}
-        />
+        {companyDetailsData.can_add_members === true ? (
+          <AddButton
+            text={t("enterprise.orgs.addMember")}
+            icon={<i className="fa-regular fa-plus"></i>}
+            onClick={navigate("/")}
+          />
+        ) : canAddMember ? (
+          <AddButton
+            text={t("enterprise.orgs.addMember")}
+            icon={<i className="fa-regular fa-plus"></i>}
+            onClick={navigate("/")}
+          />
+        ) : null}
         <Dropdown>
           <Dropdown.Toggle split id="dropdown-split-basic" />
-
           <Dropdown.Menu>
             <Dropdown.Item>
               <i className="fa-solid fa-pen-to-square"></i>{" "}
               {t("enterprise.teams.editTeam", "تعديل الفريق")}
             </Dropdown.Item>
-            {canDelete && (
+            {canDelete && title !== "المدراء" && (
               <Dropdown.Item>
                 <i className="fa-regular fa-trash"></i>{" "}
                 {t("enterprise.teams.deleteTeam", "حذف الفريق")}

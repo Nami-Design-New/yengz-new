@@ -1,6 +1,13 @@
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { Link, NavLink, Outlet, useLocation, useParams } from "react-router";
+import {
+  Link,
+  NavLink,
+  Outlet,
+  useLocation,
+  useNavigate,
+  useParams,
+} from "react-router";
 import AddButton from "../ui/enterprise/AddButton ";
 import PageHeader from "../ui/enterprise/createEnterprise/PageHeader";
 import useGetCompanyDetails from "../hooks/orgs/useGetCompanyDetails";
@@ -16,6 +23,7 @@ const EnterpriseLayout = () => {
   const pathSegments = location.pathname.split("/").filter(Boolean);
   const lastSegment = pathSegments[pathSegments.length - 1];
   const [previewImage, setPreviewImage] = useState(null);
+  const navigate = useNavigate();
 
   const { link } = useParams();
   const { data: companyDetailsData, isLoading } = useGetCompanyDetails(link);
@@ -53,7 +61,7 @@ const EnterpriseLayout = () => {
       }
     );
   }
-  
+
   function handleChange(e) {
     const file = e.target.files[0];
     if (file) {
@@ -84,7 +92,7 @@ const EnterpriseLayout = () => {
             <AddButton
               text={t("enterprise.orgs.addTeam")}
               icon={<i className="fa-regular fa-plus"></i>}
-              onClick={() => alert("Member added!")}
+              onClick={() => navigate(`/orgs/${link}/teams/create`)}
             />
           )}
           {}
