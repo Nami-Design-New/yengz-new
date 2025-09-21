@@ -1,10 +1,10 @@
-import React from "react";
+import { Link } from "react-router";
 
-const UserList = ({ members }) => {
+const UserList = ({ members ,id}) => {
   console.log("members", members);
 
   return (
-    <div className="enterprise-team__user-list mt-2">
+    <Link to={`${id}/members`} className="enterprise-team__user-list mt-2">
       {members.map((member) => (
         <img
           key={member.id}
@@ -13,7 +13,7 @@ const UserList = ({ members }) => {
           className="enterprise-team__image"
         />
       ))}
-    </div>
+    </Link>
   );
 };
 

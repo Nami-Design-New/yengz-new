@@ -3,7 +3,7 @@ import { getOrgs } from "../../services/apiOrgs";
 
 function useGetOrgsApp() {
   const { isLoading, data, error } = useQuery({
-    queryKey: ["useOrgsApp"],
+    queryKey: ["orgsApp"],
     queryFn: () => getOrgs(),
   });
 

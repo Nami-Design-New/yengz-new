@@ -3,7 +3,7 @@ import { getCompanyCategory } from "../../services/apiOrgs";
 
 function useGetCompanyCategory() {
   const { isLoading, data, error } = useQuery({
-    queryKey: ["useOrgsApp"],
+    queryKey: ["companyCategory"],
     queryFn: () => getCompanyCategory(),
   });
 

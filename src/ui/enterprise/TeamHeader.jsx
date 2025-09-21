@@ -1,10 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import { Dropdown } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
 import AddButton from "./AddButton ";
-import { useNavigate } from "react-router";
+import { Link, useParams } from "react-router";
+import { AddMemberModal } from "./AddMemberModal";
+import useDeleteCompanyTeam from "../../hooks/orgs/useDeleteCompanyTeam";
+import { toast } from "sonner";
+import { QueryClient, useQueryClient } from "@tanstack/react-query";
 
 const TeamHeader = ({
+  id,
   title,
   projects,
   budget,
@@ -13,11 +18,36 @@ const TeamHeader = ({
   companyDetailsData,
 }) => {
   const { t } = useTranslation();
-  const navigate = useNavigate();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedTeamId, setSelectedTeamId] = useState(null); // 👈
+  const queryClient = useQueryClient();
+  const { link } = useParams();
+  
+  const { handleDeleteCompanyTeam } = useDeleteCompanyTeam();
+
+  function onSubmitDeleteCompanyTeam(userName, teamId) {
+    handleDeleteCompanyTeam(
+      { user_name: userName, team_id: teamId },
+      {
+        onSuccess: () => {
+          toast.success(t("team deleted success"));
+          queryClient.invalidateQueries(["companyTeam"]);
+        },
+        onError: (error) => {
+          toast.error(error);
+        },
+      }
+    );
+  }
+
+  const openModal = () => {
+    setSelectedTeamId(id); // 👈 نخزن id الفريق الحالي
+    setIsModalOpen(true);
+  };
 
   return (
     <div className="enterprise-team__header">
-      <div className="enterprise-team__info-wrapper">
+      <Link to={`${id}/members`} className="enterprise-team__info-wrapper">
         <h3 className="enterprise-team__title">{title}</h3>
         <div className="enterprise-team__info">
           <span className="enterprise-team__info-item">
@@ -29,20 +59,20 @@ const TeamHeader = ({
             {budget || "$0.00 من غير محدودة"}
           </span>
         </div>
-      </div>
+      </Link>
 
       <div className="button__group">
         {companyDetailsData.can_add_members === true ? (
           <AddButton
             text={t("enterprise.orgs.addMember")}
             icon={<i className="fa-regular fa-plus"></i>}
-            onClick={navigate("/")}
+            onClick={openModal}
           />
         ) : canAddMember ? (
           <AddButton
             text={t("enterprise.orgs.addMember")}
             icon={<i className="fa-regular fa-plus"></i>}
-            onClick={navigate("/")}
+            onClick={openModal}
           />
         ) : null}
         <Dropdown>
@@ -53,7 +83,9 @@ const TeamHeader = ({
               {t("enterprise.teams.editTeam", "تعديل الفريق")}
             </Dropdown.Item>
             {canDelete && title !== "المدراء" && (
-              <Dropdown.Item>
+              <Dropdown.Item
+                onClick={() => onSubmitDeleteCompanyTeam(link, id)}
+              >
                 <i className="fa-regular fa-trash"></i>{" "}
                 {t("enterprise.teams.deleteTeam", "حذف الفريق")}
               </Dropdown.Item>
@@ -61,6 +93,11 @@ const TeamHeader = ({
           </Dropdown.Menu>
         </Dropdown>
       </div>
+      <AddMemberModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        selectedTeamId={selectedTeamId}
+      />
     </div>
   );
 };

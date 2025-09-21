@@ -83,6 +83,7 @@ import BusinessSolutions from "../routes/BusinessSolutions";
 import HelpCenter from "../routes/HelpCenter";
 import AddTeamPage from "../routes/enterprise/AddTeamPage";
 import TeamCard from "../ui/enterprise/TeamCard";
+import TeamMembers from "../ui/enterprise/TeamMembers";
 
 const router = createBrowserRouter([
   {
@@ -438,8 +439,9 @@ const router = createBrowserRouter([
                 path: "teams",
                 element: <Teams />,
                 children: [
-                  { index:true, element: <TeamCard /> }, 
-                  { path: "create", element: <AddTeamPage /> }, 
+                  { index: true, element: <TeamCard /> },
+                  { path: ":id/members", element: <TeamMembers /> },
+                  { path: "create", element: <AddTeamPage /> },
                 ],
               },
               { path: "edit", element: <EditEnterprise /> },

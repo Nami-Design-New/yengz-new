@@ -6,12 +6,19 @@ import useGetCompanyCategory from "../../../hooks/orgs/useGetCompanyCategory";
 import DataLoader from "../../DataLoader";
 import usePostCreateCompany from "../../../hooks/orgs/usePostCreateCompany";
 import { toast } from "sonner";
+import { useNavigate, useParams } from "react-router";
+import useDeleteCompany from "../../../hooks/orgs/useDeleteCompany";
+import { useQueryClient } from "@tanstack/react-query";
 
 const CreateEnterpriseForm = ({ type, companyDetailsSimpleData }) => {
   const { t } = useTranslation();
+  const navigate = useNavigate();
+  const queryClient = useQueryClient();
 
+  const { link } = useParams();
   const { data: companyData, isLoading } = useGetCompanyCategory();
   const { handleCreateCompany } = usePostCreateCompany();
+  const { handleDeleteCompany } = useDeleteCompany();
 
   const [formData, setFormData] = useState({
     name: "",
@@ -28,13 +35,21 @@ const CreateEnterpriseForm = ({ type, companyDetailsSimpleData }) => {
     if (type === "edit" && companyDetailsSimpleData) {
       setFormData({
         name: companyDetailsSimpleData.name || "",
-        company_category_id: companyData.id || "",
-        // link: companyDetailsSimpleData.website || "",
+        company_category_id:
+          companyDetailsSimpleData.company_category_id ||
+          companyData?.[0]?.id ||
+          "",
         user_name: companyDetailsSimpleData.user_name || "",
         description: companyDetailsSimpleData.description || "",
         employee_count: companyDetailsSimpleData.employee_count || "",
         website: companyDetailsSimpleData.website || "",
       });
+    } else if (type === "create" && companyData?.length > 0) {
+      // في حالة create حط أول كاتيجوري كقيمة افتراضية
+      setFormData((prev) => ({
+        ...prev,
+        company_category_id: companyData[0].id,
+      }));
     }
   }, [type, companyDetailsSimpleData, companyData]);
 
@@ -51,19 +66,28 @@ const CreateEnterpriseForm = ({ type, companyDetailsSimpleData }) => {
   };
 
   function onSubmit(formData) {
-    console.log(formData);
-
-    handleCreateCompany(
-      {
-        formData,
+    handleCreateCompany(formData, {
+      onSuccess: () => {
+        toast.success(t("communities.commentAddedSuccessfully"));
+        navigate(`/orgs/${formData.user_name}`);
       },
+      onError: (error) => {
+        toast.error(error);
+        
+      },
+    });
+  }
+  function onSubmitDeleteCompany(userName) {
+    handleDeleteCompany(
+      { user_name: userName },
       {
         onSuccess: () => {
           toast.success(t("communities.commentAddedSuccessfully"));
-          // querClinet.invalidateQueries(["create_company"]);
+          queryClient.invalidateQueries(["orgsApp"]);
+          navigate(`/orgs`);
         },
         onError: (error) => {
-          toast.error(error?.response?.data?.message);
+          toast.error(error);
         },
       }
     );
@@ -157,7 +181,7 @@ const CreateEnterpriseForm = ({ type, companyDetailsSimpleData }) => {
       <div className="buttons__wrapper">
         <button
           onClick={() => onSubmit(formData)}
-          type="submit"
+          type="button"
           className="main-btn create-button"
         >
           {type === "edit" && companyDetailsSimpleData?.update_company
@@ -168,7 +192,10 @@ const CreateEnterpriseForm = ({ type, companyDetailsSimpleData }) => {
         {type === "edit" && (
           <button
             type="button"
-            onClick={() => console.log("Delete enterprise")}
+            onClick={() => {
+              onSubmitDeleteCompany(link);
+              console.log(link);
+            }}
             className="main-btn delete__button--enterprise"
           >
             <i className="fa-regular fa-trash"></i>
