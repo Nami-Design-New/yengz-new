@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import SectionHeader from "../ui/SectionHeader";
-import { OverlayTrigger } from "react-bootstrap";
+import { OverlayTrigger, Tooltip } from "react-bootstrap";
 import ChargeModal from "../ui/cards/ChargeModal";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
+import Transactions from "../ui/Transactions";
+import WithdrawModal from "../ui/modals/WithdrawModal";
 
 const Balance = () => {
   const { t } = useTranslation();

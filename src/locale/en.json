@@ -93,7 +93,8 @@
     "logoutSuccess": "Logged out successfully",
     "logoutError": "Error logging out",
     "work_solutions": "Business Solutions",
-    "help_center": "Help Center"
+    "help_center": "Help Center",
+    "orgs": "organizations"
   },
   "home": {
     "searchFor": "Search for...",
@@ -231,7 +232,7 @@
     "skills": "Skills",
     "sendingCode": "Sending Code...",
     "cancel": "Cancel",
-     "chooseRole": "What your role?",
+    "chooseRole": "What your role?",
     "seller": "Seller",
     "buyer": "Buyer",
     "both": "Both"
@@ -285,12 +286,11 @@
     "refused": "Rejected",
     "offer": "Offers",
     "addFirst": "Add First Offer",
-       "manualEntryTitle": "Manual Entry",
+    "manualEntryTitle": "Manual Entry",
     "manualEntryDesc": "Write the project title and description yourself and enter the rest of the details manually.",
     "templateEntryTitle": "Choose from Template",
     "templateEntryDesc": "Select a ready-made template to fill in the data faster and easier.",
-    "backToFormType":"Back to formtype"
-
+    "backToFormType": "Back to formtype"
   },
   "communities": {
     "worksHasBeenDone": "Examples of work you have completed",
@@ -598,7 +598,7 @@
     "country": "Country",
     "editWork": "Edit Work",
     "editCertificate": "Edit certificate",
-     "ratings": "Ratings",
+    "ratings": "Ratings",
     "professionalism": "Professionalism",
     "communication": "Communication",
     "quality": "Quality",
@@ -607,11 +607,11 @@
     "dealAgain": "Would Deal Again",
     "averageRating": "Average Rating",
     "noRatings": "No ratings yet",
-     "customerReviews": "Customer Reviews",
-      "reviewOnService": "Review on Service",
-  "reviewOnProject": "Review on Project",
-  "review": "General Review",
-    "noReviews":"no reviews yet"
+    "customerReviews": "Customer Reviews",
+    "reviewOnService": "Review on Service",
+    "reviewOnProject": "Review on Project",
+    "review": "General Review",
+    "noReviews": "no reviews yet"
   },
   "recievedOrders": {
     "title": "Received Orders",
@@ -742,7 +742,7 @@
   "servicePriceText": "Set a fair price for your service based on its value and the time required to complete it.",
   "serviceDays": "Delivery Time",
   "serviceDaysText": "Set the estimated delivery time for your service, considering the time it will take to complete it.",
-   "addProjectAdvice": "Launch Your Project Today",
+  "addProjectAdvice": "Launch Your Project Today",
   "addProjectAdviceText": "With Yengez, you can start your project exactly the way you want. Simply provide the project details, budget, and expected duration to have it reviewed and published for free. Once published, freelancers will see your project, submit their proposals, and you can choose the most suitable offer to begin right away.",
   "projectPlatformGuarantee": "Yengez Safeguards Your Rights",
   "projectPlatformGuaranteeText": "Yengez acts as a trusted intermediary between you and the freelancer you hire. The payment is securely held and only released once the project is fully completed to your satisfaction.",
@@ -764,7 +764,8 @@
       "title": "Settings",
       "editEnterprise": "Edit Enterprise",
       "teams": "Teams",
-      "funding": "Funding Source"
+      "funding": "Funding Source",
+      "leave": "Leave"
     },
     "orgs": {
       "addMember": "Add Member",
@@ -893,10 +894,63 @@
         ]
       },
       "orgs": {
-        "addMember": "Add Member"
+        "addMember": "Add Member",
+        "team": {
+          "addPermissions": "Add Permissions",
+          "name": "Name",
+          "enterName": "Enter name",
+          "description": "Description",
+          "enterDescription": "Enter description",
+          "permissions": "Permissions",
+
+          "projects": "Projects",
+          "memberProjects": "Manage member projects",
+          "teamProjects": "Manage team projects",
+          "orgProjects": "Manage organization projects",
+
+          "offers": "Offers",
+          "memberOffers": "Manage member offers",
+          "teamOffers": "Manage team offers",
+          "orgOffers": "Manage organization offers",
+
+          "deals": "Deals",
+          "memberDeals": "Manage member deals",
+          "teamDeals": "Manage team deals",
+          "orgDeals": "Manage organization deals",
+
+          "freelancers": "Freelancers",
+          "memberFreelancers": "Browse member freelancers",
+          "teamFreelancers": "Browse team freelancers",
+          "orgFreelancers": "Browse organization freelancers",
+
+          "finance": "Financial Transactions",
+          "memberFinance": "Browse member payments",
+          "teamFinance": "Browse team payments",
+          "orgFinance": "Browse organization payments",
+
+          "notes": "Notes",
+          "memberNotes": "Manage member notes",
+          "teamNotes": "Manage team notes",
+          "orgNotes": "Manage organization notes",
+
+          "members": "Organization Members",
+          "selfMembership": "Manage own membership",
+          "teamMembers": "Manage team members",
+          "orgMembers": "Manage organization members",
+
+          "orgPermissions": "Organization Permissions",
+          "browseTeams": "Browse teams",
+          "addTeam": "Add team",
+          "editTeams": "Edit teams",
+          "deleteTeams": "Delete teams",
+          "editOrg": "Edit organization",
+
+          "save": "Save"
+        }
       },
       "form": {
         "name": "Name",
+        "userName": "User Name",
         "field": "Field",
         "link": "Link",
         "linkHint": "Must be unique and composed of only English letters, numbers, and underscores (_) between them.",

@@ -40,6 +40,12 @@ export default function UserMenu({ user }) {
                       {t("navbar.balance")}
                     </Link>
                   </li>
+                  <li>
+                    <Link className="dropdown-item_Link" to="/orgs">
+                      <i className="fa-sharp fa-solid fa-building"></i>
+                      {t("navbar.orgs")}
+                    </Link>
+                  </li>
 
                   <li>
                     <Link className="dropdown-item_Link" to="/manage-accounts">

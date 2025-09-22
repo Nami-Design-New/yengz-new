@@ -9265,3 +9265,18 @@ body.en header .navbar .loged-in-minor-menu .link .btns a:first-child i {
 body.en header .navbar .nav-search {
   padding: 8px 8px 8px 16px !important;
 }/*# sourceMappingURL=main.css.map */
+
+.text-black-hover-blue {
+  color: black;
+  /* transition: color 0.3s ease; */
+}
+
+.text-black-hover-blue:hover {
+  color: #410c9e; /* الأزرق الافتراضي في Bootstrap */
+}
+.main-color {
+  color: #410c9e;
+}
+.bg-main-color {
+  color: #410c9e;
+}

@@ -20,10 +20,10 @@ export async function createWithdraw(requestBody) {
   }
 }
 
-export async function deleteBank(id) {
+export async function deleteBank(user_name) {
   try {
     await axiosInstance.post("/user/delete_bank", {
-      id,
+      user_name,
     });
   } catch (error) {
     throw new Error(error.message);

@@ -1,11 +1,12 @@
 import { Accordion } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import useGetSolution from "../hooks/business/useGetSolution";
+import VideoPopup from "../ui/VideoPopup";
 
 export default function BusinessSolutions() {
   const { data } = useGetSolution();
   const lang = useSelector((state) => state.language.lang);
-  console.log(data);
+  console.log("business solution data", data);
 
   return (
     <>
@@ -15,14 +16,35 @@ export default function BusinessSolutions() {
             <div className="row">
               <div
                 className={
-                  sol?.image
+                  sol?.shape === "simple" && sol.image
                     ? "col-md-6 p-2 d-flex flex-column justify-content-center"
                     : "col-md-12 text-center p-2"
                 }
               >
                 <h2>{sol?.name}</h2>
                 <p>{sol?.sub_title}</p>
-                {sol?.button && <button>{sol?.button}</button>}
+                {sol?.shape === "simple" ? <VideoPopup sol={sol} /> : null}
+                {sol.shape === "simple" ? null : (
+                  <div className="row g-4">
+                    {sol.features.map((feat, index) => (
+                      <div key={index} className="col-md-3 col-6 ">
+                        <a href={feat.url} className="text-decoration-none">
+                          <div className="position-relative rounded overflow-hidden">
+                            <img
+                              src={feat.image}
+                              className="img-fluid w-100"
+                              alt={feat.name}
+                              style={{ height: "250px", objectFit: "cover" }}
+                            />
+                          </div>
+                          <h5 className="text-black-hover-blue mt-4 text-center">
+                            {feat?.name}
+                          </h5>
+                        </a>
+                      </div>
+                    ))}
+                  </div>
+                )}
               </div>
               {sol?.image && (
                 <div className="col-md-6 p-2">

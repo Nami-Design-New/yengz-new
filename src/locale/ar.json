@@ -93,7 +93,8 @@
     "logoutSuccess": "تم تسجيل الخروج بنجاح",
     "logoutError": "خطأ في تسجيل الخروج",
     "work_solutions": "حلول الأعمال",
-    "help_center": "مركز المساعدة"
+    "help_center": "مركز المساعدة",
+    "orgs": "المؤسسات"
   },
   "home": {
     "searchFor": "ابحث عن...",
@@ -232,7 +233,7 @@
     "skills": "المهارات",
     "sendingCode": "جارٍ إرسال الرمز...",
     "cancel": "إلغاء",
-      "chooseRole": "ما هو دورك؟",
+    "chooseRole": "ما هو دورك؟",
     "seller": "بائع",
     "buyer": "مشتري",
     "both": "كلاهما"
@@ -258,8 +259,8 @@
     "openProjects": "المشاريع المفتوحة",
     "inProgressProjects": "المشاريع قيد التنفيذ",
     "addOffer": "أضف عرضك الآن",
+    "price": "سعر الخدمه",
     "oferrDescription": "تفاصيل العرض",
-    "price": "المدة المتوقعة",
     "yourDuesAfterfees": "المستحقات بعد الرسوم",
     "send": "ارسال",
     "offerAddedSuccessfully": "تم اضافة عرضك بنجاح",
@@ -286,11 +287,11 @@
     "refused": "مرفوض",
     "offer": "عروض",
     "addFirst": "اضف أول عرض",
-     "manualEntryTitle": "إدخال يدوي",
+    "manualEntryTitle": "إدخال يدوي",
     "manualEntryDesc": "اكتب عنوان ووصف المشروع بنفسك وأدخل باقي التفاصيل بشكل يدوي.",
     "templateEntryTitle": "الاختيار من نموذج",
     "templateEntryDesc": "اختر نموذج جاهز لتعبئة البيانات بشكل أسرع وأسهل.",
-    "backToFormType":"اعاده تعيين"
+    "backToFormType": "اعاده تعيين"
   },
   "communities": {
     "worksHasBeenDone": "نماذج أعمال قمت بتنفيذها",
@@ -606,11 +607,11 @@
     "dealAgain": "التعامل مرة أخرى",
     "averageRating": "متوسط التقييم",
     "noRatings": "لا توجد تقييمات بعد",
-      "customerReviews": "آراء العملاء",
-      "reviewOnService": "تقييم على الخدمة",
-  "reviewOnProject": "تقييم على المشروع",
-  "review": "تقييم عام",
-  "noReviews":"لا يوجد تقييمات حالية"
+    "customerReviews": "آراء العملاء",
+    "reviewOnService": "تقييم على الخدمة",
+    "reviewOnProject": "تقييم على المشروع",
+    "review": "تقييم عام",
+    "noReviews": "لا يوجد تقييمات حالية"
   },
   "status": {
     "orderStatus": "حالة الطلب",
@@ -754,7 +755,8 @@
       "title": "إعدادات",
       "editEnterprise": "تعديل المؤسسة",
       "teams": "فرق العمل",
-      "funding": "مصدر التمويل"
+      "funding": "مصدر التمويل",
+      "leave": "المغادره"
     },
     "orgs": {
       "addMember": "إضافة عضو",
@@ -883,10 +885,63 @@
         ]
       },
       "orgs": {
-        "addMember": "إضافة عضو"
+        "addMember": "إضافة عضو",
+        "team": {
+          "addPermissions": "إضافة صلاحيات",
+          "name": "الاسم",
+          "enterName": "ادخل الاسم",
+          "description": "الوصف",
+          "enterDescription": "ادخل الوصف",
+          "permissions": "الصلاحيات",
+
+          "projects": "المشاريع",
+          "memberProjects": "إدارة مشاريع العضو",
+          "teamProjects": "إدارة مشاريع الفريق",
+          "orgProjects": "إدارة مشاريع المؤسسة",
+
+          "offers": "العروض",
+          "memberOffers": "إدارة عروض العضو",
+          "teamOffers": "إدارة عروض الفريق",
+          "orgOffers": "إدارة عروض المؤسسة",
+
+          "deals": "الصفقات",
+          "memberDeals": "إدارة صفقات العضو",
+          "teamDeals": "إدارة صفقات الفريق",
+          "orgDeals": "إدارة صفقات المؤسسة",
+
+          "freelancers": "المستقلين",
+          "memberFreelancers": "تصفح مستقلين العضو",
+          "teamFreelancers": "تصفح مستقلين الفريق",
+          "orgFreelancers": "تصفح مستقلين المؤسسة",
+
+          "finance": "المعاملات المالية",
+          "memberFinance": "تصفح مدفوعات العضو",
+          "teamFinance": "تصفح مدفوعات الفريق",
+          "orgFinance": "تصفح مدفوعات المؤسسة",
+
+          "notes": "الملاحظات",
+          "memberNotes": "إدارة ملاحظات العضو",
+          "teamNotes": "إدارة ملاحظات الفريق",
+          "orgNotes": "إدارة ملاحظات المؤسسة",
+
+          "members": "أعضاء المؤسسة",
+          "selfMembership": "إدارة عضويته",
+          "teamMembers": "إدارة أعضاء الفريق",
+          "orgMembers": "إدارة أعضاء المؤسسة",
+
+          "orgPermissions": "صلاحيات المؤسسة",
+          "browseTeams": "تصفح فرق",
+          "addTeam": "إضافة فريق",
+          "editTeams": "تعديل فرق",
+          "deleteTeams": "حذف فرق",
+          "editOrg": "تعديل المؤسسة",
+
+          "save": "حفظ"
+        }
       },
       "form": {
         "name": "الاسم",
+        "userName": "اسم المستخدم",
         "field": "المجال",
         "link": "الرابط",
         "linkHint": "يجب أن يكون فريدًا ومؤلفًا من أحرف إنجليزية وأرقام فقط وعوارض سفلية (_) بينها فقط.",

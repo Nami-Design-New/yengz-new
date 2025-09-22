@@ -1,14 +1,19 @@
-import React from "react";
+import { Link } from "react-router";
 
-const UserList = () => {
+const UserList = ({ members ,id}) => {
+  console.log("members", members);
+
   return (
-    <div className="enterprise-team__user-list">
-      <img
-        src="/images/enterprise/organization_default.png"
-        alt="team"
-        className="enterprise-team__image"
-      />
-    </div>
+    <Link to={`${id}/members`} className="enterprise-team__user-list mt-2">
+      {members.map((member) => (
+        <img
+          key={member.id}
+          src={member.user.image}
+          alt={member.user.name}
+          className="enterprise-team__image"
+        />
+      ))}
+    </Link>
   );
 };
 
