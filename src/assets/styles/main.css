@@ -5862,8 +5862,7 @@ body .service-details .service-content .content .service-owner-card .btns .dropd
   opacity: 0;
 }
 body .service-details .service-content .content .service-owner-card .btns .dropdown .dropdown-menu .link span .alert::after {
-  -webkit-clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
-          clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
   width: 16px;
   height: 10px;
   background: var(--input-bg);
@@ -8878,6 +8877,380 @@ body .business_solutions .accordion .accordion-item .accordion-body {
   font-weight: 400;
   color: var(--text-color);
   padding: 0;
+}
+body .tickets-page {
+  padding: 60px 8px;
+}
+body .tickets-page .tickets-header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  position: relative;
+  margin-bottom: 20px;
+}
+body .tickets-page .tickets-header .add-ticket-btn {
+  border: 1px solid var(--main-color);
+  color: var(--main-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 16px;
+  transition: var(--main-transation);
+  border-radius: 12px;
+  gap: 4px;
+  background: none;
+  cursor: pointer;
+}
+body .tickets-page .tickets-header .add-ticket-btn i {
+  margin: 0 4px;
+}
+body .tickets-page .tickets-header .add-ticket-btn:hover {
+  background: var(--main-color);
+  color: #fff;
+}
+body .tickets-page .tickets-header .page-title {
+  font-size: 18px;
+  font-weight: 600;
+}
+body .tickets-page .tickets-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+body .tickets-page .tickets-list .ticket-card {
+  background: #f8f9fa;
+  padding: 15px;
+  border-radius: var(--card-border-radius);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid #e1e1e1;
+}
+body .tickets-page .tickets-list .ticket-card .ticket-info .ticket-number {
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+body .tickets-page .tickets-list .ticket-card .ticket-info .ticket-title {
+  color: var(--main-color);
+  margin-bottom: 5px;
+}
+body .tickets-page .tickets-list .ticket-card .ticket-info .ticket-subtitle {
+  color: #555;
+  margin-bottom: 5px;
+}
+body .tickets-page .tickets-list .ticket-card .ticket-info .ticket-date {
+  font-size: 13px;
+  color: #888;
+}
+body .tickets-page .tickets-list .ticket-card .ticket-status {
+  padding: 6px 12px;
+  border-radius: var(--card-border-radius);
+  font-weight: 500;
+  border: none;
+  cursor: default;
+}
+body .tickets-page .tickets-list .ticket-card .ticket-status.pending {
+  background: #ffeeba;
+  color: #856404;
+}
+body .tickets-page .tickets-list .ticket-card .ticket-status.in_progress {
+  background: #cce5ff;
+  color: #004085;
+}
+body .tickets-page .tickets-list .ticket-card .ticket-status.wait_for_user {
+  background: #fff3cd;
+  color: #856404;
+}
+body .tickets-page .tickets-list .ticket-card .ticket-status.closed {
+  background: #f8d7da;
+  color: #721c24;
+}
+body .tickets-page .tickets-list .ticket-card .ticket-status.completed {
+  background: #d4edda;
+  color: #155724;
+}
+body .help-center-sidebar {
+  min-height: 100vh;
+  background: #fff;
+  border-left: 1px solid #ddd;
+  padding: 20px;
+}
+body .help-center-sidebar .logo {
+  margin-bottom: 30px;
+  display: flex;
+  justify-content: center;
+}
+body .help-center-sidebar .logo img {
+  height: 40px;
+}
+body .help-center-sidebar nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+body .help-center-sidebar nav ul li {
+  margin-bottom: 12px;
+}
+body .help-center-sidebar nav ul li.with-divider {
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 12px;
+  margin-bottom: 16px;
+}
+body .help-center-sidebar nav ul li a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  padding: 10px;
+  border-radius: 6px;
+  color: #333;
+  font-size: 0.95rem;
+  transition: 0.3s;
+}
+body .help-center-sidebar nav ul li a i {
+  font-size: 1rem;
+  color: #666;
+}
+body .help-center-sidebar nav ul li a:hover {
+  background: var(--main10-color);
+  color: var(--main-color);
+}
+body .help-center-sidebar nav ul li a:hover i {
+  color: var(--main-color);
+}
+body .help-center-sidebar nav ul li a.active {
+  background: var(--main10-color);
+  color: var(--main-color);
+  font-weight: 600;
+}
+body .help-center-sidebar nav ul li a.active i {
+  color: var(--main-color);
+}
+body .help-center-searchbar {
+  padding: 12px 0px;
+  border-bottom: 1px solid #eee;
+  margin-bottom: 20px;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+body .help-center-searchbar input {
+  border-radius: 8px;
+  padding: 10px 15px;
+  border: 1px solid #ddd;
+  width: 100%;
+  transition: all 0.3s ease;
+  font-size: 0.95rem;
+}
+body .help-center-searchbar input:focus {
+  border-color: var(--main-color);
+  box-shadow: 0 0 5px rgba(247, 148, 29, 0.3);
+  outline: none;
+}
+body .help-center-page {
+  flex: 1;
+  padding: 20px;
+}
+body .help-center-page h1,
+body .help-center-page h2,
+body .help-center-page h3 {
+  color: #333;
+  margin-bottom: 16px;
+  font-weight: 600;
+}
+body .help-center-page p {
+  color: #555;
+  line-height: 1.6;
+  margin-bottom: 12px;
+}
+body .faq-page h1 {
+  font-size: 1.8rem;
+  color: var(--main-color);
+  margin-bottom: 10px;
+}
+body .faq-page .faq-title {
+  font-size: 1rem;
+  color: #666;
+  margin: 25px 0;
+}
+body .faq-page .faq-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+body .faq-page .faq-list .faq-link {
+  display: block;
+  padding: 12px 16px;
+  background: #fafafa;
+  border: 1px solid #eee;
+  border-radius: var(--card-border-radius);
+  color: #333;
+  font-size: 0.95rem;
+  text-decoration: none;
+  transition: 0.3s;
+}
+body .faq-page .faq-list .faq-link:hover {
+  background: #fff;
+  border-color: var(--main-color);
+  color: var(--main-color);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+body .faq-details .faq-details-actions {
+  margin: 15px 0;
+  display: flex;
+  gap: 20px;
+  font-size: 0.95rem;
+  color: #555;
+}
+body .faq-details .faq-details-actions span {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+body .faq-details .faq-details-actions span i {
+  color: var(--main-color);
+}
+body .faq-details .faq-details-buttons {
+  display: flex;
+  gap: 12px;
+}
+body .faq-details .faq-details-buttons button {
+  padding: 8px 16px;
+  border: 1px solid #ddd;
+  border-radius: var(--card-border-radius);
+  background: #fff;
+  cursor: pointer;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: 0.3s;
+}
+body .faq-details .faq-details-buttons button i {
+  font-size: 1rem;
+  color: var(--black-color);
+}
+body .faq-details .faq-details-buttons button:hover {
+  background: var(--main10-color);
+  color: var(--main-color);
+  border-color: var(--main-color);
+}
+body .faq-details .faq-details-buttons button.active {
+  background: var(--main-color);
+  color: #fff;
+}
+body .faq-details .faq-details-buttons button.active i {
+  color: #fff;
+}
+body .knowledge-page h1 {
+  font-size: 1.8rem;
+  color: var(--main-color);
+  margin-bottom: 20px;
+}
+body .knowledge-page .helps-list {
+  margin-bottom: 30px;
+}
+body .knowledge-page .helps-list h2 {
+  font-size: 1rem;
+  margin-bottom: 8px;
+}
+body .knowledge-page .categories-list {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+body .knowledge-page .categories-list .category-card-link {
+  text-decoration: none;
+  color: inherit;
+  flex: 0 1 calc(33.333% - 16px);
+}
+body .knowledge-page .categories-list .category-card-link .category-card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+body .knowledge-page .categories-list .category-card-link .category-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+body .knowledge-page .categories-list .category-card-link .category-card .category-header {
+  display: flex;
+  align-items: center;
+  padding: 12px 16px;
+}
+body .knowledge-page .categories-list .category-card-link .category-card .category-header .category-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+body .knowledge-page .categories-list .category-card-link .category-card .category-header .category-title h3 {
+  margin: 0;
+  font-size: 1.1rem;
+  color: var(--black-color);
+}
+body .knowledge-page .categories-list .category-card-link .category-card .category-header .category-title .count {
+  font-size: 0.9rem;
+  color: #666;
+}
+body .knowledge-page .categories-list .category-card-link .category-card .category-details {
+  padding: 10px 16px;
+  border-top: 1px solid #eee;
+}
+body .knowledge-page .categories-list .category-card-link .category-card .category-details .help-item {
+  padding: 6px 0;
+}
+body .breadcrumb {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  gap: 4px;
+}
+body .breadcrumb .breadcrumb-item .breadcrumb-link {
+  color: var(--main-color);
+  text-decoration: none;
+  font-weight: 500;
+}
+body .breadcrumb .breadcrumb-item .breadcrumb-link:hover {
+  text-decoration: underline;
+}
+body .breadcrumb .breadcrumb-separator {
+  color: #666;
+}
+body .breadcrumb .breadcrumb-current {
+  font-weight: 600;
+  color: #333;
+}
+body .category-details-page {
+  padding: 20px;
+}
+body .category-details-page h2 {
+  margin-bottom: 16px;
+}
+body .category-details-page .help-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+body .category-details-page .help-list .help-item {
+  padding: 16px;
+}
+body .category-details-page .help-list .help-item h3 {
+  margin: 0 0 8px;
+  color: var(--main-color);
+}
+body .category-details-page .help-list .help-item p {
+  margin: 0 0 12px;
+  color: #333;
 }
 body main {
   min-height: calc(100dvh - 80px);

@@ -1,0 +1,104 @@
+.tickets-page {
+  padding: 60px 8px;
+
+.tickets-header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px; 
+  position: relative;
+  margin-bottom: 20px;
+
+  .add-ticket-btn {
+    border: 1px solid var(--main-color); 
+    color: var(--main-color);
+    @include centerFlex(); 
+    padding: 8px 16px;
+    transition: var(--main-transation);
+    border-radius: 12px; 
+    gap: 4px; 
+    background: none;
+    cursor: pointer;
+
+    i {
+      margin: 0 4px;
+    }
+
+    &:hover {
+      background: var(--main-color);
+      color: #fff;
+    }
+  }
+
+  .page-title {
+    font-size: 18px;
+    font-weight: 600;
+  }
+}
+
+
+  .tickets-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    .ticket-card {
+      background: #f8f9fa;
+      padding: 15px;
+      border-radius: var(--card-border-radius);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border: 1px solid #e1e1e1;
+
+      .ticket-info {
+        .ticket-number {
+          font-weight: 600;
+          margin-bottom: 5px;
+        }
+        .ticket-title {
+          color: var(--main-color);
+          margin-bottom: 5px;
+        }
+        .ticket-subtitle {
+          color: #555;
+          margin-bottom: 5px;
+        }
+        .ticket-date {
+          font-size: 13px;
+          color: #888;
+        }
+      }
+
+      .ticket-status {
+        padding: 6px 12px;
+        border-radius: var(--card-border-radius);
+        font-weight: 500;
+        border: none;
+        cursor: default;
+
+        &.pending {
+          background: #ffeeba;
+          color: #856404;
+        }
+        &.in_progress {
+          background: #cce5ff;
+          color: #004085;
+        }
+        &.wait_for_user {
+          background: #fff3cd;
+          color: #856404;
+        }
+        &.closed {
+          background: #f8d7da;
+          color: #721c24;
+        }
+        &.completed {
+          background: #d4edda;
+          color: #155724;
+        }
+      }
+    }
+  }
+}

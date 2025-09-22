@@ -1,4 +1,5 @@
-import { createBrowserRouter, Outlet } from "react-router";
+import { createBrowserRouter, Outlet } from "react-router-dom";
+
 import PrivateRoute from "./PrivateRoutes";
 // Layouts
 import RootLayout from "../layout/RootLayout";
@@ -17,7 +18,6 @@ import Register from "../routes/Register";
 import ForgetPassword from "../routes/ForgetPassword";
 
 // Categories
-
 import Categories from "../routes/Categories";
 import SubCategories from "../routes/SubCategories";
 
@@ -62,6 +62,8 @@ import Portfolios from "../routes/Portfolios";
 // Support
 import Complaints from "../routes/Complaints";
 
+//tickets 
+import Tickets from "../routes/tickets";
 // Static
 import About from "../routes/About";
 import AboutPreview from "../routes/AboutPreview";
@@ -80,6 +82,14 @@ import CreateEnterpriseProject from "../ui/enterprise/projects/CreateEnterpriseP
 
 // Business Solutions
 import BusinessSolutions from "../routes/BusinessSolutions";
+import HelpCenterLayout from "../layout/HelpCenterLayout";
+import FAQs from "../routes/helpCenter/FAQs";
+import KnowledgeBase from "../routes/helpCenter/KnowledgeBase";
+import FaqDetails from "../routes/helpCenter/FaqDetails";
+import HelpCategoryDetails from "../routes/helpCenter/KnowledgeDetails";
+import Seller from "../routes/helpCenter/Seller";
+import ExtraCategories from "../routes/helpCenter/ExtraCategories";
+// Company Organization
 import HelpCenter from "../routes/HelpCenter";
 import AddTeamPage from "../routes/enterprise/AddTeamPage";
 import TeamCard from "../ui/enterprise/TeamCard";
@@ -311,10 +321,10 @@ const router = createBrowserRouter([
       },
 
       // Business Solutions
-      {
-        path: "help-center",
-        children: [{ index: true, element: <HelpCenter /> }],
-      },
+      // {
+      //   path: "help-center",
+      //   children: [{ index: true, element: <HelpCenter /> }],
+      // },
 
       // Bids, Chat, Notifications
       {
@@ -390,6 +400,14 @@ const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <Complaints />
+          </PrivateRoute>
+        ),
+      },
+        {
+        path: "tickets",
+        element: (
+          <PrivateRoute>
+            <Tickets />
           </PrivateRoute>
         ),
       },
@@ -471,7 +489,23 @@ const router = createBrowserRouter([
         children: [{ path: "create", element: <CreateEnterpriseProject /> }],
       },
     ],
+
   },
+{
+  path: "help-center",
+    element: <HelpCenterLayout />,
+  children: [
+    { index: true, element: <KnowledgeBase /> },
+    { path: "faqs", element: <FAQs /> },
+    { path:"faqs/:slug", element: <FaqDetails/> },
+    { path:":slug", element:<HelpCategoryDetails />},
+     { path: "sellers", element: <ExtraCategories /> },
+    { path: "sellers/:slug", element: <Seller /> },
+
+  ],
+}
+
+
 ]);
 
 export default router;
