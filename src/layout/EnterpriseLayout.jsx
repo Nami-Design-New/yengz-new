@@ -1,8 +1,21 @@
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { Link, NavLink, Outlet, useLocation } from "react-router";
+import {
+  Link,
+  NavLink,
+  Outlet,
+  useLocation,
+  useNavigate,
+  useParams,
+} from "react-router";
 import AddButton from "../ui/enterprise/AddButton ";
 import PageHeader from "../ui/enterprise/createEnterprise/PageHeader";
+import useGetCompanyDetails from "../hooks/orgs/useGetCompanyDetails";
+import DataLoader from "../ui/DataLoader";
+import usePostAcceptSponsorInvitation from "../hooks/orgs/usePostAcceptSponsorInvitation";
+import { toast } from "sonner";
+import usePostRejectSponsorInvitation from "../hooks/orgs/usePostRejectSponsorInvitation";
+import ErrorPage from "../routes/ErrorPage";
 
 const EnterpriseLayout = () => {
   const { t } = useTranslation();
@@ -10,6 +23,45 @@ const EnterpriseLayout = () => {
   const pathSegments = location.pathname.split("/").filter(Boolean);
   const lastSegment = pathSegments[pathSegments.length - 1];
   const [previewImage, setPreviewImage] = useState(null);
+  const navigate = useNavigate();
+
+  const { link } = useParams();
+  const { data: companyDetailsData, isLoading } = useGetCompanyDetails(link);
+
+  const { handleAcceptInvite } = usePostAcceptSponsorInvitation();
+  const { handleRejectInvite } = usePostRejectSponsorInvitation();
+  function onSubmitAccept(data) {
+    handleAcceptInvite(
+      {
+        user_name: data,
+      },
+      {
+        onSuccess: () => {
+          toast.success(t("success accept"));
+        },
+        onError: (error) => {
+          toast.error(error?.response?.message || "failed to accept");
+        },
+      }
+    );
+  }
+  function onSubmitReject(data) {
+    handleRejectInvite(
+      {
+        user_name: data,
+      },
+      {
+        onSuccess: () => {
+          toast.success(t("success accept"));
+        },
+        onError: (error) => {
+          toast.error(error?.response?.message || "failed to accept");
+          console.log(error);
+        },
+      }
+    );
+  }
+
   function handleChange(e) {
     const file = e.target.files[0];
     if (file) {
@@ -23,23 +75,57 @@ const EnterpriseLayout = () => {
     }
   }
 
+  if (isLoading) {
+    return <DataLoader />;
+  }
+
+  if (!isLoading && !companyDetailsData) {
+    return <ErrorPage />;
+  }
   return (
     <section className="enterprise-layout p-90">
       <div className="container">
         <div className="d-flex justify-content-between align-items-end">
           <PageHeader showHome={true} />
           {lastSegment === "edit" && null}
-          {lastSegment === "teams" && (
+          {companyDetailsData.can_add_members && lastSegment === "teams" && (
             <AddButton
               text={t("enterprise.orgs.addTeam")}
               icon={<i className="fa-regular fa-plus"></i>}
-              onClick={() => alert("Member added!")}
+              onClick={() => navigate(`/orgs/${link}/teams/create`)}
             />
           )}
           {}
         </div>
+        {companyDetailsData.show_sponsor_message && (
+          <div className="p-4 bg-warning bg-opacity-25 mt-5">
+            <h2>invitation to be sponsor </h2>
+            <p>
+              send for you{" "}
+              <span className="fw-bolder">{companyDetailsData.user.name}</span>{" "}
+              invite you to be sponsor . when accept invitation will be sponsor
+              for all services
+            </p>
+            <div className="d-flex gap-2 mt-1">
+              <button
+                onClick={() => onSubmitAccept(link)}
+                className="d-block bg-info text-white border-none"
+                variant="transparent"
+              >
+                accept
+              </button>
+              <button
+                onClick={() => onSubmitReject(link)}
+                className="d-block"
+                variant="transparent"
+              >
+                reject
+              </button>
+            </div>
+          </div>
+        )}
         <div className="row  mt-5">
-          <div className="col-12 col-md-4 p-2">
+          <div className="col-12 col-md-4 p-2 ">
             <div className="right-side">
               <div className="profile-card">
                 {lastSegment === "edit" ? (
@@ -53,9 +139,7 @@ const EnterpriseLayout = () => {
                       </span>
                       <img
                         src={
-                          previewImage
-                            ? previewImage
-                            : "/images/enterprise/organization_default.png"
+                          previewImage ? previewImage : companyDetailsData.image
                         }
                         // ref={backIdImage}
                         alt="gallery"
@@ -72,23 +156,25 @@ const EnterpriseLayout = () => {
                   </label>
                 ) : (
                   <Link to={""}>
-                    <img src="/images/enterprise/organization_default.png" />
+                    <img src={companyDetailsData.image} />
                   </Link>
                 )}
-                <p>{t("enterprise.profile.description")}</p>
+                <p>{companyDetailsData.name}</p>
               </div>
               <div className="settings">
                 <h3>{t("enterprise.settings.title")}</h3>
                 <ul className="orgs-links">
-                  <li className="org-link">
-                    <NavLink
-                      to="edit"
-                      className={({ isActive }) => (isActive ? "active" : "")}
-                    >
-                      <i className="fa-solid fa-sliders"></i>
-                      <span>{t("enterprise.settings.editEnterprise")}</span>
-                    </NavLink>
-                  </li>
+                  {companyDetailsData.update_company && (
+                    <li className="org-link">
+                      <NavLink
+                        to="edit"
+                        className={({ isActive }) => (isActive ? "active" : "")}
+                      >
+                        <i className="fa-solid fa-sliders"></i>
+                        <span>{t("enterprise.settings.editEnterprise")}</span>
+                      </NavLink>
+                    </li>
+                  )}
                   <li className="org-link">
                     <NavLink
                       to="teams"
@@ -98,15 +184,28 @@ const EnterpriseLayout = () => {
                       <span>{t("enterprise.settings.teams")}</span>
                     </NavLink>
                   </li>
-                  <li className="org-link">
-                    <NavLink
-                      to="funding"
-                      className={({ isActive }) => (isActive ? "active" : "")}
-                    >
-                      <i className="fa-solid fa-money-bill"></i>
-                      <span>{t("enterprise.settings.funding")}</span>
-                    </NavLink>
-                  </li>
+                  {companyDetailsData.update_sponsor && (
+                    <li className="org-link">
+                      <NavLink
+                        to="funding"
+                        className={({ isActive }) => (isActive ? "active" : "")}
+                      >
+                        <i className="fa-solid fa-money-bill"></i>
+                        <span>{t("enterprise.settings.funding")}</span>
+                      </NavLink>
+                    </li>
+                  )}
+                  {companyDetailsData.can_leave && (
+                    <li className="org-link">
+                      <NavLink
+                        to="funding"
+                        className={({ isActive }) => (isActive ? "active" : "")}
+                      >
+                        <i className="fa-solid fa-money-bill"></i>
+                        <span>{t("enterprise.settings.leave")}</span>
+                      </NavLink>
+                    </li>
+                  )}
                 </ul>
               </div>
             </div>

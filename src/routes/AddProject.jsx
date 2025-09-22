@@ -8,6 +8,7 @@ import { useTranslation } from "react-i18next";
 import useProjectForm from "../hooks/projects/useProjectForm";
 import ManualProjectForm from "../ui/projectes/ManualProjectForm";
 import TemplateProjectForm from "../ui/projectes/TemplateProjectForm";
+import MegaMenu from "../ui/projectes/MegaMenu";
 
 const AddProject = () => {
   const { id } = useParams();
@@ -112,7 +113,7 @@ const AddProject = () => {
                 )}
 
                 {formType === "template" && (
-                  <TemplateProjectForm
+                  <MegaMenu 
                     t={t}
                     register={register}
                     errors={errors}

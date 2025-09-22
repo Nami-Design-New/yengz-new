@@ -7,6 +7,7 @@ import EnterpriseCard from "../../ui/cards/EnterpriseCard";
 
 const Orgs = () => {
   const { t } = useTranslation();
+
   return (
     <section className="enterprise-layout p-90  orgs">
       <div className="container">
@@ -18,13 +19,9 @@ const Orgs = () => {
           </Link>
         </div>
         <div className="row gy-3">
-          {Array(6)
-            .fill(0)
-            .map((_, index) => (
-              <div className="col-12" key={index}>
-                <EnterpriseCard />
-              </div>
-            ))}
+          <div className="col-12">
+            <EnterpriseCard />
+          </div>
         </div>
       </div>
     </section>

@@ -8,6 +8,7 @@ import useBanksList from "../../hooks/banks/useBanksList";
 import useWithdraw from "../../hooks/banks/useWithdraw";
 import { withdrawFormSchema } from "../../validations/withdrawFormSchema";
 import InputField from "../forms/InputField";
+import BankTransferCard from "../cards/BankTransferCard";
 
 const WithdrawModal = ({ showModal, setShowModal, cartTotalPrice }) => {
   const { t } = useTranslation();

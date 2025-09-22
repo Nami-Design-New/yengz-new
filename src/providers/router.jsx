@@ -81,6 +81,11 @@ import CreateEnterpriseProject from "../ui/enterprise/projects/CreateEnterpriseP
 // Business Solutions
 import BusinessSolutions from "../routes/BusinessSolutions";
 import HelpCenter from "../routes/HelpCenter";
+import AddTeamPage from "../routes/enterprise/AddTeamPage";
+import TeamCard from "../ui/enterprise/TeamCard";
+import TeamMembers from "../ui/enterprise/TeamMembers";
+import UpdateTeamPage from "../routes/enterprise/UpdateTeamPage";
+import InvitationHandler from "../routes/enterprise/InvitationHandler";
 
 const router = createBrowserRouter([
   {
@@ -413,21 +418,49 @@ const router = createBrowserRouter([
         path: "enterprise",
         children: [
           { index: true, element: <Enterprise /> },
-          { path: "create", element: <CreateEnterprise /> },
+          {
+            path: "create",
+            element: (
+              <PrivateRoute>
+                <CreateEnterprise />
+              </PrivateRoute>
+            ),
+          },
         ],
       },
       {
         path: "orgs",
         children: [
-          { index: true, element: <Orgs /> },
+          {
+            index: true,
+            element: (
+              <PrivateRoute>
+                {" "}
+                <Orgs />{" "}
+              </PrivateRoute>
+            ),
+          },
           {
             path: ":link",
             element: <EnterpriseLayout />,
             children: [
               { index: true, element: <EnterpriseDetails /> },
-              { path: "teams", element: <Teams /> },
+              {
+                path: "teams",
+                element: <Teams />,
+                children: [
+                  { index: true, element: <TeamCard /> },
+                  { path: ":id/members", element: <TeamMembers /> },
+                  { path: "create", element: <AddTeamPage /> },
+                  { path: ":id/edit", element: <UpdateTeamPage /> },
+                ],
+              },
               { path: "edit", element: <EditEnterprise /> },
               { path: "funding", element: <FundSource /> },
+              {
+                path: "invitations/:inviteToken",
+                element: <InvitationHandler />, // الكومبوننت اللي بيعمل apply ويرجع redirect
+              },
             ],
           },
         ],
