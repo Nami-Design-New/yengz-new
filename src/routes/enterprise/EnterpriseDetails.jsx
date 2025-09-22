@@ -17,7 +17,7 @@ const EnterpriseDetails = () => {
 
   // Handle add member click
   const handleAddProjectClick = () => {
-    navigate("/project/create");
+    navigate(`/project/add?org=${link}`);
   };
 
   console.log("companyDetailsData enter prise details", companyDetailsData);

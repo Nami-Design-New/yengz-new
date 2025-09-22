@@ -91,7 +91,8 @@
     "logoutSuccess": "تم تسجيل الخروج بنجاح",
     "logoutError": "خطأ في تسجيل الخروج",
     "work_solutions": "حلول الأعمال",
-    "help_center": "مركز المساعدة"
+    "help_center": "مركز المساعدة",
+    "orgs": "المؤسسات"
   },
   "home": {
     "searchFor": "ابحث عن...",

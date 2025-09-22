@@ -38,7 +38,7 @@ const TeamCard = () => {
                 : team.projects_price
             }
             canDelete={team.can_add_members}
-            canAddMembers={team.can_add_memners}
+            canAddMembers={team.can_add_members}
             companyDetailsData={companyDetailsData}
           />
           <RoleDescription description={team.description}  id={team.id}/>

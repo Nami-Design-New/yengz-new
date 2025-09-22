@@ -5,6 +5,7 @@ function useGetOrgsApp() {
   const { isLoading, data, error } = useQuery({
     queryKey: ["orgsApp"],
     queryFn: () => getOrgs(),
+    refetchOnMount: "always",
   });
 
   return { isLoading, data, error };

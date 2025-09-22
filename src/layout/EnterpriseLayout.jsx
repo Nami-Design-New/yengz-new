@@ -88,7 +88,7 @@ const EnterpriseLayout = () => {
         <div className="d-flex justify-content-between align-items-end">
           <PageHeader showHome={true} />
           {lastSegment === "edit" && null}
-          {companyDetailsData.can_add_memners && (
+          {companyDetailsData.can_add_members && lastSegment === "teams" && (
             <AddButton
               text={t("enterprise.orgs.addTeam")}
               icon={<i className="fa-regular fa-plus"></i>}

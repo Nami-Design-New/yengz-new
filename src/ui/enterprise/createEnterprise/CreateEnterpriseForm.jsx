@@ -9,6 +9,7 @@ import { toast } from "sonner";
 import { useNavigate, useParams } from "react-router";
 import useDeleteCompany from "../../../hooks/orgs/useDeleteCompany";
 import { useQueryClient } from "@tanstack/react-query";
+import usePostUpdateCompany from "../../../hooks/orgs/usePostUpdateCompany";
 
 const CreateEnterpriseForm = ({ type, companyDetailsSimpleData }) => {
   const { t } = useTranslation();
@@ -18,6 +19,7 @@ const CreateEnterpriseForm = ({ type, companyDetailsSimpleData }) => {
   const { link } = useParams();
   const { data: companyData, isLoading } = useGetCompanyCategory();
   const { handleCreateCompany } = usePostCreateCompany();
+  const { handleUpdateCompany } = usePostUpdateCompany();
   const { handleDeleteCompany } = useDeleteCompany();
 
   const [formData, setFormData] = useState({
@@ -43,9 +45,9 @@ const CreateEnterpriseForm = ({ type, companyDetailsSimpleData }) => {
         description: companyDetailsSimpleData.description || "",
         employee_count: companyDetailsSimpleData.employee_count || "",
         website: companyDetailsSimpleData.website || "",
+        company_id: companyDetailsSimpleData.id,
       });
     } else if (type === "create" && companyData?.length > 0) {
-      // في حالة create حط أول كاتيجوري كقيمة افتراضية
       setFormData((prev) => ({
         ...prev,
         company_category_id: companyData[0].id,
@@ -65,15 +67,26 @@ const CreateEnterpriseForm = ({ type, companyDetailsSimpleData }) => {
     console.log("Form Submitted:", formData);
   };
 
-  function onSubmit(formData) {
+  function onSubmitCreateCompany(formData) {
     handleCreateCompany(formData, {
       onSuccess: () => {
-        toast.success(t("communities.commentAddedSuccessfully"));
+        toast.success(t("create company success"));
         navigate(`/orgs/${formData.user_name}`);
       },
       onError: (error) => {
         toast.error(error);
-        
+      },
+    });
+  }
+  function onSubmitUpdateCompany(formData) {
+    handleUpdateCompany(formData, {
+      onSuccess: () => {
+        toast.success(t("create company success"));
+        queryClient.invalidateQueries(["companyDetailsSimple"])
+        navigate(`/orgs/${formData.user_name}`);
+      },
+      onError: (error) => {
+        toast.error(error);
       },
     });
   }
@@ -82,7 +95,7 @@ const CreateEnterpriseForm = ({ type, companyDetailsSimpleData }) => {
       { user_name: userName },
       {
         onSuccess: () => {
-          toast.success(t("communities.commentAddedSuccessfully"));
+          toast.success(t("delete company success"));
           queryClient.invalidateQueries(["orgsApp"]);
           navigate(`/orgs`);
         },
@@ -179,15 +192,23 @@ const CreateEnterpriseForm = ({ type, companyDetailsSimpleData }) => {
       </div>
 
       <div className="buttons__wrapper">
-        <button
-          onClick={() => onSubmit(formData)}
-          type="button"
-          className="main-btn create-button"
-        >
-          {type === "edit" && companyDetailsSimpleData?.update_company
-            ? t("enterprise.createenterprise.form.edit")
-            : t("enterprise.createenterprise.form.submit")}
-        </button>
+        {type === "edit" && companyDetailsSimpleData?.update_company ? (
+          <button
+            onClick={() => onSubmitUpdateCompany(formData)}
+            type="button"
+            className="main-btn create-button"
+          >
+            {t("enterprise.createenterprise.form.edit")}
+          </button>
+        ) : (
+          <button
+            onClick={() => onSubmitCreateCompany(formData)}
+            type="button"
+            className="main-btn create-button"
+          >
+            {t("enterprise.createenterprise.form.submit")}
+          </button>
+        )}
 
         {type === "edit" && (
           <button

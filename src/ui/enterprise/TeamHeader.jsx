@@ -2,11 +2,11 @@ import React, { useState } from "react";
 import { Dropdown } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
 import AddButton from "./AddButton ";
-import { Link, useParams } from "react-router";
+import { Link, useNavigate, useParams } from "react-router";
 import { AddMemberModal } from "./AddMemberModal";
 import useDeleteCompanyTeam from "../../hooks/orgs/useDeleteCompanyTeam";
 import { toast } from "sonner";
-import { QueryClient, useQueryClient } from "@tanstack/react-query";
+import { useQueryClient } from "@tanstack/react-query";
 
 const TeamHeader = ({
   id,
@@ -18,11 +18,12 @@ const TeamHeader = ({
   companyDetailsData,
 }) => {
   const { t } = useTranslation();
+  const navigate = useNavigate();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedTeamId, setSelectedTeamId] = useState(null); // 👈
   const queryClient = useQueryClient();
   const { link } = useParams();
-  
+
   const { handleDeleteCompanyTeam } = useDeleteCompanyTeam();
 
   function onSubmitDeleteCompanyTeam(userName, teamId) {
@@ -41,7 +42,7 @@ const TeamHeader = ({
   }
 
   const openModal = () => {
-    setSelectedTeamId(id); // 👈 نخزن id الفريق الحالي
+    setSelectedTeamId(id); 
     setIsModalOpen(true);
   };
 
@@ -78,7 +79,11 @@ const TeamHeader = ({
         <Dropdown>
           <Dropdown.Toggle split id="dropdown-split-basic" />
           <Dropdown.Menu>
-            <Dropdown.Item>
+            <Dropdown.Item
+              onClick={() => {
+                navigate(`/orgs/${link}/teams/${id}/edit`);
+              }}
+            >
               <i className="fa-solid fa-pen-to-square"></i>{" "}
               {t("enterprise.teams.editTeam", "تعديل الفريق")}
             </Dropdown.Item>

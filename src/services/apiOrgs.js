@@ -86,7 +86,14 @@ export async function changeSponsor(requestBody) {
 export async function createCompany(requestBody) {
   try {
     const req = await axiosInstance.post("/user/create_company", requestBody);
-    // querClinet.invalidateQueries(["create_company"]);
+    return req.data.data;
+  } catch (error) {
+    throw error.response.data.message || error;
+  }
+}
+export async function updateCompany(requestBody) {
+  try {
+    const req = await axiosInstance.post("/user/update_company", requestBody);
     return req.data.data;
   } catch (error) {
     throw error.response.data.message || error;
@@ -146,23 +153,38 @@ export async function deleteMember(requestBody) {
 }
 export async function deleteCompanyTeam(requestBody) {
   try {
-    const req = await axiosInstance.post("/user/delete_company_team", requestBody);
+    const req = await axiosInstance.post(
+      "/user/delete_company_team",
+      requestBody
+    );
     return req.data.data;
   } catch (error) {
     throw new Error(error.message);
   }
 }
 //get team update details
-// export async function getTeamUpdateDetails(userName) {
-//   try {
-//     const req = await axiosInstance.post("/user/get_team_update_details", {
-//       user_name: userName,
-//     });
-//     return req.data.data;
-//   } catch (err) {
-//     throw new Error(err.message);
-//   }
-// }
+export async function getTeamUpdateDetails(userName, teamId) {
+  try {
+    const req = await axiosInstance.post("/user/get_team_update_details", {
+      user_name: userName,
+      team_id: teamId,
+    });
+    return req.data.data;
+  } catch (err) {
+    throw new Error(err.message);
+  }
+}
+export async function updateCompanyTeam(requestBody) {
+  try {
+    const req = await axiosInstance.post(
+      "/user/update_company_team",
+      requestBody
+    );
+    return req.data.data;
+  } catch (error) {
+    throw error.response.data.message || error;
+  }
+}
 
 /// get_company_add_member_teams || get_user_user_name_email
 
@@ -194,6 +216,31 @@ export async function inviteUserNameMembers(requestBody) {
   try {
     const req = await axiosInstance.post(
       "/user/invite_user_name_members",
+      requestBody
+    );
+    return req.data.data;
+  } catch (error) {
+    throw error.response.data.message || error;
+  }
+}
+export async function createInvitationLinks(requestBody) {
+  try {
+    const req = await axiosInstance.post(
+      "/user/create_invitation_links",
+      requestBody
+    );
+    return req.data.data;
+  } catch (error) {
+    throw error.response.data.message || error;
+  }
+}
+
+// apply_invitation_links
+
+export async function applyInvitationLinks(requestBody) {
+  try {
+    const req = await axiosInstance.post(
+      "/user/apply_invitation_links",
       requestBody
     );
     return req.data.data;

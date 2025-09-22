@@ -84,6 +84,8 @@ import HelpCenter from "../routes/HelpCenter";
 import AddTeamPage from "../routes/enterprise/AddTeamPage";
 import TeamCard from "../ui/enterprise/TeamCard";
 import TeamMembers from "../ui/enterprise/TeamMembers";
+import UpdateTeamPage from "../routes/enterprise/UpdateTeamPage";
+import InvitationHandler from "../routes/enterprise/InvitationHandler";
 
 const router = createBrowserRouter([
   {
@@ -429,7 +431,15 @@ const router = createBrowserRouter([
       {
         path: "orgs",
         children: [
-          { index: true, element: <Orgs /> },
+          {
+            index: true,
+            element: (
+              <PrivateRoute>
+                {" "}
+                <Orgs />{" "}
+              </PrivateRoute>
+            ),
+          },
           {
             path: ":link",
             element: <EnterpriseLayout />,
@@ -442,10 +452,15 @@ const router = createBrowserRouter([
                   { index: true, element: <TeamCard /> },
                   { path: ":id/members", element: <TeamMembers /> },
                   { path: "create", element: <AddTeamPage /> },
+                  { path: ":id/edit", element: <UpdateTeamPage /> },
                 ],
               },
               { path: "edit", element: <EditEnterprise /> },
               { path: "funding", element: <FundSource /> },
+              {
+                path: "invitations/:inviteToken",
+                element: <InvitationHandler />, // الكومبوننت اللي بيعمل apply ويرجع redirect
+              },
             ],
           },
         ],

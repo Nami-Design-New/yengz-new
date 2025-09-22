@@ -92,7 +92,8 @@
     "logoutSuccess": "Logged out successfully",
     "logoutError": "Error logging out",
     "work_solutions": "Business Solutions",
-    "help_center": "Help Center"
+    "help_center": "Help Center",
+    "orgs": "organizations"
   },
   "home": {
     "searchFor": "Search for...",

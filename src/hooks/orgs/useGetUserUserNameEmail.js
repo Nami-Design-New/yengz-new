@@ -5,6 +5,7 @@ function useGetUserUserNameEmail(searchEmail) {
   const { isLoading, data, error } = useQuery({
     queryKey: ["UserUserNameEmail", searchEmail],
     queryFn: () => getUserUserNameEmail(searchEmail),
+    enabled: !!searchEmail, // 👈 الكويري تشتغل بس لما يكون فيه searchEmail
   });
 
   return { isLoading, data, error };
