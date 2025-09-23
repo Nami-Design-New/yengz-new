@@ -9278,5 +9278,11 @@ body.en header .navbar .nav-search {
   color: #410c9e;
 }
 .bg-main-color {
-  color: #410c9e;
+  background-color: #410c9e;
+}
+.bg-color-f0f0f0{
+background-color: #f0f0f0;
+}
+.max-width-5xl {
+  max-width: 1400px;
 }

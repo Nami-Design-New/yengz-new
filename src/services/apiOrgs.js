@@ -248,3 +248,58 @@ export async function applyInvitationLinks(requestBody) {
     throw error.response.data.message || error;
   }
 }
+
+// get_company_chats
+export async function getCompanyChats(userName) {
+  try {
+    const req = await axiosInstance.post("/user/get_company_chats", {
+      user_name: userName,
+    });
+    return req.data.data;
+  } catch (err) {
+    throw new Error(err.message);
+  }
+}
+
+// get_company_members
+export async function getCompanyMembers(
+  userName,
+  search,
+  last_login,
+  verified
+) {
+  try {
+    const req = await axiosInstance.post("/user/get_company_members", {
+      user_name: userName,
+      search,
+      verified,
+      last_login,
+    });
+    return req.data.data;
+  } catch (err) {
+    throw new Error(err.message);
+  }
+}
+// get_company_freelancers
+export async function getCompanyFreelancers(userName, search) {
+  try {
+    const req = await axiosInstance.post("/user/get_company_freelancers", {
+      user_name: userName,
+      search,
+    });
+    return req.data.data;
+  } catch (err) {
+    throw new Error(err.message);
+  }
+}
+// get_company_payments
+export async function getCompanyPayments(userName,) {
+  try {
+    const req = await axiosInstance.post("/user/get_company_payments", {
+      user_name: userName,
+    });
+    return req.data.data;
+  } catch (err) {
+    throw new Error(err.message);
+  }
+}

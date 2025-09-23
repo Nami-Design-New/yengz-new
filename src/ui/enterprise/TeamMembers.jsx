@@ -13,7 +13,7 @@ export const TeamMembers = () => {
   const queryClient = useQueryClient();
   const { link, id } = useParams();
 
-  const { data: TeamMemebersData } = useGetTeamMembers(link, id);
+  const { data: TeamMembersData } = useGetTeamMembers(link, id);
   const { handleDeleteMember } = useDeleteMember();
 
   function onSubmitDeleteMember(userName, teamId, memberId) {
@@ -33,8 +33,8 @@ export const TeamMembers = () => {
 
   return (
     <div>
-      {TeamMemebersData?.map((member) => (
-        <div key={member.id} className="card shadow-sm border mb-3">
+      {TeamMembersData?.map((member) => (
+        <div key={member.id} className="card shadow-sm border mb-3 bg-danger">
           <div className="card-body">
             <div className="d-flex justify-content-between align-items-start mb-3">
               <div className="d-flex align-items-center gap-3">
