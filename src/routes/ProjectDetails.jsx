@@ -19,16 +19,17 @@ const ProjectDetails = () => {
     useGetProjectRequests(id, "global");
   const user = useSelector((state) => state.authedUser.user);
 
-useEffect(() => {
-  if (
-    project?.accepted === 0 &&
-    project?.refuse_reason !== null &&
-    project?.user?.id !== user?.id
-  ) {
-    navigate("/projects");
-  }
-}, [project, user, navigate]);
+  useEffect(() => {
+    if (
+      project?.accepted === 0 &&
+      project?.refuse_reason !== null &&
+      project?.user?.id !== user?.id
+    ) {
+      navigate("/projects");
+    }
+  }, [project, user, navigate]);
 
+  console.log("project+++++", project, requests);
 
   if (isLoading || isLoadingRequests) {
     return <DataLoader />;
@@ -80,9 +81,9 @@ useEffect(() => {
                 )}
               </div>
               {/* add offer */}
-              {!project?.is_my_project && !project?.added_request && (
+              {/* {!project?.is_my_project && !project?.added_request && (
                 <>{!project?.added_request && <AddOffer id={project?.id} />}</>
-              )}
+              )} */}
               {/* piddings */}
               {requests && requests.length > 0 && (
                 <div className="allComments">

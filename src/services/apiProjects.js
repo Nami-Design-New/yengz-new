@@ -68,6 +68,8 @@ export const createProject = async (data, queryClient) => {
         "Content-Type": "multipart/form-data",
       },
     });
+    console.log(data);
+    
     queryClient.invalidateQueries(["userProjects"]);
   } catch (error) {
     throw new Error(error.message);

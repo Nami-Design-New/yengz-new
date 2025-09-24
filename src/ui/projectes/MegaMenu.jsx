@@ -32,7 +32,7 @@ const MegaMenu = ({
   };
 
   return (
-    <div className="p-4 bg-light">
+    <div className="p-4">
       {!selectedHelper && (
         <div className="mb-3">
           {data?.map((element, index) => (

@@ -112,7 +112,7 @@ const useProjectForm = (projectDetails = null, skills = []) => {
   };
 
   const onSubmit = (data) => {
-    console.log("submitting");
+    console.log("submitting in useProjectForm" , data );
 
     const dataToSend = {
       ...data,

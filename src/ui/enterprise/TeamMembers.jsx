@@ -34,7 +34,7 @@ export const TeamMembers = () => {
   return (
     <div>
       {TeamMembersData?.map((member) => (
-        <div key={member.id} className="card shadow-sm border mb-3 bg-danger">
+        <div key={member.id} className="card shadow-sm border mb-3">
           <div className="card-body">
             <div className="d-flex justify-content-between align-items-start mb-3">
               <div className="d-flex align-items-center gap-3">

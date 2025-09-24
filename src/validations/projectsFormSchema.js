@@ -19,6 +19,6 @@ export const baseProjectSchema = (t) =>
     skills: yup.array().required(t("validation.skillsRequired")),
     project_files: yup
       .array()
-      .min(1, t("validation.atLeastOneImage"))
-      .required(t("validation.imagesRequired")),
+      // .min(1, t("validation.atLeastOneImage"))
+      // .required(t("validation.imagesRequired")),
   });

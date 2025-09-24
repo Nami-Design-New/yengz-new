@@ -24,7 +24,7 @@ const ManualProjectForm = ({
   return (
     <form className="form_ui" onSubmit={handleSubmit}>
       <div className="row m-0">
-        <div className="col-12 p-2">
+        {/* <div className="col-12 p-2">
           <InputField
             label={t("projects.projectTitle")}
             id="title"
@@ -35,7 +35,7 @@ const ManualProjectForm = ({
             placeholder={t("writeHere")}
             required
           />
-        </div>
+        </div> */}
 
         <div className="col-12 p-2">
           <Controller

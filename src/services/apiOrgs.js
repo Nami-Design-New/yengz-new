@@ -303,3 +303,13 @@ export async function getCompanyPayments(userName,) {
     throw new Error(err.message);
   }
 }
+
+// company team projects
+export async function getCompanyTeamProjects() {
+  try {
+    const req = await axiosInstance.get("/user/get_company_team_projects");
+    return req.data.data;
+  } catch (err) {
+    throw new Error(err.message);
+  }
+}
