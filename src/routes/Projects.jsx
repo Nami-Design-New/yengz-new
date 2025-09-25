@@ -34,6 +34,13 @@ const Projects = () => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, [isFetchingNextPage, hasNextPage, fetchNextPage]);
+  console.log("projects ++++++++++", {
+    searchProjectsList,
+    fetchNextPage,
+    hasNextPage,
+    isFetching,
+    isFetchingNextPage,
+  });
 
   return (
     <section className="search-section">

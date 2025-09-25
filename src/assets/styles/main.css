@@ -9286,3 +9286,7 @@ background-color: #f0f0f0;
 .max-width-5xl {
   max-width: 1400px;
 }
+
+.border-red{
+  border: solid 1px red;
+}

@@ -9,6 +9,8 @@ import useGetProject from "../hooks/projects/useGetProject";
 import useGetProjectRequests from "../hooks/projects/useGetProjectRequests";
 import OfferCard from "../ui/cards/OfferCard";
 import AboutProjectCard from "../ui/cards/AboutProjectCard";
+import { Dropdown } from "react-bootstrap";
+import AddButton from "../ui/enterprise/AddButton ";
 
 const ProjectDetails = () => {
   const { t } = useTranslation();
@@ -18,6 +20,7 @@ const ProjectDetails = () => {
   const { data: requests, isLoading: isLoadingRequests } =
     useGetProjectRequests(id, "global");
   const user = useSelector((state) => state.authedUser.user);
+  const { data: projectDetails } = useGetProject(id);
 
   useEffect(() => {
     if (
@@ -29,7 +32,13 @@ const ProjectDetails = () => {
     }
   }, [project, user, navigate]);
 
-  console.log("project+++++", project, requests);
+  console.log(
+    "projectDetails++++++++",
+    project,
+    requests,
+    user,
+    projectDetails
+  );
 
   if (isLoading || isLoadingRequests) {
     return <DataLoader />;
@@ -41,8 +50,38 @@ const ProjectDetails = () => {
   return (
     <>
       <SectionHeader title={project?.title} />
+
       <section className="requestDetails">
         <div className="container">
+          {/* {projectDetails.can_control && ( */}
+          {true && (
+            <div className="button__group pt-5 ps-3 pb-2  d-flex justify-content-end ">
+              <Dropdown>
+                <Dropdown.Toggle variant="primary" id="dropdown-split-basic">
+                  {/* {t("enterprise.orgs.addMember")} */}
+                  خيارات
+                  <i className="fa-solid fa-pen-to-square"></i>{" "}
+                </Dropdown.Toggle>
+
+                <Dropdown.Menu>
+                  <Dropdown.Item
+                    onClick={() => {
+                      navigate(`/project/add`);
+                    }}
+                  >
+                    <i className="fa-solid fa-pen-to-square"></i>{" "}
+                    {t("enterprise.teams.editTeam", "تعديل المشروع")}
+                  </Dropdown.Item>
+                  <Dropdown.Item
+                  // onClick={() => onSubmitDeleteCompanyTeam(link, id)}
+                  >
+                    <i className="fa-regular fa-trash"></i>{" "}
+                    {t("enterprise.teams.deleteTeam", "حذف المشروع")}
+                  </Dropdown.Item>
+                </Dropdown.Menu>
+              </Dropdown>
+            </div>
+          )}
           <div className="row ">
             {project?.refuse_reason !== null && (
               <div className="col-12 p-2 mb-3">
@@ -96,7 +135,7 @@ const ProjectDetails = () => {
                       <OfferCard
                         request={request}
                         key={request.id}
-                        isMyProject={project?.is_my_project}
+                        isMyProject={project?.can_control_offers}
                         project={project}
                       />
                     ))}

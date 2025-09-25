@@ -103,6 +103,7 @@ const OrderDetails = () => {
   if (!isLoading && !order) {
     return <ErrorPage />;
   }
+console.log("userType ,order" , order, userType);
 
   return (
     <section className="cart-section container">

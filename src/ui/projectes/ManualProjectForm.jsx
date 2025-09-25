@@ -4,6 +4,7 @@ import InputField from "../../ui/forms/InputField";
 import TextField from "../../ui/forms/TextField";
 import MultiSelect from "../../ui/forms/MultiSelect";
 import SubmitButton from "../../ui/forms/SubmitButton";
+import SelectField from "../forms/SelectField";
 import { Controller } from "react-hook-form";
 
 const ManualProjectForm = ({
@@ -19,8 +20,25 @@ const ManualProjectForm = ({
   handleSubmit,
   formData,
   isLoading,
-  id
+  id,
+  categoryId,
+  setCategoryId,
+  subCategories,
+  setSubCategories,
+  categories,
+  subCategoriesId,
+  setSubCategoriesId,
 }) => {
+  console.log("manual project form categories", {
+    categoryId,
+    setCategoryId,
+    subCategories,
+    setSubCategories,
+    categories,
+    subCategoriesId,
+    setSubCategoriesId,
+  });
+
   return (
     <form className="form_ui" onSubmit={handleSubmit}>
       <div className="row m-0">
@@ -36,6 +54,67 @@ const ManualProjectForm = ({
             required
           />
         </div> */}
+
+        {/* Category Select */}
+        <div className="col-lg-6 col-12 p-2">
+          <SelectField
+            label={t("addService.serviceCategory")}
+            id="category"
+            name="category"
+            disabledOption={t("select")}
+            value={categoryId || ""}
+            onChange={(e) => {
+              const selectedId = e.target.value;
+              setCategoryId(selectedId);
+
+              // فلترة الكاتيجوريز حسب الـ id
+              const selectedCat = categories?.find(
+                (cat) => Number(cat.id) === Number(selectedId)
+              );
+
+              // تحديث الـ helpers في subCategories
+              setSubCategories(selectedCat?.sub_categories || []);
+
+              // reset subCategory
+              setSubCategoriesId("");
+            }}
+            options={categories?.map((category) => ({
+              name: category.name,
+              value: category.id,
+            }))}
+            required
+          />
+        </div>
+
+        {/* Helpers Select */}
+        <div className="col-lg-6 col-12 p-2">
+          <Controller
+            name="sub_category_id"
+            control={control}
+            render={({ field }) => (
+              <SelectField
+                label={t("addService.serviceSubCategory")}
+                id="sub_category_id"
+                {...field}
+                value={subCategoriesId || ""} // هنا القيمة المختارة فقط
+                onChange={(e) => {
+                  field.onChange(e.target.value);
+                  setSubCategoriesId(e.target.value);
+                }}
+                options={
+                  subCategories?.map((helper) => ({
+                    name: helper.name, // اسم الهيلبر يظهر في الـ UI
+                    value: helper.id, // قيمة الهيلبر
+                  })) || []
+                }
+                disabledOption={
+                  categoryId ? t("select") : t("addService.selectCategoryFirst")
+                }
+                required
+              />
+            )}
+          />
+        </div>
 
         <div className="col-12 p-2">
           <Controller

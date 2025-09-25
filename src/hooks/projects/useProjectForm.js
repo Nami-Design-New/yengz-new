@@ -6,12 +6,18 @@ import { toast } from "sonner";
 import useProjectMutations from "./useProjectMutations";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { baseProjectSchema } from "../../validations/projectsFormSchema";
+import { useSearchParams } from "react-router";
+import useGetCompanyDetails from "../orgs/useGetCompanyDetails";
 const useProjectForm = (projectDetails = null, skills = []) => {
   const { t } = useTranslation();
   const [categoryId, setCategoryId] = useState("");
   const [selectedOptions, setSelectedOptions] = useState([]);
   const [_, setOriginalData] = useState(null);
   const { createProject, updateProject, isLoading } = useProjectMutations();
+    const [searchParams] = useSearchParams();
+  const org = searchParams.get("org");
+  const {data: companyDetailsData }  =useGetCompanyDetails(org)
+
   const methods = useForm({
     resolver: yupResolver(baseProjectSchema(t)),
     mode: "onChange",
@@ -23,6 +29,7 @@ const useProjectForm = (projectDetails = null, skills = []) => {
       price: "1",
       project_files: [],
       skills: [],
+      company_team_id:companyDetailsData?.id || ''
     },
   });
 
@@ -43,6 +50,7 @@ const useProjectForm = (projectDetails = null, skills = []) => {
         description: projectDetails?.description,
         project_files: projectDetails?.files,
         delete_files: [],
+        company_team_id:''
       };
       reset(initialData);
       setOriginalData(initialData);

@@ -6,6 +6,8 @@ import useGetNotifications from "../hooks/app/useGetNotifications";
 const Notifcations = () => {
   const { t } = useTranslation();
   const { data: notifications } = useGetNotifications();
+  console.log('data notif' , notifications);
+  
   return (
     <div className="notifications_section">
       <div className="container">

@@ -14,10 +14,12 @@ import InputField from "../ui/forms/InputField";
 
 const AddProject = () => {
   const { id } = useParams();
-  const { data: projectDetails, isLoading: isProjectLodaing } = useGetProject(68);
+  const { data: projectDetails, isLoading: isProjectLodaing } =
+    useGetProject(id);
   const { data: skills } = useGetSkills();
   const { t } = useTranslation();
   const [subCategories, setSubCategories] = useState([]);
+  const [subCategoriesId, setSubCategoriesId] = useState([]);
   const { data: categories } = useCategorieListWithSub();
   const [formType, setFormType] = useState(null);
   const [projectEntity, setProjectEntity] = useState("personal"); // "institution" or "personal"
@@ -27,7 +29,8 @@ const AddProject = () => {
       register,
       formState: { errors },
       control,
-      watch
+      watch,
+      reset,
     },
     categoryId,
     selectedOptions,
@@ -40,7 +43,7 @@ const AddProject = () => {
   } = useProjectForm(projectDetails, skills);
   const { data: companyTeamProjectsData } = useGetCompanyTeamProjects();
   const formData = watch();
-console.log(errors);
+  console.log("errors", errors);
 
   useEffect(() => {
     if (categoryId) {
@@ -55,7 +58,14 @@ console.log(errors);
   if (id && !isProjectLodaing && !projectDetails) {
     return null;
   }
-  console.log("companyTeamProjectsData", companyTeamProjectsData);
+  console.log(
+    "companyTeamProjectsData",
+    companyTeamProjectsData,
+    subCategories,
+    formType,
+    categories,
+    subCategoriesId
+  );
 
   return (
     <>
@@ -76,7 +86,13 @@ console.log(errors);
                         name="projectEntity"
                         value="personal"
                         checked={projectEntity === "personal"}
-                        onChange={(e) => setProjectEntity(e.target.value)}
+                        onChange={(e) => {
+                          setProjectEntity(e.target.value);
+                          reset();
+                          setCategoryId("");
+                          setSubCategories([]);
+                          setSubCategoriesId("");
+                        }}
                         className="rounded-3 w-4 h-4 text-blue-600 border-gray-300 focus:ring-blue-500"
                       />
                       <span className="text-gray-700">شخصي</span>
@@ -87,7 +103,13 @@ console.log(errors);
                         name="projectEntity"
                         value="institution"
                         checked={projectEntity === "institution"}
-                        onChange={(e) => setProjectEntity(e.target.value)}
+                        onChange={(e) => {
+                          setProjectEntity(e.target.value);
+                          reset();
+                          setCategoryId("");
+                          setSubCategories([]);
+                          setSubCategoriesId("");
+                        }}
                         className="rounded-3 w-4 h-4 text-blue-600 border-gray-300 focus:ring-blue-500"
                       />
                       <span className="text-gray-700">مؤسسة</span>
@@ -156,7 +178,21 @@ console.log(errors);
                 <div className="">
                   <div
                     className="back-to-select mt-3 d-flex justify-content-end"
-                    onClick={() => setFormType(null)}
+                    onClick={() => {
+                      setFormType(null);
+                      // reset({
+                      // title: "",z
+                      // sub_category_id: "",
+                      // description: "",
+                      // price: "",
+                      // days: "",
+                      // skills: [],
+                      // project_files: [],
+                      // });
+                      setCategoryId("");
+                      setSubCategories([]);
+                      setSubCategoriesId("");
+                    }}
                   >
                     {/* <div className="back-to-select__icon">
                       <i className="fa-solid fa-arrow-right"></i>
@@ -181,6 +217,13 @@ console.log(errors);
                       formData={formData}
                       isLoading={isLoading}
                       id={id}
+                      categoryId={categoryId}
+                      setCategoryId={setCategoryId}
+                      subCategories={subCategories}
+                      setSubCategories={setSubCategories}
+                      categories={categories}
+                      subCategoriesId={subCategoriesId}
+                      setSubCategoriesId={setSubCategoriesId}
                     />
                   )}
 

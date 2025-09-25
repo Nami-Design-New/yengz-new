@@ -293,7 +293,7 @@ export async function getCompanyFreelancers(userName, search) {
   }
 }
 // get_company_payments
-export async function getCompanyPayments(userName,) {
+export async function getCompanyPayments(userName) {
   try {
     const req = await axiosInstance.post("/user/get_company_payments", {
       user_name: userName,
@@ -308,6 +308,37 @@ export async function getCompanyPayments(userName,) {
 export async function getCompanyTeamProjects() {
   try {
     const req = await axiosInstance.get("/user/get_company_team_projects");
+    return req.data.data;
+  } catch (err) {
+    throw new Error(err.message);
+  }
+}
+// company team Notes
+export async function getCompanyTeamNotes() {
+  try {
+    const req = await axiosInstance.get("/user/get_company_team_notes");
+    return req.data.data;
+  } catch (err) {
+    throw new Error(err.message);
+  }
+}
+
+export async function createNotes(requestBody) {
+  try {
+    const req = await axiosInstance.post("/user/create_notes", requestBody);
+
+    return req.data.data;
+  } catch (error) {
+    throw new Error(error.message);
+  }
+}
+
+// get_notes
+export async function getNotes(userId) {
+  try {
+    const req = await axiosInstance.post("/user/get_notes", {
+      user_id: userId,
+    });
     return req.data.data;
   } catch (err) {
     throw new Error(err.message);

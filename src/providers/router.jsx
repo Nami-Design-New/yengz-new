@@ -100,6 +100,7 @@ import MessagesPage from "../routes/enterprise/MessagesPage";
 import MembersPage from "../routes/enterprise/MembersPage";
 import FreelancersPage from "../routes/enterprise/FreelancersPage";
 import PaymentsPage from "../routes/enterprise/PaymentsPage";
+import NotesPage from "../routes/NotesPage";
 
 const router = createBrowserRouter([
   {
@@ -365,6 +366,14 @@ const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <Notifcations />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "notes",
+        element: (
+          <PrivateRoute>
+            <NotesPage />
           </PrivateRoute>
         ),
       },

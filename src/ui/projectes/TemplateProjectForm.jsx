@@ -46,7 +46,13 @@ const TemplateProjectForm = ({
   }, [categoryId, subCategoryId, data]);
 
   console.log("Matched Helper:", matchedHelper);
-  console.log(" Helper:::::::::::", data, helperName);
+  console.log(
+    " Helper:::::::::::",
+    data,
+    helperName,
+    subCategoryId,
+    categoryId
+  );
 
   const targetHelper = useMemo(() => {
     if (!data || !helperName) return null;
@@ -63,6 +69,24 @@ const TemplateProjectForm = ({
     }
     return null;
   }, [data, helperName]);
+  console.log("template project form", {
+    t,
+    register,
+    errors,
+    control,
+    categories,
+    categoryId,
+    setCategoryId,
+    subCategories,
+    setSubCategories,
+    selectedOptions,
+    handleSkillsChange,
+    handleSubmit,
+    isLoading,
+    id,
+    skills,
+    helperName,
+  });
 
   return (
     <form className="form_ui" onSubmit={handleSubmit}>
@@ -158,7 +182,7 @@ const TemplateProjectForm = ({
                 label={t("addService.serviceSubCategory")}
                 id="sub_category_id"
                 {...field}
-                value={subCategoryId || targetHelper?.sub_category_id || ""} // ✅ prefer form state
+                value={field.value || targetHelper?.sub_category_id || ""} // ✅ هيقرأ القيمة اللي خزّناها
                 onChange={(e) => {
                   field.onChange(e.target.value); // ✅ update react-hook-form state
                 }}
