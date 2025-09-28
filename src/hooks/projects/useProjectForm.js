@@ -14,9 +14,9 @@ const useProjectForm = (projectDetails = null, skills = []) => {
   const [selectedOptions, setSelectedOptions] = useState([]);
   const [_, setOriginalData] = useState(null);
   const { createProject, updateProject, isLoading } = useProjectMutations();
-    const [searchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
   const org = searchParams.get("org");
-  const {data: companyDetailsData }  =useGetCompanyDetails(org)
+  const { data: companyDetailsData } = useGetCompanyDetails(org);
 
   const methods = useForm({
     resolver: yupResolver(baseProjectSchema(t)),
@@ -27,9 +27,6 @@ const useProjectForm = (projectDetails = null, skills = []) => {
       description: "",
       days: "",
       price: "1",
-      project_files: [],
-      skills: [],
-      company_team_id:companyDetailsData?.id || ''
     },
   });
 
@@ -50,7 +47,7 @@ const useProjectForm = (projectDetails = null, skills = []) => {
         description: projectDetails?.description,
         project_files: projectDetails?.files,
         delete_files: [],
-        company_team_id:''
+        company_team_id: "",
       };
       reset(initialData);
       setOriginalData(initialData);
@@ -120,14 +117,53 @@ const useProjectForm = (projectDetails = null, skills = []) => {
   };
 
   const onSubmit = (data) => {
-    console.log("submitting in useProjectForm" , data );
+    // Format extra fields
+   let extra = [];
+
+  if (
+    data?.extra &&
+    data.extra[0] &&
+    (
+      data.extra[0].name_ar ||
+      data.extra[0].name_en
+    )
+  ) {
+    extra = [
+      {
+        name_ar: data.extra[0].name_ar || "",
+        name_en: data.extra[0].name_en || "",
+        value: data.extra[0].value || "",
+        type: data.extra[0].type || "",
+      },
+    ];
+  }
+
+
+    // Format skills as array of IDs
+    let formattedSkills = [];
+    if (Array.isArray(data.skills)) {
+      if (typeof data.skills[0] === "object" && data.skills[0] !== null) {
+        formattedSkills = data.skills.map((s) => s.value);
+      } else {
+        formattedSkills = data.skills;
+      }
+    }
+
+    // Format files
+    let formattedFiles = [];
+    if (Array.isArray(data.project_files)) {
+      formattedFiles = data.project_files.map((file) => {
+        if (file instanceof File) return file;
+        if (file.file) return file;
+        return file;
+      });
+    }
 
     const dataToSend = {
       ...data,
-      skills: data.skills.map((skill) => skill?.value),
-      project_files: data.project_files.filter((file) =>
-        file?.type?.startsWith("image/")
-      ),
+      skills: formattedSkills,
+      project_files: formattedFiles,
+      extra, // <-- include extra array
     };
 
     if (projectDetails?.id) {

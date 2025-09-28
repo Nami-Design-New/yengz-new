@@ -1,10 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
-import { getCompanyChats } from "../../services/apiOrgs";
+import { getCompanyChats } from "../../services/apiOrgsDetails";
 
-function useGetCompanyChats(userName) {
+function useGetCompanyChats(filters) {
   const { isLoading, data, error } = useQuery({
-    queryKey: ["companyChat", userName],
-    queryFn: () => getCompanyChats(userName),
+    queryKey: ["companyChats", filters],
+    queryFn: () => getCompanyChats(filters),
   });
 
   return { isLoading, data, error };

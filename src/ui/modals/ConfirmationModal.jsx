@@ -2,6 +2,7 @@ import React from "react";
 import { Modal } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
 import SubmitButton from "../forms/SubmitButton";
+import { useNavigate } from "react-router";
 
 const ConfirmationModal = ({
   showModal,
@@ -14,6 +15,8 @@ const ConfirmationModal = ({
   loading,
 }) => {
   const { t } = useTranslation();
+
+  const navigate = useNavigate()
   return (
     <Modal show={showModal} onHide={() => setShowModal(false)} centered>
       <Modal.Header className="pb-0" closeButton />
@@ -36,7 +39,10 @@ const ConfirmationModal = ({
           <SubmitButton
             className={"delete-btn"}
             name={buttonText}
-            onClick={eventFun}
+            onClick={() => {
+              eventFun();
+              navigate("/projects");
+            }}
             loading={loading}
           />
         </div>

@@ -37,7 +37,7 @@ const Tickets = () => {
           ) : (
             <div className="tickets-list">
               {tickets?.data?.length > 0 ? (
-                tickets.data.map((ticket) => (
+                tickets?.data.map((ticket) => (
                   <TicketCard
                     key={ticket.id}
                     ticket={ticket}

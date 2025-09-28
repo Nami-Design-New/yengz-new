@@ -1,10 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
-import { getCompanyPayments } from "../../services/apiOrgs";
+import { getCompanyPayments } from "../../services/apiOrgsDetails";
 
-function useGetCompanyPayments(userName) {
+function useGetCompanyPayments(filters) {
   const { isLoading, data, error } = useQuery({
-    queryKey: ["companyPayments", userName],
-    queryFn: () => getCompanyPayments(userName),
+    queryKey: ["companyPayments", filters],
+    queryFn: () => getCompanyPayments(filters),
   });
 
   return { isLoading, data, error };

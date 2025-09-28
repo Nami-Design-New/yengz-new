@@ -14,8 +14,7 @@ import InputField from "../ui/forms/InputField";
 
 const AddProject = () => {
   const { id } = useParams();
-  const { data: projectDetails, isLoading: isProjectLodaing } =
-    useGetProject(id);
+  const { data: projectDetails, isLoading: isProjectLodaing } =  useGetProject(id);
   const { data: skills } = useGetSkills();
   const { t } = useTranslation();
   const [subCategories, setSubCategories] = useState([]);
@@ -31,6 +30,7 @@ const AddProject = () => {
       control,
       watch,
       reset,
+      setValue
     },
     categoryId,
     selectedOptions,
@@ -244,6 +244,7 @@ const AddProject = () => {
                       isLoading={isLoading}
                       id={id}
                       skills={skills}
+                      setValue={setValue}
                     />
                   )}
                 </div>

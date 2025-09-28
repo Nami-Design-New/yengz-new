@@ -16,6 +16,7 @@ import usePostAcceptSponsorInvitation from "../hooks/orgs/usePostAcceptSponsorIn
 import { toast } from "sonner";
 import usePostRejectSponsorInvitation from "../hooks/orgs/usePostRejectSponsorInvitation";
 import ErrorPage from "../routes/ErrorPage";
+import useLeaveCompany from "../hooks/orgs/useLeaveCompany";
 
 const EnterpriseLayout = () => {
   const { t } = useTranslation();
@@ -27,6 +28,7 @@ const EnterpriseLayout = () => {
 
   const { link } = useParams();
   const { data: companyDetailsData, isLoading } = useGetCompanyDetails(link);
+  const { handleLeaveCompany } = useLeaveCompany(link);
 
   const { handleAcceptInvite } = usePostAcceptSponsorInvitation();
   const { handleRejectInvite } = usePostRejectSponsorInvitation();
@@ -56,7 +58,22 @@ const EnterpriseLayout = () => {
         },
         onError: (error) => {
           toast.error(error?.response?.message || "failed to accept");
-          console.log(error);
+        },
+      }
+    );
+  }
+  function onSubmitLeaveCompany(userName) {
+    handleLeaveCompany(
+      {
+        user_name: userName,
+      },
+      {
+        onSuccess: () => {
+          toast.success(t("success leave from company"));
+          navigate("/orgs");
+        },
+        onError: (error) => {
+          toast.error(error?.response?.message || "failed to leave company");
         },
       }
     );
@@ -198,7 +215,7 @@ const EnterpriseLayout = () => {
                   {companyDetailsData.can_leave && (
                     <li className="org-link">
                       <NavLink
-                        to="funding"
+                        onClick={() => onSubmitLeaveCompany(link)}
                         className={({ isActive }) => (isActive ? "active" : "")}
                       >
                         <i className="fa-solid fa-money-bill"></i>

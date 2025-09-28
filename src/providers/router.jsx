@@ -101,6 +101,7 @@ import MembersPage from "../routes/enterprise/MembersPage";
 import FreelancersPage from "../routes/enterprise/FreelancersPage";
 import PaymentsPage from "../routes/enterprise/PaymentsPage";
 import NotesPage from "../routes/NotesPage";
+import CompanyProjects from "../routes/enterprise/CompanyProjects";
 
 const router = createBrowserRouter([
   {
@@ -501,6 +502,7 @@ const router = createBrowserRouter([
       { path: "/orgs/:link/members", element: <MembersPage /> },
       { path: "/orgs/:link/freelancers", element: <FreelancersPage /> },
       { path: "/orgs/:link/payments", element: <PaymentsPage /> },
+      { path: "/orgs/:link/projects", element: <CompanyProjects /> },
       {
         path: "project",
         element: <Outlet />,

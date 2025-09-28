@@ -19,6 +19,7 @@ const MegaMenu = ({
   isLoading,
   id,
   skills,
+  setValue
 }) => {
   const [open1, setOpen1] = useState(false);
   const [selectedHelper, setSelectedHelper] = useState(null);
@@ -49,6 +50,7 @@ const MegaMenu = ({
     selectedHelper,
     open1,
     helperName,
+    setValue
   });
 
   return (
@@ -84,10 +86,8 @@ const MegaMenu = ({
                           style={{ cursor: "pointer" }}
                           onClick={() => {
                             handleClickHelperName(subCat, subCat.name);
-
-                            // ✅ Store subCategoryId في الفورم مباشرة
-                            control._updateProps?.onChange?.({
-                              target: { value: subCat.id },
+                            setValue("sub_category_id", subCat.id, {
+                              shouldValidate: true,
                             });
                           }}
                         >
@@ -121,6 +121,7 @@ const MegaMenu = ({
           id={id}
           skills={skills}
           helperName={helperName}
+          data = {data}
         />
       )}
     </div>

@@ -9,11 +9,19 @@ export async function getTickets() {
   }
 }
 
-export async function addTicket(requestBody, queryClient) {
+export async function addTicket(requestBody) {
   try {
     const req = await axiosInstance.post("/create_ticket", requestBody);
-    queryClient.invalidateQueries(["ticketsList"]);
     return req.data;
+  } catch (error) {
+    throw new Error(error.message);
+  }
+}
+
+export async function getTicketsCategory() {
+  try {
+    const req = await axiosInstance.get("/get_ticket_category");
+    return req.data.data;
   } catch (error) {
     throw new Error(error.message);
   }

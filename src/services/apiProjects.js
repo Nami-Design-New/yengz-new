@@ -69,7 +69,7 @@ export const createProject = async (data, queryClient) => {
       },
     });
     console.log(data);
-    
+
     queryClient.invalidateQueries(["userProjects"]);
   } catch (error) {
     throw new Error(error.message);
@@ -180,10 +180,9 @@ export async function updateProject(id, status, queryClient) {
 
 export async function getProjectHelper() {
   try {
-    const req = await axiosInstance.get("/get_project_helper",);
-    return req.data.data; 
+    const req = await axiosInstance.get("/get_project_helper");
+    return req.data.data;
   } catch (error) {
     throw new Error(error.message);
   }
 }
-

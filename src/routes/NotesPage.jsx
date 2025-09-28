@@ -4,16 +4,17 @@ import usePostCreateNotes from "../hooks/orgs/usePostCreateNotes";
 import useGetNotes from "../hooks/orgs/useGetNotes";
 import { handleTime } from "../utils/handleTime";
 import { useSelector } from "react-redux";
-
-const NotesPage = ({userId}) => {
+import { useQueryClient } from "@tanstack/react-query";
+const NotesPage = ({ userId }) => {
   const [noteCategory, setNoteCategory] = useState("");
   const [noteContent, setNoteContent] = useState("");
   const [errorNotes, setErrorNotes] = useState("");
   const [errorNoteCategory, setErrorNoteCategory] = useState("");
   const { data: companyTeamNotesData } = useGetCompanyTeamNotes();
-  const { data: notesData } = useGetNotes(userId);
+  const { data: notesData = [] } = useGetNotes(userId);
   const { handleCreateNotes } = usePostCreateNotes();
-    const user = useSelector((state) => state.authedUser.user);
+  const user = useSelector((state) => state.authedUser.user);
+  const queryClient = useQueryClient();
 
   const handleSaveNote = () => {
     if (!noteContent.trim()) {
@@ -21,20 +22,16 @@ const NotesPage = ({userId}) => {
       return;
     }
 
-    if (noteCategory !== "personal" && !noteCategory) {
-      setErrorNoteCategory(" من فضلك اختر الفريق");
-      return;
-    }
     handleCreateNotes({
-      user_id: "1",
+      user_id: user?.id,
       text: noteContent,
       ...(noteCategory !== "personal" && { company_team_id: noteCategory }),
     });
-
+    queryClient.invalidateQueries(["getNotes"]);
     setNoteContent("");
     setNoteCategory("");
   };
-//   console.log("companyTeamNotesData", companyTeamNotesData, notesData ,user);
+  console.log("companyTeamNotesData", companyTeamNotesData, notesData, user);
 
   return (
     <div className="container my-5" dir="rtl">
@@ -49,37 +46,37 @@ const NotesPage = ({userId}) => {
       <div className="row">
         <div className="col-12">
           {/* Existing Notes */}
-          {notesData?.map((note) => (
-            <div key={note?.id} className="card mb-3 border-0 shadow-sm">
-              <div className="card-body">
-                <div className="d-flex align-items-center flex-grow-1 ">
-                  <img
-                    src={user?.image}
-                    alt={user?.name}
-                    className="rounded-circle me-3"
-                    style={{ width: "40px", height: "40px" }}
-                  />
-                  <h6 className="m-2 text-primary">{user?.name}</h6>
-                </div>
-
-                <div className="d-flex justify-content-between align-items-center me-5">
-                  <div className="d-flex align-items-center mb-2">
-                    <span className="badge bg-secondary me-2">
-                      <i className="fas fa-building mx-2"></i>
-                      {note?.company?.name || "لم يحدد اسم الشركه"}
-                    </span>{" "}
-                    <span className="badge bg-light text-dark me-2">
-                      <i className="fas fa-sticky-note mx-2"></i>
-                      {note?.team?.name  || "لم يحدد اسم التيم"}
-                    </span>
-                    <span className="text-muted ms-2 small">
-                      <i className="far fa-clock mx-2"></i>
-                       {handleTime(note?.updated_at)}
-
-                    </span>
+          {Array.isArray(notesData) &&
+            notesData?.map((note) => (
+              <div key={note?.id} className="card mb-3 border-0 shadow-sm">
+                <div className="card-body">
+                  <div className="d-flex align-items-center flex-grow-1 ">
+                    <img
+                      src={user?.image}
+                      alt={user?.name}
+                      className="rounded-circle me-3"
+                      style={{ width: "40px", height: "40px" }}
+                    />
+                    <h6 className="m-2 text-primary">{user?.name}</h6>
                   </div>
-                  {/* drop down menu  */}
-                  {/* <div className="dropdown">
+
+                  <div className="d-flex justify-content-between align-items-center me-5">
+                    <div className="d-flex align-items-center mb-2">
+                      <span className="badge bg-secondary me-2">
+                        <i className="fas fa-building mx-2"></i>
+                        {note?.company?.name || "لم يحدد اسم الشركه"}
+                      </span>{" "}
+                      <span className="badge bg-light text-dark me-2">
+                        <i className="fas fa-sticky-note mx-2"></i>
+                        {note?.team?.name || "لم يحدد اسم التيم"}
+                      </span>
+                      <span className="text-muted ms-2 small">
+                        <i className="far fa-clock mx-2"></i>
+                        {handleTime(note?.updated_at)}
+                      </span>
+                    </div>
+                    {/* drop down menu  */}
+                    {/* <div className="dropdown">
                     <button
                       className="btn btn-outline-secondary btn-sm dropdown-toggle"
                       type="button"
@@ -106,11 +103,13 @@ const NotesPage = ({userId}) => {
                       </li>
                     </ul>
                   </div> */}
+                  </div>
+                  <p className="py-3 mt-2 text-dark">
+                    {note?.text || "لا يوجد ملاحظات"}
+                  </p>
                 </div>
-                <p className="py-3 mt-2 text-dark">{note?.text  || "لا يوجد ملاحظات"}</p>
               </div>
-            </div>
-          ))}
+            ))}
 
           {/* New Note Form */}
           <div className="card border-0 shadow-sm mt-4">

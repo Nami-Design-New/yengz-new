@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import { Link, useNavigate, useParams } from "react-router";
@@ -11,16 +11,21 @@ import OfferCard from "../ui/cards/OfferCard";
 import AboutProjectCard from "../ui/cards/AboutProjectCard";
 import { Dropdown } from "react-bootstrap";
 import AddButton from "../ui/enterprise/AddButton ";
+import ConfirmationModal from "../ui/modals/ConfirmationModal";
+import useDeleteProject from "../hooks/projects/useDeleteProject";
 
 const ProjectDetails = () => {
   const { t } = useTranslation();
   const { id } = useParams();
   const navigate = useNavigate();
+  const [showModal, setShowModal] = useState(false);
+
   const { data: project, isLoading, error } = useGetProject();
   const { data: requests, isLoading: isLoadingRequests } =
     useGetProjectRequests(id, "global");
   const user = useSelector((state) => state.authedUser.user);
   const { data: projectDetails } = useGetProject(id);
+  const { deleteProject, isPending } = useDeleteProject();
 
   useEffect(() => {
     if (
@@ -53,8 +58,8 @@ const ProjectDetails = () => {
 
       <section className="requestDetails">
         <div className="container">
-          {/* {projectDetails.can_control && ( */}
-          {true && (
+          {projectDetails.can_control && (
+            // {true && (
             <div className="button__group pt-5 ps-3 pb-2  d-flex justify-content-end ">
               <Dropdown>
                 <Dropdown.Toggle variant="primary" id="dropdown-split-basic">
@@ -66,14 +71,20 @@ const ProjectDetails = () => {
                 <Dropdown.Menu>
                   <Dropdown.Item
                     onClick={() => {
-                      navigate(`/project/add`);
+                      navigate(`/project/edit/${project?.id}`);
                     }}
                   >
                     <i className="fa-solid fa-pen-to-square"></i>{" "}
                     {t("enterprise.teams.editTeam", "تعديل المشروع")}
                   </Dropdown.Item>
                   <Dropdown.Item
-                  // onClick={() => onSubmitDeleteCompanyTeam(link, id)}
+                    // onClick={() => onSubmitDeleteCompanyTeam(link, id)}
+
+                    onClick={(e) => {
+                      e.preventDefault();
+                      e.stopPropagation();
+                      setShowModal(true);
+                    }}
                   >
                     <i className="fa-regular fa-trash"></i>{" "}
                     {t("enterprise.teams.deleteTeam", "حذف المشروع")}
@@ -100,6 +111,10 @@ const ProjectDetails = () => {
                   {t("projects.projectDetails")}
                 </h5>
                 <p>{project?.description}</p>
+                {project?.extra?.map((ext) => (
+                  <p className="mt-2">{ext.name}</p>
+                ))}
+
                 {project?.files?.length > 0 && (
                   <>
                     <h6>{t("projects.attachments")}</h6>
@@ -149,6 +164,14 @@ const ProjectDetails = () => {
           </div>
         </div>
       </section>
+      <ConfirmationModal
+        showModal={showModal}
+        setShowModal={setShowModal}
+        buttonText={t("projects.deleteProject")}
+        text={t("projects.areYouSureYouWantToDelete")}
+        eventFun={() => deleteProject(project.id)}
+        loading={isPending}
+      />
     </>
   );
 };

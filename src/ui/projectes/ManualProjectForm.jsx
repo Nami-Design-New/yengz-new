@@ -37,6 +37,7 @@ const ManualProjectForm = ({
     categories,
     subCategoriesId,
     setSubCategoriesId,
+    id,
   });
 
   return (
@@ -235,6 +236,32 @@ const ManualProjectForm = ({
             </div>
           </div>
         )}
+
+        {/* Extra fields for handleSubmit */}
+        <div className="col-lg-4 col-12 p-2">
+          <InputField
+            label="Name (Arabic)"
+            id={`extra[0][name_ar]`}
+            name={`extra[0][name_ar]`}
+            {...register(`extra[0][name_ar]`)}
+            type="text"
+            placeholder={t("writeHere")}
+            required
+          />
+        </div>
+        <div className="col-lg-4 col-12 p-2">
+          <InputField
+            label="Name (English)"
+            id={`extra[0][name_en]`}
+            name={`extra[0][name_en]`}
+            {...register(`extra[0][name_en]`)}
+            type="text"
+            placeholder={t("writeHere")}
+            required
+          />
+        </div>
+        <input type="hidden" {...register(`extra[0][value]`)} value="name" />
+        <input type="hidden" {...register(`extra[0][type]`)} value="text" />
       </div>
 
       <div className="col-12 p-2 d-flex justify-content-end">

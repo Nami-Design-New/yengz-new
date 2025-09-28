@@ -23,7 +23,7 @@ function ProjectCard({ project }) {
   const truncatedText = useTruncateString(project?.description, 200);
   const { deleteProject, isPending } = useDeleteProject();
   return (
-    <Link to={`/projects/${project?.id}`} className="project__card">
+    <Link to={`/projects`} className="project__card">
       <div className="row">
         <div className="col-12 p-0">
           <div className="requstPost">
@@ -98,7 +98,7 @@ function ProjectCard({ project }) {
         setShowModal={setShowModal}
         buttonText={t("projects.deleteProject")}
         text={t("projects.areYouSureYouWantToDelete")}
-        eventFun={deleteProject}
+        eventFun={() => deleteProject(project.id)}
         loading={isPending}
       />
     </Link>

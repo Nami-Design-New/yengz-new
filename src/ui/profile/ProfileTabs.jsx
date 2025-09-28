@@ -270,7 +270,11 @@ const ProfileTabs = ({ user, isMyAccount }) => {
                   </li>
                 </ul>
 
-                <CustomerReviews reviews={user.user_rates || []} t={t} />
+                <CustomerReviews
+                  user={user}
+                  reviews={user.user_rates || []}
+                  t={t}
+                />
               </>
             ) : (
               <div className="noDataFound">
@@ -298,7 +302,7 @@ const ProfileTabs = ({ user, isMyAccount }) => {
           <CertificatesTab user={user} isMyAccount={isMyAccount} />
         </Tab>
         {/*  notes */}
-        <Tab eventKey="statistics" title={t("notes")} className="tab_item">
+        <Tab eventKey="notes" title={t("notes")} className="tab_item">
           <NotesPage userId={user?.id} />
         </Tab>
       </Tabs>

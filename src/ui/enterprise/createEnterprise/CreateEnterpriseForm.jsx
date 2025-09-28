@@ -81,8 +81,8 @@ const CreateEnterpriseForm = ({ type, companyDetailsSimpleData }) => {
   function onSubmitUpdateCompany(formData) {
     handleUpdateCompany(formData, {
       onSuccess: () => {
-        toast.success(t("create company success"));
-        queryClient.invalidateQueries(["companyDetailsSimple"])
+        toast.success(t("update company success"));
+        queryClient.invalidateQueries(["companyDetailsSimple"]);
         navigate(`/orgs/${formData.user_name}`);
       },
       onError: (error) => {
@@ -108,6 +108,7 @@ const CreateEnterpriseForm = ({ type, companyDetailsSimpleData }) => {
 
   if (isLoading) return <DataLoader />;
   if (!isLoading && !companyData) return <ErrorPage />;
+  console.log(companyDetailsSimpleData);
 
   return (
     <form className="create-enterprise-form" onSubmit={handleSubmit}>
@@ -210,7 +211,7 @@ const CreateEnterpriseForm = ({ type, companyDetailsSimpleData }) => {
           </button>
         )}
 
-        {type === "edit" && (
+        {type === "edit" && companyDetailsSimpleData?.can_delete_company && (
           <button
             type="button"
             onClick={() => {

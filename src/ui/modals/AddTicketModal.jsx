@@ -8,6 +8,8 @@ import { useTranslation } from "react-i18next";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { ticketSchema } from "../../validations/TicketSchema";
+import useGetTicketsCategory from "../../hooks/tickets/useGetTicketsCategory";
+import { useQueryClient } from "@tanstack/react-query";
 
 const AddTicketModal = ({
   showModal,
@@ -17,7 +19,8 @@ const AddTicketModal = ({
 }) => {
   const { t } = useTranslation();
   const { createTicket, isLoading } = useCreateTicket();
-
+  const { data: ticketsCategoryData } = useGetTicketsCategory();
+  const queryClient = useQueryClient();
   const {
     register,
     handleSubmit,
@@ -55,12 +58,14 @@ const AddTicketModal = ({
   const onSubmit = (data) => {
     createTicket(data, {
       onSuccess: () => {
+        queryClient.invalidateQueries(['ticketsList'])
         reset();
         setTargetTicket(null);
         setShowModal(false);
       },
     });
   };
+  console.log(ticketsCategoryData);
 
   return (
     <Modal show={showModal} onHide={handleClose} centered size="lg">
@@ -85,12 +90,26 @@ const AddTicketModal = ({
               </div>
 
               {/* نوع المشكلة */}
-              <div className="col-lg-6 col-12 p-2">
+              {/* <div className="col-lg-6 col-12 p-2">
                 <InputField
                   label={t("tickets.problemType")}
                   {...register("ticket_category_id")}
                   error={errors.ticket_category_id?.message}
                   placeholder={t("tickets.writeHere")}
+                />
+              </div> */}
+
+              {/* نوع المشكلة  */}
+              <div className="col-lg-6 col-12 p-2">
+                <SelectField
+                  label={t("tickets.problemType")}
+                  {...register("ticket_category_id")}
+                  error={errors.ticket_category_id?.message}
+                  options={ticketsCategoryData?.map((cat) => ({
+                    name: cat.name,
+                    value: cat.id,
+                  }))}
+                  disabledOption={t("tickets.select")}
                 />
               </div>
 
