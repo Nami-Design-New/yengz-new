@@ -5,7 +5,7 @@ const useUpdateOrder = () => {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: ({ orderId, status }) => updateOrder(orderId, status),
+    mutationFn: (requestBody) => updateOrder(requestBody),
     onSuccess: () => {
       queryClient.invalidateQueries("order");
       queryClient.invalidateQueries("serviceOrdersList");

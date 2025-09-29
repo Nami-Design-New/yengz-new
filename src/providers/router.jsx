@@ -102,6 +102,7 @@ import FreelancersPage from "../routes/enterprise/FreelancersPage";
 import PaymentsPage from "../routes/enterprise/PaymentsPage";
 import NotesPage from "../routes/NotesPage";
 import CompanyProjects from "../routes/enterprise/CompanyProjects";
+import HelpCenterDetails from "../routes/helpCenter/HelpCenterDetails";
 
 const router = createBrowserRouter([
   {
@@ -518,6 +519,7 @@ const router = createBrowserRouter([
       { path: "faqs", element: <FAQs /> },
       { path: "faqs/:slug", element: <FaqDetails /> },
       { path: ":slug", element: <HelpCategoryDetails /> },
+      { path: "details/:slug", element: <HelpCenterDetails /> },
       { path: "sellers", element: <ExtraCategories /> },
       { path: "sellers/:slug", element: <Seller /> },
     ],

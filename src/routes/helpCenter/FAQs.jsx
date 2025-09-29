@@ -23,7 +23,7 @@ export default function FAQs() {
           <div className="faq-list">
             {category.faqs.map((faq) => (
               <Link
-                to={`/help-center/faqs/${faq.help.slug}`}
+                to={`/help-center/details/${faq.help.slug}`}
                 className="faq-link"
                 key={faq.id}
               >

@@ -10,6 +10,8 @@ export default function HelpCategoryDetails() {
   if (isLoading) return <DataLoader />;
   if (isError || !category) return <ErrorPage />;
 
+  console.log(slug , category );
+  
   return (
     <>
       <ul className="breadcrumb">

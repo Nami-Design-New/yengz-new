@@ -166,13 +166,9 @@ export async function updateRequestStatus(id, status, querClinet) {
   }
 }
 
-export async function updateProject(id, status, queryClient) {
+export async function updateProject(requestBody) {
   try {
-    await axiosInstance.post("/user/update_project_order", {
-      id: id,
-      status: status,
-    });
-    queryClient.invalidateQueries("project", "projectsOrdersList");
+    await axiosInstance.post("/user/update_project_order", requestBody);
   } catch (error) {
     throw new Error(error.message);
   }
