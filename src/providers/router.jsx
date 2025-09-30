@@ -372,14 +372,6 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "notes",
-        element: (
-          <PrivateRoute>
-            <NotesPage />
-          </PrivateRoute>
-        ),
-      },
-      {
         path: "balance",
         element: (
           <PrivateRoute>

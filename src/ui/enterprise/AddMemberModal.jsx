@@ -81,7 +81,7 @@ export function AddMemberModal({ isOpen, onClose, selectedTeamId }) {
       className="modal d-block"
       tabIndex="-1"
       style={{ backgroundColor: "rgba(0,0,0,0.5)" }}
-      dir="rtl"
+
     >
       <div className="modal-dialog modal-lg modal-dialog-centered">
         <div className="modal-content">

@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router";
+import { Link, useParams } from "react-router";
 import "bootstrap/dist/css/bootstrap.min.css";
 import useGetCompanyProjects from "../../hooks/orgs/useGetCompanyProjects";
 import useGetCompanyTeam from "../../hooks/orgs/useGetCompanyTeam";
+import { useTranslation } from "react-i18next";
 
 const CompanyProjects = () => {
+  const { t } = useTranslation();
   const { link } = useParams();
 
   const [filters, setFilters] = useState({
@@ -36,12 +38,15 @@ const CompanyProjects = () => {
       );
     }
   });
+console.log("projectsData , teamData" , projectsData, teamData);
 
   return (
-    <div className="container-fluid bg-color-f0f0f0 min-vh-100" dir="rtl">
+    <div className="container-fluid bg-color-f0f0f0 min-vh-100">
       <div className="row max-width-5xl mx-auto">
         <div className="d-flex justify-content-between align-items-center p-5">
-          <h4>مشاريع {link}</h4>
+          <h4>
+            {t("companyProject.title")} {link}
+          </h4>
           <div className="dropdown">
             <button
               className="btn btn-outline-secondary dropdown-toggle d-flex align-items-center gap-2"
@@ -88,7 +93,7 @@ const CompanyProjects = () => {
         {/* ===== Sidebar Filters ===== */}
         <div className="col-md-3">
           <div className="p-3">
-            <label>بحث</label>
+            <label>{t("companyProject.search")}</label>
             <input
               type="text"
               className="form-control my-2"
@@ -97,7 +102,7 @@ const CompanyProjects = () => {
               }
             />
 
-            <h6 className="my-4">الفريق</h6>
+            <h6 className="my-4">{t("companyProject.team")}</h6>
             {teamData?.map((team) => (
               <div key={team.id} className="my-2">
                 <input
@@ -116,7 +121,7 @@ const CompanyProjects = () => {
               </div>
             ))}
 
-            <label>اسم العضو</label>
+            <label>{t("companyProject.memberName")}</label>
             <input
               type="text"
               className="form-control my-2"
@@ -125,7 +130,7 @@ const CompanyProjects = () => {
               }
             />
 
-            <label>اسم المستقل</label>
+            <label>{t("companyProject.freelanceName")}</label>
             <input
               type="text"
               className="form-control my-2"
@@ -134,8 +139,14 @@ const CompanyProjects = () => {
               }
             />
 
-            <label>الحالة</label>
-            {["new", "draft", "review", "open", "executing"].map((st) => (
+            <label>{t("companyProject.status")}</label>
+            {[
+              t("companyProject.new"),
+              t("companyProject.draft"),
+              t("companyProject.review"),
+              t("companyProject.open"),
+              t("companyProject.executing"),
+            ].map((st) => (
               <div key={st} className="my-2">
                 <input
                   type="checkbox"
@@ -160,7 +171,7 @@ const CompanyProjects = () => {
           <div className="row">
             {sortedProjects?.length ? (
               sortedProjects.map((project) => (
-                <div key={project.id} className="card shadow-sm border mb-3">
+                <Link to={`/projects/${project.id}`} key={project.id} className="card shadow-sm border mb-3">
                   <div className="card-body">
                     <div className="d-flex align-items-center gap-3 mb-3">
                       {project.user?.image ? (
@@ -200,10 +211,10 @@ const CompanyProjects = () => {
                       </span>
                     </div>
                   </div>
-                </div>
+                </Link>
               ))
             ) : (
-              <p>لا توجد نتائج</p>
+              <p className="py-5 text-center">{t("companyProject.noResults")}</p>
             )}
           </div>
         </div>

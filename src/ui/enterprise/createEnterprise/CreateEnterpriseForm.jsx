@@ -70,7 +70,7 @@ const CreateEnterpriseForm = ({ type, companyDetailsSimpleData }) => {
   function onSubmitCreateCompany(formData) {
     handleCreateCompany(formData, {
       onSuccess: () => {
-        toast.success(t("create company success"));
+        toast.success(t("enterprise.createenterprise.form.createSuccess"));
         navigate(`/orgs/${formData.user_name}`);
       },
       onError: (error) => {
@@ -81,7 +81,7 @@ const CreateEnterpriseForm = ({ type, companyDetailsSimpleData }) => {
   function onSubmitUpdateCompany(formData) {
     handleUpdateCompany(formData, {
       onSuccess: () => {
-        toast.success(t("update company success"));
+        toast.success(t("enterprise.createenterprise.form.updateSuccess"));
         queryClient.invalidateQueries(["companyDetailsSimple"]);
         navigate(`/orgs/${formData.user_name}`);
       },
@@ -95,7 +95,7 @@ const CreateEnterpriseForm = ({ type, companyDetailsSimpleData }) => {
       { user_name: userName },
       {
         onSuccess: () => {
-          toast.success(t("delete company success"));
+          toast.success(t("enterprise.createenterprise.form.deleteSuccess"));
           queryClient.invalidateQueries(["orgsApp"]);
           navigate(`/orgs`);
         },

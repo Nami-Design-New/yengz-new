@@ -5,7 +5,9 @@ import useGetNotes from "../hooks/orgs/useGetNotes";
 import { handleTime } from "../utils/handleTime";
 import { useSelector } from "react-redux";
 import { useQueryClient } from "@tanstack/react-query";
+import { useTranslation } from "react-i18next";
 const NotesPage = ({ userId }) => {
+  const { t } = useTranslation();
   const [noteCategory, setNoteCategory] = useState("");
   const [noteContent, setNoteContent] = useState("");
   const [errorNotes, setErrorNotes] = useState("");
@@ -18,7 +20,7 @@ const NotesPage = ({ userId }) => {
 
   const handleSaveNote = () => {
     if (!noteContent.trim()) {
-      setErrorNotes("من فضلك أدخل محتوى الملاحظة");
+      setErrorNotes(t("notes.emptyNote"));
       return;
     }
 
@@ -34,11 +36,11 @@ const NotesPage = ({ userId }) => {
   console.log("companyTeamNotesData", companyTeamNotesData, notesData, user);
 
   return (
-    <div className="container my-5" dir="rtl">
+    <div className="container my-5">
       <div className="row">
         <div className="col-12">
           <div className="d-flex justify-content-between align-items-center mb-4">
-            <h2 className="mb-0">ملاحظات</h2>
+            <h2 className="mb-0">{t("notes.title")}</h2>
           </div>
         </div>
       </div>
@@ -64,11 +66,11 @@ const NotesPage = ({ userId }) => {
                     <div className="d-flex align-items-center mb-2">
                       <span className="badge bg-secondary me-2">
                         <i className="fas fa-building mx-2"></i>
-                        {note?.company?.name || "لم يحدد اسم الشركه"}
+                        {note?.company?.name || t("notes.noCompany")}
                       </span>{" "}
                       <span className="badge bg-light text-dark me-2">
                         <i className="fas fa-sticky-note mx-2"></i>
-                        {note?.team?.name || "لم يحدد اسم التيم"}
+                        {note?.team?.name || t("notes.noTeam")}
                       </span>
                       <span className="text-muted ms-2 small">
                         <i className="far fa-clock mx-2"></i>
@@ -105,7 +107,7 @@ const NotesPage = ({ userId }) => {
                   </div> */}
                   </div>
                   <p className="py-3 mt-2 text-dark">
-                    {note?.text || "لا يوجد ملاحظات"}
+                    {note?.text || t("notes.noNotes")}
                   </p>
                 </div>
               </div>
@@ -119,7 +121,7 @@ const NotesPage = ({ userId }) => {
                   <textarea
                     className="form-control mb-3"
                     rows={8}
-                    placeholder="اكتب ملاحظتك هنا..."
+                    placeholder={t("notes.placeholder")}
                     value={noteContent}
                     onChange={(e) => {
                       setNoteContent(e.target.value);
@@ -152,9 +154,9 @@ const NotesPage = ({ userId }) => {
                       }}
                     >
                       <option value="" disabled>
-                        -- اختر نوع الملاحظة --
+                        {t("notes.categoryLabel")}{" "}
                       </option>
-                      <option value="personal">ملاحظة شخصية</option>
+                      <option value="personal"> {t("notes.personal")}</option>
 
                       {companyTeamNotesData?.map((el) => (
                         <optgroup
@@ -183,7 +185,7 @@ const NotesPage = ({ userId }) => {
                   className="btn btn-primary px-4  "
                   onClick={handleSaveNote}
                 >
-                  حفظ الملاحظة
+                  {t("notes.save")}{" "}
                 </button>
               </div>
             </div>

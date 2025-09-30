@@ -5,8 +5,10 @@ import { Star } from "lucide-react";
 import useGetCompanyFreelancers from "../../hooks/orgs/useGetCompanyFreelancers";
 import useGetCompanyTeam from "../../hooks/orgs/useGetCompanyTeam";
 import useCategoriesList from "../../hooks/categories/useCategoriesList";
+import { useTranslation } from "react-i18next";
 
 const FreelancersPage = () => {
+  const { t } = useTranslation();
   const { link } = useParams();
 
   // الفلاتر
@@ -48,16 +50,16 @@ const FreelancersPage = () => {
   };
 
   return (
-    <div className="container-fluid bg-color-f0f0f0 min-vh-100" dir="rtl">
+    <div className="container-fluid bg-color-f0f0f0 min-vh-100" >
       <div className="row max-width-5xl mx-auto">
         <div className="d-flex justify-content-start align-items-center p-5">
-          <h4>ابحث عن مستقلين</h4>
+          <h4>{t("freelancersPage.title")}</h4>
         </div>
 
         {/* ====== الفلاتر ====== */}
         <div className="col-md-3">
           <div className="p-3">
-            <label htmlFor="search">بحث</label>
+            <label htmlFor="search">{t("freelancersPage.search")}</label>
             <input
               value={filters.search}
               onChange={(e) =>
@@ -69,7 +71,9 @@ const FreelancersPage = () => {
 
             {/* التقييم */}
             <div className="my-4">
-              <label className="form-label d-block ">التقييم</label>
+              <label className="form-label d-block ">
+                {t("freelancersPage.rating")}
+              </label>
               <div className="d-flex gap-2">
                 {[1, 2, 3, 4, 5].map((star) => (
                   <Star
@@ -89,7 +93,7 @@ const FreelancersPage = () => {
             </div>
 
             {/* الفريق */}
-            <h6 className="my-4">الفريق</h6>
+            <h6 className="my-4">{t("freelancersPage.team")}</h6>
             {companyTeamData?.map((team) => (
               <div key={team.id} className="my-2">
                 <input
@@ -108,7 +112,7 @@ const FreelancersPage = () => {
             ))}
 
             {/* التخصص */}
-            <h6 className="my-4">التخصص</h6>
+            <h6 className="my-4">{t("freelancersPage.categories")}</h6>
             {categoriesListData?.map((cat) => (
               <div key={cat.id} className="my-2">
                 <input
@@ -127,7 +131,7 @@ const FreelancersPage = () => {
             ))}
 
             {/* الدولة */}
-            <label className="mt-3">الدولة</label>
+            <label className="mt-3">{t("freelancersPage.country")}</label>
             <input
               type="text"
               className="form-control my-2"
@@ -138,7 +142,7 @@ const FreelancersPage = () => {
             />
 
             {/* الأعضاء */}
-            <h6 className="my-4">الأعضاء</h6>
+            <h6 className="my-4">{t("freelancersPage.members")}</h6>
             <div className="my-2">
               <input
                 type="checkbox"
@@ -152,7 +156,7 @@ const FreelancersPage = () => {
                 }
               />
               <label className="form-check-label mx-2" htmlFor="verified">
-                هوية موثّقة
+                {t("freelancersPage.verified")}
               </label>
             </div>
             <div className="my-2">
@@ -168,7 +172,7 @@ const FreelancersPage = () => {
                 }
               />
               <label className="form-check-label mx-2" htmlFor="online">
-                المتصلون الآن
+                {t("freelancersPage.online")}
               </label>
             </div>
           </div>
@@ -202,15 +206,17 @@ const FreelancersPage = () => {
                   <div>
                     <h6 className="fw-semibold mb-0">{member.name}</h6>
                     <small className="text-muted">
-                      {member.about || "لم يكتب نبذة شخصية"}
+                      {member.about || t("freelancersPage.noBio")}
                     </small>
                   </div>
                 </div>
 
                 <div className="d-flex flex-wrap gap-2 text-muted small mt-3">
-                  {member.category_name || "لم يكتب عنوان وظيفي"}
+                  {member.category_name || t("freelancersPage.noJobTitle")}
                   <span>•</span>
-                  <span>{member.rate} تقييم</span>
+                  <span>
+                    {member.rate} {t("freelancersPage.reviews")}
+                  </span>
                   <span>•</span>
                   <span>{member.last_login}</span>
                 </div>
@@ -218,7 +224,9 @@ const FreelancersPage = () => {
             </div>
           ))}
           {!companyFreelancersData?.length && (
-            <p className="text-center text-muted">لا يوجد مستقلين</p>
+            <p className="text-muted py-5 d-flex align-items-center justify-content-center">
+              {t("freelancersPage.noFreelancers")}
+            </p>
           )}
         </div>
       </div>

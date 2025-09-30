@@ -6,8 +6,10 @@ import useCategoriesList from "../../hooks/categories/useCategoriesList";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import useGetCompanyPayments from "../../hooks/orgs/useGetCompanyPayments";
+import { useTranslation } from "react-i18next";
 
 const PaymentsPage = () => {
+  const { t } = useTranslation();
   const { link } = useParams();
 
   // ✅ حالات الفلاتر
@@ -24,18 +26,21 @@ const PaymentsPage = () => {
   const { data: companyTeamData } = useGetCompanyTeam(link);
   const { data: categoriesListData } = useCategoriesList();
 
-  const { data: companyPaymentsData, isLoading, error } =
-    useGetCompanyPayments({
-      user_name: link,
-      operations,
-      company_team_ids: companyTeamIds,
-      from_date: startDate ? startDate.toISOString().split("T")[0] : undefined,
-      to_date: endDate ? endDate.toISOString().split("T")[0] : undefined,
-      job_title: jobTitle,
-      skills: skills ? skills.split(",") : [],
-      categories: selectedCategories,
-      country_id: country,
-    });
+  const {
+    data: companyPaymentsData,
+    isLoading,
+    error,
+  } = useGetCompanyPayments({
+    user_name: link,
+    operations,
+    company_team_ids: companyTeamIds,
+    from_date: startDate ? startDate.toISOString().split("T")[0] : undefined,
+    to_date: endDate ? endDate.toISOString().split("T")[0] : undefined,
+    job_title: jobTitle,
+    skills: skills ? skills.split(",") : [],
+    categories: selectedCategories,
+    country_id: country,
+  });
 
   // ✅ تغيير العمليات
   const handleOperationChange = (e) => {
@@ -53,18 +58,16 @@ const PaymentsPage = () => {
     if (checked) {
       setSelectedCategories((prev) => [...prev, value]);
     } else {
-      setSelectedCategories((prev) =>
-        prev.filter((cat) => cat !== value)
-      );
+      setSelectedCategories((prev) => prev.filter((cat) => cat !== value));
     }
   };
-console.log("companyPaymentsData==============", companyPaymentsData);
+  console.log("companyPaymentsData==============", companyPaymentsData);
 
   return (
-    <div className="container-fluid bg-color-f0f0f0 min-vh-100" dir="rtl">
+    <div className="container-fluid bg-color-f0f0f0 min-vh-100">
       <div className="row max-width-5xl mx-auto">
         <div className="d-flex justify-content-between align-items-center p-5">
-          <h4>رصيد الحساب</h4>
+          <h4>{t("payments.title")}</h4>
           {/* <div className="dropdown">
             <button
               className="btn btn-outline-secondary dropdown-toggle"
@@ -80,10 +83,10 @@ console.log("companyPaymentsData==============", companyPaymentsData);
         {/* ====== الفلاتر ====== */}
         <div className="col-md-3">
           <div className="p-3">
-            <h6 className="my-4">الفريق</h6>
+            <h6 className="my-4">{t("payments.team")}</h6>
             <div className="d-flex gap-2 align-items-center my-3">
               <div>
-                <label className="form-label">من</label>
+                <label className="form-label">{t("payments.from")}</label>
                 <DatePicker
                   selected={startDate}
                   onChange={(date) => setStartDate(date)}
@@ -92,11 +95,11 @@ console.log("companyPaymentsData==============", companyPaymentsData);
                   endDate={endDate}
                   dateFormat="yyyy/MM/dd"
                   className="form-control"
-                  placeholderText="من"
+                  placeholderText={t("payments.from")}
                 />
               </div>
               <div>
-                <label className="form-label">إلى</label>
+                <label className="form-label">{t("payments.to")}</label>
                 <DatePicker
                   selected={endDate}
                   onChange={(date) => setEndDate(date)}
@@ -106,13 +109,13 @@ console.log("companyPaymentsData==============", companyPaymentsData);
                   minDate={startDate}
                   dateFormat="yyyy/MM/dd"
                   className="form-control"
-                  placeholderText="إلى"
+                  placeholderText={t("payments.to")}
                 />
               </div>
             </div>
 
             {/* التخصص */}
-            <h6 className="my-4">التخصص</h6>
+            <h6 className="my-4">{t("payments.categories")}</h6>
             {categoriesListData?.map((cat) => (
               <div className="my-2" key={cat.id}>
                 <input
@@ -132,7 +135,7 @@ console.log("companyPaymentsData==============", companyPaymentsData);
             ))}
 
             {/* المسمى الوظيفي */}
-            <label className="mt-3">المسمى الوظيفي</label>
+            <label className="mt-3"> {t("payments.jobTitle")}</label>
             <input
               type="text"
               className="form-control my-2"
@@ -141,7 +144,7 @@ console.log("companyPaymentsData==============", companyPaymentsData);
             />
 
             {/* المهارات */}
-            <label>المهارات (افصل بينها بفاصلة)</label>
+            <label> {t("payments.skills")}</label>
             <input
               type="text"
               className="form-control my-2"
@@ -150,7 +153,7 @@ console.log("companyPaymentsData==============", companyPaymentsData);
             />
 
             {/* الدولة */}
-            <label>الدولة</label>
+            <label>{t("payments.country")}</label>
             <input
               type="text"
               className="form-control my-2"
@@ -159,57 +162,62 @@ console.log("companyPaymentsData==============", companyPaymentsData);
             />
 
             {/* العمليات */}
-            <h6 className="my-4">العمليات</h6>
-            {["project_accept", "refund_project", "project_complete"].map(
-              (op) => (
-                <div className="my-2" key={op}>
-                  <input
-                    className="form-check-input"
-                    type="checkbox"
-                    id={op}
-                    value={op}
-                    onChange={handleOperationChange}
-                  />
-                  <label className="form-check-label mx-2" htmlFor={op}>
-                    {op}
-                  </label>
-                </div>
-              )
-            )}
+            <h6 className="my-4">{t("payments.operations")}</h6>
+            {[
+              t("payments.operationTypes.project_accept"),
+              t("payments.operationTypes.refund_project"),
+              t("payments.operationTypes.project_complete"),
+            ].map((op) => (
+              <div className="my-2" key={op}>
+                <input
+                  className="form-check-input"
+                  type="checkbox"
+                  id={op}
+                  value={op}
+                  onChange={handleOperationChange}
+                />
+                <label className="form-check-label mx-2" htmlFor={op}>
+                  {op}
+                </label>
+              </div>
+            ))}
           </div>
         </div>
 
         {/* ====== النتائج ====== */}
         <div className="col-md-9 bg-white py-4">
-          {isLoading && <p>جاري تحميل البيانات...</p>}
-          {error && <p className="text-danger">خطأ: {error.message}</p>}
+          {isLoading && <p className="text-muted h-50 d-flex align-items-center justify-content-center">{t("payments.loading")}</p>}
+          {error && (
+            <p className="text-danger">
+              {t("payments.error")} : {error.message}
+            </p>
+          )}
           {companyPaymentsData?.map((payment) => (
             <div key={payment.id} className="card shadow-sm border mb-3">
               <div className="card-body">
                 <div className="d-flex justify-content-between align-items-start mb-3">
                   <div>
                     <h6 className="fw-semibold mb-0">
-                      العملية: {payment.operation}
+                      {t("payments.operation")}: {payment.operation}
                     </h6>
                     <small className="text-muted">
-                      المبلغ: {payment.amount}$
+                      {t("payments.amount")}: {payment.amount}$
                     </small>
                   </div>
-                  <span className="text-muted small">
-                    {payment.created_at}
-                  </span>
+                  <span className="text-muted small">{payment.created_at}</span>
                 </div>
 
                 {payment.project && (
                   <div className="mt-2">
-                    <strong>المشروع:</strong> {payment.project.title}
+                    <strong>{t("payments.project")}:</strong>{" "}
+                    {payment.project.title}
                   </div>
                 )}
               </div>
             </div>
           ))}
           {!isLoading && companyPaymentsData?.length === 0 && (
-            <p className="text-muted">لا توجد نتائج .</p>
+            <p className="text-muted py-5 d-flex align-items-center justify-content-center">{t("payments.noResults")}</p>
           )}
         </div>
       </div>
@@ -218,4 +226,3 @@ console.log("companyPaymentsData==============", companyPaymentsData);
 };
 
 export default PaymentsPage;
-

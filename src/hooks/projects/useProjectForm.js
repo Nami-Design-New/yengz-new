@@ -16,6 +16,8 @@ const useProjectForm = (projectDetails = null, skills = []) => {
   const { createProject, updateProject, isLoading } = useProjectMutations();
   const [searchParams] = useSearchParams();
   const org = searchParams.get("org");
+  console.log(org, searchParams);
+
   const { data: companyDetailsData } = useGetCompanyDetails(org);
 
   const methods = useForm({
@@ -29,6 +31,7 @@ const useProjectForm = (projectDetails = null, skills = []) => {
       price: "1",
     },
   });
+  console.log("projectDetails", projectDetails);
 
   // Destructure methods for internal use
   const { setValue, getValues, reset } = methods;
@@ -115,18 +118,33 @@ const useProjectForm = (projectDetails = null, skills = []) => {
       currentFiles.filter((_, i) => i !== index)
     );
   };
+  const cleanObject = (obj) => {
+    const cleaned = {};
+    Object.keys(obj).forEach((key) => {
+      const value = obj[key];
 
-  const onSubmit = (data) => {
-    // Format extra fields
-   let extra = [];
+      // تجاهل القيم الفاضية
+      if (
+        value === null ||
+        value === undefined ||
+        value === "" ||
+        (Array.isArray(value) && value.length === 0)
+      ) {
+        return;
+      }
+
+      cleaned[key] = value;
+    });
+    return cleaned;
+  };
+
+const onSubmit = (data) => {
+  let extra = [];
 
   if (
     data?.extra &&
     data.extra[0] &&
-    (
-      data.extra[0].name_ar ||
-      data.extra[0].name_en
-    )
+    (data.extra[0].name_ar || data.extra[0].name_en)
   ) {
     extra = [
       {
@@ -138,40 +156,52 @@ const useProjectForm = (projectDetails = null, skills = []) => {
     ];
   }
 
-
-    // Format skills as array of IDs
-    let formattedSkills = [];
-    if (Array.isArray(data.skills)) {
-      if (typeof data.skills[0] === "object" && data.skills[0] !== null) {
-        formattedSkills = data.skills.map((s) => s.value);
-      } else {
-        formattedSkills = data.skills;
-      }
-    }
-
-    // Format files
-    let formattedFiles = [];
-    if (Array.isArray(data.project_files)) {
-      formattedFiles = data.project_files.map((file) => {
-        if (file instanceof File) return file;
-        if (file.file) return file;
-        return file;
-      });
-    }
-
-    const dataToSend = {
-      ...data,
-      skills: formattedSkills,
-      project_files: formattedFiles,
-      extra, // <-- include extra array
-    };
-
-    if (projectDetails?.id) {
-      updateProject(dataToSend);
+  // skills
+  let formattedSkills = [];
+  if (Array.isArray(data.skills)) {
+    if (typeof data.skills[0] === "object" && data.skills[0] !== null) {
+      formattedSkills = data.skills.map((s) => s.value);
     } else {
-      createProject(dataToSend);
+      formattedSkills = data.skills;
     }
+  }
+
+  // project_files (خليها بس الملفات الجديدة أو IDs المحذوفة)
+  let formattedFiles = [];
+  if (Array.isArray(data.project_files)) {
+    formattedFiles = data.project_files.map((file) => {
+      if (file instanceof File) return file; // ملف جديد مرفوع
+      if (file.file) return file.file; // في حال رجع object فيه file
+      return null; // تجاهل أي object فيه created_at, updated_at, ...
+    }).filter(Boolean);
+  }
+
+  let dataToSend = {
+    id: data.id, // مهم
+    title: data.title,
+    sub_category_id: data.sub_category_id,
+    price: data.price,
+    days: data.days,
+    description: data.description,
+    skills: formattedSkills,
+    project_files: formattedFiles,
+    delete_files: data.delete_files || [],
+    extra,
   };
+
+  // 🧹 شيل أي key فاضي
+  dataToSend = cleanObject(dataToSend);
+
+  console.log("final update data", dataToSend);
+
+  if (projectDetails?.id) {
+    updateProject(dataToSend);
+  } else {
+    createProject(dataToSend);
+  }
+};
+
+  console.log(companyDetailsData);
 
   return {
     // Form methods and values

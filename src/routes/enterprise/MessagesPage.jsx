@@ -3,8 +3,10 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import useGetCompanyChats from "../../hooks/orgs/useGetCompanyChats";
 import { useParams } from "react-router";
 import useGetCompanyTeam from "../../hooks/orgs/useGetCompanyTeam";
+import { useTranslation } from "react-i18next";
 
 const MessagesPage = () => {
+  const { t } = useTranslation();
   const [sort, setSort] = useState("الأحدث");
   const [search, setSearch] = useState("");
   const [freelancer, setFreelancer] = useState("");
@@ -64,13 +66,16 @@ const MessagesPage = () => {
 
     return chats;
   }, [companyChatsData, search, freelancer, member, selectedTeams, sort]);
+  console.log("company chat data ++++= ", companyChatsData);
 
   return (
-    <div className="container-fluid bg-color-f0f0f0 min-vh-100 mb-5" dir="rtl">
+    <div className="container-fluid bg-color-f0f0f0 min-vh-100 mb-5">
       <div className="row max-width-5xl mx-auto">
         {/* ====== الهيدر ====== */}
         <div className="d-flex justify-content-between align-items-center p-5">
-          <h4>رسائل helpers</h4>
+          <h4>
+            {t("messagesPage.title")} {link}
+          </h4>
           <div className="dropdown">
             <button
               className="btn btn-outline-secondary dropdown-toggle d-flex align-items-center gap-2"
@@ -97,17 +102,17 @@ const MessagesPage = () => {
               <li>
                 <button
                   className="dropdown-item"
-                  onClick={() => setSort("الأحدث")}
+                  onClick={() => setSort(t("messagesPage.sortNewest"))}
                 >
-                  الأحدث
+                  {t("messagesPage.sortNewest")}{" "}
                 </button>
               </li>
               <li>
                 <button
                   className="dropdown-item"
-                  onClick={() => setSort("الأقدم")}
+                  onClick={() => setSort(t("messagesPage.sortOldest"))}
                 >
-                  الأقدم
+                  {t("messagesPage.sortOldest")}{" "}
                 </button>
               </li>
             </ul>
@@ -117,7 +122,7 @@ const MessagesPage = () => {
         {/* ====== البحث والفلاتر ====== */}
         <div className="col-md-3">
           <div className="p-3">
-            <label>بحث</label>
+            <label>{t("messagesPage.search")}</label>
             <input
               type="text"
               className="form-control my-2"
@@ -125,7 +130,7 @@ const MessagesPage = () => {
               onChange={(e) => setSearch(e.target.value)}
             />
 
-            <label>اسم المستقل</label>
+            <label>{t("messagesPage.freelancerName")}</label>
             <input
               type="text"
               className="form-control my-2"
@@ -133,7 +138,7 @@ const MessagesPage = () => {
               onChange={(e) => setFreelancer(e.target.value)}
             />
 
-            <label>اسم العضو</label>
+            <label>{t("messagesPage.memberName")}</label>
             <input
               type="text"
               className="form-control my-2"
@@ -141,7 +146,7 @@ const MessagesPage = () => {
               onChange={(e) => setMember(e.target.value)}
             />
 
-            <h6 className="my-4">الفريق</h6>
+            <h6 className="my-4">{t("messagesPage.team")}</h6>
             {companyTeamData?.map((team) => (
               <div className="my-2" key={team.id}>
                 <input
@@ -194,13 +199,16 @@ const MessagesPage = () => {
                       {message?.project?.title}
                     </div>
                     <div className="d-flex gap-2 text-secondary small mb-2">
-                      <span>المستقل: {message?.apply?.name}</span>
+                      <span>
+                        {t("messagesPage.freelancerLabel")}{" "}
+                        {message?.apply?.name}
+                      </span>
                       <span>
                         📅 {new Date(message?.created_at).toLocaleDateString()}
                       </span>
                     </div>
                     <div className="text-muted small">
-                      رقم المشروع: {message?.project?.id}
+                      {t("messagesPage.projectId")} {message?.project?.id}
                     </div>
                   </div>
                 </div>
@@ -208,7 +216,9 @@ const MessagesPage = () => {
               </div>
             ))
           ) : (
-            <div className="text-center py-5 text-muted">لا توجد رسائل</div>
+            <p className="text-muted h-50 d-flex align-items-center justify-content-center">
+              {t("messagesPage.noMessages")}
+            </p>
           )}
         </div>
       </div>

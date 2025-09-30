@@ -5,8 +5,10 @@ import useGetCompanyTeam from "../../hooks/orgs/useGetCompanyTeam";
 import useCategoriesList from "../../hooks/categories/useCategoriesList";
 import useGetCompanyMembers from "../../hooks/orgs/useGetCompanyMembers";
 import MultiSelect from "../../ui/forms/MultiSelect";
+import { useTranslation } from "react-i18next";
 
 const MembersPage = () => {
+  const { t } = useTranslation();
   const [sort, setSort] = useState("الأحدث");
 
   // الفلاتر
@@ -41,7 +43,8 @@ const MembersPage = () => {
     });
   }, [filters, link]);
 
-  const { data: companyMembersData } = useGetCompanyMembers(appliedFilters);
+  const { data: companyMembersData, isLoading } =
+    useGetCompanyMembers(appliedFilters);
 
   // handlers
   const handleSkillsChange = (selectedOptions) => {
@@ -80,10 +83,10 @@ const MembersPage = () => {
   });
 
   return (
-    <div className="container-fluid bg-color-f0f0f0 min-vh-100" dir="rtl">
+    <div className="container-fluid bg-color-f0f0f0 min-vh-100">
       <div className="row max-width-5xl mx-auto">
         <div className="d-flex justify-content-between align-items-center p-5">
-          <h4>الأعضاء</h4>
+          <h4>{t("membersPage.title")}</h4>
           <div className="dropdown">
             <button
               className="btn btn-outline-secondary dropdown-toggle d-flex align-items-center gap-2"
@@ -112,7 +115,7 @@ const MembersPage = () => {
                   className="dropdown-item"
                   onClick={() => setSort("الأحدث")}
                 >
-                  الأحدث
+                  {t("membersPage.sortNewest")}
                 </button>
               </li>
               <li>
@@ -120,7 +123,7 @@ const MembersPage = () => {
                   className="dropdown-item"
                   onClick={() => setSort("الأقدم")}
                 >
-                  الأقدم
+                  {t("membersPage.sortOldest")}
                 </button>
               </li>
             </ul>
@@ -130,7 +133,7 @@ const MembersPage = () => {
         {/* ====== البحث والفلاتر ====== */}
         <div className="col-md-3">
           <div className="p-3">
-            <label>بحث</label>
+            <label>{t("messagesPage.search")}</label>
             <input
               type="text"
               className="form-control my-2"
@@ -139,7 +142,7 @@ const MembersPage = () => {
               }
             />
 
-            <h6 className="my-4">الفريق</h6>
+            <h6 className="my-4">{t("membersPage.team")}</h6>
             {companyTeamData?.map((team) => (
               <div className="my-2" key={team.id}>
                 <input
@@ -158,7 +161,7 @@ const MembersPage = () => {
               </div>
             ))}
 
-            <h6 className="my-4">التخصص</h6>
+            <h6 className="my-4">{t("membersPage.categories")}</h6>
             {categoriesListData?.map((cat) => (
               <div className="my-2" key={cat.id}>
                 <input
@@ -177,7 +180,7 @@ const MembersPage = () => {
               </div>
             ))}
 
-            <label>المسمى الوظيفي</label>
+            <label>{t("membersPage.jobTitle")}</label>
             <input
               type="text"
               className="form-control my-2"
@@ -189,7 +192,7 @@ const MembersPage = () => {
 
             <div className="col-12 p-2">
               <MultiSelect
-                label="المهارات"
+                label={t("membersPage.skills")}
                 id="skills"
                 name="skills"
                 selectedOptions={filters.skills.map((id) => ({
@@ -206,7 +209,7 @@ const MembersPage = () => {
               />
             </div>
 
-            <label>الدولة</label>
+            <label>{t("membersPage.country")}</label>
             <input
               type="text"
               className="form-control my-2"
@@ -216,7 +219,7 @@ const MembersPage = () => {
               }
             />
 
-            <h6 className="my-4">الأعضاء</h6>
+            <h6 className="my-4">{t("membersPage.title")}</h6>
             <div className="my-2">
               <input
                 className="form-check-input"
@@ -231,7 +234,7 @@ const MembersPage = () => {
                 }
               />
               <label className="form-check-label mx-2" htmlFor="person">
-                هوية موثّقة
+                {t("membersPage.verifiedIdentity")}{" "}
               </label>
             </div>
           </div>
@@ -270,16 +273,19 @@ const MembersPage = () => {
                             {member.user.name}
                           </h6>
                           <small className="text-muted">
-                            {member.user.role || "لم يكتب نبذة شخصية"}
+                            {member.user.role || t("membersPage.noBio")}
                           </small>
                         </div>
                       </div>
                     </div>
 
                     <div className="d-flex flex-wrap gap-2 text-muted small mb-4">
-                      {member.jobTitle || "لم يكتب عنوان وظيفي"}
+                      {member.jobTitle || t("membersPage.noJobTitle")}
                       <span>•</span>
-                      <span>{member.user.projects_count} مشاريع مفتوحة</span>
+                      <span>
+                        {member.user.projects_count}{" "}
+                        {t("membersPage.openProjects")}
+                      </span>
                       <span>•</span>
                       <span>
                         {new Date(member.user.last_login).toLocaleTimeString(
@@ -306,7 +312,16 @@ const MembersPage = () => {
                 </div>
               ))
             ) : (
-              <p>لا يوجد أعضاء</p>
+              <>
+                {isLoading ? (
+                  <p>{t("payments.loading")}</p>
+                ) : (
+                  <div className="text-muted py-5 d-flex align-items-center justify-content-center">
+                    {" "}
+                    {t("membersPage.noMembers")}
+                  </div>
+                )}
+              </>
             )}
           </div>
         </div>

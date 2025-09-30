@@ -3,14 +3,15 @@ import { useState, useEffect } from "react";
 import useGetHelpDetails from "../../hooks/help/useGetHelpDetails";
 import useHelpReact from "../../hooks/help/useHelpReact";
 import DataLoader from "../../ui/DataLoader";
+import { useTranslation } from "react-i18next";
 
 const HelpCenterDetails = () => {
+  const { t } = useTranslation();
   const { slug } = useParams();
   const { data, isLoading } = useGetHelpDetails(slug);
   const { handleHelpReact } = useHelpReact();
 
   const [reaction, setReaction] = useState(null);
-
 
   useEffect(() => {
     if (data?.react !== undefined && data?.react !== null) {
@@ -62,7 +63,8 @@ const HelpCenterDetails = () => {
               }`}
               onClick={handleLike}
             >
-              <i className="fa-regular fa-thumbs-up"></i> مقال مفيد
+              <i className="fa-regular fa-thumbs-up"></i>{" "}
+              {t("helpCenter.useful")}
             </button>
             <button
               className={`btn ${
@@ -70,12 +72,13 @@ const HelpCenterDetails = () => {
               }`}
               onClick={handleDislike}
             >
-              <i className="fa-regular fa-thumbs-down"></i> مقال غير مفيد
+              <i className="fa-regular fa-thumbs-down"></i>{" "}
+              {t("helpCenter.notUseful")}
             </button>
           </div>
         </>
       ) : (
-        <p>لا توجد تفاصيل لهذا الموضوع</p>
+        <p>{t("helpCenter.noDetailsData")}</p>
       )}
     </section>
   );

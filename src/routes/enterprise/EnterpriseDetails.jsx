@@ -20,7 +20,7 @@ const EnterpriseDetails = () => {
     navigate(`/project/add?org=${link}`);
   };
 
-  console.log("companyDetailsData enter prise details", companyDetailsData);
+  // console.log("companyDetailsData enter prise details", companyDetailsData);
 
   if (isLoading) {
     return <DataLoader />;

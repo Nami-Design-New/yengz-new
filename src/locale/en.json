@@ -49,7 +49,7 @@
     "manage-accounts": "Manage Accounts",
     "services": "Services",
     "project": "Add Project",
-    "ticket":"tickets"
+    "ticket": "tickets"
   },
   "navbar": {
     "ynjez": "About Ynjez",
@@ -611,7 +611,8 @@
     "reviewOnService": "Review on Service",
     "reviewOnProject": "Review on Project",
     "review": "General Review",
-    "noReviews": "no reviews yet"
+    "noReviews": "no reviews yet",
+    "notes": "Notes"
   },
   "recievedOrders": {
     "title": "Received Orders",
@@ -675,28 +676,28 @@
     "bankUpdatedSuccessfully": "Bank account updated successfully",
     "bankDeletedSuccessfully": "Bank account deleted successfully"
   },
-    "tickets":{
-"header":"Support Ticket",
-"addTicket":"Add Ticket",
-"ticketNumber":"ticket Number",
-  "problemName": "Problem Name",
-  "problemType": "Problem Type",
-  "problemImportance": "Problem Importance",
-  "problemIdOptional": "Ticket Number (Optional)",
-  "problemDescription": "Problem Description",
-  "writeHere": "Write here",
-  "select": "Select",
-  "exampleId": "Example: 12345",
-  "writeDescriptionHere": "Write the problem description here",
-  "high": "High",
-  "medium": "Medium",
-  "low": "Low",
-  "ticketAddedSuccessfully": "Ticket added successfully",
-  "somethingWentWrong": "Something went wrong, please try again later",
-   "titleRequired": "Title is required",
-  "ticketCategoryRequired": "Ticket category is required",
-  "importanceRequired": "Importance level is required",
-  "descriptionRequired": "Description is required"
+  "tickets": {
+    "header": "Support Ticket",
+    "addTicket": "Add Ticket",
+    "ticketNumber": "ticket Number",
+    "problemName": "Problem Name",
+    "problemType": "Problem Type",
+    "problemImportance": "Problem Importance",
+    "problemIdOptional": "Ticket Number (Optional)",
+    "problemDescription": "Problem Description",
+    "writeHere": "Write here",
+    "select": "Select",
+    "exampleId": "Example: 12345",
+    "writeDescriptionHere": "Write the problem description here",
+    "high": "High",
+    "medium": "Medium",
+    "low": "Low",
+    "ticketAddedSuccessfully": "Ticket added successfully",
+    "somethingWentWrong": "Something went wrong, please try again later",
+    "titleRequired": "Title is required",
+    "ticketCategoryRequired": "Ticket category is required",
+    "importanceRequired": "Importance level is required",
+    "descriptionRequired": "Description is required"
   },
   "choose": "Choose",
   "likeIt": "Like it",
@@ -751,6 +752,21 @@
   "projectTipsText2": "Fill in every field and provide examples or references to clarify your vision.",
   "projectTipsText3": "Break large projects into smaller milestones to make progress easier to track and manage.",
   "enterprise": {
+    "messages": {
+      "successAcceptInvite": "success accept invite",
+      "failAcceptInvite": "failed to accept invite",
+      "successRejectInvite": "success reject invite",
+      "failRejectInvite": "failed to reject invite",
+      "successLeave": "success leave from company",
+      "failedLeave": "failed to leave company",
+      "inviteSponsor": "invitation to be sponsor",
+      "sendForYou": "send for you",
+      "inviteSponsor2": "invite you to be sponsor . when accept invitation will be sponsor for all services",
+      "accept": "accept",
+      "reject": "reject",
+      "noProjects": "No projects to display",
+      "unspecified": "From unspecified"
+    },
     "hero": {
       "title": "Hire freelancers and manage your company's projects from one place",
       "desc": "Enable your team to participate in hiring freelancers through the largest freelance platform in the Arab world",
@@ -776,7 +792,8 @@
     "details": {
       "dashboard": "Dashboard",
       "projects": "Projects",
-      "totalProjects": "Total Projects"
+      "totalProjects": "Total Projects",
+      "deleteTeam": "team deleted success"
     },
     "stats": {
       "members": "Members",
@@ -895,6 +912,10 @@
       },
       "orgs": {
         "addMember": "Add Member",
+        "funding": {
+          "fundingSourceTitle": "Current funding source",
+          "changeFunder": "Change funder"
+        },
         "team": {
           "addPermissions": "Add Permissions",
           "name": "Name",
@@ -902,6 +923,13 @@
           "description": "Description",
           "enterDescription": "Enter description",
           "permissions": "Permissions",
+
+          "removeFromTeam": "Remove from team",
+          "noJobTitle": "No job title written",
+          "openProjects": "open projects",
+          "lastLogin": "Last login",
+          "successDeleteMember": "Member removed successfully",
+          "errorDeleteMember": "Failed to remove member",
 
           "projects": "Projects",
           "memberProjects": "Manage member projects",
@@ -960,8 +988,119 @@
         "submit": "Create Enterprise",
         "cancel": "Cancel",
         "edit": "Edit Enterprise",
-        "delete": "Delete"
+        "delete": "Delete",
+        "createSuccess": "Company created successfully",
+        "updateSuccess": "Company updated successfully",
+        "deleteSuccess": "Company deleted successfully"
+      },
+      "invite": {
+        "acceptSuccess": "Invitation accepted successfully",
+        "acceptFail": "Failed to accept the invitation"
       }
     }
+  },
+  "messagesPage": {
+    "title": "Messages",
+    "sortNewest": "Newest",
+    "sortOldest": "Oldest",
+    "search": "Search",
+    "freelancerName": "Freelancer name",
+    "memberName": "Member name",
+    "team": "Team",
+    "freelancerLabel": "Freelancer",
+    "projectId": "Project ID",
+    "noMessages": "No messages"
+  },
+  "membersPage": {
+    "title": "Members",
+    "sortNewest": "Newest",
+    "sortOldest": "Oldest",
+    "search": "Search",
+    "team": "Team",
+    "categories": "Categories",
+    "jobTitle": "Job title",
+    "skills": "Skills",
+    "country": "Country",
+    "verifiedIdentity": "Verified identity",
+    "noBio": "No personal bio written",
+    "noJobTitle": "No job title written",
+    "openProjects": "open projects",
+    "noMembers": "No members"
+  },
+  "freelancersPage": {
+    "title": "Search for freelancers",
+    "search": "Search",
+    "rating": "Rating",
+    "team": "Team",
+    "categories": "Categories",
+    "country": "Country",
+    "members": "Members",
+    "verified": "Verified identity",
+    "online": "Online now",
+    "noBio": "No personal bio written",
+    "noJobTitle": "No job title written",
+    "reviews": "reviews",
+    "lastLogin": "last login",
+    "noFreelancers": "No freelancers found"
+  },
+  "payments": {
+    "title": "Account Balance",
+    "team": "Team",
+    "from": "From",
+    "to": "To",
+    "categories": "Categories",
+    "jobTitle": "Job Title",
+    "skills": "Skills (separate with commas)",
+    "country": "Country",
+    "operations": "Operations",
+    "operationTypes": {
+      "project_accept": "Project Accepted",
+      "refund_project": "Project Refunded",
+      "project_complete": "Project Completed"
+    },
+    "loading": "Loading data...",
+    "error": "Error",
+    "amount": "Amount",
+    "operation": "Operation",
+    "project": "Project",
+    "noResults": "No results found."
+  },
+  "companyProject": {
+    "title": "Projects",
+    "sort": { "newest": "Newest", "oldest": "Oldest" },
+    "search": "Search",
+    "team": "Team",
+    "memberName": "Member Name",
+    "freelanceName": "Freelancer Name",
+    "status": "Status",
+    "new": "New",
+    "draft": "Draft",
+    "review": "Under Review",
+    "open": "Open",
+    "executing": "In Progress",
+    "noResults": "No results found"
+  },
+  "notes": {
+    "title": "Notes",
+    "placeholder": "Write your note here...",
+    "noNotes": "No notes available",
+    "noCompany": "No company specified",
+    "noTeam": "No team specified",
+    "emptyNote": "Please enter note content",
+    "emptyCategory": "Please select a note type",
+    "categoryLabel": "-- Select note type --",
+    "personal": "Personal Note",
+    "save": "Save Note"
+  },
+  "helpCenter": {
+    "title": "Frequently Asked Questions",
+    "useful": "Useful Article",
+    "notUseful": "Not Useful Article",
+    "popularArticles": "Popular Articles",
+    "articleCount": "articles",
+    "knowledgeBase": "Knowledge Base",
+    "noSubArticles": "No sub-articles for this category",
+    "noExtraData": "No extra data available",
+    "noDetailsData":"No details data for project"
   }
 }
