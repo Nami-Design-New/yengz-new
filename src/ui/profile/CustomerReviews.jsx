@@ -12,8 +12,6 @@ export default function CustomerReviews({ user, reviews = [], t }) {
     { key: "deal_again_rate", label: t("profile.dealAgain") },
   ];
 
-  console.log(user, reviews, userRatesData);
-
   return (
     <div className="customer-reviews">
       <h5 className="mb-3">{t("profile.customerReviews")}</h5>
@@ -58,7 +56,6 @@ export default function CustomerReviews({ user, reviews = [], t }) {
               </ul>
               {userRatesData?.map((rate) => (
                 <>
-                  {console.log(rate)}
                   {rate.project !== null ? (
                     <>
                       {" "}

@@ -12,7 +12,6 @@ const useProjectForm = (projectDetails = null, skills = []) => {
   const { t } = useTranslation();
   const [categoryId, setCategoryId] = useState("");
   const [selectedOptions, setSelectedOptions] = useState([]);
-  const [_, setOriginalData] = useState(null);
   const { createProject, updateProject, isLoading } = useProjectMutations();
   const [searchParams] = useSearchParams();
   const org = searchParams.get("org");
@@ -24,11 +23,13 @@ const useProjectForm = (projectDetails = null, skills = []) => {
     resolver: yupResolver(baseProjectSchema(t)),
     mode: "onChange",
     defaultValues: {
+      id: "",
       title: "",
       sub_category_id: "",
       description: "",
       days: "",
       price: "1",
+      company_team_id: "",
     },
   });
   console.log("projectDetails", projectDetails);
@@ -36,27 +37,24 @@ const useProjectForm = (projectDetails = null, skills = []) => {
   // Destructure methods for internal use
   const { setValue, getValues, reset } = methods;
 
-  // Initialize form with service data if editing
   useEffect(() => {
     if (projectDetails) {
-      setCategoryId(projectDetails?.category?.id);
-      const initialData = {
-        id: projectDetails?.id,
-        title: projectDetails?.title,
-        sub_category_id: projectDetails?.sub_category_id,
-        price: projectDetails?.price,
-        days: projectDetails?.days,
-        skills: projectDetails?.skills?.map((skill) => skill?.id) || [],
-        description: projectDetails?.description,
-        project_files: projectDetails?.files,
-        delete_files: [],
-        company_team_id: "",
-      };
-      reset(initialData);
-      setOriginalData(initialData);
-      setCategoryId(initialData.sub_category_id);
+      reset({
+        id: projectDetails.id | "",
+        title: projectDetails?.title || "",
+        description: projectDetails?.description || "",
+        price: projectDetails?.price || "",
+        days: projectDetails?.days || "",
+        sub_category_id: projectDetails?.sub_category_id || "",
+        company_team_id: projectDetails?.company_team_id || "",
+        skills: projectDetails?.skills?.map((s) => s.id) || [],
+        project_files: projectDetails?.files || [],
+        extra: projectDetails?.extra || [],
+      });
+
+      setCategoryId(projectDetails?.category?.id || "");
     }
-  }, [projectDetails, reset]);
+  }, [projectDetails, reset, setCategoryId]);
 
   // Update selected options when skills change
   useEffect(() => {
@@ -138,68 +136,71 @@ const useProjectForm = (projectDetails = null, skills = []) => {
     return cleaned;
   };
 
-const onSubmit = (data) => {
-  let extra = [];
+  const onSubmit = (data) => {
+    let extra = [];
 
-  if (
-    data?.extra &&
-    data.extra[0] &&
-    (data.extra[0].name_ar || data.extra[0].name_en)
-  ) {
-    extra = [
-      {
-        name_ar: data.extra[0].name_ar || "",
-        name_en: data.extra[0].name_en || "",
-        value: data.extra[0].value || "",
-        type: data.extra[0].type || "",
-      },
-    ];
-  }
-
-  // skills
-  let formattedSkills = [];
-  if (Array.isArray(data.skills)) {
-    if (typeof data.skills[0] === "object" && data.skills[0] !== null) {
-      formattedSkills = data.skills.map((s) => s.value);
-    } else {
-      formattedSkills = data.skills;
+    if (
+      data?.extra &&
+      data.extra[0] &&
+      (data.extra[0].name_ar || data.extra[0].name_en)
+    ) {
+      extra = [
+        {
+          name_ar: data.extra[0].name_ar || "",
+          name_en: data.extra[0].name_en || "",
+          value: data.extra[0].value || "",
+          type: data.extra[0].type || "",
+        },
+      ];
     }
-  }
 
-  // project_files (خليها بس الملفات الجديدة أو IDs المحذوفة)
-  let formattedFiles = [];
-  if (Array.isArray(data.project_files)) {
-    formattedFiles = data.project_files.map((file) => {
-      if (file instanceof File) return file; // ملف جديد مرفوع
-      if (file.file) return file.file; // في حال رجع object فيه file
-      return null; // تجاهل أي object فيه created_at, updated_at, ...
-    }).filter(Boolean);
-  }
+    // skills
+    let formattedSkills = [];
+    if (Array.isArray(data.skills)) {
+      if (typeof data.skills[0] === "object" && data.skills[0] !== null) {
+        formattedSkills = data.skills.map((s) => s.value);
+      } else {
+        formattedSkills = data.skills;
+      }
+    }
 
-  let dataToSend = {
-    id: data.id, // مهم
-    title: data.title,
-    sub_category_id: data.sub_category_id,
-    price: data.price,
-    days: data.days,
-    description: data.description,
-    skills: formattedSkills,
-    project_files: formattedFiles,
-    delete_files: data.delete_files || [],
-    extra,
+    // project_files (خليها بس الملفات الجديدة أو IDs المحذوفة)
+    let formattedFiles = [];
+    if (Array.isArray(data.project_files)) {
+      formattedFiles = data.project_files
+        .map((file) => {
+          if (file instanceof File) return file; // ملف جديد مرفوع
+          if (file.file) return file.file; // في حال رجع object فيه file
+          return null; // تجاهل أي object فيه created_at, updated_at, ...
+        })
+        .filter(Boolean);
+    }
+
+    let dataToSend = {
+      id: data.id, // مهم
+      title: data.title,
+      sub_category_id: data.sub_category_id,
+      price: data.price,
+      days: data.days,
+      description: data.description,
+      skills: formattedSkills,
+      project_files: formattedFiles,
+      delete_files: data.delete_files || [],
+      extra,
+      company_team_id: data.company_team_id || "",
+    };
+
+    // 🧹 شيل أي key فاضي
+    dataToSend = cleanObject(dataToSend);
+
+    console.log("final update data", dataToSend);
+
+    if (projectDetails?.id) {
+      updateProject(dataToSend);
+    } else {
+      createProject(dataToSend);
+    }
   };
-
-  // 🧹 شيل أي key فاضي
-  dataToSend = cleanObject(dataToSend);
-
-  console.log("final update data", dataToSend);
-
-  if (projectDetails?.id) {
-    updateProject(dataToSend);
-  } else {
-    createProject(dataToSend);
-  }
-};
 
   console.log(companyDetailsData);
 

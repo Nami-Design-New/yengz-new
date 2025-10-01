@@ -41,7 +41,7 @@ const ManualProjectForm = ({
   });
 
   return (
-    <form className="form_ui" onSubmit={handleSubmit}>
+    <form className="form_ui " onSubmit={handleSubmit}>
       <div className="row m-0">
         {/* <div className="col-12 p-2">
           <InputField
@@ -97,7 +97,7 @@ const ManualProjectForm = ({
                 label={t("addService.serviceSubCategory")}
                 id="sub_category_id"
                 {...field}
-                value={subCategoriesId || ""} // هنا القيمة المختارة فقط
+                value={subCategoriesId || field.value || ""}
                 onChange={(e) => {
                   field.onChange(e.target.value);
                   setSubCategoriesId(e.target.value);
@@ -240,18 +240,18 @@ const ManualProjectForm = ({
         {/* Extra fields for handleSubmit */}
         <div className="col-lg-4 col-12 p-2">
           <InputField
-            label="Name (Arabic)"
+            label="Extra (text)"
             id={`extra[0][name_ar]`}
             name={`extra[0][name_ar]`}
-            {...register(`extra[0][name_ar]`)}
+            {...register(`extra[0][name]`)}
             type="text"
             placeholder={t("writeHere")}
-            required
+            // required
           />
         </div>
-        <div className="col-lg-4 col-12 p-2">
+        {/* <div className="col-lg-4 col-12 p-2">
           <InputField
-            label="Name (English)"
+            label="Extra (English)"
             id={`extra[0][name_en]`}
             name={`extra[0][name_en]`}
             {...register(`extra[0][name_en]`)}
@@ -259,7 +259,7 @@ const ManualProjectForm = ({
             placeholder={t("writeHere")}
             required
           />
-        </div>
+        </div> */}
         <input type="hidden" {...register(`extra[0][value]`)} value="name" />
         <input type="hidden" {...register(`extra[0][type]`)} value="text" />
       </div>

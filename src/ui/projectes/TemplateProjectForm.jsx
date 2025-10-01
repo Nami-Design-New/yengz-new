@@ -297,7 +297,7 @@ const TemplateProjectForm = ({
           {/* Extra fields for handleSubmit */}
           <div className="col-lg-4 col-12 p-2">
             <InputField
-              label="Name (Arabic)"
+              label="Extra (Arabic)"
               id={`extra[0][name_ar]`}
               name={`extra[0][name_ar]`}
               {...register(`extra[0][name_ar]`)}
@@ -308,7 +308,7 @@ const TemplateProjectForm = ({
           </div>
           <div className="col-lg-4 col-12 p-2">
             <InputField
-              label="Name (English)"
+              label="Extra (English)"
               id={`extra[0][name_en]`}
               name={`extra[0][name_en]`}
               {...register(`extra[0][name_en]`)}

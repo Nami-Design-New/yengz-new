@@ -11,10 +11,13 @@ import TemplateProjectForm from "../ui/projectes/TemplateProjectForm";
 import MegaMenu from "../ui/projectes/MegaMenu";
 import useGetCompanyTeamProjects from "../hooks/orgs/useGetCompanyTeamProjects";
 import InputField from "../ui/forms/InputField";
+import { Controller } from "react-hook-form";
+import SelectField from "../ui/forms/SelectField";
 
 const AddProject = () => {
   const { id } = useParams();
-  const { data: projectDetails, isLoading: isProjectLodaing } =  useGetProject(id);
+  const { data: projectDetails, isLoading: isProjectLodaing } =
+    useGetProject(id);
   const { data: skills } = useGetSkills();
   const { t } = useTranslation();
   const [subCategories, setSubCategories] = useState([]);
@@ -30,7 +33,7 @@ const AddProject = () => {
       control,
       watch,
       reset,
-      setValue
+      setValue,
     },
     categoryId,
     selectedOptions,
@@ -55,6 +58,20 @@ const AddProject = () => {
     }
   }, [categoryId, categories]);
 
+  useEffect(() => {
+    if (projectDetails) {
+      setCategoryId(projectDetails?.category?.id || "");
+      setSubCategoriesId(projectDetails?.sub_category_id || "");
+      // تحديث قائمة التصنيفات الفرعية
+      setSubCategories(
+        categories?.find(
+          (category) =>
+            Number(category.id) === Number(projectDetails?.category?.id)
+        )?.sub_categories || []
+      );
+    }
+  }, [projectDetails, categories]);
+
   if (id && !isProjectLodaing && !projectDetails) {
     return null;
   }
@@ -76,7 +93,7 @@ const AddProject = () => {
             <div className="col-lg-7 col-12 p-2">
               <div className="flex justify-between items-center mb-6">
                 <h3 className="text-lg font-semibold text-gray-800 my-4">
-                  جهة المشروع
+                  {t("addProject.entity")}
                 </h3>
                 {companyTeamProjectsData && (
                   <div className="d-flex gap-3">
@@ -95,7 +112,9 @@ const AddProject = () => {
                         }}
                         className="rounded-3 w-4 h-4 text-blue-600 border-gray-300 focus:ring-blue-500"
                       />
-                      <span className="text-gray-700">شخصي</span>
+                      <span className="text-gray-700">
+                        {t("addProject.personal")}
+                      </span>
                     </label>
                     <label className=" d-flex align-item-center gap-2 cursor-pointer">
                       <input
@@ -112,7 +131,9 @@ const AddProject = () => {
                         }}
                         className="rounded-3 w-4 h-4 text-blue-600 border-gray-300 focus:ring-blue-500"
                       />
-                      <span className="text-gray-700">مؤسسة</span>
+                      <span className="text-gray-700">
+                        {t("addProject.organization")}
+                      </span>
                     </label>
                   </div>
                 )}
@@ -123,18 +144,23 @@ const AddProject = () => {
                   <>
                     <div className="d-flex flex-column ">
                       <label className="block text-sm font-medium text-gray-700 mb-2">
-                        الفريق <span className="text-danger">*</span>
+                        {t("addProject.team")}{" "}
+                        <span className="text-danger">*</span>
                       </label>
-                      <select className="w-full rounded-3 border  focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                      <select
+                        {...register("company_team_id", {
+                          required: projectEntity === "institution",
+                        })}
+                        className="w-full rounded-3 border focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                      >
                         {companyTeamProjectsData?.map((el) => (
-                          <div key={el.id}>
-                            <option disabled value={el.id}>
-                              {el.name}
-                            </option>
+                          <optgroup key={el.id} label={el.name}>
                             {el.teams.map((team) => (
-                              <option value={team.id}>{team.name}</option>
+                              <option key={team.id} value={team.id}>
+                                {team.name}
+                              </option>
                             ))}
-                          </div>
+                          </optgroup>
                         ))}
                       </select>
                     </div>
@@ -152,6 +178,27 @@ const AddProject = () => {
                 required
                 helperText={t("projects.projectTitleHelper")}
               />
+              {/* <Controller
+                name="sub_category_id"
+                control={control}
+                render={({ field }) => (
+                  <SelectField
+                    label={t("projects.subCategory")}
+                    id="sub_category_id"
+                    name="sub_category_id"
+                    options={subCategories}
+                    error={errors.sub_category_id?.message}
+                    placeholder={t("selectSubCategory")}
+                    required
+                    value={subCategoriesId || field.value || ""}
+                    onChange={(e) => {
+                      field.onChange(e.target.value);
+                      setSubCategoriesId(e.target.value);
+                    }}
+                    helperText={t("projects.subCategoryHelper")}
+                  />
+                )}
+              /> */}
               {!formType && (
                 <>
                   <div className="choose-form-type mt-5">

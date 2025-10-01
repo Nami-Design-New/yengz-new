@@ -1094,6 +1094,13 @@
     "noExtraData": "لا توجد بيانات إضافية",
     "noDetailsData": "لا توجد تفاصيل لهذا المشروع"
   },
+  "addProject": {
+    "entity": "جهة المشروع",
+    "team": "الفريق",
+    "organization": "مؤسسة",
+    "personal": "شخصي",
+    "selectTeam": "اختر الفريق"
+  },
   "year": "سنة",
   "month": "شهر",
   "day": "يوم",

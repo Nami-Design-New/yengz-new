@@ -1101,6 +1101,13 @@
     "knowledgeBase": "Knowledge Base",
     "noSubArticles": "No sub-articles for this category",
     "noExtraData": "No extra data available",
-    "noDetailsData":"No details data for project"
+    "noDetailsData": "No details data for project"
+  },
+  "addProject": {
+    "entity": "Project Entity",
+    "team": "Team",
+    "organization": "Organization",
+    "personal": "Personal",
+    "selectTeam": "Select Team"
   }
 }
