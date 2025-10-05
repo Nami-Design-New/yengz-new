@@ -3,7 +3,7 @@ import { Accordion } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import { Link } from "react-router";
-import useGetAbout from "../../hooks/About/useGetAbout";
+import useGetAbout from "../../hooks/about/useGetAbout";
 import useLogout from "../../hooks/auth/useLogout";
 import DeleteAcountModal from "../modals/DeleteAcountModal";
 import useGetCommunitiesList from "../../hooks/community/useGetCommunitiesList";
