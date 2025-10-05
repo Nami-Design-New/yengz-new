@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 import InputField from "../forms/InputField";
 import DepartmentFilterBox from "./DepartmentFilterBox";
 import MultiSelect from "../forms/MultiSelect";
-import useFreelancerFilters from "../../hooks/freelancers/useFreelancerFilters";
+import useFreelancerFilters from "../../hooks/freeLancers/useFreelancerFilters.js";
 import useGetSkills from "../../hooks/app/useGetSkills";
 
 /**
