@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router";
-import { getRates } from "../../services/apiServices";
+import { getRates } from "../../services/ApiServices";
 
 function useGetRates() {
   const { id } = useParams();

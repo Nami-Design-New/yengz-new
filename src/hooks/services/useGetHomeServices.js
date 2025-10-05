@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { getHomeServices } from "../../services/apiServices";
+import { getHomeServices } from "../../services/ApiServices";
 
 export default function useGetHomeServices() {
   const { isLoading, data, error } = useQuery({

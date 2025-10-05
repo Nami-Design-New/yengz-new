@@ -1,6 +1,6 @@
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { useSearchParams } from "react-router";
-import { getServicesByFilter } from "../../services/apiServices";
+import { getServicesByFilter } from "../../services/ApiServices";
 
 function useSearchServicesList() {
   const [searchParams] = useSearchParams();
