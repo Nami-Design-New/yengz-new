@@ -38,12 +38,9 @@ export async function getOrder(id) {
   }
 }
 
-export async function updateOrder(id, status, queryClient) {
+export async function updateOrder(requestBody) {
   try {
-    await axiosInstance.post("/user/update_service_order", {
-      id: id,
-      status: status,
-    });
+    await axiosInstance.post("/user/update_service_order", requestBody);
   } catch (error) {
     throw new Error(error.message);
   }

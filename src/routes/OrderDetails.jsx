@@ -69,7 +69,7 @@ const OrderDetails = () => {
     status === "canceled" ? setBtn1Loading(true) : setLoading(true);
 
     updateOrderMutation(
-      { orderId: order.id, status },
+      { id: order.id, status },
       {
         onSuccess: () => {
           refetchOrders();
@@ -103,6 +103,7 @@ const OrderDetails = () => {
   if (!isLoading && !order) {
     return <ErrorPage />;
   }
+  console.log("userType ,order", order, userType);
 
   return (
     <section className="cart-section container">
@@ -244,7 +245,7 @@ const OrderDetails = () => {
                     className="report-order"
                     name={t("recievedOrders.recieve")}
                     icon={<i className="fa-light fa-circle-check"></i>}
-                    onClick={() => handleUpdateOrder("received")}
+                    onClick={() => setShowRateModal(true)}
                   />
                 )}
                 {userType === "seller" && order?.status === "new" && (
@@ -256,7 +257,7 @@ const OrderDetails = () => {
                     icon={<i className="fa-sharp fa-light fa-circle-xmark"></i>}
                   />
                 )}
-                {userType === "seller" &&
+                {/* {userType === "seller" &&
                   !order?.service?.is_rated &&
                   order?.status === "received" && (
                     <SubmitButton
@@ -264,7 +265,7 @@ const OrderDetails = () => {
                       name={t("recievedOrders.RateService")}
                       onClick={() => setShowRateModal(true)}
                     />
-                  )}
+                  )} */}
               </div>
             </div>
           </div>
@@ -274,6 +275,19 @@ const OrderDetails = () => {
         order={order}
         showModal={showRateModal}
         setShowModal={setShowRateModal}
+        onSubmit={(formData) => {
+          // هنا بنبعت البيانات للـ API
+          updateOrderMutation(formData, {
+            onSuccess: () => {
+              refetchOrders();
+              refetchPurchases();
+            },
+            onSettled: () => {
+              setLoading(false);
+              setBtn1Loading(false);
+            },
+          });
+        }}
       />
     </section>
   );

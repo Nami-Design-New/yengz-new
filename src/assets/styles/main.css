@@ -6528,11 +6528,11 @@ body .addRequest .back-to-select__icon:hover {
   color: var(--main-color);
 }
 body .addRequest form {
-  padding: 24px;
+  /* padding: 24px; */
   width: 100%;
   border-radius: 16px;
-  background-color: var(--input-bg);
-  border: var(--gray-background) 1px solid;
+  /* background-color: var(--input-bg); */
+  /* border: var(--gray-background) 1px solid; */
 }
 body .addRequest form button {
   width: -moz-fit-content;
@@ -9278,5 +9278,15 @@ body.en header .navbar .nav-search {
   color: #410c9e;
 }
 .bg-main-color {
-  color: #410c9e;
+  background-color: #410c9e;
+}
+.bg-color-f0f0f0{
+background-color: #f0f0f0;
+}
+.max-width-5xl {
+  max-width: 1400px;
+}
+
+.border-red{
+  border: solid 1px red;
 }

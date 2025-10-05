@@ -13,7 +13,9 @@ const FundSource = () => {
 
   return (
     <section className="funding">
-      <h3 className="funding__title">مصدر التمويل الحالي</h3>
+      <h3 className="funding__title">
+        {t("enterprise.createenterprise.orgs.funding.fundingSourceTitle")}
+      </h3>
       <div className="funders__list ">
         <div className="funder">
           <img
@@ -32,15 +34,19 @@ const FundSource = () => {
               </span>
               <span>
                 <i className="fa-solid fa-clock"></i>
-                <span>{new Date(companyDetailsSimpleData?.sponsor_user?.last_login).toLocaleTimeString()}</span>
+                <span>
+                  {new Date(
+                    companyDetailsSimpleData?.sponsor_user?.last_login
+                  ).toLocaleTimeString()}
+                </span>
               </span>
             </div>
           </div>
           <AddButton
             icon={<i className="fa-solid fa-arrows-rotate"></i>}
-            text={t("enterprise.teams.addFunding", "تغير الممول")}
+            text={t("enterprise.createenterprise.orgs.funding.changeFunder")}
             onClick={() => {
-              console.log("clikced");
+              // console.log("clikced");
               setShowModal(true);
             }}
           />

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import { Link, useNavigate, useParams } from "react-router";
@@ -9,26 +9,41 @@ import useGetProject from "../hooks/projects/useGetProject";
 import useGetProjectRequests from "../hooks/projects/useGetProjectRequests";
 import OfferCard from "../ui/cards/OfferCard";
 import AboutProjectCard from "../ui/cards/AboutProjectCard";
+import { Dropdown } from "react-bootstrap";
+import AddButton from "../ui/enterprise/AddButton ";
+import ConfirmationModal from "../ui/modals/ConfirmationModal";
+import useDeleteProject from "../hooks/projects/useDeleteProject";
 
 const ProjectDetails = () => {
   const { t } = useTranslation();
   const { id } = useParams();
   const navigate = useNavigate();
+  const [showModal, setShowModal] = useState(false);
+
   const { data: project, isLoading, error } = useGetProject();
   const { data: requests, isLoading: isLoadingRequests } =
     useGetProjectRequests(id, "global");
   const user = useSelector((state) => state.authedUser.user);
+  const { data: projectDetails } = useGetProject(id);
+  const { deleteProject, isPending } = useDeleteProject();
 
-useEffect(() => {
-  if (
-    project?.accepted === 0 &&
-    project?.refuse_reason !== null &&
-    project?.user?.id !== user?.id
-  ) {
-    navigate("/projects");
-  }
-}, [project, user, navigate]);
+  useEffect(() => {
+    if (
+      project?.accepted === 0 &&
+      project?.refuse_reason !== null &&
+      project?.user?.id !== user?.id
+    ) {
+      navigate("/projects");
+    }
+  }, [project, user, navigate]);
 
+  console.log(
+    "projectDetails++++++++",
+    project,
+    requests,
+    user,
+    projectDetails
+  );
 
   if (isLoading || isLoadingRequests) {
     return <DataLoader />;
@@ -40,8 +55,44 @@ useEffect(() => {
   return (
     <>
       <SectionHeader title={project?.title} />
+
       <section className="requestDetails">
         <div className="container">
+          {projectDetails.can_control && (
+            // {true && (
+            <div className="button__group pt-5 ps-3 pb-2  d-flex justify-content-end ">
+              <Dropdown>
+                <Dropdown.Toggle variant="primary" id="dropdown-split-basic">
+                  {/* {t("enterprise.orgs.addMember")} */}
+                  خيارات
+                  <i className="fa-solid fa-pen-to-square"></i>{" "}
+                </Dropdown.Toggle>
+
+                <Dropdown.Menu>
+                  <Dropdown.Item
+                    onClick={() => {
+                      navigate(`/project/edit/${project?.id}`);
+                    }}
+                  >
+                    <i className="fa-solid fa-pen-to-square"></i>{" "}
+                    {t("enterprise.teams.editTeam", "تعديل المشروع")}
+                  </Dropdown.Item>
+                  <Dropdown.Item
+                    // onClick={() => onSubmitDeleteCompanyTeam(link, id)}
+
+                    onClick={(e) => {
+                      e.preventDefault();
+                      e.stopPropagation();
+                      setShowModal(true);
+                    }}
+                  >
+                    <i className="fa-regular fa-trash"></i>{" "}
+                    {t("enterprise.teams.deleteTeam", "حذف المشروع")}
+                  </Dropdown.Item>
+                </Dropdown.Menu>
+              </Dropdown>
+            </div>
+          )}
           <div className="row ">
             {project?.refuse_reason !== null && (
               <div className="col-12 p-2 mb-3">
@@ -60,6 +111,10 @@ useEffect(() => {
                   {t("projects.projectDetails")}
                 </h5>
                 <p>{project?.description}</p>
+                {project?.extra?.map((ext) => (
+                  <p className="mt-2">{ext.name}</p>
+                ))}
+
                 {project?.files?.length > 0 && (
                   <>
                     <h6>{t("projects.attachments")}</h6>
@@ -80,9 +135,9 @@ useEffect(() => {
                 )}
               </div>
               {/* add offer */}
-              {!project?.is_my_project && !project?.added_request && (
+              {/* {!project?.is_my_project && !project?.added_request && (
                 <>{!project?.added_request && <AddOffer id={project?.id} />}</>
-              )}
+              )} */}
               {/* piddings */}
               {requests && requests.length > 0 && (
                 <div className="allComments">
@@ -95,7 +150,7 @@ useEffect(() => {
                       <OfferCard
                         request={request}
                         key={request.id}
-                        isMyProject={project?.is_my_project}
+                        isMyProject={project?.can_control_offers}
                         project={project}
                       />
                     ))}
@@ -109,6 +164,14 @@ useEffect(() => {
           </div>
         </div>
       </section>
+      <ConfirmationModal
+        showModal={showModal}
+        setShowModal={setShowModal}
+        buttonText={t("projects.deleteProject")}
+        text={t("projects.areYouSureYouWantToDelete")}
+        eventFun={() => deleteProject(project.id)}
+        loading={isPending}
+      />
     </>
   );
 };

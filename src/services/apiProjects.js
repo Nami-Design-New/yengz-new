@@ -68,6 +68,8 @@ export const createProject = async (data, queryClient) => {
         "Content-Type": "multipart/form-data",
       },
     });
+    console.log(data);
+
     queryClient.invalidateQueries(["userProjects"]);
   } catch (error) {
     throw new Error(error.message);
@@ -164,13 +166,9 @@ export async function updateRequestStatus(id, status, querClinet) {
   }
 }
 
-export async function updateProject(id, status, queryClient) {
+export async function updateProject(requestBody) {
   try {
-    await axiosInstance.post("/user/update_project_order", {
-      id: id,
-      status: status,
-    });
-    queryClient.invalidateQueries("project", "projectsOrdersList");
+    await axiosInstance.post("/user/update_project_order", requestBody);
   } catch (error) {
     throw new Error(error.message);
   }
@@ -178,10 +176,9 @@ export async function updateProject(id, status, queryClient) {
 
 export async function getProjectHelper() {
   try {
-    const req = await axiosInstance.get("/get_project_helper",);
-    return req.data.data; 
+    const req = await axiosInstance.get("/get_project_helper");
+    return req.data.data;
   } catch (error) {
     throw new Error(error.message);
   }
 }
-

@@ -19,28 +19,56 @@ const MegaMenu = ({
   isLoading,
   id,
   skills,
+  setValue
 }) => {
   const [open1, setOpen1] = useState(false);
   const [selectedHelper, setSelectedHelper] = useState(null);
   const { data } = useGetTemplateHelpers();
   const [helperName, setHelperName] = useState(null);
-  console.log(data);
-  
+
   const handleClickHelperName = (help, helpName) => {
     setSelectedHelper(help);
     setHelperName(helpName);
   };
+  console.log("mega menu +++++", {
+    t,
+    register,
+    errors,
+    control,
+    categories,
+    categoryId,
+    setCategoryId,
+    subCategories,
+    setSubCategories,
+    selectedOptions,
+    handleSkillsChange,
+    handleSubmit,
+    isLoading,
+    id,
+    skills,
+    data,
+    selectedHelper,
+    open1,
+    helperName,
+    setValue
+  });
 
   return (
-    <div className="p-4 bg-light">
+    <div className="p-4">
       {!selectedHelper && (
         <div className="mb-3">
-          {data?.map((element, index) => (
+          {categories?.map((element, index) => (
             <div key={index}>
               <Button
                 className="d-block"
                 variant="transparent"
-                onClick={() => setOpen1(open1 === index ? null : index)}
+                onClick={() => {
+                  setOpen1(open1 === index ? null : index);
+
+                  // ✅ Store categoryId + subCategories
+                  setCategoryId(element.id);
+                  setSubCategories(element.sub_categories || []);
+                }}
                 aria-controls={`menu-${index}`}
                 aria-expanded={open1 === index}
               >
@@ -51,14 +79,19 @@ const MegaMenu = ({
                 <div id={`menu-${index}`} className="mt-2">
                   <Card body>
                     <div className="row">
-                      {element.helpers.map((help) => (
+                      {element.sub_categories.map((subCat) => (
                         <p
-                          key={help.id}
+                          key={subCat.id}
                           className="cursor-pointer text-primary"
                           style={{ cursor: "pointer" }}
-                          onClick={() => handleClickHelperName(help, help.name)}
+                          onClick={() => {
+                            handleClickHelperName(subCat, subCat.name);
+                            setValue("sub_category_id", subCat.id, {
+                              shouldValidate: true,
+                            });
+                          }}
                         >
-                          {help.name}
+                          {subCat.name}
                         </p>
                       ))}
                     </div>
@@ -88,6 +121,7 @@ const MegaMenu = ({
           id={id}
           skills={skills}
           helperName={helperName}
+          data = {data}
         />
       )}
     </div>

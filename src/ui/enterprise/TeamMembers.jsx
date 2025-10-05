@@ -13,7 +13,7 @@ export const TeamMembers = () => {
   const queryClient = useQueryClient();
   const { link, id } = useParams();
 
-  const { data: TeamMemebersData } = useGetTeamMembers(link, id);
+  const { data: TeamMembersData } = useGetTeamMembers(link, id);
   const { handleDeleteMember } = useDeleteMember();
 
   function onSubmitDeleteMember(userName, teamId, memberId) {
@@ -33,7 +33,7 @@ export const TeamMembers = () => {
 
   return (
     <div>
-      {TeamMemebersData?.map((member) => (
+      {TeamMembersData?.map((member) => (
         <div key={member.id} className="card shadow-sm border mb-3">
           <div className="card-body">
             <div className="d-flex justify-content-between align-items-start mb-3">
@@ -64,7 +64,9 @@ export const TeamMembers = () => {
                   {member.user.role ? (
                     <small className="text-muted">{member.user.role}</small>
                   ) : (
-                    <small className="text-muted">لم يكتب نبذة شخصية</small>
+                    <small className="text-muted">
+                      {t("enterprise.createenterprise.orgs.team.noJobTitle")}
+                    </small>
                   )}
                 </div>
               </div>
@@ -91,7 +93,9 @@ export const TeamMembers = () => {
                           onSubmitDeleteMember(link, id, member.id)
                         }
                       >
-                        إزالة من الفريق
+                        {t(
+                          "enterprise.createenterprise.orgs.team.removeFromTeam"
+                        )}{" "}
                         <Trash2 size={16} />
                       </button>
                     </li>
@@ -108,9 +112,14 @@ export const TeamMembers = () => {
                   <span>{member.jobTitle}</span>
                 </>
               ) : (
-                "لم يكتب عنوان وظيفي"
+                t(
+                "enterprise.createenterprise.orgs.team.noJobTitle",
+              )
               )}
-              <span>{member.user.projects_count} مشاريع مفتوحة</span>
+              <span>
+                {member.user.projects_count}
+                {t("enterprise.createenterprise.orgs.team.openProjects")}
+              </span>
               <span>•</span>
               <span>{member.user.last_login}</span>
             </div>

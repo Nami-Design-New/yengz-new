@@ -18,7 +18,8 @@ function SmallMediaMenu({ isSmallMediaMenuOpen, setIsSmallMediaMenuOpen }) {
   function closeSmallMediaMenu() {
     setIsSmallMediaMenuOpen(false);
   }
-
+  console.log("user++++++++++" , user);
+  
   return (
     <div className={`small-media-menu  ${isSmallMediaMenuOpen ? "show" : ""}`}>
       {user && (

@@ -62,7 +62,7 @@ import Portfolios from "../routes/Portfolios";
 // Support
 import Complaints from "../routes/Complaints";
 
-//tickets 
+//tickets
 import Tickets from "../routes/tickets";
 // Static
 import About from "../routes/About";
@@ -96,6 +96,13 @@ import TeamCard from "../ui/enterprise/TeamCard";
 import TeamMembers from "../ui/enterprise/TeamMembers";
 import UpdateTeamPage from "../routes/enterprise/UpdateTeamPage";
 import InvitationHandler from "../routes/enterprise/InvitationHandler";
+import MessagesPage from "../routes/enterprise/MessagesPage";
+import MembersPage from "../routes/enterprise/MembersPage";
+import FreelancersPage from "../routes/enterprise/FreelancersPage";
+import PaymentsPage from "../routes/enterprise/PaymentsPage";
+import NotesPage from "../routes/NotesPage";
+import CompanyProjects from "../routes/enterprise/CompanyProjects";
+import HelpCenterDetails from "../routes/helpCenter/HelpCenterDetails";
 
 const router = createBrowserRouter([
   {
@@ -403,7 +410,7 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
       },
-        {
+      {
         path: "tickets",
         element: (
           <PrivateRoute>
@@ -483,29 +490,32 @@ const router = createBrowserRouter([
           },
         ],
       },
+      { path: "/messages", element: <MessagesPage /> },
+      { path: "/orgs/:link/messages", element: <MessagesPage /> },
+      { path: "/orgs/:link/members", element: <MembersPage /> },
+      { path: "/orgs/:link/freelancers", element: <FreelancersPage /> },
+      { path: "/orgs/:link/payments", element: <PaymentsPage /> },
+      { path: "/orgs/:link/projects", element: <CompanyProjects /> },
       {
         path: "project",
         element: <Outlet />,
         children: [{ path: "create", element: <CreateEnterpriseProject /> }],
       },
     ],
-
   },
-{
-  path: "help-center",
+  {
+    path: "help-center",
     element: <HelpCenterLayout />,
-  children: [
-    { index: true, element: <KnowledgeBase /> },
-    { path: "faqs", element: <FAQs /> },
-    { path:"faqs/:slug", element: <FaqDetails/> },
-    { path:":slug", element:<HelpCategoryDetails />},
-     { path: "sellers", element: <ExtraCategories /> },
-    { path: "sellers/:slug", element: <Seller /> },
-
-  ],
-}
-
-
+    children: [
+      { index: true, element: <KnowledgeBase /> },
+      { path: "faqs", element: <FAQs /> },
+      { path: "faqs/:slug", element: <FaqDetails /> },
+      { path: ":slug", element: <HelpCategoryDetails /> },
+      { path: "details/:slug", element: <HelpCenterDetails /> },
+      { path: "sellers", element: <ExtraCategories /> },
+      { path: "sellers/:slug", element: <Seller /> },
+    ],
+  },
 ]);
 
 export default router;

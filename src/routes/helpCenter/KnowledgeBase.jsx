@@ -3,8 +3,10 @@ import useGetHelpCategories from "../../hooks/help/useGetHelpCategories";
 import DataLoader from "../../ui/DataLoader";
 import ErrorPage from "../ErrorPage";
 import { Link } from "react-router";
+import { useTranslation } from "react-i18next";
 
 export default function KnowledgeBase() {
+  const { t } = useTranslation();
   const {
     data: helps,
     isLoading: helpsLoading,
@@ -17,13 +19,12 @@ export default function KnowledgeBase() {
     error: catsError,
   } = useGetHelpCategories();
 
-
   if (helpsLoading || catsLoading) return <DataLoader />;
   if (helpsError || catsError || !helps || !categories) return <ErrorPage />;
 
   return (
     <div className="knowledge-page">
-      <h1>مقالات شائعة</h1>
+      <h1>{t("helpCenter.popularArticles")}</h1>
 
       <div className="helps-list">
         {helps.map((help, index) => (
@@ -50,7 +51,7 @@ export default function KnowledgeBase() {
               <div className="category-header">
                 <div className="category-title">
                   <h3 className="category-name">{cat.name}</h3>
-                  <span className="count">{cat.help_count} مقال</span>
+                  <span className="count">{cat.help_count} {t('helpCenter.articleCount')}</span>
                 </div>
               </div>
 

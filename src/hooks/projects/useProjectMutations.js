@@ -22,6 +22,8 @@ const useProjectMutations = () => {
     },
     onError: (error) => {
       toast.error(error.message);
+      console.log(error);
+      
     },
   });
 

@@ -16,6 +16,7 @@ import usePostAcceptSponsorInvitation from "../hooks/orgs/usePostAcceptSponsorIn
 import { toast } from "sonner";
 import usePostRejectSponsorInvitation from "../hooks/orgs/usePostRejectSponsorInvitation";
 import ErrorPage from "../routes/ErrorPage";
+import useLeaveCompany from "../hooks/orgs/useLeaveCompany";
 
 const EnterpriseLayout = () => {
   const { t } = useTranslation();
@@ -27,6 +28,7 @@ const EnterpriseLayout = () => {
 
   const { link } = useParams();
   const { data: companyDetailsData, isLoading } = useGetCompanyDetails(link);
+  const { handleLeaveCompany } = useLeaveCompany(link);
 
   const { handleAcceptInvite } = usePostAcceptSponsorInvitation();
   const { handleRejectInvite } = usePostRejectSponsorInvitation();
@@ -37,10 +39,13 @@ const EnterpriseLayout = () => {
       },
       {
         onSuccess: () => {
-          toast.success(t("success accept"));
+          toast.success(t("enterprise.messages.successAcceptInvite"));
         },
         onError: (error) => {
-          toast.error(error?.response?.message || "failed to accept");
+          toast.error(
+            error?.response?.message ||
+              t("enterprise.messages.failAcceptInvite")
+          );
         },
       }
     );
@@ -52,11 +57,31 @@ const EnterpriseLayout = () => {
       },
       {
         onSuccess: () => {
-          toast.success(t("success accept"));
+          toast.success(t("enterprise.messages.successRejectInvite"));
         },
         onError: (error) => {
-          toast.error(error?.response?.message || "failed to accept");
-          console.log(error);
+          toast.error(
+            error?.response?.message ||
+              t("enterprise.messages.failRejectInvite")
+          );
+        },
+      }
+    );
+  }
+  function onSubmitLeaveCompany(userName) {
+    handleLeaveCompany(
+      {
+        user_name: userName,
+      },
+      {
+        onSuccess: () => {
+          toast.success(t("enterprise.messages.successLeave"));
+          navigate("/orgs");
+        },
+        onError: (error) => {
+          toast.error(
+            error?.response?.message || t("enterprise.messages.failedLeave")
+          );
         },
       }
     );
@@ -99,12 +124,11 @@ const EnterpriseLayout = () => {
         </div>
         {companyDetailsData.show_sponsor_message && (
           <div className="p-4 bg-warning bg-opacity-25 mt-5">
-            <h2>invitation to be sponsor </h2>
+            <h2>{t("enterprise.messages.inviteSponsor")}</h2>
             <p>
-              send for you{" "}
+              {t("enterprise.messages.sendForYou")}{" "}
               <span className="fw-bolder">{companyDetailsData.user.name}</span>{" "}
-              invite you to be sponsor . when accept invitation will be sponsor
-              for all services
+              {t("enterprise.messages.inviteSponsor2")}
             </p>
             <div className="d-flex gap-2 mt-1">
               <button
@@ -112,14 +136,14 @@ const EnterpriseLayout = () => {
                 className="d-block bg-info text-white border-none"
                 variant="transparent"
               >
-                accept
+                {t("enterprise.messages.accept")}
               </button>
               <button
                 onClick={() => onSubmitReject(link)}
                 className="d-block"
                 variant="transparent"
               >
-                reject
+                {t("enterprise.messages.reject")}
               </button>
             </div>
           </div>
@@ -198,7 +222,7 @@ const EnterpriseLayout = () => {
                   {companyDetailsData.can_leave && (
                     <li className="org-link">
                       <NavLink
-                        to="funding"
+                        onClick={() => onSubmitLeaveCompany(link)}
                         className={({ isActive }) => (isActive ? "active" : "")}
                       >
                         <i className="fa-solid fa-money-bill"></i>

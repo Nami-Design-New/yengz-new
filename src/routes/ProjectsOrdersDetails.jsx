@@ -19,6 +19,7 @@ import SubmitButton from "../ui/forms/SubmitButton";
 import AddRateModal from "../ui/modals/AddRateModal";
 import useGetProject from "../hooks/projects/useGetProject";
 import DataLoader from "../ui/DataLoader";
+import ErrorPage from "./ErrorPage";
 
 const ProjectsOrdersDetails = () => {
   const { t } = useTranslation();
@@ -61,7 +62,7 @@ const ProjectsOrdersDetails = () => {
   const handleupdateProject = async (status) => {
     try {
       status === "canceled" ? setBtn1Loading(true) : setLoading(true);
-      await updateProject(project?.id, status, quryClient);
+      await updateProject(project?.id, { status }, quryClient);
     } catch (error) {
       throw new Error(error.message);
     } finally {
@@ -250,7 +251,7 @@ const ProjectsOrdersDetails = () => {
                       className="report-order"
                       name={t("recievedOrders.recieve")}
                       icon={<i className="fa-light fa-circle-check"></i>}
-                      onClick={() => handleupdateProject("received")}
+                      onClick={() => setShowRateModal(true)}
                     />
                   )}
               </div>
@@ -262,6 +263,13 @@ const ProjectsOrdersDetails = () => {
         order={project}
         showModal={showRateModal}
         setShowModal={setShowRateModal}
+        onSubmit={async (formData) => {
+          try {
+            await updateProject( formData, quryClient);
+          } finally {
+            setShowRateModal(false);
+          }
+        }}
       />
     </section>
   );

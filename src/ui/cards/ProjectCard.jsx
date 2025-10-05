@@ -98,7 +98,7 @@ function ProjectCard({ project }) {
         setShowModal={setShowModal}
         buttonText={t("projects.deleteProject")}
         text={t("projects.areYouSureYouWantToDelete")}
-        eventFun={deleteProject}
+        eventFun={() => deleteProject(project.id)}
         loading={isPending}
       />
     </Link>

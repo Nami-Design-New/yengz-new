@@ -32,3 +32,14 @@ export const updateProfile = async (formData) => {
     throw new Error(error.message);
   }
 };
+
+export async function getUserRates(id) {
+  try {
+    const req = await axiosInstance.post("/get_user_rates", {
+      id,
+    });
+    return req.data.data;
+  } catch (err) {
+    throw new Error(err.message);
+  }
+}

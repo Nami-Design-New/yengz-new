@@ -3,8 +3,10 @@ import { useState } from "react";
 import useGetFaqs from "../../hooks/faqs/useGetFaqs";
 import DataLoader from "../../ui/DataLoader";
 import ErrorPage from "../ErrorPage";
+import { useTranslation } from "react-i18next";
 
 export default function FaqDetails() {
+  const { t } = useTranslation();
   const { slug } = useParams();
   const { data, isLoading, error } = useGetFaqs();
 
@@ -24,7 +26,7 @@ export default function FaqDetails() {
 
   if (!faqHelp) return <ErrorPage />;
 
-const userReaction = reaction ?? faqHelp.react;
+  const userReaction = reaction ?? faqHelp.react;
 
   const handleLike = () => {
     setReaction(userReaction === "like" ? null : "like");
@@ -58,13 +60,14 @@ const userReaction = reaction ?? faqHelp.react;
           className={`like ${userReaction === "like" ? "active" : ""}`}
           onClick={handleLike}
         >
-          <i className="fa-regular fa-thumbs-up"></i> مقال مفيد
+          <i className="fa-regular fa-thumbs-up"></i> {t("helpCenter.useful")}
         </button>
         <button
           className={`dislike ${userReaction === "dislike" ? "active" : ""}`}
           onClick={handleDislike}
         >
-          <i className="fa-regular fa-thumbs-down"></i> مقال غير مفيد
+          <i className="fa-regular fa-thumbs-down"></i>{" "}
+          {t("helpCenter.notUseful")}
         </button>
       </div>
     </div>

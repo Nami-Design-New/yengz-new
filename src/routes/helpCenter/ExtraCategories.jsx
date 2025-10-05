@@ -14,9 +14,7 @@ export default function ExtraCategories() {
     <div className="categories-list">
       {data.map((cat) => (
         <div key={cat.id} className="category-item">
-          <Link to={`/help-center/sellers/${cat.slug}`}>{cat.name}
-
-          </Link>
+          <Link to={`/help-center/sellers/${cat.slug}`}>{cat.name}</Link>
         </div>
       ))}
     </div>

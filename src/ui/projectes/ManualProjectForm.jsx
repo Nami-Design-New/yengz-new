@@ -4,6 +4,7 @@ import InputField from "../../ui/forms/InputField";
 import TextField from "../../ui/forms/TextField";
 import MultiSelect from "../../ui/forms/MultiSelect";
 import SubmitButton from "../../ui/forms/SubmitButton";
+import SelectField from "../forms/SelectField";
 import { Controller } from "react-hook-form";
 
 const ManualProjectForm = ({
@@ -19,12 +20,30 @@ const ManualProjectForm = ({
   handleSubmit,
   formData,
   isLoading,
-  id
+  id,
+  categoryId,
+  setCategoryId,
+  subCategories,
+  setSubCategories,
+  categories,
+  subCategoriesId,
+  setSubCategoriesId,
 }) => {
+  console.log("manual project form categories", {
+    categoryId,
+    setCategoryId,
+    subCategories,
+    setSubCategories,
+    categories,
+    subCategoriesId,
+    setSubCategoriesId,
+    id,
+  });
+
   return (
-    <form className="form_ui" onSubmit={handleSubmit}>
+    <form className="form_ui " onSubmit={handleSubmit}>
       <div className="row m-0">
-        <div className="col-12 p-2">
+        {/* <div className="col-12 p-2">
           <InputField
             label={t("projects.projectTitle")}
             id="title"
@@ -34,6 +53,67 @@ const ManualProjectForm = ({
             error={errors.title?.message}
             placeholder={t("writeHere")}
             required
+          />
+        </div> */}
+
+        {/* Category Select */}
+        <div className="col-lg-6 col-12 p-2">
+          <SelectField
+            label={t("addService.serviceCategory")}
+            id="category"
+            name="category"
+            disabledOption={t("select")}
+            value={categoryId || ""}
+            onChange={(e) => {
+              const selectedId = e.target.value;
+              setCategoryId(selectedId);
+
+              // فلترة الكاتيجوريز حسب الـ id
+              const selectedCat = categories?.find(
+                (cat) => Number(cat.id) === Number(selectedId)
+              );
+
+              // تحديث الـ helpers في subCategories
+              setSubCategories(selectedCat?.sub_categories || []);
+
+              // reset subCategory
+              setSubCategoriesId("");
+            }}
+            options={categories?.map((category) => ({
+              name: category.name,
+              value: category.id,
+            }))}
+            required
+          />
+        </div>
+
+        {/* Helpers Select */}
+        <div className="col-lg-6 col-12 p-2">
+          <Controller
+            name="sub_category_id"
+            control={control}
+            render={({ field }) => (
+              <SelectField
+                label={t("addService.serviceSubCategory")}
+                id="sub_category_id"
+                {...field}
+                value={subCategoriesId || field.value || ""}
+                onChange={(e) => {
+                  field.onChange(e.target.value);
+                  setSubCategoriesId(e.target.value);
+                }}
+                options={
+                  subCategories?.map((helper) => ({
+                    name: helper.name, // اسم الهيلبر يظهر في الـ UI
+                    value: helper.id, // قيمة الهيلبر
+                  })) || []
+                }
+                disabledOption={
+                  categoryId ? t("select") : t("addService.selectCategoryFirst")
+                }
+                required
+              />
+            )}
           />
         </div>
 
@@ -156,6 +236,32 @@ const ManualProjectForm = ({
             </div>
           </div>
         )}
+
+        {/* Extra fields for handleSubmit */}
+        <div className="col-lg-4 col-12 p-2">
+          <InputField
+            label="Extra (text)"
+            id={`extra[0][name_ar]`}
+            name={`extra[0][name_ar]`}
+            {...register(`extra[0][name]`)}
+            type="text"
+            placeholder={t("writeHere")}
+            // required
+          />
+        </div>
+        {/* <div className="col-lg-4 col-12 p-2">
+          <InputField
+            label="Extra (English)"
+            id={`extra[0][name_en]`}
+            name={`extra[0][name_en]`}
+            {...register(`extra[0][name_en]`)}
+            type="text"
+            placeholder={t("writeHere")}
+            required
+          />
+        </div> */}
+        <input type="hidden" {...register(`extra[0][value]`)} value="name" />
+        <input type="hidden" {...register(`extra[0][type]`)} value="text" />
       </div>
 
       <div className="col-12 p-2 d-flex justify-content-end">

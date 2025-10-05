@@ -14,6 +14,7 @@ import ProjectCard from "../cards/ProjectCard";
 import WorksTab from "./WorksTab";
 import CertificatesTab from "./CertificatesTab";
 import CustomerReviews from "./CustomerReviews";
+import NotesPage from "../../routes/NotesPage";
 
 const ProfileTabs = ({ user, isMyAccount }) => {
   const { t } = useTranslation();
@@ -269,7 +270,11 @@ const ProfileTabs = ({ user, isMyAccount }) => {
                   </li>
                 </ul>
 
-                <CustomerReviews reviews={user.user_rates || []} t={t} />
+                <CustomerReviews
+                  user={user}
+                  reviews={user.user_rates || []}
+                  t={t}
+                />
               </>
             ) : (
               <div className="noDataFound">
@@ -295,6 +300,10 @@ const ProfileTabs = ({ user, isMyAccount }) => {
           className="tab_item"
         >
           <CertificatesTab user={user} isMyAccount={isMyAccount} />
+        </Tab>
+        {/*  notes */}
+        <Tab eventKey="notes" title={t("profile.notes")} className="tab_item">
+          <NotesPage userId={user?.id} />
         </Tab>
       </Tabs>
       <ConfirmationModal

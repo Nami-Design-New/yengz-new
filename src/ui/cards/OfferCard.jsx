@@ -65,7 +65,8 @@ function OfferCard({ request, isMyProject, project }) {
       setLoading(false);
     }
   };
-
+  console.log('offer card =====' , request);
+  
   return (
     <div className="comment offer-card">
       <div className="d-flex justify-content-between">
@@ -109,7 +110,7 @@ function OfferCard({ request, isMyProject, project }) {
                 ) : (
                   <>
                     <button
-                      className="edit_btn"
+                      className="edit_btn text-white bg-success"
                       onClick={() =>
                         user?.wallet < request?.price
                           ? setShowChargeModal(true)

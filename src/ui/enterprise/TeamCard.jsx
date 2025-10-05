@@ -14,11 +14,11 @@ const TeamCard = () => {
   const { data: companyTeamData } = useGetCompanyTeam(link);
   const { data: companyDetailsData } = useGetCompanyDetails(link);
 
-  console.log(
-    "companyTeamData =======================",
-    companyTeamData,
-    companyDetailsData
-  );
+  // console.log(
+  //   "companyTeamData =======================",
+  //   companyTeamData,
+  //   companyDetailsData
+  // );
 
   return (
     <>

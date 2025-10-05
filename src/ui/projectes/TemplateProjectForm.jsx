@@ -5,7 +5,6 @@ import SubmitButton from "../../ui/forms/SubmitButton";
 import TextField from "../../ui/forms/TextField";
 import MultiSelect from "../../ui/forms/MultiSelect";
 import { Controller, useWatch } from "react-hook-form";
-import useGetTemplateHelpers from "../../hooks/projects/useGetTemplateHelpers";
 
 const TemplateProjectForm = ({
   t,
@@ -24,9 +23,9 @@ const TemplateProjectForm = ({
   id,
   skills,
   helperName,
+  data,
 }) => {
   const subCategoryId = useWatch({ control, name: "sub_category_id" });
-  const { data } = useGetTemplateHelpers();
 
   const matchedHelper = useMemo(() => {
     if (!categoryId || !subCategoryId || !data) return null;
@@ -45,8 +44,13 @@ const TemplateProjectForm = ({
     return null;
   }, [categoryId, subCategoryId, data]);
 
-  console.log("Matched Helper:", matchedHelper);
-  console.log(" Helper:::::::::::", data, helperName);
+  console.log(
+    " Helper:::::::::::",
+    data,
+    helperName,
+    subCategoryId,
+    categoryId
+  );
 
   const targetHelper = useMemo(() => {
     if (!data || !helperName) return null;
@@ -63,23 +67,28 @@ const TemplateProjectForm = ({
     }
     return null;
   }, [data, helperName]);
+  console.log("template project form", {
+    t,
+    register,
+    errors,
+    control,
+    categories,
+    categoryId,
+    setCategoryId,
+    subCategories,
+    setSubCategories,
+    selectedOptions,
+    handleSkillsChange,
+    handleSubmit,
+    isLoading,
+    id,
+    skills,
+    helperName,
+  });
 
   return (
     <form className="form_ui" onSubmit={handleSubmit}>
       <div className="row m-0">
-        <div className="col-12 p-2">
-          <InputField
-            label={t("projects.projectTitle")}
-            id="title"
-            name="title"
-            {...register("title")}
-            type="text"
-            error={errors.title?.message}
-            placeholder={t("writeHere")}
-            required
-          />
-        </div>
-
         {/* <div className="col-lg-6 col-12 p-2">
           <SelectField
             label={t("addService.serviceCategory")}
@@ -158,7 +167,7 @@ const TemplateProjectForm = ({
                 label={t("addService.serviceSubCategory")}
                 id="sub_category_id"
                 {...field}
-                value={subCategoryId || targetHelper?.sub_category_id || ""} // ✅ prefer form state
+                value={field.value || targetHelper?.sub_category_id || ""} // ✅ هيقرأ القيمة اللي خزّناها
                 onChange={(e) => {
                   field.onChange(e.target.value); // ✅ update react-hook-form state
                 }}
@@ -284,6 +293,40 @@ const TemplateProjectForm = ({
                 )}
               </div>
             ))}
+
+          {/* Extra fields for handleSubmit */}
+          <div className="col-lg-4 col-12 p-2">
+            <InputField
+              label="Extra (Arabic)"
+              id={`extra[0][name_ar]`}
+              name={`extra[0][name_ar]`}
+              {...register(`extra[0][name_ar]`)}
+              type="text"
+              placeholder={t("writeHere")}
+              required
+            />
+          </div>
+          <div className="col-lg-4 col-12 p-2">
+            <InputField
+              label="Extra (English)"
+              id={`extra[0][name_en]`}
+              name={`extra[0][name_en]`}
+              {...register(`extra[0][name_en]`)}
+              type="text"
+              placeholder={t("writeHere")}
+              required
+            />
+          </div>
+          <input
+            type="hidden"
+            {...register(`extra[0][value]`)}
+            value="name"
+          />
+          <input
+            type="hidden"
+            {...register(`extra[0][type]`)}
+            value="text"
+          />
         </>
         {/* )} */}
       </div>

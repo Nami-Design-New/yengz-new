@@ -3,8 +3,11 @@ import { useParams } from "react-router-dom";
 import useGetSellerDetails from "../../hooks/help/useGetSellerDetails";
 import DataLoader from "../../ui/DataLoader";
 import ErrorPage from "../ErrorPage";
+import { useTranslation } from "react-i18next";
 
 export default function Seller() {
+    const { t } = useTranslation();
+  
   const { slug } = useParams();
   const { data, isLoading, isError } = useGetSellerDetails(slug);
 
@@ -33,7 +36,7 @@ export default function Seller() {
           ))}
         </div>
       ) : (
-        <p>لا توجد بيانات إضافية</p>
+        <p>{t('helpCenter.noExtraData')}</p>
       )}
     </div>
   );

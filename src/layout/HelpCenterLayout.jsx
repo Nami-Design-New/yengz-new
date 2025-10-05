@@ -1,5 +1,6 @@
 import { Outlet, ScrollRestoration } from "react-router";
 import HelpCenterSidebar from "../ui/helpCenter/HelpCenterSidebar";
+import HelpCenterSearch from "../ui/helpCenter/HelpCenterSearch";
 
 export default function HelpCenterLayout() {
   return (
@@ -11,10 +12,7 @@ export default function HelpCenterLayout() {
 
           <div className="col-lg-9 col-md-8 col-12 p-0">
             <div className="container">
-              <div className="help-center-searchbar">
-                <input type="text" placeholder="ابحث في مركز المساعدة..." />
-              </div>
-
+              <HelpCenterSearch  />
               <div className="help-center-page">
                 <Outlet />
               </div>

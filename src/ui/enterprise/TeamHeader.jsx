@@ -31,7 +31,7 @@ const TeamHeader = ({
       { user_name: userName, team_id: teamId },
       {
         onSuccess: () => {
-          toast.success(t("team deleted success"));
+          toast.success(t(""));
           queryClient.invalidateQueries(["companyTeam"]);
         },
         onError: (error) => {
@@ -42,7 +42,7 @@ const TeamHeader = ({
   }
 
   const openModal = () => {
-    setSelectedTeamId(id); 
+    setSelectedTeamId(id);
     setIsModalOpen(true);
   };
 
@@ -53,11 +53,12 @@ const TeamHeader = ({
         <div className="enterprise-team__info">
           <span className="enterprise-team__info-item">
             <i className="fa-regular fa-folder"></i>
-            {projects || t("enterprise.teams.noProjects", "لا يوجد أي مشاريع")}
+            {projects ||
+              t("enterprise.messages.noProjects")}
           </span>
           <span className="enterprise-team__info-item">
             <i className="fa-regular fa-money-bill"></i>
-            {budget || "$0.00 من غير محدودة"}
+            {budget || `$0.00 ${t("enterprise.messages.unspecified")}`}
           </span>
         </div>
       </Link>
@@ -85,14 +86,18 @@ const TeamHeader = ({
               }}
             >
               <i className="fa-solid fa-pen-to-square"></i>{" "}
-              {t("enterprise.teams.editTeam", "تعديل الفريق")}
+              {t(
+                "enterprise.createenterprise.orgs.team.editTeam",
+              )}
             </Dropdown.Item>
             {canDelete && title !== "المدراء" && (
               <Dropdown.Item
                 onClick={() => onSubmitDeleteCompanyTeam(link, id)}
               >
                 <i className="fa-regular fa-trash"></i>{" "}
-                {t("enterprise.teams.deleteTeam", "حذف الفريق")}
+                {t(
+                  "enterprise.createenterprise.orgs.team.deleteTeam",
+                )}
               </Dropdown.Item>
             )}
           </Dropdown.Menu>

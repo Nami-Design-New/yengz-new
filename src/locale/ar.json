@@ -49,7 +49,7 @@
     "manage-accounts": "ادارة الحسابات",
     "services": "الخدمات",
     "project": "اضف مشروع",
-    "tickets":"التذاكر"
+    "tickets": "التذاكر"
   },
   "navbar": {
     "ynjez": "عن ينجز",
@@ -70,7 +70,7 @@
     "manageAccounts": "ادارة الحسابات البنكية",
     "support": "المساعدة",
     "report": "الابلاغ عن مشكلة",
-    "ticket":"التذاكر",
+    "ticket": "التذاكر",
     "deleteAccount": "حذف الحساب",
     "logout": "تسجيل الخروج",
     "messages": "الرسائل",
@@ -611,7 +611,8 @@
     "reviewOnService": "تقييم على الخدمة",
     "reviewOnProject": "تقييم على المشروع",
     "review": "تقييم عام",
-    "noReviews": "لا يوجد تقييمات حالية"
+    "noReviews": "لا يوجد تقييمات حالية",
+    "notes": "الملاحظات"
   },
   "status": {
     "orderStatus": "حالة الطلب",
@@ -675,28 +676,28 @@
     "bankUpdatedSuccessfully": "تمت تعديل الحساب بنجاح",
     "bankDeletedSuccessfully": "تمت حذف الحساب بنجاح"
   },
-"tickets":{
-"header":"تذكرة دعم",
-"addTicket": "إضافة تذكرة",
-"ticketNumber":"رقم التذكرة",
-  "problemName": "اسم المشكلة",
-  "problemType": "نوع المشكلة",
-  "problemImportance": "أهمية المشكلة",
-  "problemIdOptional": "الرقم التعريفي (اختياري)",
-  "problemDescription": "وصف المشكلة",
-  "writeHere": "اكتب هنا",
-  "select": "اختر",
-  "exampleId": "مثال: 12345",
-  "writeDescriptionHere": "اكتب وصف المشكلة هنا",
-  "high": "عالية",
-  "medium": "متوسطة",
-  "low": "منخفضة",
-"ticketAddedSuccessfully": "تمت إضافة التذكرة بنجاح",
-  "somethingWentWrong": "حدث خطأ ما، برجاء المحاولة لاحقاً",
-  "titleRequired": "العنوان مطلوب",
-  "ticketCategoryRequired": "فئة التذكرة مطلوبة",
-  "importanceRequired": "مستوى الأهمية مطلوب",
-  "descriptionRequired": "الوصف مطلوب"
+  "tickets": {
+    "header": "تذكرة دعم",
+    "addTicket": "إضافة تذكرة",
+    "ticketNumber": "رقم التذكرة",
+    "problemName": "اسم المشكلة",
+    "problemType": "نوع المشكلة",
+    "problemImportance": "أهمية المشكلة",
+    "problemIdOptional": "الرقم التعريفي (اختياري)",
+    "problemDescription": "وصف المشكلة",
+    "writeHere": "اكتب هنا",
+    "select": "اختر",
+    "exampleId": "مثال: 12345",
+    "writeDescriptionHere": "اكتب وصف المشكلة هنا",
+    "high": "عالية",
+    "medium": "متوسطة",
+    "low": "منخفضة",
+    "ticketAddedSuccessfully": "تمت إضافة التذكرة بنجاح",
+    "somethingWentWrong": "حدث خطأ ما، برجاء المحاولة لاحقاً",
+    "titleRequired": "العنوان مطلوب",
+    "ticketCategoryRequired": "فئة التذكرة مطلوبة",
+    "importanceRequired": "مستوى الأهمية مطلوب",
+    "descriptionRequired": "الوصف مطلوب"
   },
   "choose": "اختر",
   "likeIt": "اعجبني",
@@ -742,6 +743,21 @@
   "projectTipsText2": "املأ جميع الحقول وقدّم أمثلة أو نماذج توضح المطلوب بشكل أفضل.",
   "projectTipsText3": "قسّم المشروع الكبير إلى مهام أصغر على مراحل متعددة لتسهيل التنفيذ والمتابعة.",
   "enterprise": {
+    "messages": {
+      "successAcceptInvite": "تم قبول الدعوة بنجاح",
+      "failAcceptInvite": "فشل في قبول الدعوة",
+      "successRejectInvite": "تم رفض الدعوة بنجاح",
+      "failRejectInvite": "فشل في رفض الدعوة",
+      "successLeave": "تم مغادرة الشركة بنجاح",
+      "failedLeave": "فشل في مغادرة الشركة",
+      "inviteSponsor": "دعوة لتكون راعياً",
+      "sendForYou": "تم الإرسال لك",
+      "inviteSponsor2": "تمت دعوتك لتكون راعياً. عند قبول الدعوة ستكون راعياً لجميع الخدمات",
+      "accept": "قبول",
+      "reject": "رفض",
+      "noProjects": "لا يوجد مشاريع لعرضها",
+      "unspecified": "من غير محدودة"
+    },
     "hero": {
       "title": "وظف المستقلين وأدر مشاريع مؤسستك من مكان واحد",
       "desc": "مكن فريقك من المشاركة بتوظيف المستقلين عبر أكبر منصة عمل حر بالعالم العربي",
@@ -762,7 +778,8 @@
       "addMember": "إضافة عضو",
       "addTeam": "إضافة فريق",
       "addProject": " إضافة مشروع ",
-      "memberAdded": "تمت إضافة العضو بنجاح!"
+      "memberAdded": "تمت إضافة العضو بنجاح!",
+      "deleteTeam": "تم حذف التيم بنجاح"
     },
     "details": {
       "dashboard": "لوحة التحكم",
@@ -886,6 +903,10 @@
       },
       "orgs": {
         "addMember": "إضافة عضو",
+        "funding": {
+          "fundingSourceTitle": "مصدر التمويل الحالي",
+          "changeFunder": "تغيير الممول"
+        },
         "team": {
           "addPermissions": "إضافة صلاحيات",
           "name": "الاسم",
@@ -893,6 +914,13 @@
           "description": "الوصف",
           "enterDescription": "ادخل الوصف",
           "permissions": "الصلاحيات",
+
+          "removeFromTeam": "إزالة من الفريق",
+          "noJobTitle": "لم يكتب عنوان وظيفي",
+          "openProjects": "مشاريع مفتوحة",
+          "lastLogin": "آخر تسجيل دخول",
+          "successDeleteMember": "تمت إزالة العضو بنجاح",
+          "errorDeleteMember": "فشل في إزالة العضو",
 
           "projects": "المشاريع",
           "memberProjects": "إدارة مشاريع العضو",
@@ -951,9 +979,127 @@
         "submit": "إنشاء مؤسسة",
         "cancel": "إلغاء",
         "edit": "تعديل المؤسسة",
-        "delete": "حذف"
+        "delete": "حذف",
+        "createSuccess": "تم إنشاء الشركة بنجاح",
+        "updateSuccess": "تم تحديث الشركة بنجاح",
+        "deleteSuccess": "تم حذف الشركة بنجاح"
+      },
+      "invite": {
+        "acceptSuccess": "تم قبول الدعوة بنجاح",
+        "acceptFail": "فشل في قبول الدعوة"
       }
     }
+  },
+  "messagesPage": {
+    "title": "رسائل",
+    "sortNewest": "الأحدث",
+    "sortOldest": "الأقدم",
+    "search": "بحث",
+    "freelancerName": "اسم المستقل",
+    "memberName": "اسم العضو",
+    "team": "الفريق",
+    "freelancerLabel": "المستقل",
+    "projectId": "رقم المشروع",
+    "noMessages": "لا توجد رسائل"
+  },
+  "membersPage": {
+    "title": "الأعضاء",
+    "sortNewest": "الأحدث",
+    "sortOldest": "الأقدم",
+    "search": "بحث",
+    "team": "الفريق",
+    "categories": "التخصص",
+    "jobTitle": "المسمى الوظيفي",
+    "skills": "المهارات",
+    "country": "الدولة",
+    "verifiedIdentity": "هوية موثّقة",
+    "noBio": "لم يكتب نبذة شخصية",
+    "noJobTitle": "لم يكتب عنوان وظيفي",
+    "openProjects": "مشاريع مفتوحة",
+    "noMembers": "لا يوجد أعضاء"
+  },
+  "freelancersPage": {
+    "title": "ابحث عن مستقلين",
+    "search": "بحث",
+    "rating": "التقييم",
+    "team": "الفريق",
+    "categories": "التخصص",
+    "country": "الدولة",
+    "members": "الأعضاء",
+    "verified": "هوية موثّقة",
+    "online": "المتصلون الآن",
+    "noBio": "لم يكتب نبذة شخصية",
+    "noJobTitle": "لم يكتب عنوان وظيفي",
+    "reviews": "تقييم",
+    "lastLogin": "آخر دخول",
+    "noFreelancers": "لا يوجد مستقلين"
+  },
+  "payments": {
+    "title": "رصيد الحساب",
+    "team": "الفريق",
+    "from": "من",
+    "to": "إلى",
+    "categories": "التخصص",
+    "jobTitle": "المسمى الوظيفي",
+    "skills": "المهارات (افصل بينها بفاصلة)",
+    "country": "الدولة",
+    "operations": "العمليات",
+    "operationTypes": {
+      "project_accept": "قبول المشروع",
+      "refund_project": "استرجاع المشروع",
+      "project_complete": "اكتمال المشروع"
+    },
+    "loading": "جاري تحميل البيانات...",
+    "error": "خطأ",
+    "amount": "المبلغ",
+    "operation": "العملية",
+    "project": "المشروع",
+    "noResults": "لا توجد نتائج ."
+  },
+  "companyProject": {
+    "title": "مشاريع",
+    "sort": { "newest": "الأحدث", "oldest": "الأقدم" },
+    "search": "بحث",
+    "team": "الفريق",
+    "memberName": "اسم العضو",
+    "freelanceName": "اسم المستقل",
+    "status": "الحالة",
+    "new": "جديد",
+    "draft": "مسودة",
+    "review": "قيد المراجعة",
+    "open": "مفتوح",
+    "executing": "جارٍ التنفيذ",
+    "noResults": "لا توجد نتائج"
+  },
+  "notes": {
+    "title": "ملاحظات",
+    "placeholder": "اكتب ملاحظتك هنا...",
+    "noNotes": "لا يوجد ملاحظات",
+    "noCompany": "لم يحدد اسم الشركه",
+    "noTeam": "لم يحدد اسم التيم",
+    "emptyNote": "من فضلك أدخل محتوى الملاحظة",
+    "emptyCategory": "من فضلك اختر نوع الملاحظة",
+    "categoryLabel": "-- اختر نوع الملاحظة --",
+    "personal": "ملاحظة شخصية",
+    "save": "حفظ الملاحظة"
+  },
+  "helpCenter": {
+    "title": "الأسئلة الشائعة",
+    "useful": "مقال مفيد",
+    "notUseful": "مقال غير مفيد",
+    "popularArticles": "مقالات شائعة",
+    "articleCount": "مقال",
+    "knowledgeBase": "قاعدة المعرفة",
+    "noSubArticles": "لا توجد مقالات فرعية لهذا التصنيف",
+    "noExtraData": "لا توجد بيانات إضافية",
+    "noDetailsData": "لا توجد تفاصيل لهذا المشروع"
+  },
+  "addProject": {
+    "entity": "جهة المشروع",
+    "team": "الفريق",
+    "organization": "مؤسسة",
+    "personal": "شخصي",
+    "selectTeam": "اختر الفريق"
   },
   "year": "سنة",
   "month": "شهر",
