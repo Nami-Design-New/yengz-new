@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next";
-import useGetAbout from "../../hooks/About/useGetAbout";
+import useGetAbout from "../../hooks/about/useGetAbout";
 import useGetPaymentMethods from "../../hooks/paymentMethods/useGetPaymentMethods";
 import usePopularCategories from "../../hooks/categories/usePopularCategories";
 import { Link } from "react-router";
